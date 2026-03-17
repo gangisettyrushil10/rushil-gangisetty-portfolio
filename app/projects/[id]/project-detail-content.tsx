@@ -101,7 +101,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="mt-6 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground"
+            className="font-display mt-6 text-3xl sm:text-4xl md:text-[3.6rem] font-semibold leading-[0.96] text-foreground"
           >
             {project.title}
           </motion.h1>
@@ -111,7 +111,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
-            className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-3xl leading-relaxed"
+            className="mt-5 text-base sm:text-lg text-muted-foreground max-w-3xl leading-8"
           >
             {project.longDescription}
           </motion.p>
@@ -339,7 +339,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                 <div className="p-2 rounded-lg bg-accent/10 text-accent">
                   <Target className="w-5 h-5" />
                 </div>
-                <h2 className="text-2xl font-bold text-foreground">The Challenge</h2>
+                <h2 className="font-display text-[1.65rem] font-semibold text-foreground">The Challenge</h2>
               </div>
               <p className="text-muted-foreground leading-relaxed">
                 {project.challenge}
@@ -357,7 +357,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                 <div className="p-2 rounded-lg bg-primary/10 text-primary">
                   <Lightbulb className="w-5 h-5" />
                 </div>
-                <h2 className="text-2xl font-bold text-foreground">Engineering Decisions</h2>
+                <h2 className="font-display text-[1.65rem] font-semibold text-foreground">Engineering Decisions</h2>
               </div>
               <ul className="flex flex-col gap-4">
                 {project.decisions.map((decision, index) => (
@@ -388,7 +388,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                 <div className="p-2 rounded-lg bg-green-500/10 text-green-400">
                   <CheckCircle2 className="w-5 h-5" />
                 </div>
-                <h2 className="text-2xl font-bold text-foreground">Outcomes</h2>
+                <h2 className="font-display text-[1.65rem] font-semibold text-foreground">Outcomes</h2>
               </div>
               <ul className="flex flex-col gap-4">
                 {project.outcomes.map((outcome, index) => (
@@ -412,7 +412,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                 <div className="p-2 rounded-lg bg-primary/10 text-primary">
                   <BookOpen className="w-5 h-5" />
                 </div>
-                <h2 className="text-2xl font-bold text-foreground">What I Learned</h2>
+                <h2 className="font-display text-[1.65rem] font-semibold text-foreground">What I Learned</h2>
               </div>
               <ul className="flex flex-col gap-4">
                 {project.learnings.map((learning, index) => (

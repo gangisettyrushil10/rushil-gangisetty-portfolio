@@ -11,6 +11,7 @@ export function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 animated-gradient" />
+      <div className="absolute inset-0 hero-noise opacity-80" />
       <div className="absolute inset-0 grid-pattern opacity-50" />
       
       {/* Gradient Orbs */}
@@ -48,7 +49,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-balance"
+            className="font-display text-4xl sm:text-5xl md:text-[3.6rem] lg:text-[4.5rem] font-semibold leading-[0.95] text-balance"
           >
             <span className="text-foreground">Hi, I'm </span>
             <span className="gradient-text">{personalInfo.name.split(' ')[0]}</span>
@@ -59,7 +60,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 text-xl sm:text-2xl text-muted-foreground max-w-3xl mx-auto text-balance"
+            className="mt-5 text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto text-balance"
           >
             {personalInfo.title} {personalInfo.tagline.toLowerCase()}.
           </motion.p>
@@ -69,7 +70,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-6 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
+            className="mt-5 text-[15px] sm:text-[1.02rem] text-muted-foreground max-w-2xl mx-auto leading-8"
           >
             {recruiterSummary.description}
           </motion.p>
@@ -135,9 +136,10 @@ export function Hero() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
-              className="text-center p-6 rounded-xl bg-card/50 backdrop-blur-sm border border-border"
+              whileHover={{ y: -4 }}
+              className="soft-spotlight text-center p-5 rounded-xl bg-card/50 backdrop-blur-sm border border-border"
             >
-              <div className="text-3xl sm:text-4xl font-bold text-primary">{stat.value}</div>
+              <div className="font-display text-3xl sm:text-[2.25rem] font-semibold text-primary">{stat.value}</div>
               <div className="mt-2 text-sm text-muted-foreground">{stat.label}</div>
             </motion.div>
           ))}

@@ -17,10 +17,11 @@ export function ProjectCard({ project, index = 0, featured = false }: ProjectCar
     <motion.article
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
+      whileHover={{ y: -6 }}
       viewport={{ once: true, margin: '-50px' }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className={cn(
-        'group relative overflow-hidden rounded-2xl bg-card border border-border transition-all duration-300',
+        'soft-spotlight card-tilt group relative overflow-hidden rounded-2xl bg-card border border-border transition-all duration-300',
         'hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5',
         featured && 'md:col-span-2'
       )}
@@ -41,7 +42,7 @@ export function ProjectCard({ project, index = 0, featured = false }: ProjectCar
         </div>
 
         {/* Title & Description */}
-        <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
+        <h3 className="font-display text-xl sm:text-[1.65rem] font-semibold text-foreground group-hover:text-primary transition-colors">
           {project.title}
         </h3>
         <p className="mt-2 text-sm font-mono uppercase tracking-wide text-primary/80">

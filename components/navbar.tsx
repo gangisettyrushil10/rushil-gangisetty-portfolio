@@ -44,7 +44,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-2">
             <motion.div
               whileHover={{ scale: 1.05 }}
-              className="text-lg sm:text-xl font-bold tracking-tight"
+              className="font-display text-lg sm:text-[1.3rem] font-semibold tracking-tight"
             >
               <span className="text-foreground">rushil</span>
               <span className="text-primary">.</span>

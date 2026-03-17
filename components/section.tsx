@@ -50,7 +50,7 @@ export function SectionHeader({ badge, title, description, className }: SectionH
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.4, delay: 0.1 }}
-        className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground"
+        className="font-display text-2xl sm:text-[2.2rem] font-semibold leading-tight text-foreground"
       >
         {title}
       </motion.h2>
@@ -60,7 +60,7 @@ export function SectionHeader({ badge, title, description, className }: SectionH
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4, delay: 0.2 }}
-          className="mt-4 text-lg text-muted-foreground max-w-2xl"
+          className="mt-4 text-base sm:text-[1.02rem] text-muted-foreground max-w-2xl leading-8"
         >
           {description}
         </motion.p>
