@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { Mail, Github, Linkedin, MapPin, Send, ArrowUpRight, CheckCircle2 } from 'lucide-react'
+import { Mail, Github, Linkedin, MapPin, Send, ArrowUpRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -15,12 +15,19 @@ export function ContactContent() {
     subject: '',
     message: '',
   })
-  const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // In a real app, this would send to an API
-    setIsSubmitted(true)
+    const subject = encodeURIComponent(formState.subject || `Portfolio inquiry from ${formState.name}`)
+    const body = encodeURIComponent(
+      [
+        `Name: ${formState.name}`,
+        `Email: ${formState.email}`,
+        '',
+        formState.message,
+      ].join('\n'),
+    )
+    window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`
   }
 
   return (
@@ -57,7 +64,7 @@ export function ContactContent() {
               Let's Connect
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              I&apos;m open to software engineering opportunities, backend and data roles, business-systems work, and conversations about teams that need an engineer who can ship.
+              I&apos;m open to software engineering roles, backend and data-heavy work, and teams that want an engineer who can contribute early and keep growing.
             </p>
           </motion.div>
         </div>
@@ -76,7 +83,7 @@ export function ContactContent() {
             >
               <h2 className="text-2xl font-bold text-foreground mb-6">Get in Touch</h2>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                If you&apos;re hiring for software engineering, backend APIs, analytics-heavy workflows, or business-systems work, that is where this portfolio is strongest.
+                The strongest fit is software engineering, backend/API work, data-heavy applications, and business systems. If that lines up with what you&apos;re hiring for, feel free to reach out.
               </p>
 
               {/* Contact Cards */}
@@ -148,7 +155,7 @@ export function ContactContent() {
                   <p className="text-green-400 font-medium">Currently open to opportunities</p>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Available for full-time roles, internships, and technically credible early-career opportunities.
+                  Available for full-time roles, internships, and good early-career opportunities.
                 </p>
               </div>
             </motion.div>
@@ -160,108 +167,81 @@ export function ContactContent() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              {isSubmitted ? (
-                <div className="h-full flex items-center justify-center">
-                  <div className="text-center p-8 rounded-2xl bg-card border border-border">
-                    <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-green-500/10 flex items-center justify-center">
-                      <CheckCircle2 className="w-8 h-8 text-green-500" />
-                    </div>
-                    <h3 className="text-xl font-bold text-foreground mb-2">Message Sent!</h3>
-                    <p className="text-muted-foreground">
-                      Thanks for reaching out. I'll get back to you soon.
-                    </p>
-                    <Button
-                      onClick={() => {
-                        setIsSubmitted(false)
-                        setFormState({ name: '', email: '', subject: '', message: '' })
-                      }}
-                      variant="outline"
-                      className="mt-6"
-                    >
-                      Send Another Message
-                    </Button>
-                  </div>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="p-6 sm:p-8 rounded-2xl bg-card border border-border">
-                  <h2 className="text-xl font-bold text-foreground mb-6">Send a Message</h2>
-                  
-                  <div className="flex flex-col gap-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      <div>
-                        <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                          Name
-                        </label>
-                        <Input
-                          id="name"
-                          type="text"
-                          placeholder="Your name"
-                          value={formState.name}
-                          onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                          required
-                          className="bg-background"
-                        />
-                      </div>
-                      <div>
-                        <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                          Email
-                        </label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="your@email.com"
-                          value={formState.email}
-                          onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                          required
-                          className="bg-background"
-                        />
-                      </div>
-                    </div>
-
+              <form onSubmit={handleSubmit} className="p-6 sm:p-8 rounded-2xl bg-card border border-border">
+                <h2 className="text-xl font-bold text-foreground mb-6">Send a Message</h2>
+                
+                <div className="flex flex-col gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
-                      <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                        Subject
+                      <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
+                        Name
                       </label>
                       <Input
-                        id="subject"
+                        id="name"
                         type="text"
-                        placeholder="What's this about?"
-                        value={formState.subject}
-                        onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
+                        placeholder="Your name"
+                        value={formState.name}
+                        onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                         required
                         className="bg-background"
                       />
                     </div>
-
                     <div>
-                      <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                        Message
+                      <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
+                        Email
                       </label>
-                      <Textarea
-                        id="message"
-                        placeholder="Your message..."
-                        value={formState.message}
-                        onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                      <Input
+                        id="email"
+                        type="email"
+                        placeholder="your@email.com"
+                        value={formState.email}
+                        onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                         required
-                        rows={6}
-                        className="bg-background resize-none"
+                        className="bg-background"
                       />
                     </div>
-
-                    <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                      <Send className="mr-2 w-4 h-4" />
-                      Send Message
-                    </Button>
                   </div>
 
-                  <p className="mt-4 text-xs text-center text-muted-foreground">
-                    Or email me directly at{' '}
-                    <a href={`mailto:${personalInfo.email}`} className="text-primary hover:underline">
-                      {personalInfo.email}
-                    </a>
-                  </p>
-                </form>
-              )}
+                  <div>
+                    <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
+                      Subject
+                    </label>
+                    <Input
+                      id="subject"
+                      type="text"
+                      placeholder="What are you reaching out about?"
+                      value={formState.subject}
+                      onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
+                      required
+                      className="bg-background"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
+                      Message
+                    </label>
+                    <Textarea
+                      id="message"
+                      placeholder="Write your note here"
+                      value={formState.message}
+                      onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                      required
+                      rows={6}
+                      className="bg-background resize-none"
+                    />
+                  </div>
+
+                  <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
+                    <Send className="mr-2 w-4 h-4" />
+                    Open Email Draft
+                  </Button>
+                </div>
+
+                <p className="mt-4 text-xs text-center text-muted-foreground">
+                  This opens your email app with the message filled in.
+                </p>
+              </form>
             </motion.div>
           </div>
         </div>

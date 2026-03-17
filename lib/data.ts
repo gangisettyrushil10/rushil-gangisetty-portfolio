@@ -15,7 +15,28 @@ export interface Project {
   learnings: string[]
   githubUrl?: string
   liveUrl?: string
+  links?: ProjectLink[]
+  gallery?: ProjectGalleryItem[]
+  video?: ProjectVideo
   featured: boolean
+}
+
+export interface ProjectLink {
+  label: string
+  href: string
+}
+
+export interface ProjectGalleryItem {
+  label: string
+  alt: string
+  caption: string
+  src?: string
+}
+
+export interface ProjectVideo {
+  title: string
+  caption: string
+  url?: string
 }
 
 export interface FocusArea {
@@ -30,8 +51,8 @@ export const projects: Project[] = [
     id: 'buzzr-ecosystem',
     title: 'Buzzr Ecosystem',
     category: 'Product Software',
-    description: 'A sports-social product ecosystem with a mobile app and polished web experience for rating games by entertainment value.',
-    longDescription: 'A consumer product ecosystem consisting of a mobile app plus a launch/marketing web experience. The mobile app lets users rate games by entertainment, not just final score, with social features and watch-party style flows. The desktop web app acts as a polished launch-ready marketing surface for the product.',
+    description: 'A sports-social product with a real mobile experience, a launch-ready web surface, and a backend that kept evolving as the product grew.',
+    longDescription: 'Buzzr started as a simple idea and turned into a real product system: a mobile app for rating games by entertainment value, plus a web experience that explains and supports the product. What makes it meaningful to me is not just the interface work. It is the combination of product decisions, social features, data modeling, and constant iteration.',
     stack: ['Expo', 'React Native', 'TypeScript', 'Supabase', 'PostgreSQL', 'Jest', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
     metrics: [
       { label: 'Live Leagues', value: '7' },
@@ -60,14 +81,42 @@ export const projects: Project[] = [
       'Social features drive engagement more than pure utility features',
     ],
     githubUrl: 'https://github.com/gangisettyrushil10/Buzzr',
+    links: [
+      { label: 'Mobile repo', href: 'https://github.com/gangisettyrushil10/Buzzr' },
+      { label: 'Desktop web repo', href: 'https://github.com/gangisettyrushil10/buzzr_desktop' },
+    ],
+    gallery: [
+      {
+        label: 'Home feed',
+        alt: 'Buzzr mobile home feed',
+        caption: 'The main feed where users discover games, jump into live activity, and rate what they are watching.',
+        src: '/projects/buzzr-home.png',
+      },
+      {
+        label: 'Game detail',
+        alt: 'Buzzr game detail view',
+        caption: 'A closer look at the rating flow and game-level interaction.',
+        src: '/projects/buzzr-games.png',
+      },
+      {
+        label: 'Social layer',
+        alt: 'Buzzr social and party experience',
+        caption: 'The part of the product that made Buzzr feel social instead of just informational.',
+        src: '/projects/buzzr-party.png',
+      },
+    ],
+    video: {
+      title: 'Product walkthrough',
+      caption: 'A short demo that starts in the mobile app and ends on the web surface would be the clearest way to show how the ecosystem fits together.',
+    },
     featured: true,
   },
   {
     id: 'ledger-okcu',
     title: 'Ledger OKCU',
     category: 'Business Systems API',
-    description: 'A layered ASP.NET Core API for members, accounts, transactions, validation, and audit-friendly business rules.',
-    longDescription: 'A C# and ASP.NET Core Web API built around real business rules instead of generic CRUD. The solution separates controllers, application services, infrastructure, and domain entities while enforcing validation, idempotency, audit logging, and transaction safety for member and account workflows.',
+    description: 'A business-focused ASP.NET Core API with validation, idempotency, transaction rules, and a code structure that feels closer to a real system than a tutorial app.',
+    longDescription: 'Ledger OKCU is the project I would point to for .NET roles. I built it as a layered API for members, accounts, and transactions with the kinds of constraints that make backend work interesting: validation, repeat-safe requests, auditability, and domain rules that actually matter.',
     stack: ['C#', 'ASP.NET Core', 'Entity Framework Core', 'SQLite', 'FluentValidation', 'Swagger', 'Serilog', 'xUnit'],
     metrics: [
       { label: 'HTTP Endpoints', value: '10' },
@@ -95,14 +144,35 @@ export const projects: Project[] = [
       'Layered .NET solutions are easier to discuss in interviews when services, repositories, and DTO boundaries are deliberate',
       'For backend portfolios, one defensible API with real rules is more useful than several shallow demos',
     ],
+    gallery: [
+      {
+        label: 'Swagger view',
+        alt: 'Placeholder for Swagger endpoint overview',
+        caption: 'A clean Swagger view would show the shape of the API quickly: members, accounts, and transaction flows.',
+      },
+      {
+        label: 'Domain model',
+        alt: 'Placeholder for data model diagram',
+        caption: 'A simple entity diagram would help explain how members, accounts, transactions, and audit logs fit together.',
+      },
+      {
+        label: 'Transaction flow',
+        alt: 'Placeholder for transaction response and history view',
+        caption: 'The most useful screenshot here would show a deposit or withdrawal request and the resulting transaction history.',
+      },
+    ],
+    video: {
+      title: 'API walkthrough',
+      caption: 'A short demo creating a member, opening an account, and replaying a request to show idempotency would tell the story well.',
+    },
     featured: true,
   },
   {
     id: 'medscribe',
     title: 'Medscribe',
     category: 'Applied AI Product',
-    description: 'An agentic AI scribe for clinicians that transforms raw clinical notes into structured, citation-backed insights.',
-    longDescription: 'An agentic AI scribe experience for clinicians that turns raw clinical notes into structured, citation-backed insights and suggested orders. Users input clinical notes and the system returns structured summaries, suggested orders, evidence/citations, and model/provenance signals.',
+    description: 'A clinical note assistant that turns messy input into structured summaries, suggestions, and evidence-backed output a user can actually review.',
+    longDescription: 'Medscribe is the strongest AI project in the portfolio because it does not stop at the model call. The value is in the workflow: taking a raw note, structuring the output, surfacing recommendations, and showing enough evidence and provenance for the result to feel usable instead of magical.',
     stack: ['React', 'Vite', 'Flask', 'Python', 'IBM watsonx', 'LLM Orchestration'],
     metrics: [
       { label: 'Python Files', value: '9' },
@@ -131,14 +201,35 @@ export const projects: Project[] = [
       'Clinician trust is earned through transparency, not just accuracy',
     ],
     githubUrl: 'https://github.com/gangisettyrushil10/IBM-Medscribe-AI',
+    gallery: [
+      {
+        label: 'Input state',
+        alt: 'Placeholder for Medscribe note input',
+        caption: 'A strong first screenshot would show the raw note entry state before analysis starts.',
+      },
+      {
+        label: 'Structured result',
+        alt: 'Placeholder for Medscribe structured result',
+        caption: 'The key screen is the structured output: summary, suggested actions, and a layout that feels trustworthy.',
+      },
+      {
+        label: 'Evidence panel',
+        alt: 'Placeholder for Medscribe evidence and provenance',
+        caption: 'A screenshot of citations or provenance signals would make the trust story much stronger.',
+      },
+    ],
+    video: {
+      title: 'Medscribe demo',
+      caption: 'This section is ready for your YouTube walkthrough: note in, structured result out, then a quick pass through recommendations and evidence.',
+    },
     featured: true,
   },
   {
     id: 'business-analytics-dashboard',
     title: 'Business Analytics Dashboard',
     category: 'Data Workflows',
-    description: 'A full-stack analytics application for messy CSV ingestion, validation, forecasting, and anomaly detection.',
-    longDescription: 'A comprehensive analytics platform that handles the full data lifecycle - from messy CSV ingestion and validation to forecasting and anomaly detection. Built to handle real-world data quality issues rather than just displaying clean charts.',
+    description: 'A full-stack analytics tool built around messy CSVs, validation, forecasting, and the kinds of data problems real teams actually run into.',
+    longDescription: 'This project matters because it is not a clean-data dashboard. It is an analytics workflow that deals with uploads, validation, forecasting, anomaly detection, and export. I like it because it shows the side of data work that is usually missing from portfolios: the part where inputs are bad and the system still has to be useful.',
     stack: ['FastAPI', 'React', 'TypeScript', 'PostgreSQL', 'Prophet', 'scikit-learn'],
     metrics: [
       { label: 'Backend Endpoints', value: '12' },
@@ -167,14 +258,35 @@ export const projects: Project[] = [
       'Multiple model comparison builds user confidence in forecasts',
     ],
     githubUrl: 'https://github.com/gangisettyrushil10/Business_Analytics_Dashboard',
+    gallery: [
+      {
+        label: 'Upload flow',
+        alt: 'Placeholder for dashboard upload view',
+        caption: 'The first useful image would show the upload step and how the system handles incoming files.',
+      },
+      {
+        label: 'Validation state',
+        alt: 'Placeholder for validation and cleanup state',
+        caption: 'A validation or cleanup screen would prove that the product handles bad data rather than hiding it.',
+      },
+      {
+        label: 'Forecast view',
+        alt: 'Placeholder for dashboard forecast view',
+        caption: 'The final screenshot should show forecast output, anomaly surfacing, and the finished dashboard state.',
+      },
+    ],
+    video: {
+      title: 'Data workflow walkthrough',
+      caption: 'A good demo would start with a messy file, show the validation step, and end with the cleaned-up analytics view.',
+    },
     featured: true,
   },
   {
     id: 'graph-link-prediction',
     title: 'Graph Link Prediction',
     category: 'ML Depth',
-    description: 'A graph neural network project for link prediction on a Facebook social graph dataset.',
-    longDescription: 'A deep learning project implementing graph neural networks for link prediction on the Facebook social graph. Demonstrates understanding of graph-based ML beyond basic tabular classification.',
+    description: 'A graph neural network project that shows I can handle ML problems beyond standard tabular classification.',
+    longDescription: 'This is the most technical project in the portfolio. I kept it as supporting work because it adds depth without changing the main story of the site. It shows that I can work with graph structure, model training, and evaluation design when the problem calls for it.',
     stack: ['Python', 'PyTorch Geometric', 'NetworkX', 'NumPy', 'scikit-learn'],
     metrics: [
       { label: 'Nodes', value: '4,039' },
@@ -265,26 +377,26 @@ export const skills = {
 
 export const focusAreas: FocusArea[] = [
   {
-    title: 'Software and full-stack delivery',
-    description: 'The broadest and safest read of the portfolio. Product-facing software, iteration speed, and shipping discipline across web and mobile surfaces.',
+    title: 'Product and full-stack work',
+    description: 'The broadest read of my portfolio. I enjoy building software that feels polished to use and is still solid underneath.',
     proof: 'Buzzr Ecosystem',
     href: '/projects/buzzr-ecosystem',
   },
   {
-    title: 'Backend and business APIs',
-    description: 'Most credible for backend, ASP.NET, and business-systems roles that care about validation, domain rules, API design, and reliability.',
+    title: 'Backend and .NET systems',
+    description: 'The best fit when a team needs API design, business rules, validation, and backend code that can hold up over time.',
     proof: 'Ledger OKCU',
     href: '/projects/ledger-okcu',
   },
   {
-    title: 'Data and analytics workflows',
-    description: 'Best fit for analytics-heavy software work, SQL-oriented roles, forecasting, ETL-style pipelines, and systems that need to handle messy inputs.',
+    title: 'Data-heavy software',
+    description: 'A natural fit for SQL-heavy work, validation pipelines, forecasting, reporting, and systems that deal with messy input.',
     proof: 'Business Analytics Dashboard',
     href: '/projects/business-analytics-dashboard',
   },
   {
-    title: 'Applied AI features',
-    description: 'Useful for product-facing AI roles where the model is only part of the job and the software workflow still matters.',
+    title: 'Applied AI inside products',
+    description: 'Strongest when the job is still software engineering, but the product also needs structured AI features and a trustworthy user experience.',
     proof: 'Medscribe',
     href: '/projects/medscribe',
   },
@@ -312,13 +424,13 @@ export const projectDomains = [
 export const recruiterSummary = {
   title: 'Software engineer with backend, data, and business-systems depth.',
   description:
-    'The cleanest way to read this portfolio is broad software engineering first. The strongest proof maps to product software, backend APIs, data workflows, and applied AI features without pretending to cover every tech title equally.',
+    'I am a software engineer first. Most of my work lives where product, backend, and data overlap: building interfaces people can use, APIs teams can trust, and workflows that still make sense when the inputs get messy.',
 }
 
 export const personalInfo = {
   name: 'Rushil Gangisetty',
   title: 'Software Engineer',
-  tagline: 'Building product software, backend APIs, data workflows, and applied AI',
+  tagline: 'who likes building useful products and dependable systems',
   location: 'Dallas, Texas',
   status: 'Open to software engineering, backend, data, and systems roles',
   email: 'gangisettyrushil@gmail.com',

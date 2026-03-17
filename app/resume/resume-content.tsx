@@ -50,7 +50,7 @@ export function ResumeContent() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl"
               >
-                {recruiterSummary.description}
+                I&apos;m a software engineer who has spent the most time around product software, backend APIs, data-heavy workflows, and AI features that live inside real applications. The resume changes by role, but the underlying work is the same.
               </motion.p>
 
               <motion.div

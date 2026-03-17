@@ -16,8 +16,7 @@ export function Footer() {
               <span className="text-primary">.</span>
             </Link>
             <p className="mt-4 text-muted-foreground max-w-sm">
-              Software engineer building product, backend, data, and AI systems. 
-              Open to opportunities.
+              Software engineer who likes building products people can use and systems teams can rely on.
             </p>
             <div className="flex items-center gap-4 mt-6">
               <a

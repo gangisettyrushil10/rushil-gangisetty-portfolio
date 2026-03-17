@@ -87,7 +87,7 @@ export function Hero() {
             </span>
             <span className="flex items-center gap-2">
               <Briefcase className="w-4 h-4" />
-              Backend, data, and product systems
+              Product, backend, and data
             </span>
           </motion.div>
 

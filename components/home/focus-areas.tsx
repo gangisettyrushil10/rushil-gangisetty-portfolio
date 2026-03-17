@@ -14,8 +14,8 @@ export function FocusAreas() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="Core Lanes"
-          title="How this portfolio maps cleanly to real hiring needs."
-          description="The work is broad, but not random. The clearest read is software engineering first, with strong proof in backend APIs, business systems, data workflows, and applied AI features."
+          title="A few ways to think about my work"
+          description="I can apply broadly, but these are the lanes that line up most honestly with the projects on this site."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -51,7 +51,7 @@ export function FocusAreas() {
                   href={area.href}
                   className="mt-5 inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors"
                 >
-                  Review case study
+                  See project
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </motion.div>

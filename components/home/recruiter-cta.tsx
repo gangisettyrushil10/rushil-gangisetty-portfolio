@@ -41,11 +41,11 @@ export function RecruiterCTA() {
           </span>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground text-balance">
-            Hiring for software, backend, data, or business-systems work?
+            If you&apos;re hiring an early-career engineer who can ship, I&apos;d be glad to talk.
           </h2>
           
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            That is the cleanest way to read this portfolio. I tailor the resume to the role, but the underlying proof stays the same: product software, backend APIs, data workflows, and practical AI features.
+            My best work tends to sit in product software, backend APIs, data-heavy applications, and AI features that are actually part of a usable product. If that sounds relevant to your team, this portfolio should give you a pretty honest read of how I work.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">

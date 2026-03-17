@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowLeft, Github, ExternalLink, Calendar, User, Layers, CheckCircle2, Lightbulb, Target, BookOpen, Image as ImageIcon, Play } from 'lucide-react'
@@ -13,10 +14,38 @@ interface ProjectDetailContentProps {
   project: Project
 }
 
+function getYouTubeEmbedUrl(url?: string) {
+  if (!url) return null
+
+  try {
+    const parsed = new URL(url)
+
+    if (parsed.hostname.includes('youtu.be')) {
+      return `https://www.youtube.com/embed/${parsed.pathname.replace('/', '')}`
+    }
+
+    if (parsed.hostname.includes('youtube.com')) {
+      const videoId = parsed.searchParams.get('v')
+      if (videoId) {
+        return `https://www.youtube.com/embed/${videoId}`
+      }
+
+      if (parsed.pathname.startsWith('/embed/')) {
+        return url
+      }
+    }
+  } catch {
+    return null
+  }
+
+  return null
+}
+
 export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
   const relatedProjects = projects
     .filter((p) => p.id !== project.id && p.featured)
     .slice(0, 2)
+  const embedUrl = getYouTubeEmbedUrl(project.video?.url)
 
   return (
     <>
@@ -131,12 +160,37 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                 </a>
               </Button>
             )}
+            {project.video?.url && (
+              <Button asChild variant="outline">
+                <a href={project.video.url} target="_blank" rel="noopener noreferrer">
+                  <Play className="mr-2 w-4 h-4" />
+                  Watch Demo
+                </a>
+              </Button>
+            )}
             {!project.githubUrl && !project.liveUrl && (
               <div className="rounded-full border border-border bg-secondary px-4 py-2 text-sm text-muted-foreground">
                 Local case study. Code walkthrough available on request.
               </div>
             )}
           </motion.div>
+
+          {project.links && project.links.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.55 }}
+              className="flex flex-wrap items-center gap-3 mt-4"
+            >
+              {project.links.map((link) => (
+                <Button key={link.href} asChild variant="ghost">
+                  <a href={link.href} target="_blank" rel="noopener noreferrer">
+                    {link.label}
+                  </a>
+                </Button>
+              ))}
+            </motion.div>
+          )}
 
           {/* Tech Stack */}
           <motion.div
@@ -184,23 +238,41 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
           <SectionHeader
             badge="Gallery"
             title="Screenshots"
-            description="Visual documentation of the project interface and features."
+            description="A few visual anchors that help the project feel concrete."
           />
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {[1, 2, 3, 4].map((i) => (
+            {(project.gallery ?? []).map((item, i) => (
               <motion.div
-                key={i}
+                key={`${project.id}-${item.label}`}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
-                className="aspect-video rounded-xl bg-secondary border border-border flex items-center justify-center"
+                className="overflow-hidden rounded-xl border border-border bg-card"
               >
-                <div className="text-center text-muted-foreground">
-                  <ImageIcon className="w-12 h-12 mx-auto mb-3 opacity-50" />
-                  <p className="text-sm">Screenshot {i}</p>
-                  <p className="text-xs mt-1 opacity-70">Add your image here</p>
+                <div className="relative aspect-video bg-secondary">
+                  {item.src ? (
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="flex h-full items-center justify-center text-center text-muted-foreground px-6">
+                      <div>
+                        <ImageIcon className="w-12 h-12 mx-auto mb-3 opacity-50" />
+                        <p className="text-sm font-medium text-foreground">{item.label}</p>
+                        <p className="text-xs mt-1 opacity-70">{item.caption}</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                <div className="p-4">
+                  <p className="text-sm font-medium text-foreground">{item.label}</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{item.caption}</p>
                 </div>
               </motion.div>
             ))}
@@ -214,7 +286,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
           <SectionHeader
             badge="Demo"
             title="Video Walkthrough"
-            description="A comprehensive demonstration of the project in action."
+            description="The quickest way to understand how the project feels in motion."
           />
           
           <motion.div
@@ -222,14 +294,31 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="aspect-video rounded-xl bg-card border border-border flex items-center justify-center"
+            className="overflow-hidden rounded-xl border border-border bg-card"
           >
-            <div className="text-center text-muted-foreground">
-              <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                <Play className="w-8 h-8 text-primary" />
+            {embedUrl ? (
+              <div className="aspect-video">
+                <iframe
+                  src={embedUrl}
+                  title={project.video?.title ?? `${project.title} demo`}
+                  className="h-full w-full"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
               </div>
-              <p className="text-lg font-medium text-foreground">Demo Video</p>
-              <p className="text-sm mt-1 opacity-70">Add your screen recording here</p>
+            ) : (
+              <div className="aspect-video flex items-center justify-center text-center text-muted-foreground px-6">
+                <div>
+                  <div className="w-20 h-20 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Play className="w-8 h-8 text-primary" />
+                  </div>
+                  <p className="text-lg font-medium text-foreground">{project.video?.title ?? 'Demo walkthrough'}</p>
+                  <p className="text-sm mt-2 max-w-xl">{project.video?.caption ?? 'A walkthrough can be shared on request.'}</p>
+                </div>
+              </div>
+            )}
+            <div className="border-t border-border px-6 py-4 text-sm text-muted-foreground">
+              {project.video?.caption ?? 'A walkthrough can be shared on request.'}
             </div>
           </motion.div>
         </div>
