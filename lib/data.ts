@@ -16,6 +16,7 @@ export interface Project {
   githubUrl?: string
   liveUrl?: string
   links?: ProjectLink[]
+  storeLinks?: ProjectStoreLink[]
   gallery?: ProjectGalleryItem[]
   video?: ProjectVideo
   featured: boolean
@@ -24,6 +25,12 @@ export interface Project {
 export interface ProjectLink {
   label: string
   href: string
+}
+
+export interface ProjectStoreLink {
+  label: string
+  href?: string
+  status?: string
 }
 
 export interface ProjectGalleryItem {
@@ -85,6 +92,10 @@ export const projects: Project[] = [
     links: [
       { label: 'Mobile repo', href: 'https://github.com/gangisettyrushil10/Buzzr' },
       { label: 'Desktop web repo', href: 'https://github.com/gangisettyrushil10/buzzr_desktop' },
+    ],
+    storeLinks: [
+      { label: 'App Store', status: 'Planned release' },
+      { label: 'Google Play', status: 'Planned release' },
     ],
     gallery: [
       {

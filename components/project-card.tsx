@@ -86,6 +86,11 @@ export function ProjectCard({ project, index = 0, featured = false }: ProjectCar
             <span>View on GitHub</span>
           </div>
         )}
+        {project.storeLinks && project.storeLinks.length > 0 && (
+          <div className="mt-3 text-sm text-muted-foreground">
+            Mobile release planned
+          </div>
+        )}
         {!project.githubUrl && (
           <div className="flex items-center gap-2 mt-6 text-sm text-muted-foreground">
             <span>Case study available on request</span>

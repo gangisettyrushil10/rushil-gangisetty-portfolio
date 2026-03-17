@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowLeft, Github, ExternalLink, Calendar, User, Layers, CheckCircle2, Lightbulb, Target, BookOpen, Image as ImageIcon, Play } from 'lucide-react'
+import { ArrowLeft, Github, ExternalLink, Calendar, User, Layers, CheckCircle2, Lightbulb, Target, BookOpen, Image as ImageIcon, Play, Smartphone } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Section, SectionHeader } from '@/components/section'
 import { ProjectCard } from '@/components/project-card'
@@ -189,6 +189,39 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                   </a>
                 </Button>
               ))}
+            </motion.div>
+          )}
+
+          {project.storeLinks && project.storeLinks.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.58 }}
+              className="mt-6"
+            >
+              <div className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+                <Smartphone className="w-4 h-4" />
+                <span>Mobile release</span>
+              </div>
+              <div className="mt-3 flex flex-wrap gap-3">
+                {project.storeLinks.map((store) => (
+                  store.href ? (
+                    <Button key={`${project.id}-${store.label}`} asChild variant="outline">
+                      <a href={store.href} target="_blank" rel="noopener noreferrer">
+                        {store.label}
+                      </a>
+                    </Button>
+                  ) : (
+                    <div
+                      key={`${project.id}-${store.label}`}
+                      className="rounded-full border border-border bg-secondary px-4 py-2 text-sm text-muted-foreground"
+                    >
+                      <span className="font-medium text-foreground">{store.label}</span>
+                      {store.status ? ` · ${store.status}` : ''}
+                    </div>
+                  )
+                ))}
+              </div>
             </motion.div>
           )}
 
