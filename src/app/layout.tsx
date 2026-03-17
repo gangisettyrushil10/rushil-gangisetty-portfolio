@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Manrope, Space_Grotesk } from "next/font/google";
+import { Manrope, Orbitron, Space_Mono } from "next/font/google";
 
 import { AmbientBackground } from "@/components/ambient-background";
 import { SiteFooter } from "@/components/site-footer";
@@ -8,7 +8,7 @@ import { siteDescription, siteName, siteTagline, siteUrl } from "@/lib/site-conf
 
 import "./globals.css";
 
-const headingFont = Space_Grotesk({
+const headingFont = Orbitron({
   subsets: ["latin"],
   variable: "--font-heading",
 });
@@ -18,10 +18,10 @@ const bodyFont = Manrope({
   variable: "--font-body",
 });
 
-const accentFont = Instrument_Serif({
+const accentFont = Space_Mono({
   subsets: ["latin"],
   variable: "--font-accent",
-  weight: "400",
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {

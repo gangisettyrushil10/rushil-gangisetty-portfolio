@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { ArrowUpRight, FileDown, Github, Mail } from "lucide-react";
+import { ArrowUpRight, FileDown, Github, Mail, Sparkles } from "lucide-react";
 
 import { BlogCard } from "@/components/blog-card";
 import { ExperienceCard } from "@/components/experience-card";
+import { PortfolioCopilot } from "@/components/portfolio-copilot";
 import { ProjectCard } from "@/components/project-card";
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
-import { StatCard } from "@/components/stat-card";
 import { StructuredData } from "@/components/structured-data";
 import { getAllPosts } from "@/lib/blog";
 import { experiences, getFeaturedProjects, skillGroups } from "@/lib/content";
@@ -46,98 +46,118 @@ export default function HomePage() {
         }}
       />
 
-      <section className="mx-auto flex w-[92%] max-w-7xl flex-col gap-12 pb-20 pt-16 md:pb-28 md:pt-24">
-        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
-          <Reveal>
-            <div className="max-w-4xl">
-              <p className="eyebrow">Rushil Gangisetty</p>
-              <h1 className="mt-5 max-w-5xl text-balance text-5xl font-semibold tracking-[-0.08em] text-[rgb(var(--ink))] md:text-7xl">
-                Engineer the product,
-                {" "}
-                <span className="font-accent text-[rgb(var(--accent-strong))]">
-                  not just the demo.
-                </span>
-              </h1>
-              <p className="mt-6 max-w-3xl text-xl leading-9 text-[rgb(var(--muted-ink))]">
-                {profile.summary}
-              </p>
-              <p className="mt-4 max-w-2xl text-sm uppercase tracking-[0.22em] text-[rgb(var(--muted-ink))]">
-                {profile.location} · {profile.availability}
-              </p>
+      <section className="hero-shell">
+        <div className="hero-panel">
+          <div className="hero-grid-lines" />
+          <div className="hero-orb hero-orb-a" />
+          <div className="hero-orb hero-orb-b" />
+          <div className="hero-orb hero-orb-c" />
 
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link href="/projects" className="button-primary">
-                  <ArrowUpRight className="h-4 w-4" />
-                  View projects
-                </Link>
-                <Link href={profile.resumePath} className="button-secondary">
-                  <FileDown className="h-4 w-4" />
-                  Download resume
-                </Link>
-                <Link href="/contact" className="button-secondary">
-                  <Mail className="h-4 w-4" />
-                  Contact
-                </Link>
+          <div className="relative z-10 mx-auto grid w-[92%] max-w-7xl gap-10 pb-20 pt-24 lg:grid-cols-[1.08fr_0.92fr] lg:items-end lg:pb-28 lg:pt-32">
+            <Reveal>
+              <div className="max-w-4xl">
+                <div className="status-chip">
+                  <span className="status-dot" />
+                  {profile.availability}
+                </div>
+                <p className="eyebrow mt-8 text-[rgb(var(--signal-blue))]">Rushil Gangisetty</p>
+                <h1 className="mt-5 max-w-5xl text-balance text-5xl font-semibold tracking-[-0.08em] text-[rgb(var(--surface))] md:text-7xl">
+                  Dark-mode product taste,
+                  {" "}
+                  <span className="arcade-gradient-text">backend discipline,</span>
+                  {" "}
+                  and AI systems that can defend themselves.
+                </h1>
+                <p className="mt-6 max-w-3xl text-xl leading-9 text-[rgba(214,236,255,0.76)]">
+                  {profile.summary}
+                </p>
+                <p className="mt-4 max-w-3xl text-sm uppercase tracking-[0.22em] text-[rgba(153,177,214,0.88)]">
+                  {profile.location} · best fit: product engineering, backend, data platforms, and applied AI
+                </p>
+
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link href="/projects" className="button-primary">
+                    <ArrowUpRight className="h-4 w-4" />
+                    View case studies
+                  </Link>
+                  <Link href={profile.resumePath} className="button-secondary">
+                    <FileDown className="h-4 w-4" />
+                    Download resume
+                  </Link>
+                  <Link href="/contact" className="button-secondary">
+                    <Mail className="h-4 w-4" />
+                    Contact
+                  </Link>
+                </div>
               </div>
-            </div>
-          </Reveal>
+            </Reveal>
 
-          <Reveal delay={0.1}>
-            <div className="surface-card-alt space-y-4">
-              <p className="eyebrow">Selected builds</p>
-              {featuredProjects.slice(0, 3).map((project) => (
-                <div key={project.slug} className="rounded-3xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.04)] p-5">
-                  <div className="flex items-center justify-between gap-4">
-                    <div>
-                      <Link
-                        href={`/projects/${project.slug}`}
-                        className="text-lg font-semibold text-[rgb(var(--surface))]"
-                      >
-                        {project.title}
-                      </Link>
-                      <p className="mt-2 text-sm leading-6 text-[rgba(244,237,226,0.72)]">
-                        {project.oneLine}
+            <Reveal delay={0.08}>
+              <div className="terminal-panel min-h-full">
+                <div className="terminal-header">
+                  <div className="flex items-center gap-2 text-sm uppercase tracking-[0.18em] text-[rgb(var(--signal-blue))]">
+                    <Sparkles className="h-4 w-4" />
+                    Selected Systems
+                  </div>
+                  <span className="terminal-pill">4 flagship builds</span>
+                </div>
+
+                <div className="mt-6 grid gap-3">
+                  {featuredProjects.slice(0, 4).map((project) => (
+                    <Link key={project.slug} href={`/projects/${project.slug}`} className="terminal-card">
+                      <div className="flex items-center justify-between gap-4">
+                        <div>
+                          <p className="text-lg font-semibold text-[rgb(var(--surface))]">{project.title}</p>
+                          <p className="mt-2 text-sm leading-6 text-[rgba(214,236,255,0.72)]">
+                            {project.oneLine}
+                          </p>
+                        </div>
+                        <span className="arcade-chip shrink-0">{project.category}</span>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  {homeStats.map((stat) => (
+                    <div key={stat.label} className="terminal-card">
+                      <p className="text-3xl font-semibold tracking-[-0.06em] text-[rgb(var(--signal-blue))]">
+                        {stat.value}
+                      </p>
+                      <p className="mt-2 text-xs uppercase tracking-[0.18em] text-[rgba(214,236,255,0.64)]">
+                        {stat.label}
                       </p>
                     </div>
-                    <span className="rounded-full border border-[rgba(244,237,226,0.16)] px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-[rgba(244,237,226,0.7)]">
-                      {project.category}
-                    </span>
-                  </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-          {homeStats.map((stat, index) => (
-            <Reveal key={stat.label} delay={0.08 * index}>
-              <StatCard value={stat.value} label={stat.label} />
+              </div>
             </Reveal>
-          ))}
+          </div>
         </div>
       </section>
 
-      <section className="section-shell">
+      <section className="section-shell pt-6">
         <SectionHeading
           eyebrow="Featured work"
-          title="Projects with clear engineering proof, not filler."
-          description="I curate a small set of projects that show range across product engineering, data systems, and ML. Each one exists because it demonstrates a real decision, a real system, or a real measurable result."
+          title="Case studies with enough detail to actually get you hired."
+          description="I am deliberately selective. Each flagship project earns its place by showing product judgment, technical execution, measurable proof, and a believable system story."
         />
         <div className="mt-12 grid gap-6 xl:grid-cols-2">
-          {featuredProjects.slice(0, 4).map((project, index) => (
-            <Reveal key={project.slug} delay={0.08 * index}>
+          {featuredProjects.map((project, index) => (
+            <Reveal key={project.slug} delay={0.07 * index}>
               <ProjectCard project={project} />
             </Reveal>
           ))}
         </div>
       </section>
 
+      <PortfolioCopilot />
+
       <section className="section-shell">
         <SectionHeading
           eyebrow="Working range"
-          title="A stack shaped by shipped work."
-          description="I am strongest where product, data, and implementation quality overlap. The stack below reflects tools I have already used in projects or internships that shipped something real."
+          title="A stack shaped by products, pipelines, and model-backed systems."
+          description="The tools below are not resume filler. They come from projects and internships that had real workflows, sharp constraints, and enough complexity to be worth discussing in an interview."
         />
         <div className="mt-12 grid gap-5 lg:grid-cols-2">
           {skillGroups.map((group, index) => (
@@ -157,11 +177,11 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="section-shell">
+      <section id="experience" className="section-shell">
         <SectionHeading
           eyebrow="Experience"
-          title="Internship work anchored in reliability and delivery."
-          description="My internship experience trends toward product support, validation-heavy systems, and operational execution. That combination is why I care about both user-facing polish and defensible backend behavior."
+          title="Internship work that backs up the projects."
+          description="The internship story matters because it shows production support, validation-heavy workflows, and an execution style that holds up outside personal projects."
         />
         <div className="mt-12 grid gap-6">
           {experiences.map((experience, index) => (
@@ -176,12 +196,12 @@ export default function HomePage() {
         <Reveal>
           <div className="resume-banner">
             <div className="max-w-3xl">
-              <p className="eyebrow">Resume</p>
+              <p className="eyebrow text-[rgba(214,236,255,0.68)]">Resume</p>
               <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-0.06em] text-[rgb(var(--surface))] md:text-5xl">
-                Recruiter-ready resume, portfolio context, and direct project proof.
+                One-page recruiter version up front, deep-dive proof behind it.
               </h2>
-              <p className="mt-4 text-lg leading-8 text-[rgba(244,237,226,0.74)]">
-                The resume is optimized for quick review. The portfolio adds the missing context: why the work mattered, what was built, and what scale or quality bar it hit.
+              <p className="mt-4 text-lg leading-8 text-[rgba(214,236,255,0.72)]">
+                Use the PDF for speed. Use the portfolio when someone wants to understand the system design, the tradeoffs, and the media proof behind the bullets.
               </p>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -201,8 +221,8 @@ export default function HomePage() {
       <section className="section-shell">
         <SectionHeading
           eyebrow="Writing"
-          title="Short essays on building, shipping, and learning."
-          description="The blog is deliberately practical. It captures the design and engineering choices behind the work, not generic productivity advice."
+          title="Short essays on shipping, architecture, and lessons learned."
+          description="The blog stays practical. It exists to explain how the work was built and where the tradeoffs were, not to publish generic career advice."
         />
         <div className="mt-12 grid gap-6 xl:grid-cols-3">
           {latestPosts.map((post, index) => (
@@ -219,7 +239,7 @@ export default function HomePage() {
             <div className="max-w-2xl">
               <p className="eyebrow">Contact</p>
               <h2 className="mt-4 text-balance text-4xl font-semibold tracking-[-0.06em] text-[rgb(var(--ink))]">
-                If the role needs someone who can build and explain the system, let’s talk.
+                If the role needs someone who can ship, explain, and iterate, let’s talk.
               </h2>
               <p className="mt-4 text-lg leading-8 text-[rgb(var(--muted-ink))]">
                 Best fit: software engineering, product engineering, backend, data, and applied AI roles where execution quality matters.
@@ -230,10 +250,7 @@ export default function HomePage() {
                 <Mail className="h-4 w-4" />
                 Start a conversation
               </Link>
-              <Link
-                href="https://github.com/gangisettyrushil10"
-                className="button-secondary"
-              >
+              <Link href="https://github.com/gangisettyrushil10" className="button-secondary">
                 <Github className="h-4 w-4" />
                 GitHub
               </Link>

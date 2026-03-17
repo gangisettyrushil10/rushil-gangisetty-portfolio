@@ -7,113 +7,156 @@ import type {
 
 export const projects: ProjectEntry[] = [
   {
-    slug: "buzzr",
-    title: "Buzzr",
-    role: "Founder-style product engineer",
+    slug: "buzzr-ecosystem",
+    title: "Buzzr Ecosystem",
+    role: "Product engineer across mobile, web, and backend systems",
     timeline: "2024 - Present",
     status: "Active build",
-    oneLine: "A sports-social mobile app for rating games by entertainment, not just final score.",
+    oneLine:
+      "A sports-social product ecosystem combining the Buzzr mobile app with a launch-ready desktop web experience.",
     longSummary:
-      "Built an Expo + React Native app with Supabase/Postgres, live league imports, ratings, watch parties, and identity-driven social features. The project emphasizes product polish, backend workflows, and migration-safe releases.",
+      "Built a consumer product ecosystem spanning an Expo + React Native app, Supabase/Postgres backend workflows, and a polished Next.js marketing surface. The value is not just interface polish. The system had to hold together across live league imports, ratings, parties, migrations, and high-change product iteration.",
     spotlight:
-      "Shipped a high-change mobile product with strong backend and data discipline instead of stopping at UI mockups.",
+      "One product story across multiple surfaces: mobile product depth, backend discipline, and a launch-grade web presence.",
     challenge:
-      "The hard part was never the headline feature. It was making game data, user identity, ratings history, watch-party state, and release-safe changes work together without breaking the product every time the schema evolved.",
+      "The hard part was making a social sports product feel trustworthy while the underlying data model kept evolving. Ratings, identity, history, parties, and game catalogs all had to stay coherent as the app and web surfaces expanded in parallel.",
     decisions: [
-      "Built the app on Expo, React Native, and TypeScript so product iteration speed stayed high without sacrificing typed interfaces.",
-      "Used Supabase and PostgreSQL with migration-driven changes to keep the backend stable as ratings, parties, and social features expanded.",
-      "Protected high-change areas with Jest coverage so user-facing product work could keep moving without random regressions.",
+      "Built the mobile product on Expo, React Native, and TypeScript to move quickly while keeping typed product boundaries.",
+      "Used Supabase and PostgreSQL with migration-driven changes so new social features could ship without destabilizing the data model.",
+      "Created a separate Next.js desktop web surface for launch storytelling, support pages, and a stronger product marketing layer.",
+      "Protected high-change product areas with Jest coverage to keep shipping velocity high without random regressions.",
     ],
     outcomes: [
-      "Expanded the codebase to 214 source files while keeping the data layer organized through 38 SQL migrations.",
-      "Supported 7 live leagues and a ratings model centered on entertainment value instead of raw final scores.",
-      "Maintained 28 automated test files to keep release confidence high as the feature set grew.",
+      "Supported 7 live leagues with entertainment-first rating flows and social watch-party features.",
+      "Scaled the mobile codebase to 214 source files while preserving order through 38 SQL migrations.",
+      "Shipped 28 automated test files for the mobile stack plus a polished 39-file desktop web experience.",
     ],
     learnings: [
-      "Product polish only feels real when the data model is stable underneath it.",
-      "Shipping social features forces a higher bar for identity, timeline consistency, and state transitions.",
-      "The best proof in a portfolio project is surviving repeated change without collapsing into ad hoc fixes.",
+      "A product only feels premium when the data model is stable underneath the UI.",
+      "Cross-surface ecosystems require stronger content hierarchy and shared mental models than one-off apps.",
+      "The strongest portfolio work survives repeated change instead of freezing at demo quality.",
     ],
-    stack: ["Expo", "React Native", "TypeScript", "Supabase", "PostgreSQL", "Jest"],
+    stack: [
+      "Expo",
+      "React Native",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "Jest",
+      "Next.js",
+      "Tailwind CSS",
+      "Framer Motion",
+    ],
     metrics: [
       { label: "Live leagues", value: "7" },
-      { label: "Source files", value: "214" },
+      { label: "Mobile files", value: "214" },
       { label: "SQL migrations", value: "38" },
-      { label: "Automated tests", value: "28" },
+      { label: "Desktop files", value: "39" },
     ],
     githubUrl: "https://github.com/gangisettyrushil10/Buzzr",
     featured: true,
     category: "Product",
     image: "/projects/buzzr-home.png",
-    imageAlt: "Buzzr mobile app home screen preview.",
+    imageAlt: "Buzzr ecosystem preview showing the mobile product interface.",
     gallery: [
       {
         src: "/projects/buzzr-home.png",
-        alt: "Buzzr mobile app showing the home feed.",
-        caption: "Home feed focused on making game discovery and ratings feel product-ready.",
+        alt: "Buzzr mobile home experience.",
+        label: "Mobile home",
+        caption: "The primary mobile surface focused on game discovery, ratings, and social energy.",
       },
       {
         src: "/projects/buzzr-games.png",
-        alt: "Buzzr mobile app showing game ratings and detail views.",
-        caption: "Game experiences built around entertainment ranking, history, and user input.",
+        alt: "Buzzr game detail and ratings screen.",
+        label: "Game detail",
+        caption: "Game detail flows built around entertainment ranking, history, and participation.",
       },
       {
         src: "/projects/buzzr-party.png",
-        alt: "Buzzr mobile app showing watch-party style features.",
-        caption: "Watch-party surfaces that turn ratings into a shared social product.",
+        alt: "Buzzr party and social experience preview.",
+        label: "Social layer",
+        caption: "Watch-party and social surfaces that make the ecosystem feel like a real consumer product.",
       },
+    ],
+    recording: {
+      title: "Product walkthrough",
+      caption:
+        "Best demo flow: open the app, browse a live game, rate it, then show how the desktop surface sells the ecosystem.",
+      ctaLabel: "Add screen recording",
+    },
+    assetChecklist: [
+      "Capture the home feed, game detail flow, and a social or party interaction from the mobile product.",
+      "Record a short 20-30 second walkthrough that starts on mobile and ends on the desktop launch site.",
+      "Add one architecture slide showing mobile app, Supabase/Postgres backend, and desktop marketing surface.",
     ],
   },
   {
-    slug: "buzzr-desktop",
-    title: "Buzzr Desktop Web",
-    role: "Frontend and brand systems builder",
+    slug: "medscribe",
+    title: "Medscribe",
+    role: "Full-stack AI product engineer",
     timeline: "2025",
-    status: "Launch-ready marketing site",
-    oneLine: "A polished Next.js marketing site for the Buzzr mobile product.",
+    status: "Hackathon-to-product prototype",
+    oneLine:
+      "An AI scribe for clinicians that turns raw notes into structured, citation-backed summaries and suggested orders.",
     longSummary:
-      "Designed and built a conversion-oriented product site with animated sections, reusable components, SEO primitives, and test coverage. This is the quality bar I use for production-facing web experiences.",
+      "Built a full-stack clinical note assistant with a React/Vite frontend, Flask backend, and watsonx-driven reasoning flows. The product takes raw clinical notes and returns structured summaries, suggested next steps, evidence references, and model provenance so the experience feels useful and explainable instead of magical and opaque.",
     spotlight:
-      "Turned a product pitch into a real launch-ready web surface with strong motion, structure, and content hierarchy.",
+      "The strongest applied AI story in the portfolio: real workflow, structured outputs, citations, and a product surface around the model.",
     challenge:
-      "The goal was to create a site that felt like a serious consumer product launch, not a class-project landing page. That meant the visuals, motion, content structure, and responsiveness all had to reinforce credibility.",
+      "Clinical AI only becomes believable when the output is structured, traceable, and presented in a way that builds trust. Medscribe needed to feel like a real workflow tool instead of a generic chatbot pasted onto healthcare copy.",
     decisions: [
-      "Used Next.js and TypeScript to keep the site structured, reusable, and production-friendly.",
-      "Built the interface with Tailwind and Framer Motion to create clear section rhythm, controlled motion, and mobile-safe layouts.",
-      "Added testing and SEO primitives so the site worked as a real shipping surface rather than a one-off demo.",
+      "Used Flask on the backend to keep note processing, routing, and model orchestration straightforward and inspectable.",
+      "Designed the frontend around a chat-plus-structured-output experience so the result is readable by both technical and non-technical reviewers.",
+      "Separated live vs mock model modes so the product can be demoed and developed without blocking on credentials every time.",
+      "Included evidence and provenance hooks so the user can understand how the system arrived at its suggestions.",
     ],
     outcomes: [
-      "Shipped 39 frontend files organized around reusable sections and deployment-ready routing.",
-      "Added 3 test files around the highest-value interactions and rendering behavior.",
-      "Created a web presence that can support hiring, product storytelling, and future launch traffic.",
+      "Built a project with 9 Python source files and 12 frontend source files around a focused healthcare workflow.",
+      "Shipped approximately 638 lines of backend Python and 686 lines of frontend React code in the current prototype.",
+      "Created a stronger hiring signal than a generic ML notebook by wrapping AI behavior in a believable product experience.",
     ],
     learnings: [
-      "A marketing site still needs engineering discipline if it is going to survive iteration.",
-      "Motion is useful when it clarifies hierarchy, not when it becomes decoration.",
-      "Strong product storytelling depends on deliberate structure as much as visual taste.",
+      "AI projects become far more credible when the UX explains confidence, structure, and evidence.",
+      "Healthcare-adjacent interfaces require more restraint and clarity than general consumer chat products.",
+      "Live/mock operating modes are useful when shipping demos under real API and credential constraints.",
     ],
-    stack: ["Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Jest"],
+    stack: ["React", "Vite", "Flask", "Python", "IBM watsonx", "Structured Outputs"],
     metrics: [
-      { label: "Frontend files", value: "39" },
-      { label: "Test files", value: "3" },
-      { label: "Primary use", value: "Launch site" },
+      { label: "Python files", value: "9" },
+      { label: "Frontend files", value: "12" },
+      { label: "Backend LOC", value: "638" },
+      { label: "Frontend LOC", value: "686" },
     ],
-    githubUrl: "https://github.com/gangisettyrushil10/buzzr_desktop",
+    githubUrl: "https://github.com/gangisettyrushil10/IBM-Medscribe-AI",
     featured: true,
-    category: "Product",
-    image: "/projects/buzzr-party.png",
-    imageAlt: "Buzzr Desktop Web product marketing preview.",
+    category: "AI",
     gallery: [
       {
-        src: "/projects/buzzr-party.png",
-        alt: "Buzzr desktop marketing section preview.",
-        caption: "Landing page section built to make the product story feel intentional and launch-ready.",
+        alt: "Medscribe note input screen placeholder.",
+        label: "Clinical note input",
+        caption: "Capture the input state where a clinician pastes or types an unstructured note.",
       },
       {
-        src: "/projects/buzzr-games.png",
-        alt: "Buzzr desktop product feature preview.",
-        caption: "Feature storytelling that translates app behavior into recruiter and user-facing proof.",
+        alt: "Medscribe structured result screen placeholder.",
+        label: "Structured output",
+        caption: "Capture the summary, treatment recommendations, and structured result layout after processing.",
       },
+      {
+        alt: "Medscribe citation and evidence view placeholder.",
+        label: "Evidence + provenance",
+        caption: "Capture citations, support scores, and model/provenance indicators to show trust-building UX.",
+      },
+    ],
+    recording: {
+      title: "Clinical workflow demo",
+      caption:
+        "Record a note-to-output walkthrough: paste note, trigger analysis, then scroll through structured recommendations and evidence.",
+      ctaLabel: "Add demo reel",
+    },
+    assetChecklist: [
+      "Capture the landing state, note input, structured output, and evidence sections as separate screenshots.",
+      "Record one short workflow video from note entry through model response and evidence review.",
+      "Add a simple system diagram showing React/Vite frontend, Flask backend, and watsonx/model layer.",
     ],
   },
   {
@@ -122,7 +165,8 @@ export const projects: ProjectEntry[] = [
     role: "Full-stack analytics engineer",
     timeline: "2025",
     status: "Case-study project",
-    oneLine: "A full-stack analytics platform for messy CSVs, forecasting, anomaly detection, and AI insights.",
+    oneLine:
+      "A full-stack analytics platform for messy CSV ingestion, validation, forecasting, anomaly detection, and AI insights.",
     longSummary:
       "Built a FastAPI + React application that handles ingestion, validation, analytics, forecasting, anomaly detection, and export. The value is not just charts, but reliable handling of bad data and clear backend boundaries.",
     spotlight:
@@ -149,10 +193,39 @@ export const projects: ProjectEntry[] = [
       { label: "Backend endpoints", value: "12" },
       { label: "Codebase size", value: "5K+ LOC" },
       { label: "Validated before analytics", value: "CSV ingestion" },
+      { label: "Forecasting focus", value: "Multi-step" },
     ],
     githubUrl: "https://github.com/gangisettyrushil10/Business_Analytics_Dashboard",
     featured: true,
     category: "Data",
+    gallery: [
+      {
+        alt: "CSV ingestion screen placeholder.",
+        label: "Upload + ingest",
+        caption: "Capture the upload step and the first pass of CSV validation or parsing feedback.",
+      },
+      {
+        alt: "Validation and anomaly view placeholder.",
+        label: "Validation",
+        caption: "Capture a state where the system explains broken or messy input before analytics run.",
+      },
+      {
+        alt: "Forecast dashboard placeholder.",
+        label: "Forecast view",
+        caption: "Capture the final dashboard state with forecasts, anomalies, and exported insight panels.",
+      },
+    ],
+    recording: {
+      title: "Data workflow walkthrough",
+      caption:
+        "Best recording: upload a messy CSV, show validation feedback, then transition into the dashboard and forecast outputs.",
+      ctaLabel: "Add screen recording",
+    },
+    assetChecklist: [
+      "Capture one raw upload state, one validation/error state, and one polished dashboard/forecast state.",
+      "Record a short walkthrough that shows bad input getting corrected before insights appear.",
+      "Export one architecture diagram highlighting FastAPI backend services and frontend analysis flow.",
+    ],
   },
   {
     slug: "graph-link-prediction",
@@ -187,10 +260,39 @@ export const projects: ProjectEntry[] = [
       { label: "Nodes", value: "4,039" },
       { label: "Edges", value: "88,234" },
       { label: "Training epochs", value: "100" },
+      { label: "Evaluation", value: "AUC" },
     ],
     githubUrl: "https://github.com/gangisettyrushil10/graph-theory-final-project",
     featured: true,
     category: "AI",
+    gallery: [
+      {
+        alt: "Graph architecture placeholder.",
+        label: "Architecture",
+        caption: "Add a visual of the graph model architecture or message-passing flow instead of a generic screenshot.",
+      },
+      {
+        alt: "Dataset visualization placeholder.",
+        label: "Dataset view",
+        caption: "Show dataset scale with node/edge counts or a graph excerpt that helps recruiters understand the problem shape.",
+      },
+      {
+        alt: "Training or evaluation chart placeholder.",
+        label: "Evaluation",
+        caption: "Add an AUC, loss, or performance chart to make the ML proof visual and concrete.",
+      },
+    ],
+    recording: {
+      title: "Technical walkthrough",
+      caption:
+        "If you record this project, focus on model setup, evaluation metrics, and why graph learning was the right approach.",
+      ctaLabel: "Add walkthrough",
+    },
+    assetChecklist: [
+      "Add one architecture diagram, one dataset scale visual, and one evaluation chart instead of UI screenshots.",
+      "Record a short technical walkthrough explaining the graph problem, model choice, and evaluation outcome.",
+      "Include one comparison note showing why this is stronger than a basic tabular ML example.",
+    ],
   },
   {
     slug: "fake-news-detection",
@@ -227,7 +329,7 @@ export const projects: ProjectEntry[] = [
       { label: "Feature pipeline", value: "TF-IDF" },
     ],
     githubUrl: "https://github.com/gangisettyrushil10/fakeNewsDetection.py",
-    featured: true,
+    featured: false,
     category: "AI",
   },
 ];
@@ -271,11 +373,11 @@ export const experiences: ExperienceEntry[] = [
 export const skillGroups: SkillGroup[] = [
   {
     title: "Product Engineering",
-    items: ["TypeScript", "React", "Next.js", "Expo", "React Native", "Tailwind CSS"],
+    items: ["TypeScript", "React", "Next.js", "Expo", "React Native", "Framer Motion"],
   },
   {
     title: "Backend and APIs",
-    items: ["Python", "Java", "FastAPI", "Node.js", "REST APIs", "SQLAlchemy"],
+    items: ["Python", "Flask", "FastAPI", "PostgreSQL", "REST APIs", "SQLAlchemy"],
   },
   {
     title: "Data and Analytics",
@@ -283,7 +385,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "Applied AI and ML",
-    items: ["scikit-learn", "PyTorch", "PyTorch Geometric", "NLP", "TF-IDF", "Anomaly detection"],
+    items: ["watsonx", "scikit-learn", "PyTorch", "PyTorch Geometric", "NLP", "Structured outputs"],
   },
 ];
 
@@ -299,9 +401,9 @@ export const additionalWork: AdditionalWork[] = [
     githubUrl: "https://github.com/gangisettyrushil10/travel_rec",
   },
   {
-    title: "VOTINGAPPRG",
-    summary: "Java coursework project focused on application structure and domain-driven flow.",
-    githubUrl: "https://github.com/gangisettyrushil10/VOTINGAPPRG",
+    title: "Fake News Detection",
+    summary: "Lean NLP baseline using TF-IDF and a Passive Aggressive classifier for fast, explainable text classification.",
+    githubUrl: "https://github.com/gangisettyrushil10/fakeNewsDetection.py",
   },
 ];
 

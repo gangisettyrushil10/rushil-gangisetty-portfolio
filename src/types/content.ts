@@ -20,9 +20,18 @@ export type ProjectMetric = {
 };
 
 export type ProjectGalleryItem = {
-  src: string;
+  src?: string;
   alt: string;
+  label?: string;
   caption: string;
+};
+
+export type ProjectRecording = {
+  title: string;
+  caption: string;
+  href?: string;
+  ctaLabel?: string;
+  posterSrc?: string;
 };
 
 export type ProjectCategory = "Product" | "Data" | "AI";
@@ -49,6 +58,8 @@ export type ProjectEntry = {
   image?: string;
   imageAlt?: string;
   gallery?: ProjectGalleryItem[];
+  recording?: ProjectRecording;
+  assetChecklist?: string[];
 };
 
 export type ExperienceEntry = {

@@ -31,7 +31,7 @@ describe("route module smoke tests", () => {
 
   it("keeps curated content counts stable", () => {
     expect(projects).toHaveLength(5);
-    expect(getFeaturedProjects()).toHaveLength(5);
+    expect(getFeaturedProjects()).toHaveLength(4);
     expect(getAllPosts()).toHaveLength(3);
     expect(profile.resumePath).toBe("/resume/rushil-gangisetty-resume.pdf");
   });
@@ -64,12 +64,12 @@ describe("route module smoke tests", () => {
     );
   });
 
-  it("builds project detail metadata for Buzzr", async () => {
+  it("builds project detail metadata for the Buzzr ecosystem", async () => {
     const metadata = await generateProjectMetadata({
-      params: Promise.resolve({ slug: "buzzr" }),
+      params: Promise.resolve({ slug: "buzzr-ecosystem" }),
     });
 
-    expect(metadata.title).toBe("Buzzr");
+    expect(metadata.title).toBe("Buzzr Ecosystem");
     expect(metadata.description).toMatch(/Expo \+ React Native/i);
   });
 });
