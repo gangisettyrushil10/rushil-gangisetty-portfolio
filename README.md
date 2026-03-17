@@ -18,6 +18,7 @@ The site is designed for recruiter and hiring-manager review. It focuses on a sm
 
 - `/` home page with positioning, featured work, skills, experience, resume CTA, blog preview, and contact CTA
 - `/projects` curated project catalog
+- `/projects/[slug]` case-study pages for flagship work
 - `/blog` MDX blog index
 - `/blog/[slug]` blog post pages
 - `/resume` recruiter-facing resume page with embedded PDF
@@ -88,7 +89,9 @@ Deploy on Vercel.
 ## Current Scope
 
 - Five curated flagship projects
+- Dedicated case-study pages with decisions, outcomes, learnings, and visual proof
 - Three seeded MDX blog posts
 - Resume page with downloadable PDF
 - Contact API with validation and safe fallback behavior
 - Generated metadata, sitemap, robots, and Open Graph assets
+- GitHub Actions CI for test, lint, typecheck, and build

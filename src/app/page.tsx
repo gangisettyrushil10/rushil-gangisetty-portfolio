@@ -89,9 +89,12 @@ export default function HomePage() {
                 <div key={project.slug} className="rounded-3xl border border-[rgba(255,255,255,0.08)] bg-[rgba(255,255,255,0.04)] p-5">
                   <div className="flex items-center justify-between gap-4">
                     <div>
-                      <p className="text-lg font-semibold text-[rgb(var(--surface))]">
+                      <Link
+                        href={`/projects/${project.slug}`}
+                        className="text-lg font-semibold text-[rgb(var(--surface))]"
+                      >
                         {project.title}
-                      </p>
+                      </Link>
                       <p className="mt-2 text-sm leading-6 text-[rgba(244,237,226,0.72)]">
                         {project.oneLine}
                       </p>

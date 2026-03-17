@@ -19,14 +19,27 @@ export type ProjectMetric = {
   value: string;
 };
 
+export type ProjectGalleryItem = {
+  src: string;
+  alt: string;
+  caption: string;
+};
+
 export type ProjectCategory = "Product" | "Data" | "AI";
 
 export type ProjectEntry = {
   slug: string;
   title: string;
+  role: string;
+  timeline: string;
+  status: string;
   oneLine: string;
   longSummary: string;
   spotlight: string;
+  challenge: string;
+  decisions: string[];
+  outcomes: string[];
+  learnings: string[];
   stack: string[];
   metrics: ProjectMetric[];
   githubUrl: string;
@@ -35,6 +48,7 @@ export type ProjectEntry = {
   category: ProjectCategory;
   image?: string;
   imageAlt?: string;
+  gallery?: ProjectGalleryItem[];
 };
 
 export type ExperienceEntry = {

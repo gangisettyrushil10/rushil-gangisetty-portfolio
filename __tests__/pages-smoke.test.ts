@@ -3,6 +3,10 @@ import { isValidElement } from "react";
 import BlogIndexPage, { metadata as blogMetadata } from "@/app/blog/page";
 import ContactPage, { metadata as contactMetadata } from "@/app/contact/page";
 import HomePage from "@/app/page";
+import {
+  generateMetadata as generateProjectMetadata,
+  generateStaticParams as generateProjectStaticParams,
+} from "@/app/projects/[slug]/page";
 import ProjectsPage, { metadata as projectsMetadata } from "@/app/projects/page";
 import ResumePage, { metadata as resumeMetadata } from "@/app/resume/page";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
@@ -48,5 +52,24 @@ describe("route module smoke tests", () => {
     expect(post?.title).toBe("Building Buzzr beyond the mockup");
     expect(post?.excerpt).toMatch(/live leagues/i);
     expect(post?.content).toMatch(/migrations/i);
+  });
+
+  it("generates project detail params for each curated project", () => {
+    expect(generateProjectStaticParams()).toEqual(
+      expect.arrayContaining(
+        projects.map((project) => ({
+          slug: project.slug,
+        })),
+      ),
+    );
+  });
+
+  it("builds project detail metadata for Buzzr", async () => {
+    const metadata = await generateProjectMetadata({
+      params: Promise.resolve({ slug: "buzzr" }),
+    });
+
+    expect(metadata.title).toBe("Buzzr");
+    expect(metadata.description).toMatch(/Expo \+ React Native/i);
   });
 });

@@ -14,9 +14,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
       <div className="flex items-start justify-between gap-4">
         <div>
           <p className="eyebrow">{project.category}</p>
-          <h3 className="mt-3 text-2xl font-semibold tracking-[-0.05em] text-[rgb(var(--ink))]">
+          <Link
+            href={`/projects/${project.slug}`}
+            className="mt-3 inline-block text-2xl font-semibold tracking-[-0.05em] text-[rgb(var(--ink))]"
+          >
             {project.title}
-          </h3>
+          </Link>
         </div>
         <div className="rounded-full border border-[rgb(var(--line))] px-3 py-1 text-xs uppercase tracking-[0.18em] text-[rgb(var(--muted-ink))]">
           {project.featured ? "featured" : "project"}
@@ -67,12 +70,16 @@ export function ProjectCard({ project }: ProjectCardProps) {
       </div>
 
       <div className="mt-8 flex flex-wrap gap-3">
+        <Link href={`/projects/${project.slug}`} className="button-primary">
+          <ArrowUpRight className="h-4 w-4" />
+          Case study
+        </Link>
         <Link href={project.githubUrl} className="button-secondary">
           <Github className="h-4 w-4" />
           GitHub
         </Link>
         {project.liveUrl ? (
-          <Link href={project.liveUrl} className="button-primary">
+          <Link href={project.liveUrl} className="button-secondary">
             <ArrowUpRight className="h-4 w-4" />
             Live link
           </Link>
