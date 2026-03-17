@@ -81,6 +81,7 @@ export const projects: Project[] = [
       'Social features matter more when the product already has a clear core loop.',
     ],
     githubUrl: 'https://github.com/gangisettyrushil10/Buzzr',
+    liveUrl: 'https://buzzr-desktop.vercel.app/',
     links: [
       { label: 'Mobile repo', href: 'https://github.com/gangisettyrushil10/Buzzr' },
       { label: 'Desktop web repo', href: 'https://github.com/gangisettyrushil10/buzzr_desktop' },
