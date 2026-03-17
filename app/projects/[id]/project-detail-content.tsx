@@ -131,6 +131,11 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                 </a>
               </Button>
             )}
+            {!project.githubUrl && !project.liveUrl && (
+              <div className="rounded-full border border-border bg-secondary px-4 py-2 text-sm text-muted-foreground">
+                Local case study. Code walkthrough available on request.
+              </div>
+            )}
           </motion.div>
 
           {/* Tech Stack */}

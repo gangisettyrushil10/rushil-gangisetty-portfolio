@@ -44,6 +44,9 @@ export function ProjectCard({ project, index = 0, featured = false }: ProjectCar
         <h3 className="text-xl sm:text-2xl font-bold text-foreground group-hover:text-primary transition-colors">
           {project.title}
         </h3>
+        <p className="mt-2 text-sm font-mono uppercase tracking-wide text-primary/80">
+          {project.role}
+        </p>
         <p className="mt-3 text-muted-foreground leading-relaxed line-clamp-2">
           {project.description}
         </p>
@@ -80,6 +83,11 @@ export function ProjectCard({ project, index = 0, featured = false }: ProjectCar
           <div className="flex items-center gap-2 mt-6 text-sm text-muted-foreground">
             <Github className="w-4 h-4" />
             <span>View on GitHub</span>
+          </div>
+        )}
+        {!project.githubUrl && (
+          <div className="flex items-center gap-2 mt-6 text-sm text-muted-foreground">
+            <span>Case study available on request</span>
           </div>
         )}
       </Link>

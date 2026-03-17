@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, MapPin, Briefcase } from 'lucide-react'
-import { personalInfo } from '@/lib/data'
+import { personalInfo, recruiterSummary } from '@/lib/data'
 import { Button } from '@/components/ui/button'
 
 export function Hero() {
@@ -61,7 +61,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mt-6 text-xl sm:text-2xl text-muted-foreground max-w-3xl mx-auto text-balance"
           >
-            {personalInfo.title} {personalInfo.tagline.toLowerCase()}
+            {personalInfo.title} {personalInfo.tagline.toLowerCase()}.
           </motion.p>
 
           {/* Description */}
@@ -71,8 +71,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-6 text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
           >
-            I build real systems, not just demos. From full-stack applications and backend services 
-            to data products and applied AI — I ship software with product judgment and technical depth.
+            {recruiterSummary.description}
           </motion.p>
 
           {/* Location */}
@@ -88,7 +87,7 @@ export function Hero() {
             </span>
             <span className="flex items-center gap-2">
               <Briefcase className="w-4 h-4" />
-              Software Engineer
+              Backend, data, and product systems
             </span>
           </motion.div>
 
@@ -128,8 +127,8 @@ export function Hero() {
           {[
             { value: '4+', label: 'Flagship Projects' },
             { value: '3', label: 'Internships' },
-            { value: '5K+', label: 'Lines of Code' },
-            { value: '50K+', label: 'Records Processed' },
+            { value: '50K+', label: 'Records / Day Supported' },
+            { value: '38', label: 'SQL Migrations Shipped' },
           ].map((stat, index) => (
             <motion.div
               key={stat.label}

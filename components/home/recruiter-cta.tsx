@@ -41,12 +41,11 @@ export function RecruiterCTA() {
           </span>
           
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-foreground text-balance">
-            Looking for a software engineer who ships?
+            Hiring for software, backend, data, or business-systems work?
           </h2>
           
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            I bring product judgment, technical depth, and a track record of building real systems. 
-            Let's talk about how I can contribute to your team.
+            That is the cleanest way to read this portfolio. I tailor the resume to the role, but the underlying proof stays the same: product software, backend APIs, data workflows, and practical AI features.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
@@ -71,7 +70,7 @@ export function RecruiterCTA() {
           </div>
 
           <p className="mt-8 text-sm text-muted-foreground">
-            Based in {personalInfo.location} • Open to remote and hybrid roles
+            Based in {personalInfo.location} • Open to remote, hybrid, and relocation opportunities
           </p>
         </motion.div>
       </div>

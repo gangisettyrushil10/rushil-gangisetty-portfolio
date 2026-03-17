@@ -11,8 +11,8 @@ export function Experience() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="Experience"
-          title="Where I've Worked"
-          description="Production experience across SaaS platforms, data pipelines, and enterprise systems."
+          title="Production experience that supports the project story"
+          description="The internships reinforce the same narrative as the portfolio: software delivery, data validation, workflow reliability, and stakeholder-facing systems."
         />
 
         <div className="relative">

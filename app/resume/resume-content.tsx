@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Download, Mail, MapPin, Github, Linkedin, ArrowRight, Building2, GraduationCap, Code2, Briefcase } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Section, SectionHeader } from '@/components/section'
-import { personalInfo, experiences, skills, projects } from '@/lib/data'
+import { personalInfo, experiences, recruiterSummary, skills, projects } from '@/lib/data'
 
 export function ResumeContent() {
   const featuredProjects = projects.filter((p) => p.featured).slice(0, 3)
@@ -50,9 +50,7 @@ export function ResumeContent() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl"
               >
-                Product-minded software engineer with hands-on experience building full-stack applications, 
-                backend services, data pipelines, and applied AI systems. I ship real products with 
-                technical depth and user empathy.
+                {recruiterSummary.description}
               </motion.p>
 
               <motion.div
@@ -102,7 +100,7 @@ export function ResumeContent() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Status</p>
-                    <p className="text-foreground">Open to Opportunities</p>
+                    <p className="text-foreground">Open to software, backend, data, and systems roles</p>
                   </div>
                 </div>
                 
@@ -112,7 +110,7 @@ export function ResumeContent() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Focus</p>
-                    <p className="text-foreground">Full-Stack & AI</p>
+                    <p className="text-foreground">Backend APIs, data workflows, .NET, product software</p>
                   </div>
                 </div>
 
@@ -216,15 +214,16 @@ export function ResumeContent() {
           <SectionHeader
             badge="Expertise"
             title="Technical Skills"
-            description="A comprehensive toolkit for building modern software systems."
+            description="Grouped around the work I can defend in interviews and tailor into role-specific resumes."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
               { key: 'languages', label: 'Languages', icon: Code2 },
-              { key: 'frontend', label: 'Frontend', icon: Code2 },
-              { key: 'backend', label: 'Backend', icon: Code2 },
-              { key: 'data', label: 'Data & ML', icon: Code2 },
+              { key: 'frontend', label: 'Frontend & Product', icon: Code2 },
+              { key: 'backend', label: 'Backend APIs', icon: Code2 },
+              { key: 'systems', label: 'Business Systems', icon: Code2 },
+              { key: 'data', label: 'Data & Analytics', icon: Code2 },
               { key: 'tools', label: 'Tools', icon: Code2 },
             ].map((category, index) => (
               <motion.div

@@ -18,11 +18,18 @@ export interface Project {
   featured: boolean
 }
 
+export interface FocusArea {
+  title: string
+  description: string
+  proof: string
+  href: string
+}
+
 export const projects: Project[] = [
   {
     id: 'buzzr-ecosystem',
     title: 'Buzzr Ecosystem',
-    category: 'Product Engineering',
+    category: 'Product Software',
     description: 'A sports-social product ecosystem with a mobile app and polished web experience for rating games by entertainment value.',
     longDescription: 'A consumer product ecosystem consisting of a mobile app plus a launch/marketing web experience. The mobile app lets users rate games by entertainment, not just final score, with social features and watch-party style flows. The desktop web app acts as a polished launch-ready marketing surface for the product.',
     stack: ['Expo', 'React Native', 'TypeScript', 'Supabase', 'PostgreSQL', 'Jest', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
@@ -32,9 +39,9 @@ export const projects: Project[] = [
       { label: 'SQL Migrations', value: '38' },
       { label: 'Test Files', value: '28' },
     ],
-    role: 'Full-Stack Engineer',
+    role: 'Product and full-stack engineer',
     timeline: '2024 - Present',
-    status: 'Active Development',
+    status: 'Active build',
     challenge: 'Building a cohesive sports-social experience that works seamlessly across mobile and web while handling real-time game data and social interactions at scale.',
     decisions: [
       'Chose Supabase for real-time subscriptions and built-in auth, enabling instant game updates across all connected clients',
@@ -56,9 +63,44 @@ export const projects: Project[] = [
     featured: true,
   },
   {
+    id: 'ledger-okcu',
+    title: 'Ledger OKCU',
+    category: 'Business Systems API',
+    description: 'A layered ASP.NET Core API for members, accounts, transactions, validation, and audit-friendly business rules.',
+    longDescription: 'A C# and ASP.NET Core Web API built around real business rules instead of generic CRUD. The solution separates controllers, application services, infrastructure, and domain entities while enforcing validation, idempotency, audit logging, and transaction safety for member and account workflows.',
+    stack: ['C#', 'ASP.NET Core', 'Entity Framework Core', 'SQLite', 'FluentValidation', 'Swagger', 'Serilog', 'xUnit'],
+    metrics: [
+      { label: 'HTTP Endpoints', value: '10' },
+      { label: 'C# LOC', value: '3,057' },
+      { label: 'Solution Projects', value: '5' },
+      { label: 'Core Rules', value: 'Idempotency + Audit' },
+    ],
+    role: 'ASP.NET Core backend engineer',
+    timeline: '2026',
+    status: 'Backend case study',
+    challenge: 'The project needed to feel like a real business system rather than a toy API. That meant handling money movement, duplicate request protection, validation, auditability, and a codebase structure that could survive more rules over time.',
+    decisions: [
+      'Split the solution into API, Application, Infrastructure, Core, and Tests projects to keep HTTP, business logic, persistence, and domain concerns separate',
+      'Used FluentValidation so request validation stays explicit and consistent before any business logic runs',
+      'Implemented idempotency checks and audit logging so transaction endpoints behave defensively under retries and traceability requirements',
+      'Used Entity Framework Core with migrations to keep the data model manageable as the API evolves toward production-style databases',
+    ],
+    outcomes: [
+      'Built 10 HTTP endpoints across members, accounts, balances, deposits, withdrawals, and transaction history',
+      'Shipped a 3,057-line C# codebase with integration tests, Swagger support, and layered architecture',
+      'Created stronger proof for .NET, ASP.NET Core, and business-rule-heavy API work than a tutorial CRUD app would provide',
+    ],
+    learnings: [
+      'Business APIs become much more credible when they enforce invariants like idempotency and no-overdraft rules',
+      'Layered .NET solutions are easier to discuss in interviews when services, repositories, and DTO boundaries are deliberate',
+      'For backend portfolios, one defensible API with real rules is more useful than several shallow demos',
+    ],
+    featured: true,
+  },
+  {
     id: 'medscribe',
     title: 'Medscribe',
-    category: 'Applied AI / Full-Stack Product',
+    category: 'Applied AI Product',
     description: 'An agentic AI scribe for clinicians that transforms raw clinical notes into structured, citation-backed insights.',
     longDescription: 'An agentic AI scribe experience for clinicians that turns raw clinical notes into structured, citation-backed insights and suggested orders. Users input clinical notes and the system returns structured summaries, suggested orders, evidence/citations, and model/provenance signals.',
     stack: ['React', 'Vite', 'Flask', 'Python', 'IBM watsonx', 'LLM Orchestration'],
@@ -68,8 +110,8 @@ export const projects: Project[] = [
       { label: 'Backend LOC', value: '638' },
       { label: 'Frontend LOC', value: '686' },
     ],
-    role: 'Full-Stack Engineer',
-    timeline: '2024',
+    role: 'Full-stack engineer',
+    timeline: '2025',
     status: 'Completed',
     challenge: 'Creating an AI system that clinicians can trust, with transparent reasoning and proper citation of medical evidence.',
     decisions: [
@@ -94,7 +136,7 @@ export const projects: Project[] = [
   {
     id: 'business-analytics-dashboard',
     title: 'Business Analytics Dashboard',
-    category: 'Full-Stack Data Product',
+    category: 'Data Workflows',
     description: 'A full-stack analytics application for messy CSV ingestion, validation, forecasting, and anomaly detection.',
     longDescription: 'A comprehensive analytics platform that handles the full data lifecycle - from messy CSV ingestion and validation to forecasting and anomaly detection. Built to handle real-world data quality issues rather than just displaying clean charts.',
     stack: ['FastAPI', 'React', 'TypeScript', 'PostgreSQL', 'Prophet', 'scikit-learn'],
@@ -104,8 +146,8 @@ export const projects: Project[] = [
       { label: 'Input Quality', value: 'CSV Validation' },
       { label: 'Workflow Focus', value: 'Forecasting' },
     ],
-    role: 'Full-Stack Engineer',
-    timeline: '2024',
+    role: 'Full-stack analytics engineer',
+    timeline: '2025',
     status: 'Completed',
     challenge: 'Building an analytics platform that gracefully handles messy, real-world data while providing accurate forecasts and actionable insights.',
     decisions: [
@@ -130,7 +172,7 @@ export const projects: Project[] = [
   {
     id: 'graph-link-prediction',
     title: 'Graph Link Prediction',
-    category: 'ML / Technical Depth',
+    category: 'ML Depth',
     description: 'A graph neural network project for link prediction on a Facebook social graph dataset.',
     longDescription: 'A deep learning project implementing graph neural networks for link prediction on the Facebook social graph. Demonstrates understanding of graph-based ML beyond basic tabular classification.',
     stack: ['Python', 'PyTorch Geometric', 'NetworkX', 'NumPy', 'scikit-learn'],
@@ -161,7 +203,7 @@ export const projects: Project[] = [
       'Proper edge splitting is crucial for valid evaluation metrics',
     ],
     githubUrl: 'https://github.com/gangisettyrushil10/graph-theory-final-project',
-    featured: true,
+    featured: false,
   },
 ]
 
@@ -213,19 +255,72 @@ export const experiences: Experience[] = [
 ]
 
 export const skills = {
-  languages: ['TypeScript', 'Python', 'JavaScript', 'SQL', 'Java'],
+  languages: ['TypeScript', 'Python', 'C#', 'SQL', 'Java', 'JavaScript'],
   frontend: ['React', 'Next.js', 'React Native', 'Tailwind CSS', 'Framer Motion'],
-  backend: ['Node.js', 'FastAPI', 'Flask', 'PostgreSQL', 'Supabase'],
-  data: ['Prophet', 'scikit-learn', 'PyTorch', 'Pandas', 'NumPy'],
-  tools: ['Git', 'Docker', 'CI/CD', 'Jest', 'Vite'],
+  backend: ['ASP.NET Core', 'FastAPI', 'Flask', 'REST APIs', 'PostgreSQL', 'Supabase'],
+  systems: ['Entity Framework Core', 'FluentValidation', 'Swagger', 'xUnit', 'Operational Reporting', 'ETL'],
+  data: ['Pandas', 'Forecasting', 'Data Validation', 'scikit-learn', 'PyTorch', 'NumPy'],
+  tools: ['Git', 'Docker', 'CI/CD', 'Jest', 'Vite', 'Linux'],
+}
+
+export const focusAreas: FocusArea[] = [
+  {
+    title: 'Software and full-stack delivery',
+    description: 'The broadest and safest read of the portfolio. Product-facing software, iteration speed, and shipping discipline across web and mobile surfaces.',
+    proof: 'Buzzr Ecosystem',
+    href: '/projects/buzzr-ecosystem',
+  },
+  {
+    title: 'Backend and business APIs',
+    description: 'Most credible for backend, ASP.NET, and business-systems roles that care about validation, domain rules, API design, and reliability.',
+    proof: 'Ledger OKCU',
+    href: '/projects/ledger-okcu',
+  },
+  {
+    title: 'Data and analytics workflows',
+    description: 'Best fit for analytics-heavy software work, SQL-oriented roles, forecasting, ETL-style pipelines, and systems that need to handle messy inputs.',
+    proof: 'Business Analytics Dashboard',
+    href: '/projects/business-analytics-dashboard',
+  },
+  {
+    title: 'Applied AI features',
+    description: 'Useful for product-facing AI roles where the model is only part of the job and the software workflow still matters.',
+    proof: 'Medscribe',
+    href: '/projects/medscribe',
+  },
+]
+
+export const projectDomains = [
+  {
+    name: 'Product Software',
+    description: 'User-facing applications with strong product judgment and shipping polish',
+  },
+  {
+    name: 'Backend and Business APIs',
+    description: 'Validation-heavy services, domain rules, and application-system reliability',
+  },
+  {
+    name: 'Data Workflows',
+    description: 'SQL, validation, forecasting, ingestion, and analytics around messy inputs',
+  },
+  {
+    name: 'Applied AI',
+    description: 'AI features wrapped in real software workflows and explainable UX',
+  },
+]
+
+export const recruiterSummary = {
+  title: 'Software engineer with backend, data, and business-systems depth.',
+  description:
+    'The cleanest way to read this portfolio is broad software engineering first. The strongest proof maps to product software, backend APIs, data workflows, and applied AI features without pretending to cover every tech title equally.',
 }
 
 export const personalInfo = {
   name: 'Rushil Gangisetty',
   title: 'Software Engineer',
-  tagline: 'Building product, backend, data, and AI systems',
+  tagline: 'Building product software, backend APIs, data workflows, and applied AI',
   location: 'Dallas, Texas',
-  status: 'Open to software engineering roles and internships',
+  status: 'Open to software engineering, backend, data, and systems roles',
   email: 'gangisettyrushil@gmail.com',
   github: 'https://github.com/gangisettyrushil10',
   linkedin: 'https://www.linkedin.com/in/rushilgangisetty10',

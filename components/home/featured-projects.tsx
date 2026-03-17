@@ -16,8 +16,8 @@ export function FeaturedProjects() {
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12">
           <SectionHeader
             badge="Featured Work"
-            title="Flagship Projects"
-            description="Real systems with real depth. Each project demonstrates product thinking, technical execution, and measurable outcomes."
+            title="Flagship case studies"
+            description="These are the four projects that support the clearest recruiter reads of my background: product software, backend systems, data workflows, and applied AI features."
             className="mb-0"
           />
           <Button asChild variant="outline" className="shrink-0">

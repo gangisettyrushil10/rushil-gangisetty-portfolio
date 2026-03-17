@@ -1,15 +1,16 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Code2, Server, Database, Wrench, Layout } from 'lucide-react'
+import { Building2, Code2, Database, Layout, Server, Wrench } from 'lucide-react'
 import { Section, SectionHeader } from '@/components/section'
 import { skills } from '@/lib/data'
 
 const skillCategories = [
   { key: 'languages', label: 'Languages', icon: Code2, color: 'text-primary' },
-  { key: 'frontend', label: 'Frontend', icon: Layout, color: 'text-accent' },
-  { key: 'backend', label: 'Backend', icon: Server, color: 'text-primary' },
-  { key: 'data', label: 'Data & ML', icon: Database, color: 'text-accent' },
+  { key: 'frontend', label: 'Frontend & Product', icon: Layout, color: 'text-accent' },
+  { key: 'backend', label: 'Backend APIs', icon: Server, color: 'text-primary' },
+  { key: 'systems', label: 'Business Systems', icon: Building2, color: 'text-accent' },
+  { key: 'data', label: 'Data & Analytics', icon: Database, color: 'text-primary' },
   { key: 'tools', label: 'Tools', icon: Wrench, color: 'text-primary' },
 ] as const
 
@@ -19,8 +20,8 @@ export function Skills() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="Technical Strengths"
-          title="Skills & Technologies"
-          description="A versatile toolkit spanning frontend to backend, data pipelines to ML systems."
+          title="Skills grouped by how I actually work"
+          description="This is not a pile of keywords. The stack is grouped around shipping software, building APIs, supporting business systems, and handling data-heavy workflows."
         />
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

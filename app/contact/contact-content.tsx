@@ -57,8 +57,7 @@ export function ContactContent() {
               Let's Connect
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              I'm open to software engineering opportunities, technical collaborations, 
-              and conversations about building great products. Feel free to reach out.
+              I&apos;m open to software engineering opportunities, backend and data roles, business-systems work, and conversations about teams that need an engineer who can ship.
             </p>
           </motion.div>
         </div>
@@ -77,8 +76,7 @@ export function ContactContent() {
             >
               <h2 className="text-2xl font-bold text-foreground mb-6">Get in Touch</h2>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                Whether you're a recruiter looking for a software engineer, a founder exploring 
-                technical partnership, or just want to say hello — I'd love to hear from you.
+                If you&apos;re hiring for software engineering, backend APIs, analytics-heavy workflows, or business-systems work, that is where this portfolio is strongest.
               </p>
 
               {/* Contact Cards */}
@@ -150,7 +148,7 @@ export function ContactContent() {
                   <p className="text-green-400 font-medium">Currently open to opportunities</p>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Available for full-time roles, internships, and interesting projects.
+                  Available for full-time roles, internships, and technically credible early-career opportunities.
                 </p>
               </div>
             </motion.div>

@@ -3,10 +3,11 @@
 import { motion } from 'framer-motion'
 import { Section, SectionHeader } from '@/components/section'
 import { ProjectCard } from '@/components/project-card'
-import { projects } from '@/lib/data'
+import { projectDomains, projects } from '@/lib/data'
 
 export function ProjectsContent() {
   const flagshipProjects = projects.filter((p) => p.featured)
+  const supportingProjects = projects.filter((p) => !p.featured)
 
   return (
     <>
@@ -28,8 +29,7 @@ export function ProjectsContent() {
               Projects
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl">
-              A curated collection of flagship projects demonstrating product engineering, 
-              backend systems, data pipelines, and applied AI.
+              A selective set of case studies designed to map cleanly to common early-career hiring paths without stretching into titles the work does not actually support.
             </p>
           </motion.div>
         </div>
@@ -41,7 +41,7 @@ export function ProjectsContent() {
           <SectionHeader
             badge="Flagship Work"
             title="Featured Projects"
-            description="Each project represents real engineering depth with measurable outcomes."
+            description="Four case studies do most of the work: product software, backend and business APIs, data workflows, and applied AI features."
           />
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -62,17 +62,12 @@ export function ProjectsContent() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Categories"
-            title="Project Domains"
-            description="My work spans multiple engineering disciplines."
+            title="Core domains"
+            description="These buckets are the cleanest way for recruiters to interpret the portfolio."
           />
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { name: 'Product Engineering', count: 1, description: 'Consumer-facing applications with polish' },
-              { name: 'Applied AI', count: 1, description: 'LLM-powered systems with practical value' },
-              { name: 'Full-Stack Data', count: 1, description: 'End-to-end data products' },
-              { name: 'ML / Deep Learning', count: 1, description: 'Graph neural networks and beyond' },
-            ].map((category, index) => (
+            {projectDomains.map((category, index) => (
               <motion.div
                 key={category.name}
                 initial={{ opacity: 0, y: 20 }}
@@ -81,7 +76,6 @@ export function ProjectsContent() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors"
               >
-                <div className="text-3xl font-bold text-primary mb-2">{category.count}</div>
                 <h3 className="font-semibold text-foreground mb-2">{category.name}</h3>
                 <p className="text-sm text-muted-foreground">{category.description}</p>
               </motion.div>
@@ -89,6 +83,28 @@ export function ProjectsContent() {
           </div>
         </div>
       </Section>
+
+      {supportingProjects.length > 0 && (
+        <Section className="bg-background">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <SectionHeader
+              badge="Additional Depth"
+              title="Specialized supporting work"
+              description="These projects add technical depth, but they are intentionally not the first thing a recruiter sees."
+            />
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {supportingProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  index={index}
+                />
+              ))}
+            </div>
+          </div>
+        </Section>
+      )}
     </>
   )
 }
