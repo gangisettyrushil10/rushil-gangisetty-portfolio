@@ -29,7 +29,7 @@ export function ProjectsContent() {
               Projects
             </h1>
             <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl">
-              A selective set of case studies designed to map cleanly to common early-career hiring paths without stretching into titles the work does not actually support.
+              This is the small set of projects I would actually want a recruiter or hiring manager to read. The goal is not to show everything I have touched. It is to show the work that feels most real.
             </p>
           </motion.div>
         </div>
@@ -41,7 +41,7 @@ export function ProjectsContent() {
           <SectionHeader
             badge="Flagship Work"
             title="Featured Projects"
-            description="Four case studies do most of the work: product software, backend and business APIs, data workflows, and applied AI features."
+            description="Together, these four projects show the range I care most about: product work, backend APIs, data-heavy applications, and AI features that belong inside a real product."
           />
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -63,7 +63,7 @@ export function ProjectsContent() {
           <SectionHeader
             badge="Categories"
             title="Core domains"
-            description="These buckets are the cleanest way for recruiters to interpret the portfolio."
+            description="A simple way to understand the kind of work I tend to do best."
           />
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -90,7 +90,7 @@ export function ProjectsContent() {
             <SectionHeader
               badge="Additional Depth"
               title="Specialized supporting work"
-              description="These projects add technical depth, but they are intentionally not the first thing a recruiter sees."
+              description="Useful extra depth, but not where I want someone to start."
             />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

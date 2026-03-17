@@ -16,7 +16,7 @@ export function Footer() {
               <span className="text-primary">.</span>
             </Link>
             <p className="mt-4 text-muted-foreground max-w-sm">
-              Software engineer who likes building products people can use and systems teams can rely on.
+              I like building products that feel clear to the user and dependable to the team behind them.
             </p>
             <div className="flex items-center gap-4 mt-6">
               <a

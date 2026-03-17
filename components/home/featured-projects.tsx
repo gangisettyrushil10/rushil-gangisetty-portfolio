@@ -17,7 +17,7 @@ export function FeaturedProjects() {
           <SectionHeader
             badge="Featured Work"
             title="Flagship case studies"
-            description="These are the four projects that support the clearest recruiter reads of my background: product software, backend systems, data workflows, and applied AI features."
+            description="If someone only looks at a few things on this site, I want them to start here. These projects do the best job of showing how I think, build, and ship."
             className="mb-0"
           />
           <Button asChild variant="outline" className="shrink-0">

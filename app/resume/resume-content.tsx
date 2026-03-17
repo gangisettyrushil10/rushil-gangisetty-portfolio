@@ -50,7 +50,7 @@ export function ResumeContent() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl"
               >
-                I&apos;m a software engineer who has spent the most time around product software, backend APIs, data-heavy workflows, and AI features that live inside real applications. The resume changes by role, but the underlying work is the same.
+                Most of my work sits at the intersection of product, backend, and data. That usually means building something useful, making the API sane, and handling the messy edges that show up once real data is involved.
               </motion.p>
 
               <motion.div
@@ -214,7 +214,7 @@ export function ResumeContent() {
           <SectionHeader
             badge="Expertise"
             title="Technical Skills"
-            description="Grouped around the work I can defend in interviews and tailor into role-specific resumes."
+            description="The tools and technologies I reach for most often."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
