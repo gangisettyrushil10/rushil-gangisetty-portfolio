@@ -13,6 +13,8 @@ Use names like:
 - `medscribe-structured-output.png`
 - `business-dashboard-upload.png`
 - `business-dashboard-forecast.png`
+- `ledger-okcu-swagger.png`
+- `ledger-okcu-transaction-flow.png`
 - `graph-link-prediction-architecture.png`
 - `graph-link-prediction-auc.png`
 
@@ -61,6 +63,23 @@ Recording:
 - show validation feedback
 - move into dashboard output
 - show forecast/anomaly results
+
+## Ledger OKCU
+
+Screenshots:
+- Swagger endpoint overview
+- entity relationship or data model diagram
+- create member or account request
+- deposit or withdrawal transaction response
+- transaction history or audit log proof
+
+Recording:
+- 20 to 30 second API walkthrough
+- create member
+- open account
+- deposit funds
+- retry duplicate request to show idempotency
+- show transaction history or audit logging
 
 ## Graph Link Prediction
 

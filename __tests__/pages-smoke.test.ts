@@ -30,7 +30,7 @@ describe("route module smoke tests", () => {
   });
 
   it("keeps curated content counts stable", () => {
-    expect(projects).toHaveLength(5);
+    expect(projects).toHaveLength(6);
     expect(getFeaturedProjects()).toHaveLength(4);
     expect(getAllPosts()).toHaveLength(3);
     expect(profile.resumePath).toBe("/resume/rushil-gangisetty-resume.pdf");

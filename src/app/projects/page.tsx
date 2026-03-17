@@ -7,7 +7,7 @@ import { additionalWork, projects } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Projects",
-  description: "Curated engineering work across product, data, and machine learning.",
+  description: "Curated engineering work across product software, backend systems, data workflows, and applied AI.",
 };
 
 export default function ProjectsPage() {
@@ -18,7 +18,7 @@ export default function ProjectsPage() {
     <section className="section-shell">
       <SectionHeading
         eyebrow="Projects"
-        title="Curated proof across product, data, and AI."
+        title="Curated proof across product, systems, data, and AI."
         description="This page stays intentionally selective. The goal is not to list every repo I have ever touched, but to show the projects that best represent my engineering range and decision quality."
       />
 

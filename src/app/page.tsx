@@ -73,7 +73,7 @@ export default function HomePage() {
                   {profile.summary}
                 </p>
                 <p className="mt-4 max-w-3xl text-sm uppercase tracking-[0.22em] text-[rgba(153,177,214,0.88)]">
-                  {profile.location} · best fit: software engineer i, full-stack, backend, product engineering
+                  {profile.location} · software, data, and systems-focused builds
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3">
@@ -143,7 +143,7 @@ export default function HomePage() {
         <SectionHeading
           eyebrow="Featured work"
           title="Case studies with enough detail to actually get you hired."
-          description="I am deliberately selective. Each flagship project earns its place by showing product judgment, technical execution, measurable proof, and a believable system story."
+          description="I am deliberately selective. Each flagship project earns its place by showing product judgment, technical execution, measurable proof, and a system story that maps cleanly to real jobs."
         />
         <div className="mt-12 grid gap-6 xl:grid-cols-2">
           {featuredProjects.map((project, index) => (

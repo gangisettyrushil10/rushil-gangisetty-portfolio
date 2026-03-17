@@ -13,7 +13,7 @@ export const profile: ProfileConfig = {
   name: "Rushil Gangisetty",
   title: "Software Engineer building product, data, and AI systems.",
   location: "Dallas, Texas",
-  availability: "Open to software engineering roles and internships.",
+  availability: "Open to software engineering, data, and systems-oriented roles.",
   summary:
     "I build products that feel polished on the surface and defensible underneath. My work spans consumer apps, backend systems, messy data workflows, and applied AI products that need to earn trust.",
   email: "gangisettyrushil@gmail.com",
@@ -50,27 +50,27 @@ export const homeStats = [
 
 export const targetRoles: RoleFit[] = [
   {
-    title: "Software Engineer I",
-    summary: "Best overall fit if the team wants a broad early-career engineer who can contribute across product, backend, and implementation detail.",
+    title: "Full-Stack and Product Engineering",
+    summary: "Strongest when the work blends user-facing product decisions with backend ownership, iteration speed, and shipping discipline.",
     href: "/projects/buzzr-ecosystem",
     proof: "Buzzr Ecosystem",
   },
   {
-    title: "Full-Stack Engineer",
-    summary: "Strong fit when the job blends frontend product work with backend APIs, data models, and shipping velocity.",
+    title: "Data and Analytics Workflows",
+    summary: "Competitive for analyst-engineering or analytics-heavy roles that need SQL, validation, forecasting, and systems around messy inputs.",
     href: "/projects/business-analytics-dashboard",
     proof: "Business Analytics Dashboard",
   },
   {
-    title: "Backend or Product Engineer",
-    summary: "Competitive when the role values API design, workflow reliability, and systems that need to survive real product iteration.",
-    href: "/projects/medscribe",
-    proof: "Medscribe",
+    title: ".NET and Business APIs",
+    summary: "Backed by layered ASP.NET Core API work with validation, idempotency, audit logging, Entity Framework, and integration tests.",
+    href: "/projects/ledger-okcu",
+    proof: "Ledger OKCU",
   },
   {
-    title: "Applied AI Engineer",
-    summary: "Strongest for product-facing AI work, LLM workflow tooling, or teams that want AI features wrapped in credible software systems.",
-    href: "/projects/graph-link-prediction",
-    proof: "Graph Link Prediction + Medscribe",
+    title: "Applied AI Features",
+    summary: "Best for product-facing AI work where models need structured outputs, trust signals, and a real software workflow around them.",
+    href: "/projects/medscribe",
+    proof: "Medscribe",
   },
 ];

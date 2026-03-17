@@ -25,10 +25,10 @@ export default function ResumePage() {
           <div className="surface-card sticky top-28 h-fit">
             <p className="eyebrow">Quick summary</p>
             <p className="mt-5 text-3xl font-semibold tracking-[-0.05em] text-[rgb(var(--ink))]">
-              Early-career software engineer strongest in full-stack, backend, product, and applied AI work.
+              Early-career engineer strongest in backend APIs, product software, analytics workflows, and applied AI features.
             </p>
             <p className="mt-4 text-base leading-7 text-[rgb(var(--muted-ink))]">
-              If the recruiter only remembers one thing, it should be this: the cleanest fit is Software Engineer I, Full-Stack Engineer, Backend Engineer, or product-oriented applied AI roles.
+              The cleanest read is broad software engineering with real data and systems exposure. For specific applications, I tailor the resume around product/backend work, data-heavy workflows, or .NET API depth.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-2">

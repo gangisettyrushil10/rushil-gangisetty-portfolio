@@ -46,7 +46,7 @@ export type ProjectRecording = {
   posterSrc?: string;
 };
 
-export type ProjectCategory = "Product" | "Data" | "AI";
+export type ProjectCategory = "Product" | "Data" | "AI" | "Systems";
 
 export type ProjectEntry = {
   slug: string;
@@ -63,7 +63,7 @@ export type ProjectEntry = {
   learnings: string[];
   stack: string[];
   metrics: ProjectMetric[];
-  githubUrl: string;
+  githubUrl?: string;
   liveUrl?: string;
   links?: ProjectLink[];
   featured: boolean;

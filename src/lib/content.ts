@@ -232,6 +232,83 @@ export const projects: ProjectEntry[] = [
     ],
   },
   {
+    slug: "ledger-okcu",
+    title: "Ledger OKCU",
+    role: "ASP.NET Core backend engineer",
+    timeline: "2026",
+    status: "Backend case-study project",
+    oneLine:
+      "A layered ASP.NET Core Web API for credit union members, accounts, balances, deposits, withdrawals, and transaction history.",
+    longSummary:
+      "Built a C# and ASP.NET Core API around real business rules instead of generic CRUD. The solution separates controllers, application services, infrastructure, and domain entities while enforcing idempotency, audit logging, validation, and transaction safety.",
+    spotlight:
+      "The clearest proof for .NET, ASP.NET Core, Entity Framework, and business-rule-heavy API work.",
+    challenge:
+      "The project needed to look like a real business system rather than a toy REST API. That meant handling money movement, duplicate request protection, validation, auditability, and a solution structure that could actually scale with more rules.",
+    decisions: [
+      "Split the solution into API, Application, Infrastructure, Core, and Tests projects so HTTP, business logic, persistence, and domain concerns stay separate.",
+      "Used FluentValidation to keep request validation explicit and consistent before business logic runs.",
+      "Implemented idempotency checks and audit logging so transaction endpoints behave defensively under retries and traceability requirements.",
+      "Used Entity Framework Core with migrations so the data model stays manageable as the API evolves toward SQL Server or Oracle-backed deployment.",
+    ],
+    outcomes: [
+      "Built 10 HTTP endpoints across members, accounts, balances, deposits, withdrawals, and transaction history.",
+      "Shipped a 3,057-line C# codebase across 5 solution projects with integration tests and Swagger support.",
+      "Created stronger proof for entry-level ASP.NET and backend API roles than a generic tutorial project would provide.",
+    ],
+    learnings: [
+      "Business APIs become much more credible when they enforce invariants like idempotency and no-overdraft rules.",
+      "Layered .NET solutions are easier to discuss in interviews when services, repositories, and DTO boundaries are deliberate.",
+      "For backend portfolios, one defensible API with real rules is more useful than several shallow CRUD demos.",
+    ],
+    stack: [
+      "C#",
+      "ASP.NET Core",
+      "Entity Framework Core",
+      "SQLite",
+      "FluentValidation",
+      "Serilog",
+      "xUnit",
+      "Swagger",
+    ],
+    metrics: [
+      { label: "HTTP endpoints", value: "10" },
+      { label: "C# LOC", value: "3,057" },
+      { label: "Solution projects", value: "5" },
+      { label: "Core rules", value: "Idempotency + audit" },
+    ],
+    featured: true,
+    category: "Systems",
+    gallery: [
+      {
+        alt: "Swagger UI placeholder for Ledger OKCU.",
+        label: "Swagger surface",
+        caption: "Capture the Swagger UI showing member, account, and transaction endpoints in one clean view.",
+      },
+      {
+        alt: "Entity and data model placeholder for Ledger OKCU.",
+        label: "Data model",
+        caption: "Add a simple entity relationship diagram for members, accounts, transactions, and audit logs.",
+      },
+      {
+        alt: "Transaction flow placeholder for Ledger OKCU.",
+        label: "Transaction flow",
+        caption: "Show a deposit or withdrawal request with idempotency behavior and resulting balance changes.",
+      },
+    ],
+    recording: {
+      title: ".NET API walkthrough",
+      caption:
+        "Best demo: create a member, open an account, deposit funds, attempt a duplicate request, and show how idempotency and audit logging protect the workflow.",
+      ctaLabel: "Add API walkthrough",
+    },
+    assetChecklist: [
+      "Capture Swagger, the ER/data model, and one successful deposit or withdrawal workflow.",
+      "Record a short API demo that proves validation, idempotency, and transaction history behavior.",
+      "Publish the repo to GitHub or add a private-code note before using this heavily in applications.",
+    ],
+  },
+  {
     slug: "graph-link-prediction",
     title: "Graph Link Prediction",
     role: "Applied ML engineer",
@@ -267,7 +344,7 @@ export const projects: ProjectEntry[] = [
       { label: "Evaluation", value: "AUC" },
     ],
     githubUrl: "https://github.com/gangisettyrushil10/graph-theory-final-project",
-    featured: true,
+    featured: false,
     category: "AI",
     gallery: [
       {
@@ -381,7 +458,11 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     title: "Backend and APIs",
-    items: ["Python", "Flask", "FastAPI", "PostgreSQL", "REST APIs", "SQLAlchemy"],
+    items: ["Python", "FastAPI", "Flask", "REST APIs", "PostgreSQL", "SQL"],
+  },
+  {
+    title: ".NET and Business Systems",
+    items: ["C#", ".NET", "ASP.NET Core", "Entity Framework Core", "FluentValidation", "Swagger"],
   },
   {
     title: "Data and Analytics",
@@ -405,9 +486,9 @@ export const additionalWork: AdditionalWork[] = [
     githubUrl: "https://github.com/gangisettyrushil10/travel_rec",
   },
   {
-    title: "Fake News Detection",
-    summary: "Lean NLP baseline using TF-IDF and a Passive Aggressive classifier for fast, explainable text classification.",
-    githubUrl: "https://github.com/gangisettyrushil10/fakeNewsDetection.py",
+    title: "Graph Link Prediction",
+    summary: "Graph neural network work on a Facebook social graph using PyTorch Geometric, NetworkX, and AUC-based evaluation.",
+    githubUrl: "https://github.com/gangisettyrushil10/graph-theory-final-project",
   },
 ];
 

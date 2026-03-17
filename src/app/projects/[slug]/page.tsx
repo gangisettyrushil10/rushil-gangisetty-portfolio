@@ -77,7 +77,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           "@type": "SoftwareSourceCode",
           name: project.title,
           description: project.longSummary,
-          codeRepository: project.githubUrl,
+          ...(project.githubUrl ? { codeRepository: project.githubUrl } : {}),
           programmingLanguage: project.stack,
           creator: {
             "@type": "Person",
@@ -122,10 +122,12 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                   </div>
 
                   <div className="mt-8 flex flex-wrap gap-3">
-                    <Link href={project.githubUrl} className="button-secondary">
-                      <Github className="h-4 w-4" />
-                      GitHub repo
-                    </Link>
+                    {project.githubUrl ? (
+                      <Link href={project.githubUrl} className="button-secondary">
+                        <Github className="h-4 w-4" />
+                        GitHub repo
+                      </Link>
+                    ) : null}
                     {project.liveUrl ? (
                       <Link href={project.liveUrl} className="button-primary">
                         <ArrowUpRight className="h-4 w-4" />

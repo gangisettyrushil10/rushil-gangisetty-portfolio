@@ -74,10 +74,12 @@ export function ProjectCard({ project }: ProjectCardProps) {
           <ArrowUpRight className="h-4 w-4" />
           Case study
         </Link>
-        <Link href={project.githubUrl} className="button-secondary">
-          <Github className="h-4 w-4" />
-          GitHub
-        </Link>
+        {project.githubUrl ? (
+          <Link href={project.githubUrl} className="button-secondary">
+            <Github className="h-4 w-4" />
+            GitHub
+          </Link>
+        ) : null}
         {project.liveUrl ? (
           <Link href={project.liveUrl} className="button-secondary">
             <ArrowUpRight className="h-4 w-4" />
