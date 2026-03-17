@@ -1,0 +1,31 @@
+---
+title: "What messy CSVs taught me about backend design"
+slug: "business-dashboard-lessons"
+date: "2026-03-01"
+excerpt: "The interesting part of the analytics dashboard was not charting. It was building ingestion and validation paths that did not collapse the moment the data got ugly."
+tags:
+  - backend
+  - data
+  - fastapi
+published: true
+---
+
+The business analytics dashboard started as an analytics project, but the most important lessons came from backend design. Clean dashboards are easy to demo. Reliable ingestion and validation are where the engineering work becomes real.
+
+Most dashboards look convincing when the CSV is already perfect. Real data is not perfect. Dates break. Types drift. Duplicates appear. Categories get renamed. Columns move. If the system cannot handle that, the analytics layer is cosmetic.
+
+## What I optimized for
+
+I wanted the backend to do three things well:
+
+- reject clearly broken input
+- preserve useful input where possible
+- make downstream analytics predictable
+
+That pushed the project toward a more structured service layer. Instead of packing logic into route handlers, the application separated transport, business rules, and data behavior. That was the difference between a demo backend and a system I could reason about.
+
+## Why this project matters in my portfolio
+
+This project is a strong representation of how I think about engineering quality. The goal was not "add more features." The goal was to keep the system legible as complexity increased. Forecasting, anomaly detection, AI insights, CSV transforms, and exports all become easier to maintain when the core boundaries are clean.
+
+I like projects that force this kind of discipline because they mirror real production work. The difficult part is rarely adding one more endpoint. The difficult part is keeping the whole system coherent after the fifth and sixth feature arrive.

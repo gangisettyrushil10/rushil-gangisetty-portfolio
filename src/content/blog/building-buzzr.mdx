@@ -1,0 +1,31 @@
+---
+title: "Building Buzzr beyond the mockup"
+slug: "building-buzzr"
+date: "2026-03-05"
+excerpt: "What it took to turn Buzzr from a concept into a real mobile product with live leagues, migrations, tests, and user-facing product constraints."
+tags:
+  - product engineering
+  - mobile
+  - react native
+published: true
+---
+
+Buzzr became useful only when it crossed the line from "interesting concept" to "system that can survive real product pressure." That meant handling league data, user identity, database migrations, release-safe changes, and the constant tension between shipping fast and keeping the data model stable.
+
+The product idea was straightforward: let sports fans rate games by entertainment instead of just final score. The engineering challenge was not the headline feature. It was everything underneath it. Ratings only matter if users can trust identity, timeline, history, watch-party state, and the game catalog itself.
+
+## What changed the quality bar
+
+Three decisions mattered most:
+
+1. Treat the app like a real product instead of a class demo.
+2. Build the data layer with migrations and predictable rollout behavior.
+3. Keep tests around high-change areas so the app could evolve without random regressions.
+
+That is why the repo ended up with live league support, SQL migrations, and a non-trivial automated test footprint. Those are not vanity metrics. They are signals that the project was pushed through the kind of change pressure real apps face.
+
+## The part I value most
+
+The most useful outcome was learning how product polish and backend discipline reinforce each other. If the data is unstable, the UI cannot feel trustworthy. If the UI is careless, even strong backend work feels invisible. Good product engineering sits in the overlap.
+
+Buzzr is the clearest example of how I like to work: start with a strong product idea, then build the surrounding systems seriously enough that the idea can actually survive contact with users.
