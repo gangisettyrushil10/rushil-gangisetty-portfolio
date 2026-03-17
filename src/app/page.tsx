@@ -6,6 +6,7 @@ import { ExperienceCard } from "@/components/experience-card";
 import { PortfolioCopilot } from "@/components/portfolio-copilot";
 import { ProjectCard } from "@/components/project-card";
 import { Reveal } from "@/components/reveal";
+import { RoleFitStrip } from "@/components/role-fit-strip";
 import { SectionHeading } from "@/components/section-heading";
 import { StructuredData } from "@/components/structured-data";
 import { getAllPosts } from "@/lib/blog";
@@ -72,7 +73,7 @@ export default function HomePage() {
                   {profile.summary}
                 </p>
                 <p className="mt-4 max-w-3xl text-sm uppercase tracking-[0.22em] text-[rgba(153,177,214,0.88)]">
-                  {profile.location} · best fit: product engineering, backend, data platforms, and applied AI
+                  {profile.location} · best fit: software engineer i, full-stack, backend, product engineering
                 </p>
 
                 <div className="mt-8 flex flex-wrap gap-3">
@@ -135,6 +136,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <RoleFitStrip />
 
       <section className="section-shell pt-6">
         <SectionHeading

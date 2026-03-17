@@ -3,6 +3,13 @@ export type SocialLink = {
   href: string;
 };
 
+export type RoleFit = {
+  title: string;
+  summary: string;
+  href: string;
+  proof: string;
+};
+
 export type ProfileConfig = {
   name: string;
   title: string;
@@ -17,6 +24,11 @@ export type ProfileConfig = {
 export type ProjectMetric = {
   label: string;
   value: string;
+};
+
+export type ProjectLink = {
+  label: string;
+  href: string;
 };
 
 export type ProjectGalleryItem = {
@@ -53,6 +65,7 @@ export type ProjectEntry = {
   metrics: ProjectMetric[];
   githubUrl: string;
   liveUrl?: string;
+  links?: ProjectLink[];
   featured: boolean;
   category: ProjectCategory;
   image?: string;

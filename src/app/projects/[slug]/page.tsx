@@ -133,6 +133,17 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                       </Link>
                     ) : null}
                   </div>
+
+                  {project.links?.length ? (
+                    <div className="mt-4 flex flex-wrap gap-3">
+                      {project.links.map((link) => (
+                        <Link key={`${project.slug}-${link.href}`} href={link.href} className="button-secondary">
+                          <ArrowUpRight className="h-4 w-4" />
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : null}
                 </div>
               </Reveal>
 

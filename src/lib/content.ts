@@ -54,6 +54,10 @@ export const projects: ProjectEntry[] = [
       { label: "Desktop files", value: "39" },
     ],
     githubUrl: "https://github.com/gangisettyrushil10/Buzzr",
+    links: [
+      { label: "Mobile repo", href: "https://github.com/gangisettyrushil10/Buzzr" },
+      { label: "Desktop web repo", href: "https://github.com/gangisettyrushil10/buzzr_desktop" },
+    ],
     featured: true,
     category: "Product",
     image: "/projects/buzzr-home.png",

@@ -1,4 +1,4 @@
-import type { ProfileConfig } from "@/types/content";
+import type { ProfileConfig, RoleFit } from "@/types/content";
 
 export const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ||
@@ -46,4 +46,31 @@ export const homeStats = [
   { value: "3", label: "software engineering internships" },
   { value: "50K+", label: "daily records supported in production workflows" },
   { value: "88K+", label: "edges modeled in graph ML work" },
+];
+
+export const targetRoles: RoleFit[] = [
+  {
+    title: "Software Engineer I",
+    summary: "Best overall fit if the team wants a broad early-career engineer who can contribute across product, backend, and implementation detail.",
+    href: "/projects/buzzr-ecosystem",
+    proof: "Buzzr Ecosystem",
+  },
+  {
+    title: "Full-Stack Engineer",
+    summary: "Strong fit when the job blends frontend product work with backend APIs, data models, and shipping velocity.",
+    href: "/projects/business-analytics-dashboard",
+    proof: "Business Analytics Dashboard",
+  },
+  {
+    title: "Backend or Product Engineer",
+    summary: "Competitive when the role values API design, workflow reliability, and systems that need to survive real product iteration.",
+    href: "/projects/medscribe",
+    proof: "Medscribe",
+  },
+  {
+    title: "Applied AI Engineer",
+    summary: "Strongest for product-facing AI work, LLM workflow tooling, or teams that want AI features wrapped in credible software systems.",
+    href: "/projects/graph-link-prediction",
+    proof: "Graph Link Prediction + Medscribe",
+  },
 ];

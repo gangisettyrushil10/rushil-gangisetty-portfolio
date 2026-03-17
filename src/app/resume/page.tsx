@@ -4,7 +4,7 @@ import { ArrowUpRight, FileDown, Github, Linkedin, Mail } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
 import { SectionHeading } from "@/components/section-heading";
-import { profile } from "@/lib/site-config";
+import { profile, targetRoles } from "@/lib/site-config";
 
 export const metadata: Metadata = {
   title: "Resume",
@@ -25,11 +25,19 @@ export default function ResumePage() {
           <div className="surface-card sticky top-28 h-fit">
             <p className="eyebrow">Quick summary</p>
             <p className="mt-5 text-3xl font-semibold tracking-[-0.05em] text-[rgb(var(--ink))]">
-              Product-minded engineer with strong data and implementation depth.
+              Early-career software engineer strongest in full-stack, backend, product, and applied AI work.
             </p>
             <p className="mt-4 text-base leading-7 text-[rgb(var(--muted-ink))]">
-              Strongest fit: software engineering, full-stack, backend, data, and applied AI roles.
+              If the recruiter only remembers one thing, it should be this: the cleanest fit is Software Engineer I, Full-Stack Engineer, Backend Engineer, or product-oriented applied AI roles.
             </p>
+
+            <div className="mt-6 flex flex-wrap gap-2">
+              {targetRoles.map((role) => (
+                <span key={role.title} className="pill">
+                  {role.title}
+                </span>
+              ))}
+            </div>
 
             <div className="mt-8 flex flex-col gap-3">
               <Link href={profile.resumePath} className="button-primary">
