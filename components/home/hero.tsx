@@ -2,78 +2,81 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight, Download, Github, Linkedin, Mail, MapPin, Sparkles } from 'lucide-react'
+import { ArrowRight, Download, Github, Linkedin, Mail, MapPin } from 'lucide-react'
 import { personalInfo, recruiterSummary } from '@/lib/data'
 import { Button } from '@/components/ui/button'
 import { ProjectCommandCenter } from '@/components/home/project-command-center'
 
-const heroHighlights = [
-  'Product software with real user feel',
-  'Backend APIs and business rules that stay readable',
-  'Data-heavy workflows that handle messy input honestly',
-  'Applied AI when it strengthens the product instead of distracting from it',
+const proofPoints = [
+  'Product software with clear user-facing polish',
+  'Backend APIs and business logic that stay readable',
+  'Data-heavy workflows built for messy real input',
 ]
 
 const heroStats = [
-  { value: '4', label: 'flagship case studies' },
-  { value: '50K+', label: 'records/day supported in production' },
-  { value: '3', label: 'internships across product, data, and systems' },
+  { value: '4', label: 'flagship projects' },
+  { value: '50K+', label: 'records/day supported' },
+  { value: '3', label: 'internships' },
 ]
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:min-h-screen lg:pt-36">
-      <div className="absolute inset-0 animated-gradient" />
-      <div className="absolute inset-0 hero-noise opacity-90" />
-      <div className="absolute inset-0 grid-pattern opacity-45" />
-      <div className="absolute inset-0 arcade-scanlines opacity-20" />
-      <div className="absolute left-[-12rem] top-[14%] h-[28rem] w-[28rem] rounded-full bg-primary/18 blur-3xl" />
-      <div className="absolute bottom-[-10rem] right-[-8rem] h-[26rem] w-[26rem] rounded-full bg-accent/18 blur-3xl" />
+    <section className="relative overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:pt-36">
+      <div className="absolute inset-0 animated-gradient opacity-85" />
+      <div className="absolute inset-0 hero-noise opacity-55" />
+      <div className="absolute inset-0 grid-pattern opacity-20" />
+      <div className="absolute left-[-14rem] top-[8%] h-[24rem] w-[24rem] rounded-full bg-primary/14 blur-3xl" />
+      <div className="absolute bottom-[-10rem] right-[-6rem] h-[22rem] w-[22rem] rounded-full bg-accent/14 blur-3xl" />
 
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid items-start gap-12 lg:grid-cols-[0.96fr_1.04fr] lg:gap-14">
-          <div className="max-w-2xl pt-6 lg:pt-10">
+        <div className="grid items-start gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:gap-12">
+          <div className="max-w-2xl pt-4 lg:pt-8">
             <motion.div
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55 }}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-4 py-2 text-[0.72rem] font-mono uppercase tracking-[0.22em] text-white/78 backdrop-blur"
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/20 px-4 py-2 text-[0.72rem] font-mono uppercase tracking-[0.18em] text-muted-foreground backdrop-blur"
             >
-              <Sparkles className="h-3.5 w-3.5 text-accent" />
-              Software engineer in Dallas
+              <span className="h-2 w-2 rounded-full bg-primary shadow-[0_0_18px_theme(colors.primary.DEFAULT)]" />
+              Open to software engineering roles
             </motion.div>
 
             <motion.h1
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.08 }}
-              className="font-display mt-7 max-w-4xl text-[2.9rem] font-semibold leading-[0.9] tracking-[-0.05em] text-foreground sm:text-[4.35rem] lg:text-[5.6rem]"
+              transition={{ duration: 0.58, delay: 0.06 }}
+              className="mt-7 max-w-4xl font-display text-[3rem] font-semibold leading-[0.92] tracking-[-0.05em] text-foreground sm:text-[4.5rem] lg:text-[5.1rem]"
             >
-              I build software that feels sharp and <span className="gradient-text">holds up</span>.
+              Software engineer building
+              {' '}
+              <span className="gradient-text">product software</span>,
+              {' '}
+              backend APIs, and data-heavy tools.
             </motion.h1>
 
             <motion.p
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.16 }}
-              className="mt-6 max-w-xl text-lg leading-8 text-foreground/88 sm:text-[1.12rem]"
+              transition={{ duration: 0.58, delay: 0.14 }}
+              className="mt-6 max-w-xl text-[1.02rem] leading-8 text-foreground/86"
             >
               {recruiterSummary.description}
             </motion.p>
 
             <motion.p
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.24 }}
-              className="mt-5 max-w-xl text-[0.98rem] leading-7 text-muted-foreground"
+              transition={{ duration: 0.58, delay: 0.2 }}
+              className="mt-4 max-w-xl text-sm leading-7 text-muted-foreground sm:text-[0.96rem]"
             >
-              I care about the whole shape of the thing: the product surface, the backend decisions behind it, and the messy workflows that show up once real people start using it.
+              The best way to read this site is through a few strong case studies. That is where the product judgment,
+              backend decisions, and data workflow work are easiest to see.
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.58, delay: 0.28 }}
               className="mt-9 flex flex-wrap gap-3"
             >
               <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
@@ -82,27 +85,27 @@ export function Hero() {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild size="lg" variant="outline" className="border-white/15 bg-white/[0.03] hover:bg-white/[0.06]">
+              <Button asChild variant="outline" size="lg" className="border-white/12 bg-white/[0.03] hover:bg-white/[0.06]">
                 <a href="/resume.pdf" download>
                   <Download className="mr-2 h-4 w-4" />
                   Download resume
                 </a>
               </Button>
-              <Button asChild size="lg" variant="ghost" className="text-foreground hover:bg-white/[0.05]">
+              <Button asChild variant="ghost" size="lg">
                 <Link href="/contact">
                   <Mail className="mr-2 h-4 w-4" />
-                  Get in touch
+                  Contact
                 </Link>
               </Button>
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.38 }}
+              transition={{ duration: 0.58, delay: 0.36 }}
               className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted-foreground"
             >
-              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5">
+              <span className="inline-flex items-center gap-2">
                 <MapPin className="h-4 w-4 text-primary" />
                 {personalInfo.location}
               </span>
@@ -121,41 +124,43 @@ export function Hero() {
             </motion.div>
 
             <motion.div
-              initial={{ opacity: 0, y: 24 }}
+              initial={{ opacity: 0, y: 18 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.46 }}
-              className="mt-10 grid gap-3 sm:grid-cols-2"
+              transition={{ duration: 0.58, delay: 0.44 }}
+              className="mt-10 rounded-[28px] border border-white/10 bg-black/18 p-5 backdrop-blur"
             >
-              {heroHighlights.map((highlight) => (
-                <div key={highlight} className="rounded-2xl border border-white/10 bg-black/25 px-4 py-4 backdrop-blur">
-                  <div className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary/14 text-primary">
-                    <span className="h-2 w-2 rounded-full bg-current" />
+              <div className="grid gap-5 sm:grid-cols-[1.15fr_0.85fr]">
+                <div>
+                  <p className="text-[0.7rem] font-mono uppercase tracking-[0.2em] text-primary/85">Strongest when the work needs</p>
+                  <div className="mt-4 space-y-3">
+                    {proofPoints.map((point) => (
+                      <div key={point} className="flex items-start gap-3 text-sm leading-6 text-foreground/88">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
+                        <span>{point}</span>
+                      </div>
+                    ))}
                   </div>
-                  <p className="mt-3 text-sm leading-6 text-foreground/86">{highlight}</p>
                 </div>
-              ))}
-            </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.54 }}
-              className="mt-10 grid gap-3 sm:grid-cols-3"
-            >
-              {heroStats.map((stat) => (
-                <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4 backdrop-blur">
-                  <p className="font-display text-2xl font-semibold text-foreground">{stat.value}</p>
-                  <p className="mt-1 text-[0.72rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">{stat.label}</p>
+                <div className="grid gap-3 sm:pl-2">
+                  {heroStats.map((stat) => (
+                    <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">
+                      <p className="font-display text-2xl font-semibold text-foreground">{stat.value}</p>
+                      <p className="mt-1 text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">
+                        {stat.label}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
             </motion.div>
           </div>
 
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.22 }}
-            className="relative lg:pt-6"
+            transition={{ duration: 0.66, delay: 0.18 }}
+            className="relative lg:pt-4"
           >
             <ProjectCommandCenter />
           </motion.div>

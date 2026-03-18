@@ -123,8 +123,8 @@
   body {
     @apply bg-background text-foreground;
     background-image:
-      radial-gradient(circle at top, oklch(0.7 0.2 220 / 0.12), transparent 28%),
-      radial-gradient(circle at 85% 18%, oklch(0.75 0.18 38 / 0.1), transparent 24%),
+      radial-gradient(circle at top, oklch(0.7 0.2 220 / 0.08), transparent 28%),
+      radial-gradient(circle at 85% 18%, oklch(0.75 0.18 38 / 0.06), transparent 24%),
       linear-gradient(180deg, oklch(0.08 0.01 250), oklch(0.07 0.01 250));
     min-height: 100vh;
     overflow-x: hidden;
@@ -172,12 +172,12 @@
 /* Animated gradient background */
 .animated-gradient {
   background:
-    radial-gradient(circle at 15% 20%, oklch(0.72 0.2 220 / 0.17), transparent 22%),
-    radial-gradient(circle at 82% 14%, oklch(0.73 0.18 35 / 0.14), transparent 24%),
-    radial-gradient(circle at 55% 78%, oklch(0.69 0.14 190 / 0.1), transparent 28%),
+    radial-gradient(circle at 15% 20%, oklch(0.72 0.2 220 / 0.12), transparent 22%),
+    radial-gradient(circle at 82% 14%, oklch(0.73 0.18 35 / 0.09), transparent 24%),
+    radial-gradient(circle at 55% 78%, oklch(0.69 0.14 190 / 0.06), transparent 28%),
     linear-gradient(135deg, oklch(0.06 0.01 250) 0%, oklch(0.09 0.02 225) 48%, oklch(0.06 0.01 250) 100%);
   background-size: 160% 160%;
-  animation: gradient-shift 18s ease infinite;
+  animation: gradient-shift 22s ease infinite;
 }
 
 @keyframes gradient-shift {
@@ -196,59 +196,11 @@
 
 .hero-noise {
   background-image:
-    radial-gradient(circle at 20% 20%, oklch(0.74 0.2 220 / 0.17) 0, transparent 24%),
-    radial-gradient(circle at 80% 10%, oklch(0.74 0.18 30 / 0.16) 0, transparent 22%),
-    radial-gradient(circle at 50% 80%, oklch(0.72 0.1 170 / 0.1) 0, transparent 26%),
+    radial-gradient(circle at 20% 20%, oklch(0.74 0.2 220 / 0.12) 0, transparent 24%),
+    radial-gradient(circle at 80% 10%, oklch(0.74 0.18 30 / 0.11) 0, transparent 22%),
+    radial-gradient(circle at 50% 80%, oklch(0.72 0.1 170 / 0.07) 0, transparent 26%),
     linear-gradient(180deg, transparent, oklch(0.06 0.01 250 / 0.35));
-  filter: saturate(135%);
-}
-
-.marquee-shell {
-  position: relative;
-  overflow: hidden;
-  border-top: 1px solid oklch(0.22 0.01 250);
-  border-bottom: 1px solid oklch(0.22 0.01 250);
-  background:
-    linear-gradient(90deg, transparent, oklch(0.7 0.2 220 / 0.08), transparent);
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee-scroll 28s linear infinite;
-}
-
-.marquee-track-reverse {
-  animation-direction: reverse;
-}
-
-.marquee-shell:hover .marquee-track {
-  animation-play-state: paused;
-}
-
-@keyframes marquee-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
-}
-
-.signal-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.85rem 1rem;
-  border-right: 1px solid oklch(0.22 0.01 250);
-  color: oklch(0.9 0 0);
-  text-transform: uppercase;
-  letter-spacing: 0.14em;
-  font-size: 0.72rem;
-}
-
-.signal-dot {
-  width: 0.45rem;
-  height: 0.45rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, oklch(0.7 0.2 220), oklch(0.7 0.18 30));
-  box-shadow: 0 0 18px oklch(0.7 0.2 220 / 0.55);
+  filter: saturate(118%);
 }
 
 .card-tilt {
@@ -279,9 +231,9 @@
   background: repeating-linear-gradient(
     to bottom,
     transparent 0,
-    transparent 5px,
-    oklch(0.95 0 0 / 0.03) 6px,
-    transparent 7px
+    transparent 6px,
+    oklch(0.95 0 0 / 0.018) 7px,
+    transparent 8px
   );
   mix-blend-mode: soft-light;
 }
@@ -292,7 +244,7 @@
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: linear-gradient(135deg, oklch(0.78 0.2 225 / 0.3), transparent 45%, oklch(0.74 0.18 35 / 0.25));
+  background: linear-gradient(135deg, oklch(0.78 0.2 225 / 0.22), transparent 45%, oklch(0.74 0.18 35 / 0.18));
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -320,7 +272,7 @@
   overflow: hidden;
   border: 1px solid oklch(0.95 0 0 / 0.08);
   background: linear-gradient(180deg, oklch(0.13 0.01 250 / 0.9), oklch(0.1 0.01 250 / 0.88));
-  box-shadow: 0 35px 110px -70px oklch(0.72 0.2 220 / 0.75);
+  box-shadow: 0 28px 90px -72px oklch(0.72 0.2 220 / 0.55);
 }
 
 .case-study-shell::before {

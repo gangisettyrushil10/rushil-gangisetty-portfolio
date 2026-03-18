@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
-import { ArrowUpRight, ExternalLink, Github, Play, Sparkles } from 'lucide-react'
+import { ArrowUpRight, ExternalLink, Github, Play } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { projects, type Project } from '@/lib/data'
 import { cn } from '@/lib/utils'
@@ -75,21 +75,30 @@ export function ProjectCommandCenter() {
   const PrimaryIcon = primaryAction.icon
 
   return (
-    <div className="panel-shell relative overflow-hidden rounded-[30px] border border-white/10 bg-card/75 p-4 shadow-[0_40px_120px_-60px_rgba(21,161,255,0.55)] backdrop-blur-xl sm:p-6">
-      <div className="pointer-events-none absolute inset-0 arcade-scanlines opacity-35" />
-      <div className="pointer-events-none absolute -top-20 right-10 h-56 w-56 rounded-full bg-primary/20 blur-3xl" />
-      <div className="pointer-events-none absolute bottom-0 left-0 h-48 w-48 rounded-full bg-accent/20 blur-3xl" />
+    <div className="panel-shell relative overflow-hidden rounded-[30px] border border-white/10 bg-card/80 p-4 shadow-[0_30px_110px_-70px_rgba(21,161,255,0.5)] backdrop-blur-xl sm:p-6">
+      <div className="pointer-events-none absolute -top-16 right-10 h-48 w-48 rounded-full bg-primary/16 blur-3xl" />
+      <div className="pointer-events-none absolute bottom-0 left-0 h-40 w-40 rounded-full bg-accent/14 blur-3xl" />
 
       <div className="relative z-10">
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
           <div>
-            <p className="text-[0.68rem] font-mono uppercase tracking-[0.32em] text-primary/90">Selected Work</p>
-            <p className="mt-1 text-sm text-muted-foreground">A quick read on the projects that carry the site.</p>
+            <p className="text-[0.68rem] font-mono uppercase tracking-[0.28em] text-primary/90">Selected Work</p>
+            <p className="mt-1 text-sm text-muted-foreground">The one dynamic section on the page. Start here.</p>
           </div>
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[0.72rem] font-mono uppercase tracking-[0.18em] text-muted-foreground">
-            <Sparkles className="h-3.5 w-3.5 text-accent" />
+          <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[0.72rem] font-mono uppercase tracking-[0.18em] text-muted-foreground">
+            <span className="h-2 w-2 rounded-full bg-accent" />
             {String(activeIndex + 1).padStart(2, '0')} / {String(featuredProjects.length).padStart(2, '0')}
           </div>
+        </div>
+
+        <div className="mt-4 h-[2px] w-full overflow-hidden rounded-full bg-white/[0.06]">
+          <motion.div
+            key={activeProject.id}
+            initial={{ scaleX: 0, transformOrigin: 'left' }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 4.5, ease: 'linear' }}
+            className="h-full origin-left rounded-full bg-gradient-to-r from-primary via-primary to-accent"
+          />
         </div>
 
         <div className="mt-5 grid gap-5 xl:grid-cols-[0.82fr_1.18fr]">
@@ -105,13 +114,13 @@ export function ProjectCommandCenter() {
                   className={cn(
                     'group rounded-[22px] border px-4 py-4 text-left transition-all duration-300',
                     isActive
-                      ? 'border-primary/60 bg-white/[0.06] shadow-[0_20px_80px_-55px_rgba(21,161,255,0.95)]'
-                      : 'border-white/8 bg-black/20 hover:border-accent/40 hover:bg-white/[0.03]',
+                      ? 'border-primary/40 bg-white/[0.04] shadow-[0_20px_80px_-60px_rgba(21,161,255,0.85)]'
+                      : 'border-white/8 bg-black/12 hover:border-white/16 hover:bg-white/[0.03]',
                   )}
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-[0.68rem] font-mono uppercase tracking-[0.3em] text-muted-foreground">
+                      <p className="text-[0.68rem] font-mono uppercase tracking-[0.24em] text-muted-foreground">
                         {String(index + 1).padStart(2, '0')}
                       </p>
                       <p className={cn('mt-2 text-base font-semibold transition-colors', isActive ? 'text-foreground' : 'text-foreground/85 group-hover:text-foreground')}>
@@ -129,7 +138,7 @@ export function ProjectCommandCenter() {
                         key={`${project.id}-${metric.label}`}
                         className={cn(
                           'rounded-full border px-2.5 py-1 text-[0.68rem] font-mono uppercase tracking-[0.14em]',
-                          isActive ? 'border-primary/30 bg-primary/10 text-primary' : 'border-white/10 text-muted-foreground',
+                          isActive ? 'border-primary/20 bg-primary/8 text-primary' : 'border-white/10 text-muted-foreground',
                         )}
                       >
                         {metric.value} {metric.label}
@@ -141,7 +150,7 @@ export function ProjectCommandCenter() {
             })}
           </div>
 
-          <div className="overflow-hidden rounded-[26px] border border-white/10 bg-black/25">
+          <div className="overflow-hidden rounded-[26px] border border-white/10 bg-black/18">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeProject.id}
@@ -151,7 +160,7 @@ export function ProjectCommandCenter() {
                 transition={{ duration: 0.35, ease: 'easeOut' }}
                 className="h-full"
               >
-                <div className="relative aspect-[1.18/0.9] border-b border-white/10 bg-[radial-gradient(circle_at_top,rgba(21,161,255,0.28),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(255,115,52,0.2),transparent_35%),linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))]">
+                <div className="relative aspect-[1.18/0.9] border-b border-white/10 bg-[radial-gradient(circle_at_top,rgba(21,161,255,0.18),transparent_38%),radial-gradient(circle_at_bottom_right,rgba(255,115,52,0.12),transparent_32%),linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01))]">
                   {preview?.src ? (
                     <Image
                       src={preview.src}
@@ -163,7 +172,7 @@ export function ProjectCommandCenter() {
                   ) : (
                     <div className="project-preview-fallback absolute inset-0 flex flex-col justify-between p-5 sm:p-6">
                       <div className="flex items-center justify-between gap-4">
-                        <span className="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[0.68rem] font-mono uppercase tracking-[0.18em] text-muted-foreground">
+                        <span className="rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[0.68rem] font-mono uppercase tracking-[0.18em] text-muted-foreground">
                           Media direction
                         </span>
                         <span className="rounded-full bg-accent/15 px-3 py-1 text-[0.68rem] font-mono uppercase tracking-[0.18em] text-accent">
@@ -184,9 +193,6 @@ export function ProjectCommandCenter() {
                     </div>
                   )}
 
-                  <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-[0.68rem] font-mono uppercase tracking-[0.18em] text-white/80 backdrop-blur">
-                    {activeProject.status}
-                  </div>
                   <div className="absolute right-4 top-4 rounded-full border border-white/10 bg-black/40 px-3 py-1 text-[0.68rem] font-mono uppercase tracking-[0.18em] text-white/80 backdrop-blur">
                     {getAvailabilityLabel(activeProject)}
                   </div>
@@ -207,17 +213,17 @@ export function ProjectCommandCenter() {
                     </div>
                     <div className="grid min-w-[170px] gap-2 text-sm text-muted-foreground">
                       <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3">
-                        <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-muted-foreground">What matters here</p>
+                        <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-muted-foreground">Why this one matters</p>
                         <p className="mt-2 leading-6 text-foreground/90">{activeProject.outcomes[0]}</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="flex flex-wrap gap-2">
-                    {activeProject.stack.slice(0, 6).map((item) => (
+                    {activeProject.stack.slice(0, 4).map((item) => (
                       <span
                         key={`${activeProject.id}-${item}`}
-                        className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[0.72rem] font-mono uppercase tracking-[0.12em] text-muted-foreground"
+                        className="rounded-full border border-white/10 bg-white/[0.02] px-3 py-1.5 text-[0.72rem] font-mono uppercase tracking-[0.12em] text-muted-foreground"
                       >
                         {item}
                       </span>
