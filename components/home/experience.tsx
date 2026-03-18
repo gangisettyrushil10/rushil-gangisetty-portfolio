@@ -1,84 +1,72 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Building2, ArrowUpRight } from 'lucide-react'
+import { Building2 } from 'lucide-react'
 import { Section, SectionHeader } from '@/components/section'
 import { experiences } from '@/lib/data'
 
 export function Experience() {
   return (
     <Section className="bg-background">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="Experience"
-          title="Production experience that supports the project story"
-          description="The internships reinforce the same narrative as the portfolio: software delivery, data validation, workflow reliability, and stakeholder-facing systems."
+          title="Where the same instincts showed up in real work"
+          description="The internships reinforce the same story as the projects: ship useful software, handle messy data honestly, and leave the workflow more reliable than you found it."
         />
 
-        <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-px bg-border md:-translate-x-1/2" />
-
-          <div className="flex flex-col gap-8">
-            {experiences.map((exp, index) => (
-              <motion.div
-                key={exp.company}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`relative flex flex-col md:flex-row gap-8 ${
-                  index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
-                }`}
-              >
-                {/* Timeline Dot */}
-                <div className="absolute left-0 md:left-1/2 w-3 h-3 bg-primary rounded-full -translate-x-1/2 md:-translate-x-1/2 top-0 ring-4 ring-background" />
-
-                {/* Content */}
-                <div className={`flex-1 ml-6 md:ml-0 ${index % 2 === 0 ? 'md:pr-12 md:text-right' : 'md:pl-12'}`}>
-                  <div className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors">
-                    <div className={`flex items-center gap-3 mb-3 ${index % 2 === 0 ? 'md:justify-end' : ''}`}>
-                      <div className="p-2 rounded-lg bg-secondary text-primary">
-                        <Building2 className="w-4 h-4" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-foreground flex items-center gap-2">
-                          {exp.company}
-                          <ArrowUpRight className="w-4 h-4 text-muted-foreground" />
-                        </h3>
-                        <p className="text-sm text-muted-foreground">{exp.role} • {exp.period}</p>
-                      </div>
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+          {experiences.map((exp, index) => (
+            <motion.article
+              key={exp.company}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="case-study-shell rounded-[26px]"
+            >
+              <div className="relative h-full overflow-hidden p-6 sm:p-7">
+                <div className="window-grid absolute inset-0 opacity-30" />
+                <div className="relative z-10 flex h-full flex-col">
+                  <div className="flex items-start justify-between gap-4">
+                    <div className="inline-flex rounded-2xl bg-primary/12 p-3 text-primary">
+                      <Building2 className="h-5 w-5" />
                     </div>
-                    
-                    <ul className={`mt-4 flex flex-col gap-2 ${index % 2 === 0 ? 'md:items-end' : ''}`}>
-                      {exp.bullets.map((bullet, bulletIndex) => (
-                        <li key={bulletIndex} className="text-sm text-muted-foreground flex items-start gap-2">
-                          <span className="w-1.5 h-1.5 bg-primary rounded-full mt-1.5 shrink-0" />
-                          <span className={index % 2 === 0 ? 'md:text-right' : ''}>{bullet}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {exp.stack && (
-                      <div className={`flex flex-wrap gap-2 mt-4 ${index % 2 === 0 ? 'md:justify-end' : ''}`}>
-                        {exp.stack.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-2 py-1 text-xs font-mono bg-muted text-muted-foreground rounded"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    )}
+                    <span className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-[0.68rem] font-mono uppercase tracking-[0.18em] text-muted-foreground">
+                      {exp.period}
+                    </span>
                   </div>
-                </div>
 
-                {/* Spacer for alternating layout */}
-                <div className="hidden md:block flex-1" />
-              </motion.div>
-            ))}
-          </div>
+                  <div className="mt-6">
+                    <h3 className="text-2xl font-semibold text-foreground">{exp.company}</h3>
+                    <p className="mt-2 text-sm font-mono uppercase tracking-[0.18em] text-accent">{exp.role}</p>
+                  </div>
+
+                  <ul className="mt-6 flex flex-1 flex-col gap-3">
+                    {exp.bullets.map((bullet) => (
+                      <li key={bullet} className="flex items-start gap-3 text-sm leading-6 text-muted-foreground">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-primary" />
+                        <span>{bullet}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {exp.stack && (
+                    <div className="mt-6 flex flex-wrap gap-2">
+                      {exp.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[0.68rem] font-mono uppercase tracking-[0.14em] text-muted-foreground"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </motion.article>
+          ))}
         </div>
       </div>
     </Section>

@@ -1,8 +1,9 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowUpRight, Github, Layers } from 'lucide-react'
+import { ArrowUpRight, Github, Play } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import type { Project } from '@/lib/data'
 
@@ -12,96 +13,110 @@ interface ProjectCardProps {
   featured?: boolean
 }
 
+function getPreview(project: Project) {
+  return project.gallery?.find((item) => item.src)
+}
+
 export function ProjectCard({ project, index = 0, featured = false }: ProjectCardProps) {
+  const preview = getPreview(project)
+  const hasDemo = Boolean(project.liveUrl || project.video?.url)
+
   return (
     <motion.article
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
       whileHover={{ y: -6 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
       className={cn(
-        'soft-spotlight card-tilt group relative overflow-hidden rounded-2xl bg-card border border-border transition-all duration-300',
-        'hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5',
-        featured && 'md:col-span-2'
+        'soft-spotlight group relative overflow-hidden rounded-[28px] border border-white/10 bg-card/85 transition-all duration-300',
+        'hover:border-primary/45 hover:shadow-[0_30px_100px_-70px_rgba(21,161,255,0.85)]',
+        featured && 'md:col-span-2',
       )}
     >
-      <Link href={`/projects/${project.id}`} className="block p-6 sm:p-8">
-        {/* Category Badge */}
-        <div className="flex items-center justify-between mb-4">
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-secondary text-xs font-medium text-secondary-foreground">
-            <Layers className="w-3 h-3" />
-            {project.category}
-          </span>
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="p-2 rounded-full bg-secondary text-secondary-foreground group-hover:bg-primary group-hover:text-primary-foreground transition-colors"
-          >
-            <ArrowUpRight className="w-4 h-4" />
-          </motion.div>
-        </div>
-
-        {/* Title & Description */}
-        <h3 className="font-display text-xl sm:text-[1.65rem] font-semibold text-foreground group-hover:text-primary transition-colors">
-          {project.title}
-        </h3>
-        <p className="mt-2 text-sm font-mono uppercase tracking-wide text-primary/80">
-          {project.role}
-        </p>
-        <p className="mt-3 text-muted-foreground leading-relaxed line-clamp-2">
-          {project.description}
-        </p>
-
-        {/* Tech Stack */}
-        <div className="flex flex-wrap gap-2 mt-6">
-          {project.stack.slice(0, 5).map((tech) => (
-            <span
-              key={tech}
-              className="px-2 py-1 text-xs font-mono bg-muted text-muted-foreground rounded"
-            >
-              {tech}
-            </span>
-          ))}
-          {project.stack.length > 5 && (
-            <span className="px-2 py-1 text-xs font-mono bg-muted text-muted-foreground rounded">
-              +{project.stack.length - 5}
-            </span>
-          )}
-        </div>
-
-        {/* Metrics */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-6 border-t border-border">
-          {project.metrics.slice(0, 4).map((metric) => (
-            <div key={metric.label}>
-              <div className="text-lg font-bold text-primary">{metric.value}</div>
-              <div className="text-xs text-muted-foreground">{metric.label}</div>
+      <Link href={`/projects/${project.id}`} className="block h-full">
+        <div className="relative overflow-hidden border-b border-white/10">
+          <div className="window-grid absolute inset-0 opacity-35" />
+          {preview?.src ? (
+            <div className={cn('relative aspect-[16/11]', featured && 'md:aspect-[18/9]')}>
+              <Image
+                src={preview.src}
+                alt={preview.alt}
+                fill
+                sizes={featured ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, 42vw'}
+                className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+              />
             </div>
-          ))}
+          ) : (
+            <div className={cn('project-preview-fallback relative flex aspect-[16/11] flex-col justify-between p-5', featured && 'md:aspect-[18/9] md:p-6')}>
+              <div className="flex items-center justify-between gap-3">
+                <span className="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[0.68rem] font-mono uppercase tracking-[0.18em] text-muted-foreground">
+                  {project.category}
+                </span>
+                <span className="rounded-full bg-accent/15 px-3 py-1 text-[0.68rem] font-mono uppercase tracking-[0.18em] text-accent">
+                  {hasDemo ? 'Demo ready' : 'Media slot ready'}
+                </span>
+              </div>
+              <div>
+                <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-primary/85">Suggested visual</p>
+                <h3 className="mt-3 max-w-md font-display text-2xl font-semibold leading-tight text-foreground">
+                  {project.gallery?.[0]?.label ?? project.video?.title ?? project.title}
+                </h3>
+                <p className="mt-3 max-w-lg text-sm leading-6 text-muted-foreground">
+                  {project.gallery?.[0]?.caption ?? project.video?.caption ?? project.description}
+                </p>
+              </div>
+            </div>
+          )}
+
+          <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-black/45 px-3 py-1 text-[0.68rem] font-mono uppercase tracking-[0.18em] text-white/85 backdrop-blur">
+            {project.category}
+          </div>
+          <div className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-black/45 text-white/85 backdrop-blur transition-transform duration-300 group-hover:scale-105 group-hover:text-primary">
+            <ArrowUpRight className="h-4 w-4" />
+          </div>
         </div>
 
-        {/* GitHub Link */}
-        {project.githubUrl && (
-          <div className="flex items-center gap-2 mt-6 text-sm text-muted-foreground">
-            <Github className="w-4 h-4" />
-            <span>View on GitHub</span>
+        <div className="space-y-5 p-6 sm:p-7">
+          <div>
+            <p className="text-[0.68rem] font-mono uppercase tracking-[0.22em] text-accent">{project.role}</p>
+            <h3 className="mt-3 font-display text-2xl font-semibold text-foreground transition-colors group-hover:text-primary sm:text-[2rem]">
+              {project.title}
+            </h3>
+            <p className="mt-4 text-sm leading-7 text-muted-foreground sm:text-[0.97rem]">
+              {project.description}
+            </p>
           </div>
-        )}
-        {project.storeLinks && project.storeLinks.length > 0 && (
-          <div className="mt-3 text-sm text-muted-foreground">
-            Mobile release planned
-          </div>
-        )}
-        {!project.githubUrl && (
-          <div className="flex items-center gap-2 mt-6 text-sm text-muted-foreground">
-            <span>Case study available on request</span>
-          </div>
-        )}
-      </Link>
 
-      {/* Hover Gradient Overlay */}
-      <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-      </div>
+          <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+            {project.metrics.slice(0, 4).map((metric) => (
+              <div key={`${project.id}-${metric.label}`} className="rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-3">
+                <p className="text-lg font-semibold text-foreground">{metric.value}</p>
+                <p className="mt-1 text-[0.68rem] font-mono uppercase tracking-[0.14em] text-muted-foreground">{metric.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            {project.stack.slice(0, 6).map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border border-white/10 bg-transparent px-3 py-1.5 text-[0.68rem] font-mono uppercase tracking-[0.14em] text-muted-foreground"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
+            {project.liveUrl && <span className="inline-flex items-center gap-2"><Play className="h-4 w-4 text-accent" />Live demo available</span>}
+            {!project.liveUrl && project.video?.url && <span className="inline-flex items-center gap-2"><Play className="h-4 w-4 text-accent" />Video walkthrough available</span>}
+            {project.githubUrl && <span className="inline-flex items-center gap-2"><Github className="h-4 w-4" />GitHub</span>}
+            {project.storeLinks?.length ? <span>Mobile release planned</span> : null}
+            {!project.githubUrl && !project.liveUrl && !project.video?.url ? <span>Case study available on request</span> : null}
+          </div>
+        </div>
+      </Link>
     </motion.article>
   )
 }

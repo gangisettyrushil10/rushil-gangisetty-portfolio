@@ -11,40 +11,41 @@ export function ProjectsContent() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24">
-        <div className="absolute inset-0 animated-gradient opacity-50" />
-        <div className="absolute inset-0 grid-pattern opacity-30" />
-        
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative overflow-hidden pb-16 pt-32 sm:pb-20 sm:pt-40">
+        <div className="absolute inset-0 animated-gradient opacity-80" />
+        <div className="absolute inset-0 hero-noise opacity-80" />
+        <div className="absolute inset-0 grid-pattern opacity-35" />
+        <div className="absolute inset-0 arcade-scanlines opacity-15" />
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="max-w-3xl"
           >
-            <span className="inline-block text-xs font-mono tracking-wider text-primary uppercase mb-4">
-              Portfolio
-            </span>
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-foreground">
+            <span className="inline-block rounded-full border border-white/10 bg-black/25 px-4 py-2 text-[0.72rem] font-mono uppercase tracking-[0.22em] text-primary/90 backdrop-blur">
               Projects
+            </span>
+            <h1 className="mt-6 font-display text-5xl font-semibold tracking-[-0.05em] text-foreground sm:text-[4.25rem]">
+              A tighter set of projects, with deeper proof.
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl">
-              This is the small set of projects I would actually want a recruiter or hiring manager to read. The goal is not to show everything I have touched. It is to show the work that feels most real.
+            <p className="mt-6 text-lg leading-8 text-muted-foreground sm:text-[1.08rem]">
+              This is not everything I have touched. It is the small set of work that gives the clearest read on how I build: product surfaces, backend systems, data workflows, and AI features that sit inside real software.
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Flagship Projects */}
       <Section className="bg-background pt-0">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Flagship Work"
-            title="Featured Projects"
-            description="Together, these four projects show the range I care most about: product work, backend APIs, data-heavy applications, and AI features that belong inside a real product."
+            title="Start with these"
+            description="If you only open a few things, these are the projects that do the best job of showing the range without getting noisy."
           />
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {flagshipProjects.map((project, index) => (
               <ProjectCard
                 key={project.id}
@@ -57,27 +58,27 @@ export function ProjectsContent() {
         </div>
       </Section>
 
-      {/* Project Categories */}
-      <Section className="bg-secondary/30">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <Section className="bg-secondary/20">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            badge="Categories"
-            title="Core domains"
-            description="A simple way to understand the kind of work I tend to do best."
+            badge="Lanes"
+            title="The domains underneath the portfolio"
+            description="A simple way to read the project mix without turning the site into a wall of job titles."
           />
-          
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {projectDomains.map((category, index) => (
               <motion.div
                 key={category.name}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="p-6 rounded-xl bg-card border border-border hover:border-primary/30 transition-colors"
+                transition={{ duration: 0.5, delay: index * 0.08 }}
+                className="case-study-shell rounded-[24px] p-5"
               >
-                <h3 className="font-semibold text-foreground mb-2">{category.name}</h3>
-                <p className="text-sm text-muted-foreground">{category.description}</p>
+                <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-primary/85">{String(index + 1).padStart(2, '0')}</p>
+                <h3 className="mt-4 text-lg font-semibold text-foreground">{category.name}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{category.description}</p>
               </motion.div>
             ))}
           </div>
@@ -86,14 +87,14 @@ export function ProjectsContent() {
 
       {supportingProjects.length > 0 && (
         <Section className="bg-background">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <SectionHeader
               badge="Additional Depth"
-              title="Specialized supporting work"
-              description="Useful extra depth, but not where I want someone to start."
+              title="Supporting work"
+              description="Good technical depth, but not the place I would want someone to begin if they only have a few minutes."
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {supportingProjects.map((project, index) => (
                 <ProjectCard
                   key={project.id}

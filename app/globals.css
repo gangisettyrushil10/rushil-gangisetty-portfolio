@@ -122,6 +122,12 @@
   }
   body {
     @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(circle at top, oklch(0.7 0.2 220 / 0.12), transparent 28%),
+      radial-gradient(circle at 85% 18%, oklch(0.75 0.18 38 / 0.1), transparent 24%),
+      linear-gradient(180deg, oklch(0.08 0.01 250), oklch(0.07 0.01 250));
+    min-height: 100vh;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, .font-display {
@@ -148,7 +154,7 @@
 
 /* Gradient text utility */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+  background: linear-gradient(120deg, oklch(0.82 0.2 225) 0%, var(--primary) 30%, var(--accent) 72%, oklch(0.84 0.19 70) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -165,14 +171,13 @@
 
 /* Animated gradient background */
 .animated-gradient {
-  background: linear-gradient(
-    135deg,
-    oklch(0.08 0.01 250) 0%,
-    oklch(0.12 0.02 220) 50%,
-    oklch(0.08 0.01 250) 100%
-  );
-  background-size: 200% 200%;
-  animation: gradient-shift 15s ease infinite;
+  background:
+    radial-gradient(circle at 15% 20%, oklch(0.72 0.2 220 / 0.17), transparent 22%),
+    radial-gradient(circle at 82% 14%, oklch(0.73 0.18 35 / 0.14), transparent 24%),
+    radial-gradient(circle at 55% 78%, oklch(0.69 0.14 190 / 0.1), transparent 28%),
+    linear-gradient(135deg, oklch(0.06 0.01 250) 0%, oklch(0.09 0.02 225) 48%, oklch(0.06 0.01 250) 100%);
+  background-size: 160% 160%;
+  animation: gradient-shift 18s ease infinite;
 }
 
 @keyframes gradient-shift {
@@ -191,10 +196,11 @@
 
 .hero-noise {
   background-image:
-    radial-gradient(circle at 20% 20%, oklch(0.7 0.2 220 / 0.15) 0, transparent 26%),
-    radial-gradient(circle at 80% 10%, oklch(0.7 0.18 30 / 0.14) 0, transparent 24%),
-    radial-gradient(circle at 50% 80%, oklch(0.75 0.08 170 / 0.09) 0, transparent 28%);
-  filter: saturate(120%);
+    radial-gradient(circle at 20% 20%, oklch(0.74 0.2 220 / 0.17) 0, transparent 24%),
+    radial-gradient(circle at 80% 10%, oklch(0.74 0.18 30 / 0.16) 0, transparent 22%),
+    radial-gradient(circle at 50% 80%, oklch(0.72 0.1 170 / 0.1) 0, transparent 26%),
+    linear-gradient(180deg, transparent, oklch(0.06 0.01 250 / 0.35));
+  filter: saturate(135%);
 }
 
 .marquee-shell {
@@ -266,4 +272,70 @@
 
 .soft-spotlight:hover::before {
   opacity: 1;
+}
+
+
+.arcade-scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 5px,
+    oklch(0.95 0 0 / 0.03) 6px,
+    transparent 7px
+  );
+  mix-blend-mode: soft-light;
+}
+
+.panel-shell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, oklch(0.78 0.2 225 / 0.3), transparent 45%, oklch(0.74 0.18 35 / 0.25));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.project-preview-fallback {
+  background:
+    radial-gradient(circle at top left, oklch(0.74 0.2 225 / 0.18), transparent 26%),
+    radial-gradient(circle at bottom right, oklch(0.74 0.18 35 / 0.18), transparent 32%),
+    linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+}
+
+.project-preview-fallback::before {
+  content: '';
+  position: absolute;
+  inset: 1rem;
+  border-radius: 1.1rem;
+  border: 1px solid oklch(0.95 0 0 / 0.08);
+  pointer-events: none;
+}
+
+.case-study-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid oklch(0.95 0 0 / 0.08);
+  background: linear-gradient(180deg, oklch(0.13 0.01 250 / 0.9), oklch(0.1 0.01 250 / 0.88));
+  box-shadow: 0 35px 110px -70px oklch(0.72 0.2 220 / 0.75);
+}
+
+.case-study-shell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(135deg, oklch(0.75 0.2 220 / 0.12), transparent 35%),
+    linear-gradient(315deg, oklch(0.74 0.18 35 / 0.12), transparent 28%);
+  pointer-events: none;
+}
+
+.window-grid {
+  background-image:
+    linear-gradient(to right, oklch(0.95 0 0 / 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.95 0 0 / 0.06) 1px, transparent 1px);
+  background-size: 36px 36px;
 }

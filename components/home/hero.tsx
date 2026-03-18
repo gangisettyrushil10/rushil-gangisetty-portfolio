@@ -2,165 +2,165 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight, MapPin, Briefcase } from 'lucide-react'
+import { ArrowRight, Download, Github, Linkedin, Mail, MapPin, Sparkles } from 'lucide-react'
 import { personalInfo, recruiterSummary } from '@/lib/data'
 import { Button } from '@/components/ui/button'
+import { ProjectCommandCenter } from '@/components/home/project-command-center'
+
+const heroHighlights = [
+  'Product software with real user feel',
+  'Backend APIs and business rules that stay readable',
+  'Data-heavy workflows that handle messy input honestly',
+  'Applied AI when it strengthens the product instead of distracting from it',
+]
+
+const heroStats = [
+  { value: '4', label: 'flagship case studies' },
+  { value: '50K+', label: 'records/day supported in production' },
+  { value: '3', label: 'internships across product, data, and systems' },
+]
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Animated Background */}
+    <section className="relative overflow-hidden pb-20 pt-28 sm:pb-24 sm:pt-32 lg:min-h-screen lg:pt-36">
       <div className="absolute inset-0 animated-gradient" />
-      <div className="absolute inset-0 hero-noise opacity-80" />
-      <div className="absolute inset-0 grid-pattern opacity-50" />
-      
-      {/* Gradient Orbs */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.5 }}
-        transition={{ duration: 2 }}
-        className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
-      />
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 0.3 }}
-        transition={{ duration: 2, delay: 0.5 }}
-        className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
-      />
+      <div className="absolute inset-0 hero-noise opacity-90" />
+      <div className="absolute inset-0 grid-pattern opacity-45" />
+      <div className="absolute inset-0 arcade-scanlines opacity-20" />
+      <div className="absolute left-[-12rem] top-[14%] h-[28rem] w-[28rem] rounded-full bg-primary/18 blur-3xl" />
+      <div className="absolute bottom-[-10rem] right-[-8rem] h-[26rem] w-[26rem] rounded-full bg-accent/18 blur-3xl" />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
-        <div className="text-center">
-          {/* Status Badge */}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid items-start gap-12 lg:grid-cols-[0.96fr_1.04fr] lg:gap-14">
+          <div className="max-w-2xl pt-6 lg:pt-10">
+            <motion.div
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-4 py-2 text-[0.72rem] font-mono uppercase tracking-[0.22em] text-white/78 backdrop-blur"
+            >
+              <Sparkles className="h-3.5 w-3.5 text-accent" />
+              Software engineer in Dallas
+            </motion.div>
+
+            <motion.h1
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.08 }}
+              className="font-display mt-7 max-w-4xl text-[2.9rem] font-semibold leading-[0.9] tracking-[-0.05em] text-foreground sm:text-[4.35rem] lg:text-[5.6rem]"
+            >
+              I build software that feels sharp and <span className="gradient-text">holds up</span>.
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.16 }}
+              className="mt-6 max-w-xl text-lg leading-8 text-foreground/88 sm:text-[1.12rem]"
+            >
+              {recruiterSummary.description}
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.24 }}
+              className="mt-5 max-w-xl text-[0.98rem] leading-7 text-muted-foreground"
+            >
+              I care about the whole shape of the thing: the product surface, the backend decisions behind it, and the messy workflows that show up once real people start using it.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="mt-9 flex flex-wrap gap-3"
+            >
+              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                <Link href="/projects">
+                  View projects
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="border-white/15 bg-white/[0.03] hover:bg-white/[0.06]">
+                <a href="/resume.pdf" download>
+                  <Download className="mr-2 h-4 w-4" />
+                  Download resume
+                </a>
+              </Button>
+              <Button asChild size="lg" variant="ghost" className="text-foreground hover:bg-white/[0.05]">
+                <Link href="/contact">
+                  <Mail className="mr-2 h-4 w-4" />
+                  Get in touch
+                </Link>
+              </Button>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.38 }}
+              className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3 text-sm text-muted-foreground"
+            >
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5">
+                <MapPin className="h-4 w-4 text-primary" />
+                {personalInfo.location}
+              </span>
+              <a href={personalInfo.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 transition-colors hover:text-foreground">
+                <Github className="h-4 w-4" />
+                GitHub
+              </a>
+              <a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 transition-colors hover:text-foreground">
+                <Linkedin className="h-4 w-4" />
+                LinkedIn
+              </a>
+              <a href={`mailto:${personalInfo.email}`} className="inline-flex items-center gap-2 transition-colors hover:text-foreground">
+                <Mail className="h-4 w-4" />
+                Email
+              </a>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.46 }}
+              className="mt-10 grid gap-3 sm:grid-cols-2"
+            >
+              {heroHighlights.map((highlight) => (
+                <div key={highlight} className="rounded-2xl border border-white/10 bg-black/25 px-4 py-4 backdrop-blur">
+                  <div className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-primary/14 text-primary">
+                    <span className="h-2 w-2 rounded-full bg-current" />
+                  </div>
+                  <p className="mt-3 text-sm leading-6 text-foreground/86">{highlight}</p>
+                </div>
+              ))}
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.54 }}
+              className="mt-10 grid gap-3 sm:grid-cols-3"
+            >
+              {heroStats.map((stat) => (
+                <div key={stat.label} className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-4 backdrop-blur">
+                  <p className="font-display text-2xl font-semibold text-foreground">{stat.value}</p>
+                  <p className="mt-1 text-[0.72rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">{stat.label}</p>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary border border-border mb-8"
+            transition={{ duration: 0.7, delay: 0.22 }}
+            className="relative lg:pt-6"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-            </span>
-            <span className="text-sm text-muted-foreground">{personalInfo.status}</span>
-          </motion.div>
-
-          {/* Main Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display text-4xl sm:text-5xl md:text-[3.6rem] lg:text-[4.5rem] font-semibold leading-[0.95] text-balance"
-          >
-            <span className="text-foreground">Hi, I'm </span>
-            <span className="gradient-text">{personalInfo.name.split(' ')[0]}</span>
-          </motion.h1>
-
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-5 text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto text-balance"
-          >
-            {personalInfo.title} {personalInfo.tagline.toLowerCase()}.
-          </motion.p>
-
-          {/* Description */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-5 text-[15px] sm:text-[1.02rem] text-muted-foreground max-w-2xl mx-auto leading-8"
-          >
-            {recruiterSummary.description}
-          </motion.p>
-
-          {/* Location */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            className="flex items-center justify-center gap-6 mt-8 text-sm text-muted-foreground"
-          >
-            <span className="flex items-center gap-2">
-              <MapPin className="w-4 h-4" />
-              {personalInfo.location}
-            </span>
-            <span className="flex items-center gap-2">
-              <Briefcase className="w-4 h-4" />
-              Product, backend, and data
-            </span>
-          </motion.div>
-
-          {/* CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10"
-          >
-            <Button asChild size="lg" className="min-w-[160px] bg-primary text-primary-foreground hover:bg-primary/90">
-              <Link href="/projects">
-                View Projects
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="min-w-[160px]">
-              <Link href="/resume">
-                View Resume
-              </Link>
-            </Button>
-            <Button asChild variant="ghost" size="lg" className="min-w-[160px]">
-              <Link href="/contact">
-                Contact Me
-              </Link>
-            </Button>
+            <ProjectCommandCenter />
           </motion.div>
         </div>
-
-        {/* Stats Strip */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-20 sm:mt-24 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8"
-        >
-          {[
-            { value: '4+', label: 'Flagship Projects' },
-            { value: '3', label: 'Internships' },
-            { value: '50K+', label: 'Records / Day Supported' },
-            { value: '38', label: 'SQL Migrations Shipped' },
-          ].map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.4, delay: 0.8 + index * 0.1 }}
-              whileHover={{ y: -4 }}
-              className="soft-spotlight text-center p-5 rounded-xl bg-card/50 backdrop-blur-sm border border-border"
-            >
-              <div className="font-display text-3xl sm:text-[2.25rem] font-semibold text-primary">{stat.value}</div>
-              <div className="mt-2 text-sm text-muted-foreground">{stat.label}</div>
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-          className="w-6 h-10 rounded-full border-2 border-muted-foreground/30 flex items-start justify-center p-2"
-        >
-          <motion.div className="w-1 h-2 bg-muted-foreground/50 rounded-full" />
-        </motion.div>
-      </motion.div>
     </section>
   )
 }

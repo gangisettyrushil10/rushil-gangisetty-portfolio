@@ -46,6 +46,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
     .filter((p) => p.id !== project.id && p.featured)
     .slice(0, 2)
   const embedUrl = getYouTubeEmbedUrl(project.video?.url)
+  const preview = project.gallery?.find((item) => item.src)
 
   return (
     <>
@@ -243,6 +244,124 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
           </motion.div>
         </div>
       </section>
+
+      <Section className="bg-background pt-0">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-6 lg:grid-cols-[1.08fr_0.92fr]">
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="case-study-shell rounded-[28px]"
+            >
+              <div className="relative overflow-hidden">
+                <div className="window-grid absolute inset-0 opacity-30" />
+                {preview?.src ? (
+                  <div className="relative aspect-[16/10]">
+                    <Image
+                      src={preview.src}
+                      alt={preview.alt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 55vw"
+                      className="object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="project-preview-fallback relative flex aspect-[16/10] flex-col justify-between p-6 sm:p-7">
+                    <div className="flex items-center justify-between gap-4">
+                      <span className="rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[0.68rem] font-mono uppercase tracking-[0.18em] text-muted-foreground">
+                        Visual proof
+                      </span>
+                      <span className="rounded-full bg-accent/15 px-3 py-1 text-[0.68rem] font-mono uppercase tracking-[0.18em] text-accent">
+                        Add screenshot next
+                      </span>
+                    </div>
+                    <div>
+                      <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-primary/85">
+                        Best first capture
+                      </p>
+                      <h2 className="mt-3 max-w-md font-display text-2xl font-semibold text-foreground sm:text-[2.1rem]">
+                        {project.gallery?.[0]?.label ?? project.video?.title ?? project.title}
+                      </h2>
+                      <p className="mt-3 max-w-lg text-sm leading-7 text-muted-foreground">
+                        {project.gallery?.[0]?.caption ?? project.video?.caption ?? 'Show the moment that makes the project legible in under ten seconds.'}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                <div className="border-t border-white/10 bg-black/35 px-5 py-4 backdrop-blur">
+                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-muted-foreground">Deep-dive angle</p>
+                  <p className="mt-2 text-sm leading-6 text-foreground/90">{project.challenge}</p>
+                </div>
+              </div>
+            </motion.div>
+
+            <div className="grid gap-6">
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.08 }}
+                className="case-study-shell rounded-[28px] p-6"
+              >
+                <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-primary/85">What to notice</p>
+                <div className="mt-4 space-y-4">
+                  {project.outcomes.slice(0, 3).map((outcome) => (
+                    <div key={outcome} className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">
+                      <p className="text-sm leading-6 text-foreground/90">{outcome}</p>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.14 }}
+                className="case-study-shell rounded-[28px] p-6"
+              >
+                <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-accent">Media and links</p>
+                <div className="mt-4 grid gap-3">
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">
+                    <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">Best demo moment</p>
+                    <p className="mt-2 text-sm leading-6 text-foreground/90">
+                      {project.video?.caption ?? project.gallery?.[0]?.caption ?? 'A short walkthrough would make this project even easier to grasp quickly.'}
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">
+                    <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">Current state</p>
+                    <p className="mt-2 text-sm leading-6 text-foreground/90">
+                      {project.liveUrl
+                        ? 'Live link available.'
+                        : project.video?.url
+                          ? 'Video demo available.'
+                          : project.storeLinks?.length
+                            ? 'Store release planned.'
+                            : 'Code and case study available.'}
+                    </p>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">
+                    <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">Stack snapshot</p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {project.stack.slice(0, 5).map((item) => (
+                        <span
+                          key={`${project.id}-snapshot-${item}`}
+                          className="rounded-full border border-white/10 bg-transparent px-3 py-1.5 text-[0.68rem] font-mono uppercase tracking-[0.14em] text-muted-foreground"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </Section>
 
       {/* Metrics Section */}
       <Section className="bg-secondary/30 py-12">

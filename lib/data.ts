@@ -58,8 +58,8 @@ export const projects: Project[] = [
     id: 'buzzr-ecosystem',
     title: 'Buzzr Ecosystem',
     category: 'Product Software',
-    description: 'A sports-social product with a real mobile experience, a launch-ready web surface, and a backend that kept evolving as the product grew.',
-    longDescription: 'Buzzr started as a simple idea and turned into a real product system: a mobile app for rating games by entertainment value, plus a web experience that explains and supports the product. What makes it meaningful to me is not just the interface work. It is the combination of product decisions, social features, data modeling, and constant iteration.',
+    description: 'A sports-social app and launch site built as one product system, with live leagues, social features, and a backend that had to keep up as the product evolved.',
+    longDescription: 'Buzzr is the clearest example of how I like to build: start with a product idea people can feel quickly, then keep sharpening the experience without letting the backend drift. It grew into a mobile app for rating games by entertainment value, plus a web presence that makes the product legible to new users.',
     stack: ['Expo', 'React Native', 'TypeScript', 'Supabase', 'PostgreSQL', 'Jest', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
     metrics: [
       { label: 'Live Leagues', value: '7' },
@@ -67,10 +67,10 @@ export const projects: Project[] = [
       { label: 'SQL Migrations', value: '38' },
       { label: 'Test Files', value: '28' },
     ],
-    role: 'Product and full-stack engineer',
+    role: 'Product engineer across mobile, web, and data model',
     timeline: '2024 - Present',
     status: 'Active build',
-    challenge: 'The hard part was making Buzzr feel fun and social without letting the data model turn messy underneath it. Ratings, identities, parties, game catalogs, and league data all kept changing as the product evolved.',
+    challenge: 'Buzzr had to feel playful and social on the surface while still staying sane underneath. Ratings, identities, parties, game catalogs, and league data all kept changing as the product matured, so the real work was keeping the experience flexible without letting the model turn brittle.',
     decisions: [
       'I used Supabase because real-time updates and auth were built in, which let me move faster on live game features.',
       'I kept shared types and validation logic across the mobile and web surfaces so the product would not drift as it grew.',
@@ -127,8 +127,8 @@ export const projects: Project[] = [
     id: 'ledger-okcu',
     title: 'Ledger OKCU',
     category: 'Business Systems API',
-    description: 'A business-focused ASP.NET Core API with validation, idempotency, transaction rules, and a code structure that feels closer to a real system than a tutorial app.',
-    longDescription: 'Ledger OKCU is the project I would point to for .NET roles. I built it as a layered API for members, accounts, and transactions with the kinds of constraints that make backend work interesting: validation, repeat-safe requests, auditability, and domain rules that actually matter.',
+    description: 'A layered ASP.NET Core API for members, accounts, and transactions, built around the kinds of business rules that make backend work feel real.',
+    longDescription: 'Ledger OKCU is the .NET project I would open first in an interview. I built it as a layered API for members, accounts, and transactions, with the kinds of constraints that actually make backend work interesting: validation, repeat-safe requests, auditability, and domain rules that cannot be hand-waved away.',
     stack: ['C#', 'ASP.NET Core', 'Entity Framework Core', 'SQLite', 'FluentValidation', 'Swagger', 'Serilog', 'xUnit'],
     metrics: [
       { label: 'HTTP Endpoints', value: '10' },
@@ -183,8 +183,8 @@ export const projects: Project[] = [
     id: 'medscribe',
     title: 'Medscribe',
     category: 'Applied AI Product',
-    description: 'A clinical note assistant that turns messy input into structured summaries, suggestions, and evidence-backed output a user can actually review.',
-    longDescription: 'Medscribe is the strongest AI project in the portfolio because it does not stop at the model call. The value is in the workflow: taking a raw note, structuring the output, surfacing recommendations, and showing enough evidence and provenance for the result to feel usable instead of magical.',
+    description: 'An AI-assisted clinical workflow that turns raw notes into structured summaries, suggested orders, and reviewable evidence.',
+    longDescription: 'Medscribe is the strongest AI project in the portfolio because it does not stop at the model call. The real value is in the workflow: taking a raw note, structuring the result, surfacing recommendations, and showing enough evidence and provenance for the output to feel usable instead of magical.',
     stack: ['React', 'Vite', 'Flask', 'Python', 'IBM watsonx', 'LLM Orchestration'],
     metrics: [
       { label: 'Python Files', value: '9' },
@@ -195,7 +195,7 @@ export const projects: Project[] = [
     role: 'Full-stack engineer',
     timeline: '2025',
     status: 'Completed',
-    challenge: 'The challenge was not just getting a model response. It was making the result feel trustworthy enough that a clinician could actually review it, understand it, and follow where it came from.',
+    challenge: 'Getting a model response was the easy part. The real challenge was making the output trustworthy enough that someone could review it, understand it, and follow where it came from without feeling like the system was bluffing.',
     decisions: [
       'I used structured outputs because free-form text alone was not good enough for a clinical workflow.',
       'I added citation and provenance hooks so the result felt reviewable instead of opaque.',
@@ -241,8 +241,8 @@ export const projects: Project[] = [
     id: 'business-analytics-dashboard',
     title: 'Business Analytics Dashboard',
     category: 'Data Workflows',
-    description: 'A full-stack analytics tool built around messy CSVs, validation, forecasting, and the kinds of data problems real teams actually run into.',
-    longDescription: 'This project matters because it is not a clean-data dashboard. It is an analytics workflow that deals with uploads, validation, forecasting, anomaly detection, and export. I like it because it shows the side of data work that is usually missing from portfolios: the part where inputs are bad and the system still has to be useful.',
+    description: 'A full-stack analytics workflow for messy uploads, validation, forecasting, and the parts of data work teams usually hide from the demo.',
+    longDescription: 'This project matters because it is not a clean-data dashboard. It is an analytics workflow that deals with uploads, validation, forecasting, anomaly detection, and export. I like it because it shows the side of data work portfolios usually skip: the part where the input is bad and the system still has to be useful.',
     stack: ['FastAPI', 'React', 'TypeScript', 'PostgreSQL', 'Prophet', 'scikit-learn'],
     metrics: [
       { label: 'Backend Endpoints', value: '12' },
@@ -253,7 +253,7 @@ export const projects: Project[] = [
     role: 'Full-stack analytics engineer',
     timeline: '2025',
     status: 'Completed',
-    challenge: 'I built this around a simple reality: most real data is messy. Uploads fail, columns come in wrong, and people still expect useful output on the other side.',
+    challenge: 'I built this around a simple reality: most real data is messy. Uploads fail, columns arrive wrong, and people still expect useful output on the other side.',
     decisions: [
       'I treated validation as a first-class feature instead of something hidden behind the dashboard.',
       'I built the upload flow to handle bad input and explain what went wrong instead of silently failing.',
@@ -298,7 +298,7 @@ export const projects: Project[] = [
     id: 'graph-link-prediction',
     title: 'Graph Link Prediction',
     category: 'ML Depth',
-    description: 'A graph neural network project that shows I can handle ML problems beyond standard tabular classification.',
+    description: 'A graph neural network project that adds real ML depth without pretending the rest of the portfolio is research-first.',
     longDescription: 'This is the most technical project in the portfolio. I kept it as supporting work because it adds depth without changing the main story of the site. It shows that I can work with graph structure, model training, and evaluation design when the problem calls for it.',
     stack: ['Python', 'PyTorch Geometric', 'NetworkX', 'NumPy', 'scikit-learn'],
     metrics: [
@@ -391,25 +391,25 @@ export const skills = {
 export const focusAreas: FocusArea[] = [
   {
     title: 'Product and full-stack work',
-    description: 'The broadest read of my portfolio. I enjoy building software that feels polished to use and is still solid underneath.',
+    description: 'Best when the job needs product taste, full-stack execution, and someone who cares whether the software actually feels good to use.',
     proof: 'Buzzr Ecosystem',
     href: '/projects/buzzr-ecosystem',
   },
   {
     title: 'Backend and .NET systems',
-    description: 'The best fit when a team needs API design, business rules, validation, and backend code that can hold up over time.',
+    description: 'Best when the work is mostly APIs, business rules, validation, and backend code that needs to stay readable as it grows.',
     proof: 'Ledger OKCU',
     href: '/projects/ledger-okcu',
   },
   {
     title: 'Data-heavy software',
-    description: 'A natural fit for SQL-heavy work, validation pipelines, forecasting, reporting, and systems that deal with messy input.',
+    description: 'Best when the system has to survive messy input, SQL-heavy logic, reporting, or forecasting without becoming confusing.',
     proof: 'Business Analytics Dashboard',
     href: '/projects/business-analytics-dashboard',
   },
   {
     title: 'Applied AI inside products',
-    description: 'Strongest when the job is still software engineering, but the product also needs structured AI features and a trustworthy user experience.',
+    description: 'Best when the AI feature is only half the problem and the rest is workflow, trust, and a user experience that stays grounded.',
     proof: 'Medscribe',
     href: '/projects/medscribe',
   },
@@ -437,13 +437,13 @@ export const projectDomains = [
 export const recruiterSummary = {
   title: 'Software engineer with backend, data, and business-systems depth.',
   description:
-    'I am a software engineer first. Most of my work sits where product, backend, and data meet: building things people can actually use, APIs that hold up, and workflows that still make sense once real data gets involved.',
+    'The thread through my work is pretty consistent: I like software that feels sharp in the product, makes sense in the backend, and stays useful once real users and real data show up.',
 }
 
 export const personalInfo = {
   name: 'Rushil Gangisetty',
   title: 'Software Engineer',
-  tagline: 'who likes building useful products and dependable systems',
+  tagline: 'building product software, backend APIs, and data-heavy tools',
   location: 'Dallas, Texas',
   status: 'Open to software engineering, backend, data, and systems roles',
   email: 'gangisettyrushil@gmail.com',
