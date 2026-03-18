@@ -43,8 +43,8 @@ export function Navbar() {
           className={cn(
             'rounded-full border px-4 py-3 transition-all duration-300 sm:px-5',
             scrolled
-              ? 'border-white/12 bg-[rgba(8,12,27,0.85)] shadow-[0_24px_60px_-40px_rgba(0,0,0,0.9)] backdrop-blur-xl'
-              : 'border-white/8 bg-[rgba(8,12,27,0.55)] backdrop-blur-md'
+              ? 'border-white/12 bg-[rgba(3,3,3,0.88)] shadow-[0_24px_60px_-40px_rgba(0,0,0,0.96)] backdrop-blur-xl'
+              : 'border-white/8 bg-[rgba(2,2,2,0.62)] backdrop-blur-md'
           )}
         >
           <div className="flex items-center justify-between gap-4">

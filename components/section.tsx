@@ -17,7 +17,7 @@ export function Section({ children, className, id }: SectionProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-120px' }}
       transition={{ duration: 0.55, ease: 'easeOut' }}
-      className={cn('py-18 sm:py-24', className)}
+      className={cn('py-14 sm:py-18', className)}
     >
       {children}
     </motion.section>
@@ -33,7 +33,7 @@ interface SectionHeaderProps {
 
 export function SectionHeader({ badge, title, description, className }: SectionHeaderProps) {
   return (
-    <div className={cn('mb-12 max-w-3xl', className)}>
+    <div className={cn('mb-8 max-w-3xl sm:mb-10', className)}>
       {badge && (
         <motion.span
           initial={{ opacity: 0, y: 12 }}
@@ -50,7 +50,7 @@ export function SectionHeader({ badge, title, description, className }: SectionH
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.42, delay: 0.06 }}
-        className="mt-5 text-3xl font-semibold leading-[0.95] tracking-[-0.05em] text-foreground sm:text-[3rem]"
+        className="mt-4 text-2xl font-semibold leading-[0.98] tracking-[-0.05em] text-foreground sm:text-[2.45rem]"
       >
         {title}
       </motion.h2>
@@ -60,7 +60,7 @@ export function SectionHeader({ badge, title, description, className }: SectionH
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.42, delay: 0.12 }}
-          className="mt-5 text-base leading-8 text-muted-foreground sm:text-[1.04rem]"
+          className="mt-4 text-sm leading-7 text-muted-foreground sm:text-base"
         >
           {description}
         </motion.p>

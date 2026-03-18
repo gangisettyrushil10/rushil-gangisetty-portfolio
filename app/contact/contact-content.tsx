@@ -28,7 +28,7 @@ export function ContactContent() {
 
   return (
     <>
-      <section className="relative overflow-hidden px-4 pb-18 pt-32 sm:px-6 sm:pb-22 sm:pt-40 lg:px-8">
+      <section className="relative overflow-hidden px-4 pb-12 pt-24 sm:px-6 sm:pb-16 sm:pt-32 lg:px-8">
         <div className="absolute inset-0 aurora-backdrop opacity-80" />
         <div className="absolute inset-0 grid-pattern opacity-30" />
 
@@ -36,36 +36,36 @@ export function ContactContent() {
           <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr]">
             <div>
               <span className="section-label">Contact</span>
-              <h1 className="mt-6 max-w-3xl text-5xl font-semibold leading-[0.92] tracking-[-0.06em] text-foreground sm:text-[5rem]">
+              <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-[0.94] tracking-[-0.06em] text-foreground sm:text-[4rem]">
                 Open to conversations about software engineering roles.
               </h1>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-[1.06rem]">
+              <p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
                 The fastest way to reach me is email, and I am happy to discuss roles, products, or a potential team fit.
               </p>
 
-              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+              <div className="mt-6 grid gap-3 sm:grid-cols-2">
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="glass-panel block rounded-[28px] p-5 transition hover:border-white/18"
+                  className="glass-panel block rounded-[24px] p-4 sm:p-5 transition hover:border-white/18"
                 >
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/18 text-primary">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-primary/18 text-primary">
                     <Mail className="h-5 w-5" />
                   </div>
-                  <p className="mt-4 text-sm font-medium text-foreground">Email</p>
-                  <p className="mt-2 text-sm text-muted-foreground">{personalInfo.email}</p>
+                  <p className="mt-3 text-sm font-medium text-foreground">Email</p>
+                  <p className="mt-1.5 text-sm text-muted-foreground">{personalInfo.email}</p>
                 </a>
 
                 <a
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass-panel block rounded-[28px] p-5 transition hover:border-white/18"
+                  className="glass-panel block rounded-[24px] p-4 sm:p-5 transition hover:border-white/18"
                 >
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/8 text-foreground">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-white/8 text-foreground">
                     <Linkedin className="h-5 w-5" />
                   </div>
-                  <p className="mt-4 text-sm font-medium text-foreground">LinkedIn</p>
-                  <p className="mt-2 inline-flex items-center gap-2 text-sm text-muted-foreground">
+                  <p className="mt-3 text-sm font-medium text-foreground">LinkedIn</p>
+                  <p className="mt-1.5 inline-flex items-center gap-2 text-sm text-muted-foreground">
                     Connect here
                     <ArrowUpRight className="h-4 w-4" />
                   </p>
@@ -75,36 +75,36 @@ export function ContactContent() {
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="glass-panel block rounded-[28px] p-5 transition hover:border-white/18"
+                  className="glass-panel block rounded-[24px] p-4 sm:p-5 transition hover:border-white/18"
                 >
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/8 text-foreground">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-white/8 text-foreground">
                     <Github className="h-5 w-5" />
                   </div>
-                  <p className="mt-4 text-sm font-medium text-foreground">GitHub</p>
-                  <p className="mt-2 inline-flex items-center gap-2 text-sm text-muted-foreground">
+                  <p className="mt-3 text-sm font-medium text-foreground">GitHub</p>
+                  <p className="mt-1.5 inline-flex items-center gap-2 text-sm text-muted-foreground">
                     See public work
                     <ArrowUpRight className="h-4 w-4" />
                   </p>
                 </a>
 
-                <div className="glass-panel rounded-[28px] p-5">
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/8 text-foreground">
+                <div className="glass-panel rounded-[24px] p-4 sm:p-5">
+                  <div className="inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-white/8 text-foreground">
                     <MapPin className="h-5 w-5" />
                   </div>
-                  <p className="mt-4 text-sm font-medium text-foreground">Location</p>
-                  <p className="mt-2 text-sm text-muted-foreground">{personalInfo.location}</p>
+                  <p className="mt-3 text-sm font-medium text-foreground">Location</p>
+                  <p className="mt-1.5 text-sm text-muted-foreground">{personalInfo.location}</p>
                 </div>
               </div>
             </div>
 
-            <div className="glass-panel-strong rounded-[32px] p-6 sm:p-7">
+            <div className="glass-panel-strong rounded-[28px] p-5 sm:p-6">
               <p className="text-[0.68rem] font-mono uppercase tracking-[0.2em] text-primary/90">Send a note</p>
-              <p className="mt-4 text-sm leading-7 text-muted-foreground">
+              <p className="mt-3 text-sm leading-6 text-muted-foreground">
                 This opens a pre-filled email draft.
               </p>
 
-              <form onSubmit={handleSubmit} className="mt-6 grid gap-5">
-                <div className="grid gap-5 sm:grid-cols-2">
+              <form onSubmit={handleSubmit} className="mt-5 grid gap-4">
+                <div className="grid gap-4 sm:grid-cols-2">
                   <div className="grid gap-2">
                     <label htmlFor="name" className="text-sm font-medium text-foreground">
                       Name
@@ -155,7 +155,7 @@ export function ContactContent() {
                   </label>
                   <Textarea
                     id="message"
-                    rows={7}
+                    rows={6}
                     value={formState.message}
                     onChange={(event) => setFormState({ ...formState, message: event.target.value })}
                     placeholder="A brief note is perfect."
@@ -164,7 +164,7 @@ export function ContactContent() {
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="mt-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                <Button type="submit" size="lg" className="mt-1 rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
                   <Send className="mr-2 h-4 w-4" />
                   Open email draft
                 </Button>
