@@ -17,7 +17,7 @@ function getPreview(project: Project) {
   return project.gallery?.find((item) => item.src)
 }
 
-export function ProjectCard({ project, index = 0, featured = false }: ProjectCardProps) {
+export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const preview = getPreview(project)
   const style = {
     '--project-primary': project.theme?.primary ?? '#43d7ff',
@@ -27,10 +27,10 @@ export function ProjectCard({ project, index = 0, featured = false }: ProjectCar
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 26 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.48, delay: index * 0.08 }}
+      transition={{ duration: 0.42, delay: index * 0.08 }}
       style={style}
       className="project-shell soft-spotlight rounded-[30px] p-5 sm:p-6"
     >
@@ -45,12 +45,9 @@ export function ProjectCard({ project, index = 0, featured = false }: ProjectCar
                 sizes="(max-width: 1024px) 100vw, 48vw"
                 className="object-cover transition-transform duration-500 hover:scale-[1.02]"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent p-5">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/72 via-black/16 to-transparent p-5">
                 <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-white/75">
-                  {project.gallery?.[0]?.label}
-                </p>
-                <p className="mt-2 max-w-md text-sm leading-6 text-white/88">
-                  {project.gallery?.[0]?.caption}
+                  {preview.label}
                 </p>
               </div>
             </div>
@@ -61,75 +58,45 @@ export function ProjectCard({ project, index = 0, featured = false }: ProjectCar
                   {project.repoName ?? project.title}
                 </span>
                 <span className="rounded-full bg-white/8 px-3 py-1 text-[0.66rem] font-mono uppercase tracking-[0.18em] text-white/75">
-                  {project.category}
+                  {project.timeline}
                 </span>
               </div>
 
-              <div>
-                <p className="text-[0.68rem] font-mono uppercase tracking-[0.2em] text-white/70">
-                  {project.previewTitle ?? project.category}
-                </p>
-                <h3 className="mt-3 max-w-md text-2xl font-semibold leading-tight text-white sm:text-[2rem]">
-                  {project.title}
-                </h3>
-                <p className="mt-3 max-w-lg text-sm leading-7 text-white/78">
-                  {project.previewNote ?? project.description}
-                </p>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                {project.metrics.slice(0, 2).map((metric) => (
-                  <div
-                    key={`${project.id}-${metric.label}`}
-                    className="rounded-2xl border border-white/10 bg-black/22 px-4 py-3 backdrop-blur"
-                  >
-                    <p className="text-lg font-semibold text-white">{metric.value}</p>
-                    <p className="mt-1 text-[0.68rem] font-mono uppercase tracking-[0.16em] text-white/65">
-                      {metric.label}
-                    </p>
-                  </div>
-                ))}
+              <div className="space-y-3">
+                <div className="h-3 w-24 rounded-full bg-white/12" />
+                <div className="h-3 w-40 rounded-full bg-white/8" />
+                <div className="h-20 rounded-[24px] border border-white/10 bg-black/18" />
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="h-16 rounded-2xl border border-white/10 bg-black/18" />
+                  <div className="h-16 rounded-2xl border border-white/10 bg-black/14" />
+                  <div className="h-16 rounded-2xl border border-white/10 bg-black/10" />
+                </div>
               </div>
             </div>
           )}
         </div>
 
-        <div className="flex flex-wrap items-start justify-between gap-4">
-          <div className="max-w-2xl">
-            <div className="flex flex-wrap items-center gap-3">
-              <span className="section-label">{project.category}</span>
-              <span className="rounded-full border border-white/10 px-3 py-1 text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">
-                {project.timeline}
-              </span>
-            </div>
-            <h3 className="mt-5 text-2xl font-semibold leading-tight text-foreground sm:text-[2.25rem]">
-              {project.title}
-            </h3>
-            <p className="mt-4 text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
-              {project.description}
-            </p>
-          </div>
-
-          <Link
-            href={`/projects/${project.id}`}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-foreground transition hover:border-white/20 hover:bg-white/8"
-          >
-            View case study
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
+        <div className="flex flex-wrap items-center gap-3">
+          <span className="section-label">{project.category}</span>
+          <span className="rounded-full border border-white/10 px-3 py-1 text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">
+            {project.timeline}
+          </span>
         </div>
 
-        <div className="glass-panel rounded-[24px] p-4 sm:p-5">
-          <p className="text-[0.68rem] font-mono uppercase tracking-[0.2em] text-primary/90">
-            Why it is featured
+        <div className="max-w-3xl">
+          <h3 className="text-2xl font-semibold leading-tight text-foreground sm:text-[2.15rem]">
+            {project.title}
+          </h3>
+          <p className="mt-4 text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
+            {project.description}
           </p>
-          <p className="mt-3 text-sm leading-7 text-foreground/90">
-            {project.recruiterAngle ?? project.proofLine ?? project.longDescription}
+          <p className="mt-3 text-sm font-medium text-foreground/92">
+            {project.recruiterAngle}
           </p>
         </div>
 
-        <div className={`grid gap-3 ${featured ? 'sm:grid-cols-4' : 'sm:grid-cols-2'}`}>
-          {project.metrics.slice(0, featured ? 4 : 2).map((metric) => (
+        <div className="grid gap-3 sm:grid-cols-2">
+          {project.metrics.slice(0, 2).map((metric) => (
             <div key={`${project.id}-${metric.label}-detail`} className="metric-pill rounded-2xl px-4 py-4">
               <p className="text-xl font-semibold text-foreground">{metric.value}</p>
               <p className="mt-1 text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">
@@ -140,7 +107,7 @@ export function ProjectCard({ project, index = 0, featured = false }: ProjectCar
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {project.stack.slice(0, featured ? 7 : 5).map((tech) => (
+          {project.stack.slice(0, 5).map((tech) => (
             <span
               key={`${project.id}-${tech}`}
               className="rounded-full border border-white/8 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-secondary-foreground"

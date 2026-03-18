@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { ArrowUpRight, Github } from 'lucide-react'
 import { ProjectCard } from '@/components/project-card'
 import { Section, SectionHeader } from '@/components/section'
-import { projectDomains, projects } from '@/lib/data'
+import { projects } from '@/lib/data'
 
 export function ProjectsContent() {
   const featuredProjects = projects.filter((project) => project.featured)
@@ -18,32 +18,14 @@ export function ProjectsContent() {
         <div className="absolute inset-0 grid-pattern opacity-30" />
 
         <div className="relative mx-auto max-w-7xl">
-          <div className="grid gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-end">
-            <div>
-              <span className="section-label">GitHub-first curation</span>
-              <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[0.92] tracking-[-0.06em] text-foreground sm:text-[5rem]">
-                A focused project selection with stronger signal.
-              </h1>
-              <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-[1.06rem]">
-                I reviewed my public GitHub work and rebuilt this page around the projects that best reflect how I build today.
-                The goal is clarity, relevance, and quality of signal.
-              </p>
-            </div>
-
-            <div className="glass-panel rounded-[30px] p-6">
-              <p className="text-[0.68rem] font-mono uppercase tracking-[0.2em] text-primary/90">How to read this page</p>
-              <div className="mt-4 grid gap-3">
-                {projectDomains.map((domain, index) => (
-                  <div key={domain.name} className="rounded-[22px] border border-white/10 bg-white/[0.04] p-4">
-                    <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-accent">
-                      0{index + 1}
-                    </p>
-                    <h2 className="mt-2 text-lg font-semibold text-foreground">{domain.name}</h2>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{domain.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="max-w-4xl">
+            <span className="section-label">Projects</span>
+            <h1 className="mt-6 text-5xl font-semibold leading-[0.92] tracking-[-0.06em] text-foreground sm:text-[5rem]">
+              A curated view of the work that best represents my current level.
+            </h1>
+            <p className="mt-6 max-w-3xl text-base leading-8 text-muted-foreground sm:text-[1.06rem]">
+              This page is intentionally selective. The flagship projects lead with the clearest signal, and the supporting work provides additional context without crowding the story.
+            </p>
           </div>
         </div>
       </section>
@@ -51,14 +33,14 @@ export function ProjectsContent() {
       <Section className="pt-0">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            badge="Selected Repos"
-            title="The four projects that best represent my current level."
-            description="These are the projects I would use in interviews or share with a hiring manager to represent my work most accurately."
+            badge="Flagship Work"
+            title="Start with these four projects."
+            description="They provide the most accurate picture of how I build across product software, backend workflows, data-intensive systems, and applied AI."
           />
 
           <div className="grid gap-6">
             {featuredProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} featured />
+              <ProjectCard key={project.id} project={project} index={index} />
             ))}
           </div>
         </div>
@@ -68,8 +50,8 @@ export function ProjectsContent() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Supporting Work"
-            title="Supporting GitHub work for additional context."
-            description="These repositories still show range, but they are intentionally secondary to the strongest and most relevant project work."
+            title="Additional GitHub context."
+            description="These projects are smaller or earlier, but still useful for understanding range."
           />
 
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -85,6 +67,8 @@ export function ProjectsContent() {
                 <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-primary/90">{project.category}</p>
                 <h3 className="mt-4 text-2xl font-semibold text-foreground">{project.title}</h3>
                 <p className="mt-4 text-sm leading-7 text-muted-foreground">{project.description}</p>
+                <p className="mt-3 text-sm font-medium text-foreground/92">{project.recruiterAngle}</p>
+
                 <div className="mt-5 grid grid-cols-2 gap-3">
                   {project.metrics.slice(0, 2).map((metric) => (
                     <div key={`${project.id}-${metric.label}`} className="metric-pill rounded-2xl px-4 py-3">
@@ -95,12 +79,13 @@ export function ProjectsContent() {
                     </div>
                   ))}
                 </div>
+
                 <div className="mt-5 flex flex-wrap gap-3">
                   <Link
                     href={`/projects/${project.id}`}
                     className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-foreground transition hover:border-white/18 hover:bg-white/8"
                   >
-                    Read more
+                    Case study
                     <ArrowUpRight className="h-4 w-4" />
                   </Link>
                   {project.githubUrl && (

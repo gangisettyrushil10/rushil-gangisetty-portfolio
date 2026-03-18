@@ -3,7 +3,7 @@ import { ArrowUpRight, Download, Mail } from 'lucide-react'
 import { Section, SectionHeader } from '@/components/section'
 import { experiences, personalInfo, projects, recruiterSummary, skillGroups } from '@/lib/data'
 
-const featuredProjects = projects.filter((project) => project.featured)
+const featuredProjects = projects.filter((project) => project.featured).slice(0, 3)
 
 export function ResumeContent() {
   return (
@@ -15,7 +15,7 @@ export function ResumeContent() {
         <div className="relative mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
             <div>
-              <span className="section-label">Resume snapshot</span>
+              <span className="section-label">Resume</span>
               <h1 className="mt-6 text-5xl font-semibold leading-[0.92] tracking-[-0.06em] text-foreground sm:text-[5rem]">
                 {personalInfo.name}
               </h1>
@@ -51,11 +51,11 @@ export function ResumeContent() {
                   <p className="mt-2 text-sm text-foreground">{personalInfo.location}</p>
                 </div>
                 <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-4">
-                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">Current focus</p>
+                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">Focus</p>
                   <p className="mt-2 text-sm leading-6 text-foreground">{personalInfo.status}</p>
                 </div>
                 <div className="rounded-[24px] border border-white/10 bg-white/[0.04] p-4">
-                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">Reach me at</p>
+                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">Email</p>
                   <a href={`mailto:${personalInfo.email}`} className="mt-2 inline-flex text-sm text-foreground hover:text-primary">
                     {personalInfo.email}
                   </a>
@@ -71,7 +71,7 @@ export function ResumeContent() {
           <SectionHeader
             badge="Experience"
             title="Professional experience"
-            description="Internship work across production data pipelines, stakeholder-facing forecasting, and SaaS product workflows."
+            description="Internship work across production data workflows, forecasting, and SaaS product systems."
           />
 
           <div className="grid gap-5 lg:grid-cols-3">
@@ -88,17 +88,6 @@ export function ResumeContent() {
                     </div>
                   ))}
                 </div>
-
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {experience.stack?.map((item) => (
-                    <span
-                      key={`${experience.company}-${item}`}
-                      className="rounded-full border border-white/8 bg-white/[0.04] px-3 py-1.5 text-xs text-secondary-foreground"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
               </div>
             ))}
           </div>
@@ -109,17 +98,17 @@ export function ResumeContent() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Skills"
-            title="A focused technical toolkit."
-            description="Organized around the work I do most often rather than every technology I have used."
+            title="A compact technical toolkit."
+            description="Grouped around the work I do most often."
           />
 
-          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-            {skillGroups.map((group) => (
+          <div className="grid gap-5 md:grid-cols-3">
+            {skillGroups.slice(0, 3).map((group) => (
               <div key={group.title} className="glass-panel rounded-[28px] p-5">
                 <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-accent">{group.title}</p>
                 <p className="mt-3 text-sm leading-7 text-muted-foreground">{group.description}</p>
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {group.items.map((item) => (
+                  {group.items.slice(0, 5).map((item) => (
                     <span key={`${group.title}-${item}`} className="rounded-full border border-white/8 bg-white/[0.04] px-3 py-1.5 text-xs text-foreground/88">
                       {item}
                     </span>
@@ -137,7 +126,7 @@ export function ResumeContent() {
             <SectionHeader
               badge="Selected Work"
               title="Projects that reinforce the resume."
-              description="A hiring manager can move from this summary directly into concrete technical proof."
+              description="A compact rail of the project work most relevant to interviews."
               className="mb-0"
             />
             <Link
@@ -149,7 +138,7 @@ export function ResumeContent() {
             </Link>
           </div>
 
-          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+          <div className="mt-8 grid gap-5 md:grid-cols-3">
             {featuredProjects.map((project) => (
               <Link key={project.id} href={`/projects/${project.id}`} className="glass-panel block rounded-[28px] p-6 transition hover:border-white/18">
                 <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-primary/90">{project.category}</p>

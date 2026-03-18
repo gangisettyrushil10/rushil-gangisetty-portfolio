@@ -37,10 +37,10 @@ export function ContactContent() {
             <div>
               <span className="section-label">Contact</span>
               <h1 className="mt-6 max-w-3xl text-5xl font-semibold leading-[0.92] tracking-[-0.06em] text-foreground sm:text-[5rem]">
-                Open to thoughtful conversations about the right role.
+                Open to conversations about software engineering roles.
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-[1.06rem]">
-                If you are hiring for software engineering, backend, or product-oriented full-stack roles, I would be glad to connect.
+                The fastest way to reach me is email, and I am happy to discuss roles, products, or a potential team fit.
               </p>
 
               <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -100,7 +100,7 @@ export function ContactContent() {
             <div className="glass-panel-strong rounded-[32px] p-6 sm:p-7">
               <p className="text-[0.68rem] font-mono uppercase tracking-[0.2em] text-primary/90">Send a note</p>
               <p className="mt-4 text-sm leading-7 text-muted-foreground">
-                This form opens a pre-filled email draft to make outreach quick and straightforward.
+                This opens a pre-filled email draft.
               </p>
 
               <form onSubmit={handleSubmit} className="mt-6 grid gap-5">
