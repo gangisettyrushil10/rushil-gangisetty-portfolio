@@ -61,10 +61,10 @@ export function ContactContent() {
               Contact
             </span>
             <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
-              Let's Connect
+              Let&apos;s talk
             </h1>
             <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              I&apos;m open to software engineering roles, backend and data-heavy work, and teams that want an engineer who can contribute early and keep growing.
+              I&apos;m open to software engineering roles, backend work, data-heavy product work, and teams looking for an early-career engineer who can contribute quickly and keep growing.
             </p>
           </motion.div>
         </div>
@@ -83,7 +83,7 @@ export function ContactContent() {
             >
               <h2 className="text-2xl font-bold text-foreground mb-6">Get in Touch</h2>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                The strongest fit is software engineering, backend/API work, data-heavy applications, and business systems. If that lines up with what you&apos;re hiring for, feel free to reach out.
+                The strongest fit is software engineering, backend/API work, data-heavy applications, and business systems. If that overlaps with what you&apos;re hiring for, feel free to reach out.
               </p>
 
               {/* Contact Cards */}
@@ -113,7 +113,7 @@ export function ContactContent() {
                   </div>
                   <div className="flex-1">
                     <p className="text-sm text-muted-foreground">LinkedIn</p>
-                    <p className="text-foreground font-medium">Connect with me</p>
+                    <p className="text-foreground font-medium">LinkedIn profile</p>
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 </a>
@@ -129,7 +129,7 @@ export function ContactContent() {
                   </div>
                   <div className="flex-1">
                     <p className="text-sm text-muted-foreground">GitHub</p>
-                    <p className="text-foreground font-medium">View my code</p>
+                    <p className="text-foreground font-medium">GitHub profile</p>
                   </div>
                   <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
                 </a>
@@ -155,7 +155,7 @@ export function ContactContent() {
                   <p className="text-green-400 font-medium">Currently open to opportunities</p>
                 </div>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Available for full-time roles, internships, and good early-career opportunities.
+                  Available for full-time roles, internships, and strong early-career opportunities.
                 </p>
               </div>
             </motion.div>
@@ -168,7 +168,7 @@ export function ContactContent() {
               transition={{ duration: 0.5 }}
             >
               <form onSubmit={handleSubmit} className="p-6 sm:p-8 rounded-2xl bg-card border border-border">
-                <h2 className="text-xl font-bold text-foreground mb-6">Send a Message</h2>
+                <h2 className="text-xl font-bold text-foreground mb-6">Send a note</h2>
                 
                 <div className="flex flex-col gap-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -206,13 +206,13 @@ export function ContactContent() {
                     <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
                       Subject
                     </label>
-                    <Input
-                      id="subject"
-                      type="text"
-                      placeholder="What are you reaching out about?"
-                      value={formState.subject}
-                      onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                      required
+                      <Input
+                        id="subject"
+                        type="text"
+                        placeholder="What are you reaching out about"
+                        value={formState.subject}
+                        onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
+                        required
                       className="bg-background"
                     />
                   </div>
@@ -223,7 +223,7 @@ export function ContactContent() {
                     </label>
                     <Textarea
                       id="message"
-                      placeholder="Write your note here"
+                      placeholder="A few lines is plenty"
                       value={formState.message}
                       onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                       required
@@ -234,12 +234,12 @@ export function ContactContent() {
 
                   <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
                     <Send className="mr-2 w-4 h-4" />
-                    Open Email Draft
+                    Open email draft
                   </Button>
                 </div>
 
                 <p className="mt-4 text-xs text-center text-muted-foreground">
-                  This opens your email app with the message filled in.
+                  This opens your email app with the details filled in.
                 </p>
               </form>
             </motion.div>

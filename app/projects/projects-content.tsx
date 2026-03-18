@@ -28,10 +28,10 @@ export function ProjectsContent() {
               Projects
             </span>
             <h1 className="mt-6 font-display text-5xl font-semibold tracking-[-0.05em] text-foreground sm:text-[4.25rem]">
-              A tighter set of projects, with deeper proof.
+              Projects I would actually want a recruiter to open.
             </h1>
             <p className="mt-6 text-lg leading-8 text-muted-foreground sm:text-[1.08rem]">
-              This is not everything I have touched. It is the small set of work that gives the clearest read on how I build: product surfaces, backend systems, data workflows, and AI features that sit inside real software.
+              This is not everything I have touched. It is the smaller set of work that gives the clearest read on how I build: product surfaces, backend systems, data workflows, and AI features that sit inside real software.
             </p>
           </motion.div>
         </div>
@@ -41,8 +41,8 @@ export function ProjectsContent() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Flagship Work"
-            title="Start with these"
-            description="If you only open a few things, these are the projects that do the best job of showing the range without getting noisy."
+            title="Start here"
+            description="If you only have a few minutes, these are the projects that tell the story best."
           />
 
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -62,8 +62,8 @@ export function ProjectsContent() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Lanes"
-            title="The domains underneath the portfolio"
-            description="A simple way to read the project mix without turning the site into a wall of job titles."
+            title="The kinds of problems underneath the project list"
+            description="A simple way to read the portfolio without turning it into a wall of job titles."
           />
 
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -91,7 +91,7 @@ export function ProjectsContent() {
             <SectionHeader
               badge="Additional Depth"
               title="Supporting work"
-              description="Good technical depth, but not the place I would want someone to begin if they only have a few minutes."
+              description="Still useful context, just not where I would want someone to start on a first pass."
             />
 
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

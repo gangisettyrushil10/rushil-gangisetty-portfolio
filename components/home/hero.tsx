@@ -8,9 +8,9 @@ import { Button } from '@/components/ui/button'
 import { ProjectCommandCenter } from '@/components/home/project-command-center'
 
 const proofPoints = [
-  'Product software with clear user-facing polish',
-  'Backend APIs and business logic that stay readable',
-  'Data-heavy workflows built for messy real input',
+  'Product software with real user-facing polish',
+  'Backend APIs and business logic that stay understandable',
+  'Data-heavy workflows built for real, messy input',
 ]
 
 const heroStats = [
@@ -47,11 +47,11 @@ export function Hero() {
               transition={{ duration: 0.58, delay: 0.06 }}
               className="mt-7 max-w-4xl font-display text-[3rem] font-semibold leading-[0.92] tracking-[-0.05em] text-foreground sm:text-[4.5rem] lg:text-[5.1rem]"
             >
-              Software engineer building
+              I build
               {' '}
-              <span className="gradient-text">product software</span>,
+              <span className="gradient-text">products people enjoy using</span>
               {' '}
-              backend APIs, and data-heavy tools.
+              and systems teams can rely on.
             </motion.h1>
 
             <motion.p
@@ -69,8 +69,8 @@ export function Hero() {
               transition={{ duration: 0.58, delay: 0.2 }}
               className="mt-4 max-w-xl text-sm leading-7 text-muted-foreground sm:text-[0.96rem]"
             >
-              The best way to read this site is through a few strong case studies. That is where the product judgment,
-              backend decisions, and data workflow work are easiest to see.
+              The easiest way to get a read on me is through a few good case studies. That is where the product judgment,
+              backend decisions, and data workflow work are most visible.
             </motion.p>
 
             <motion.div
@@ -94,7 +94,7 @@ export function Hero() {
               <Button asChild variant="ghost" size="lg">
                 <Link href="/contact">
                   <Mail className="mr-2 h-4 w-4" />
-                  Contact
+                  Get in touch
                 </Link>
               </Button>
             </motion.div>
@@ -131,7 +131,7 @@ export function Hero() {
             >
               <div className="grid gap-5 sm:grid-cols-[1.15fr_0.85fr]">
                 <div>
-                  <p className="text-[0.7rem] font-mono uppercase tracking-[0.2em] text-primary/85">Strongest when the work needs</p>
+                  <p className="text-[0.7rem] font-mono uppercase tracking-[0.2em] text-primary/85">Best fit when the work needs</p>
                   <div className="mt-4 space-y-3">
                     {proofPoints.map((point) => (
                       <div key={point} className="flex items-start gap-3 text-sm leading-6 text-foreground/88">

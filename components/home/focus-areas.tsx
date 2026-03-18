@@ -20,8 +20,8 @@ export function FocusAreas() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <SectionHeader
           badge="Core Lanes"
-          title="A simple read on the kinds of work I fit best"
-          description="This is the part recruiters usually try to infer from the projects anyway, so I would rather make it explicit and keep it honest."
+          title="The kinds of work I fit best"
+          description="Recruiters usually try to infer this from the projects anyway, so I would rather make it clear and keep it honest."
         />
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">

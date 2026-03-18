@@ -50,7 +50,7 @@ export function ResumeContent() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="mt-6 text-lg text-muted-foreground leading-relaxed max-w-2xl"
               >
-                Most of my work sits at the intersection of product, backend, and data. That usually means building something useful, making the API sane, and handling the messy edges that show up once real data is involved.
+                Most of my work sits where product, backend, and data meet. In practice, that usually means building something people can actually use, making the API logic make sense, and handling the messy edges that show up once the data is real.
               </motion.p>
 
               <motion.div
@@ -62,13 +62,13 @@ export function ResumeContent() {
                 <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
                   <a href="/resume.pdf" download>
                     <Download className="mr-2 w-4 h-4" />
-                    Download Resume
+                    Download resume
                   </a>
                 </Button>
                 <Button asChild variant="outline" size="lg">
                   <Link href="/contact">
                     <Mail className="mr-2 w-4 h-4" />
-                    Contact Me
+                    Get in touch
                   </Link>
                 </Button>
               </motion.div>
@@ -100,7 +100,7 @@ export function ResumeContent() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Status</p>
-                    <p className="text-foreground">Open to software, backend, data, and systems roles</p>
+                    <p className="text-foreground">Open to software, backend, data, and business systems roles</p>
                   </div>
                 </div>
                 
@@ -110,7 +110,7 @@ export function ResumeContent() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground">Focus</p>
-                    <p className="text-foreground">Backend APIs, data workflows, .NET, product software</p>
+                    <p className="text-foreground">Product software, backend APIs, .NET, and data workflows</p>
                   </div>
                 </div>
 
@@ -155,7 +155,7 @@ export function ResumeContent() {
           <SectionHeader
             badge="Work History"
             title="Professional Experience"
-            description="Production experience across startups, enterprise systems, and academic institutions."
+            description="Experience across startups, applied product work, testing-heavy systems, and stakeholder-facing software."
           />
 
           <div className="flex flex-col gap-6">
@@ -214,7 +214,7 @@ export function ResumeContent() {
           <SectionHeader
             badge="Expertise"
             title="Technical Skills"
-            description="The tools and technologies I reach for most often."
+            description="The tools I reach for most often, grouped around the way I actually work."
           />
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

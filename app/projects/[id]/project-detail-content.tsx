@@ -306,7 +306,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                 transition={{ duration: 0.5, delay: 0.08 }}
                 className="case-study-shell rounded-[28px] p-6"
               >
-                <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-primary/85">What to notice</p>
+                <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-primary/85">Why it stands out</p>
                 <div className="mt-4 space-y-4">
                   {project.outcomes.slice(0, 3).map((outcome) => (
                     <div key={outcome} className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">
@@ -335,12 +335,12 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                     <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">Current state</p>
                     <p className="mt-2 text-sm leading-6 text-foreground/90">
                       {project.liveUrl
-                        ? 'Live link available.'
+                        ? 'Live demo is available.'
                         : project.video?.url
-                          ? 'Video demo available.'
+                          ? 'Video walkthrough is available.'
                           : project.storeLinks?.length
-                            ? 'Store release planned.'
-                            : 'Code and case study available.'}
+                            ? 'Store release is planned.'
+                            : 'Code and case study are available.'}
                     </p>
                   </div>
                   <div className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">

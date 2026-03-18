@@ -83,7 +83,7 @@ export function ProjectCommandCenter() {
         <div className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 pb-4">
           <div>
             <p className="text-[0.68rem] font-mono uppercase tracking-[0.28em] text-primary/90">Selected Work</p>
-            <p className="mt-1 text-sm text-muted-foreground">The one dynamic section on the page. Start here.</p>
+            <p className="mt-1 text-sm text-muted-foreground">If you want the fast version of the portfolio, start here.</p>
           </div>
           <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/25 px-3 py-1 text-[0.72rem] font-mono uppercase tracking-[0.18em] text-muted-foreground">
             <span className="h-2 w-2 rounded-full bg-accent" />
@@ -254,11 +254,11 @@ export function ProjectCommandCenter() {
                       )}
                     </Button>
                     <Button asChild variant="outline">
-                      <Link href={`/projects/${activeProject.id}`}>
-                        <ArrowUpRight className="mr-2 h-4 w-4" />
-                        Read deep dive
-                      </Link>
-                    </Button>
+                        <Link href={`/projects/${activeProject.id}`}>
+                          <ArrowUpRight className="mr-2 h-4 w-4" />
+                          Open case study
+                        </Link>
+                      </Button>
                     {activeProject.githubUrl && primaryAction.href !== activeProject.githubUrl && (
                       <Button asChild variant="ghost">
                         <a href={activeProject.githubUrl} target="_blank" rel="noopener noreferrer">

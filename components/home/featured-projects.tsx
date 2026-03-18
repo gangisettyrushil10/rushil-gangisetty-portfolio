@@ -16,8 +16,8 @@ export function FeaturedProjects() {
         <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
           <SectionHeader
             badge="Featured Projects"
-            title="The strongest proof on the site"
-            description="The hero gives the quick read. These cards are the calmer follow-through: what the project was, why it mattered, and where to click next."
+            title="A few projects that tell the story well"
+            description="If a recruiter only opens a handful of things, these are the projects I would want them to see first."
             className="mb-0 max-w-3xl"
           />
           <Button asChild variant="outline" className="border-white/12 bg-white/[0.03] hover:bg-white/[0.06]">

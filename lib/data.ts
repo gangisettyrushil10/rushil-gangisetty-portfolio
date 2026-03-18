@@ -58,8 +58,8 @@ export const projects: Project[] = [
     id: 'buzzr-ecosystem',
     title: 'Buzzr Ecosystem',
     category: 'Product Software',
-    description: 'A sports-social app and launch site built as one product system, with live leagues, social features, and a backend that had to keep up as the product evolved.',
-    longDescription: 'Buzzr is the clearest example of how I like to build: start with a product idea people can feel quickly, then keep sharpening the experience without letting the backend drift. It grew into a mobile app for rating games by entertainment value, plus a web presence that makes the product legible to new users.',
+    description: 'A sports-social product built across mobile and web, with live leagues, social features, and a backend that had to stay organized as the product matured.',
+    longDescription: 'Buzzr is probably the clearest picture of how I like to work. It started with a simple product idea, then grew into a mobile app plus a web presence that made the product easier to understand, share, and keep improving without the backend turning chaotic.',
     stack: ['Expo', 'React Native', 'TypeScript', 'Supabase', 'PostgreSQL', 'Jest', 'Next.js', 'Tailwind CSS', 'Framer Motion'],
     metrics: [
       { label: 'Live Leagues', value: '7' },
@@ -127,8 +127,8 @@ export const projects: Project[] = [
     id: 'ledger-okcu',
     title: 'Ledger OKCU',
     category: 'Business Systems API',
-    description: 'A layered ASP.NET Core API for members, accounts, and transactions, built around the kinds of business rules that make backend work feel real.',
-    longDescription: 'Ledger OKCU is the .NET project I would open first in an interview. I built it as a layered API for members, accounts, and transactions, with the kinds of constraints that actually make backend work interesting: validation, repeat-safe requests, auditability, and domain rules that cannot be hand-waved away.',
+    description: 'A layered ASP.NET Core API for members, accounts, and transactions, built around the kind of business rules that make backend work interesting.',
+    longDescription: 'Ledger OKCU is the .NET project I would open first with a hiring manager. It is a layered API for members, accounts, and transactions, built with validation, repeat-safe requests, auditability, and domain rules that make it feel much closer to a real system than a tutorial app.',
     stack: ['C#', 'ASP.NET Core', 'Entity Framework Core', 'SQLite', 'FluentValidation', 'Swagger', 'Serilog', 'xUnit'],
     metrics: [
       { label: 'HTTP Endpoints', value: '10' },
@@ -183,8 +183,8 @@ export const projects: Project[] = [
     id: 'medscribe',
     title: 'Medscribe',
     category: 'Applied AI Product',
-    description: 'An AI-assisted clinical workflow that turns raw notes into structured summaries, suggested orders, and reviewable evidence.',
-    longDescription: 'Medscribe is the strongest AI project in the portfolio because it does not stop at the model call. The real value is in the workflow: taking a raw note, structuring the result, surfacing recommendations, and showing enough evidence and provenance for the output to feel usable instead of magical.',
+    description: 'An AI-assisted clinical workflow that turns raw notes into structured summaries, suggested orders, and evidence a user can actually review.',
+    longDescription: 'Medscribe is the strongest AI project in the portfolio because the interesting part is not just calling a model. The interesting part is shaping the workflow around it: turning a raw note into a structured result, surfacing recommendations, and making the output feel reviewable instead of opaque.',
     stack: ['React', 'Vite', 'Flask', 'Python', 'IBM watsonx', 'LLM Orchestration'],
     metrics: [
       { label: 'Python Files', value: '9' },
@@ -241,8 +241,8 @@ export const projects: Project[] = [
     id: 'business-analytics-dashboard',
     title: 'Business Analytics Dashboard',
     category: 'Data Workflows',
-    description: 'A full-stack analytics workflow for messy uploads, validation, forecasting, and the parts of data work teams usually hide from the demo.',
-    longDescription: 'This project matters because it is not a clean-data dashboard. It is an analytics workflow that deals with uploads, validation, forecasting, anomaly detection, and export. I like it because it shows the side of data work portfolios usually skip: the part where the input is bad and the system still has to be useful.',
+    description: 'A full-stack analytics workflow for messy uploads, validation, forecasting, and the parts of data work most demos skip.',
+    longDescription: 'This project matters to me because it is not a clean-data dashboard. It deals with uploads, validation, forecasting, anomaly detection, and export. In other words, it covers the side of analytics work that usually gets hidden once the chart looks pretty.',
     stack: ['FastAPI', 'React', 'TypeScript', 'PostgreSQL', 'Prophet', 'scikit-learn'],
     metrics: [
       { label: 'Backend Endpoints', value: '12' },
@@ -298,7 +298,7 @@ export const projects: Project[] = [
     id: 'graph-link-prediction',
     title: 'Graph Link Prediction',
     category: 'ML Depth',
-    description: 'A graph neural network project that adds real ML depth without pretending the rest of the portfolio is research-first.',
+    description: 'A graph neural network project that adds technical depth without changing the fact that this is still a software-engineering-first portfolio.',
     longDescription: 'This is the most technical project in the portfolio. I kept it as supporting work because it adds depth without changing the main story of the site. It shows that I can work with graph structure, model training, and evaluation design when the problem calls for it.',
     stack: ['Python', 'PyTorch Geometric', 'NetworkX', 'NumPy', 'scikit-learn'],
     metrics: [
@@ -391,25 +391,25 @@ export const skills = {
 export const focusAreas: FocusArea[] = [
   {
     title: 'Product and full-stack work',
-    description: 'Best when the job needs product taste, full-stack execution, and someone who cares whether the software actually feels good to use.',
+    description: 'A strong fit for product-minded software work where the experience matters just as much as the implementation underneath it.',
     proof: 'Buzzr Ecosystem',
     href: '/projects/buzzr-ecosystem',
   },
   {
     title: 'Backend and .NET systems',
-    description: 'Best when the work is mostly APIs, business rules, validation, and backend code that needs to stay readable as it grows.',
+    description: 'A strong fit for backend teams that care about APIs, validation, business rules, and code that stays readable as the system grows.',
     proof: 'Ledger OKCU',
     href: '/projects/ledger-okcu',
   },
   {
     title: 'Data-heavy software',
-    description: 'Best when the system has to survive messy input, SQL-heavy logic, reporting, or forecasting without becoming confusing.',
+    description: 'A strong fit for SQL-heavy, reporting-heavy, or forecasting-heavy work where the input is messy and the workflow still has to make sense.',
     proof: 'Business Analytics Dashboard',
     href: '/projects/business-analytics-dashboard',
   },
   {
     title: 'Applied AI inside products',
-    description: 'Best when the AI feature is only half the problem and the rest is workflow, trust, and a user experience that stays grounded.',
+    description: 'A strong fit when the product needs AI, but the real challenge is still workflow design, trust, and making the feature useful to a real user.',
     proof: 'Medscribe',
     href: '/projects/medscribe',
   },
@@ -418,26 +418,26 @@ export const focusAreas: FocusArea[] = [
 export const projectDomains = [
   {
     name: 'Product Software',
-    description: 'User-facing applications with strong product judgment and shipping polish',
+    description: 'User-facing software where product judgment and implementation quality both matter',
   },
   {
     name: 'Backend and Business APIs',
-    description: 'Validation-heavy services, domain rules, and application-system reliability',
+    description: 'Validation-heavy services, domain rules, and backend systems that need to hold up',
   },
   {
     name: 'Data Workflows',
-    description: 'SQL, validation, forecasting, ingestion, and analytics around messy inputs',
+    description: 'SQL, validation, forecasting, ingestion, and analytics around imperfect input',
   },
   {
     name: 'Applied AI',
-    description: 'AI features wrapped in real software workflows and explainable UX',
+    description: 'AI features wrapped in real workflows, with clear outputs and trustworthy UX',
   },
 ]
 
 export const recruiterSummary = {
-  title: 'Software engineer with backend, data, and business-systems depth.',
+  title: 'Software engineer with product sense, backend depth, and strong data workflow experience.',
   description:
-    'The thread through my work is pretty consistent: I like software that feels sharp in the product, makes sense in the backend, and stays useful once real users and real data show up.',
+    'I like building software that feels considered on the surface and solid underneath. Most of my work ends up where product, backend, and data meet: user-facing software, APIs with real business logic, and workflows that still hold up once real users and real data get involved.',
 }
 
 export const personalInfo = {
@@ -445,7 +445,7 @@ export const personalInfo = {
   title: 'Software Engineer',
   tagline: 'building product software, backend APIs, and data-heavy tools',
   location: 'Dallas, Texas',
-  status: 'Open to software engineering, backend, data, and systems roles',
+  status: 'Open to software engineering, backend, data, and business systems roles',
   email: 'gangisettyrushil@gmail.com',
   github: 'https://github.com/gangisettyrushil10',
   linkedin: 'https://www.linkedin.com/in/rushilgangisetty10',

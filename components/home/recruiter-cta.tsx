@@ -28,18 +28,18 @@ export function RecruiterCTA() {
           </span>
 
           <h2 className="mx-auto mt-6 max-w-3xl font-display text-4xl font-semibold leading-tight text-foreground sm:text-[3.4rem]">
-            If you think there is a fit, I&apos;d be glad to talk.
+            If this looks useful to your team, I&apos;d be glad to talk.
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-muted-foreground sm:text-[1.04rem]">
-            The cleanest read of me is early-career software engineer with strength in product software, backend APIs, business systems, and data-heavy workflows. If that helps your team, the rest of the site should give you a pretty honest sense of how I work.
+            The clearest read of me is early-career software engineer with strength in product software, backend APIs, business systems, and data-heavy workflows. If that overlaps with what you are hiring for, this site should give you a pretty honest sense of how I work.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
               <Link href="/contact">
                 <Mail className="mr-2 h-4 w-4" />
-                Reach out
+                Start a conversation
               </Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="border-white/12 bg-white/[0.03] hover:bg-white/[0.06]">
