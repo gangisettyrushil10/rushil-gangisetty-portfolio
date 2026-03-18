@@ -1,112 +1,103 @@
 'use client'
 
 import Link from 'next/link'
-import { Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react'
 import { personalInfo } from '@/lib/data'
+
+const footerLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/resume', label: 'Resume' },
+  { href: '/contact', label: 'Contact' },
+]
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Brand */}
-          <div className="md:col-span-2">
-            <Link href="/" className="text-xl font-bold tracking-tight">
-              <span className="text-foreground">rushil</span>
-              <span className="text-primary">.</span>
-            </Link>
-            <p className="mt-4 text-muted-foreground max-w-sm">
-              I like building products that feel clear to the user and dependable to the team behind them.
-            </p>
-            <div className="flex items-center gap-4 mt-6">
-              <a
-                href={personalInfo.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="GitHub"
-              >
-                <Github className="w-5 h-5" />
-              </a>
-              <a
-                href={personalInfo.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href={`mailto:${personalInfo.email}`}
-                className="p-2 rounded-lg bg-secondary text-secondary-foreground hover:bg-primary hover:text-primary-foreground transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="w-5 h-5" />
-              </a>
-            </div>
-          </div>
+    <footer className="page-shell border-t border-white/8 bg-[rgba(5,8,20,0.72)]">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="glass-panel-strong rounded-[32px] p-6 sm:p-8">
+          <div className="grid gap-10 lg:grid-cols-[1.4fr_0.7fr_0.9fr]">
+            <div>
+              <span className="section-label">Built for recruiters and builders</span>
+              <h2 className="mt-5 text-3xl font-semibold leading-tight text-foreground sm:text-[2.7rem]">
+                Product taste, backend calm, and real-world workflow thinking.
+              </h2>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
+                I trimmed this site to the work that best represents how I build today. If something here feels like a fit,
+                I&apos;d love to talk.
+              </p>
 
-          {/* Navigation */}
-          <div>
-            <h3 className="text-sm font-semibold text-foreground mb-4">Navigation</h3>
-            <ul className="flex flex-col gap-3">
-              {['Home', 'Projects', 'Resume', 'Contact'].map((item) => (
-                <li key={item}>
-                  <Link
-                    href={item === 'Home' ? '/' : `/${item.toLowerCase()}`}
-                    className="text-muted-foreground hover:text-foreground transition-colors text-sm"
-                  >
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="text-sm font-semibold text-foreground mb-4">Get in Touch</h3>
-            <ul className="flex flex-col gap-3">
-              <li>
+              <div className="mt-6 flex flex-wrap gap-3">
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm flex items-center gap-1"
+                  className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition hover:brightness-110"
                 >
-                  Email <ArrowUpRight className="w-3 h-3" />
+                  <Mail className="h-4 w-4" />
+                  {personalInfo.email}
                 </a>
-              </li>
-              <li>
                 <a
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm flex items-center gap-1"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-foreground transition hover:border-white/18 hover:bg-white/8"
                 >
-                  LinkedIn <ArrowUpRight className="w-3 h-3" />
+                  <Linkedin className="h-4 w-4" />
+                  LinkedIn
                 </a>
-              </li>
-              <li>
                 <a
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm flex items-center gap-1"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-medium text-foreground transition hover:border-white/18 hover:bg-white/8"
                 >
-                  GitHub <ArrowUpRight className="w-3 h-3" />
+                  <Github className="h-4 w-4" />
+                  GitHub
                 </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+              </div>
+            </div>
 
-        <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-muted-foreground">
-            {new Date().getFullYear()} Rushil Gangisetty. Built with Next.js.
-          </p>
-          <p className="text-sm text-muted-foreground">
-            {personalInfo.location}
-          </p>
+            <div>
+              <p className="text-sm font-semibold text-foreground">Navigate</p>
+              <div className="mt-4 grid gap-2">
+                {footerLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className="inline-flex items-center gap-2 rounded-2xl px-3 py-2 text-sm text-muted-foreground transition hover:bg-white/6 hover:text-foreground"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <p className="text-sm font-semibold text-foreground">Quick read</p>
+              <div className="mt-4 space-y-4">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-primary/90">Based in</p>
+                  <p className="mt-2 text-sm text-foreground">{personalInfo.location}</p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/[0.04] p-4">
+                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-accent">Currently open</p>
+                  <p className="mt-2 text-sm leading-6 text-foreground">{personalInfo.status}</p>
+                </div>
+                <a
+                  href={personalInfo.resumePath}
+                  download
+                  className="inline-flex items-center gap-2 text-sm font-medium text-foreground transition hover:text-primary"
+                >
+                  Download resume
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 flex flex-col gap-2 border-t border-white/8 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+            <p>{new Date().getFullYear()} Rushil Gangisetty. Built with Next.js and Framer Motion.</p>
+            <p>Dark, vibrant, and intentionally curated.</p>
+          </div>
         </div>
       </div>
     </footer>

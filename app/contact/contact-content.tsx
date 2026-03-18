@@ -1,8 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
-import { Mail, Github, Linkedin, MapPin, Send, ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Github, Linkedin, Mail, MapPin, Send } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
@@ -16,233 +15,162 @@ export function ContactContent() {
     message: '',
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault()
+
     const subject = encodeURIComponent(formState.subject || `Portfolio inquiry from ${formState.name}`)
     const body = encodeURIComponent(
-      [
-        `Name: ${formState.name}`,
-        `Email: ${formState.email}`,
-        '',
-        formState.message,
-      ].join('\n'),
+      [`Name: ${formState.name}`, `Email: ${formState.email}`, '', formState.message].join('\n')
     )
+
     window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`
   }
 
   return (
     <>
-      {/* Hero */}
-      <section className="relative pt-32 pb-16 sm:pt-40 sm:pb-24 overflow-hidden">
-        <div className="absolute inset-0 animated-gradient opacity-30" />
-        <div className="absolute inset-0 grid-pattern opacity-20" />
-        
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.4 }}
-          transition={{ duration: 1 }}
-          className="absolute top-1/3 -left-32 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.3 }}
-          transition={{ duration: 1, delay: 0.3 }}
-          className="absolute bottom-0 -right-32 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
-        />
+      <section className="relative overflow-hidden px-4 pb-18 pt-32 sm:px-6 sm:pb-22 sm:pt-40 lg:px-8">
+        <div className="absolute inset-0 aurora-backdrop opacity-80" />
+        <div className="absolute inset-0 grid-pattern opacity-30" />
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-center max-w-2xl mx-auto"
-          >
-            <span className="inline-block text-xs font-mono tracking-wider text-primary uppercase mb-4">
-              Contact
-            </span>
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-foreground">
-              Let&apos;s talk
-            </h1>
-            <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-              I&apos;m open to software engineering roles, backend work, data-heavy product work, and teams looking for an early-career engineer who can contribute quickly and keep growing.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-16 sm:py-24 bg-background">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-            {/* Contact Info */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <h2 className="text-2xl font-bold text-foreground mb-6">Get in Touch</h2>
-              <p className="text-muted-foreground mb-8 leading-relaxed">
-                The strongest fit is software engineering, backend/API work, data-heavy applications, and business systems. If that overlaps with what you&apos;re hiring for, feel free to reach out.
+        <div className="relative mx-auto max-w-7xl">
+          <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr]">
+            <div>
+              <span className="section-label">Contact</span>
+              <h1 className="mt-6 max-w-3xl text-5xl font-semibold leading-[0.92] tracking-[-0.06em] text-foreground sm:text-[5rem]">
+                Let&apos;s make it easy to start a conversation.
+              </h1>
+              <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-[1.06rem]">
+                I&apos;m looking for software engineering roles where I can contribute quickly, keep learning fast, and build the kind of software
+                that stays useful after the demo ends.
               </p>
 
-              {/* Contact Cards */}
-              <div className="flex flex-col gap-4">
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
                 <a
                   href={`mailto:${personalInfo.email}`}
-                  className="group flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors"
+                  className="glass-panel block rounded-[28px] p-5 transition hover:border-white/18"
                 >
-                  <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <Mail className="w-5 h-5" />
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/18 text-primary">
+                    <Mail className="h-5 w-5" />
                   </div>
-                  <div className="flex-1">
-                    <p className="text-sm text-muted-foreground">Email</p>
-                    <p className="text-foreground font-medium">{personalInfo.email}</p>
-                  </div>
-                  <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <p className="mt-4 text-sm font-medium text-foreground">Email</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{personalInfo.email}</p>
                 </a>
 
                 <a
                   href={personalInfo.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors"
+                  className="glass-panel block rounded-[28px] p-5 transition hover:border-white/18"
                 >
-                  <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <Linkedin className="w-5 h-5" />
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/8 text-foreground">
+                    <Linkedin className="h-5 w-5" />
                   </div>
-                  <div className="flex-1">
-                    <p className="text-sm text-muted-foreground">LinkedIn</p>
-                    <p className="text-foreground font-medium">LinkedIn profile</p>
-                  </div>
-                  <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <p className="mt-4 text-sm font-medium text-foreground">LinkedIn</p>
+                  <p className="mt-2 inline-flex items-center gap-2 text-sm text-muted-foreground">
+                    Connect here
+                    <ArrowUpRight className="h-4 w-4" />
+                  </p>
                 </a>
 
                 <a
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex items-center gap-4 p-4 rounded-xl bg-card border border-border hover:border-primary/50 transition-colors"
+                  className="glass-panel block rounded-[28px] p-5 transition hover:border-white/18"
                 >
-                  <div className="p-3 rounded-lg bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                    <Github className="w-5 h-5" />
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/8 text-foreground">
+                    <Github className="h-5 w-5" />
                   </div>
-                  <div className="flex-1">
-                    <p className="text-sm text-muted-foreground">GitHub</p>
-                    <p className="text-foreground font-medium">GitHub profile</p>
-                  </div>
-                  <ArrowUpRight className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <p className="mt-4 text-sm font-medium text-foreground">GitHub</p>
+                  <p className="mt-2 inline-flex items-center gap-2 text-sm text-muted-foreground">
+                    See public work
+                    <ArrowUpRight className="h-4 w-4" />
+                  </p>
                 </a>
 
-                <div className="flex items-center gap-4 p-4 rounded-xl bg-card border border-border">
-                  <div className="p-3 rounded-lg bg-secondary text-muted-foreground">
-                    <MapPin className="w-5 h-5" />
+                <div className="glass-panel rounded-[28px] p-5">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-white/8 text-foreground">
+                    <MapPin className="h-5 w-5" />
                   </div>
-                  <div>
-                    <p className="text-sm text-muted-foreground">Location</p>
-                    <p className="text-foreground font-medium">{personalInfo.location}</p>
-                  </div>
+                  <p className="mt-4 text-sm font-medium text-foreground">Location</p>
+                  <p className="mt-2 text-sm text-muted-foreground">{personalInfo.location}</p>
                 </div>
               </div>
+            </div>
 
-              {/* Availability */}
-              <div className="mt-8 p-4 rounded-xl bg-green-500/5 border border-green-500/20">
-                <div className="flex items-center gap-3">
-                  <span className="relative flex h-3 w-3">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
-                  </span>
-                  <p className="text-green-400 font-medium">Currently open to opportunities</p>
-                </div>
-                <p className="mt-2 text-sm text-muted-foreground">
-                  Available for full-time roles, internships, and strong early-career opportunities.
-                </p>
-              </div>
-            </motion.div>
+            <div className="glass-panel-strong rounded-[32px] p-6 sm:p-7">
+              <p className="text-[0.68rem] font-mono uppercase tracking-[0.2em] text-primary/90">Send a note</p>
+              <p className="mt-4 text-sm leading-7 text-muted-foreground">
+                This form opens a pre-filled email draft so you can reach me without hunting around for contact info.
+              </p>
 
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
-            >
-              <form onSubmit={handleSubmit} className="p-6 sm:p-8 rounded-2xl bg-card border border-border">
-                <h2 className="text-xl font-bold text-foreground mb-6">Send a note</h2>
-                
-                <div className="flex flex-col gap-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                        Name
-                      </label>
-                      <Input
-                        id="name"
-                        type="text"
-                        placeholder="Your name"
-                        value={formState.name}
-                        onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                        required
-                        className="bg-background"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                        Email
-                      </label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="your@email.com"
-                        value={formState.email}
-                        onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                        required
-                        className="bg-background"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
-                      Subject
+              <form onSubmit={handleSubmit} className="mt-6 grid gap-5">
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div className="grid gap-2">
+                    <label htmlFor="name" className="text-sm font-medium text-foreground">
+                      Name
                     </label>
-                      <Input
-                        id="subject"
-                        type="text"
-                        placeholder="What are you reaching out about"
-                        value={formState.subject}
-                        onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                        required
-                      className="bg-background"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                      Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      placeholder="A few lines is plenty"
-                      value={formState.message}
-                      onChange={(e) => setFormState({ ...formState, message: e.target.value })}
+                    <Input
+                      id="name"
+                      value={formState.name}
+                      onChange={(event) => setFormState({ ...formState, name: event.target.value })}
+                      placeholder="Your name"
                       required
-                      rows={6}
-                      className="bg-background resize-none"
+                      className="border-white/10 bg-black/18"
                     />
                   </div>
 
-                  <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90">
-                    <Send className="mr-2 w-4 h-4" />
-                    Open email draft
-                  </Button>
+                  <div className="grid gap-2">
+                    <label htmlFor="email" className="text-sm font-medium text-foreground">
+                      Email
+                    </label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={formState.email}
+                      onChange={(event) => setFormState({ ...formState, email: event.target.value })}
+                      placeholder="you@company.com"
+                      required
+                      className="border-white/10 bg-black/18"
+                    />
+                  </div>
                 </div>
 
-                <p className="mt-4 text-xs text-center text-muted-foreground">
-                  This opens your email app with the details filled in.
-                </p>
+                <div className="grid gap-2">
+                  <label htmlFor="subject" className="text-sm font-medium text-foreground">
+                    Subject
+                  </label>
+                  <Input
+                    id="subject"
+                    value={formState.subject}
+                    onChange={(event) => setFormState({ ...formState, subject: event.target.value })}
+                    placeholder="Role, project, or introduction"
+                    required
+                    className="border-white/10 bg-black/18"
+                  />
+                </div>
+
+                <div className="grid gap-2">
+                  <label htmlFor="message" className="text-sm font-medium text-foreground">
+                    Message
+                  </label>
+                  <Textarea
+                    id="message"
+                    rows={7}
+                    value={formState.message}
+                    onChange={(event) => setFormState({ ...formState, message: event.target.value })}
+                    placeholder="A few lines is plenty."
+                    required
+                    className="resize-none border-white/10 bg-black/18"
+                  />
+                </div>
+
+                <Button type="submit" size="lg" className="mt-2 rounded-full bg-primary text-primary-foreground hover:bg-primary/90">
+                  <Send className="mr-2 h-4 w-4" />
+                  Open email draft
+                </Button>
               </form>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

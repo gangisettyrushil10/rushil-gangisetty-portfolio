@@ -13,11 +13,11 @@ export function Section({ children, className, id }: SectionProps) {
   return (
     <motion.section
       id={id}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className={cn('py-16 sm:py-24', className)}
+      viewport={{ once: true, margin: '-120px' }}
+      transition={{ duration: 0.55, ease: 'easeOut' }}
+      className={cn('py-18 sm:py-24', className)}
     >
       {children}
     </motion.section>
@@ -33,34 +33,34 @@ interface SectionHeaderProps {
 
 export function SectionHeader({ badge, title, description, className }: SectionHeaderProps) {
   return (
-    <div className={cn('mb-12', className)}>
+    <div className={cn('mb-12 max-w-3xl', className)}>
       {badge && (
         <motion.span
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="inline-block text-xs font-mono tracking-wider text-primary uppercase mb-4"
+          transition={{ duration: 0.35 }}
+          className="section-label"
         >
           {badge}
         </motion.span>
       )}
       <motion.h2
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        transition={{ duration: 0.4, delay: 0.1 }}
-        className="font-display text-2xl sm:text-[2.2rem] font-semibold leading-tight text-foreground"
+        transition={{ duration: 0.42, delay: 0.06 }}
+        className="mt-5 text-3xl font-semibold leading-[0.95] tracking-[-0.05em] text-foreground sm:text-[3rem]"
       >
         {title}
       </motion.h2>
       {description && (
         <motion.p
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-          className="mt-4 text-base sm:text-[1.02rem] text-muted-foreground max-w-2xl leading-8"
+          transition={{ duration: 0.42, delay: 0.12 }}
+          className="mt-5 text-base leading-8 text-muted-foreground sm:text-[1.04rem]"
         >
           {description}
         </motion.p>

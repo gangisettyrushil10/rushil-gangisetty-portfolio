@@ -5,7 +5,7 @@ import { ProjectsContent } from './projects-content'
 
 export const metadata: Metadata = {
   title: 'Projects | Rushil Gangisetty',
-  description: 'Explore my flagship projects spanning full-stack applications, AI systems, data products, and backend services.',
+  description: 'A curated set of GitHub-backed projects across product software, data workflows, applied AI, and machine-learning depth.',
 }
 
 export default function ProjectsPage() {

@@ -5,7 +5,7 @@ import { ResumeContent } from './resume-content'
 
 export const metadata: Metadata = {
   title: 'Resume | Rushil Gangisetty',
-  description: 'Software engineer with experience in full-stack development, backend systems, data engineering, and applied AI. View my qualifications and work history.',
+  description: 'Resume snapshot for a product-minded software engineer with experience in full-stack development, backend workflows, data systems, and applied AI.',
 }
 
 export default function ResumePage() {
