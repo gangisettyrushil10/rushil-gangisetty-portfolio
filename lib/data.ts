@@ -86,9 +86,9 @@ export const projects: Project[] = [
     title: 'Buzzr',
     category: 'Product Software',
     description:
-      'A sports-social product across mobile and web with live leagues, entertainment-based ratings, watch parties, and a backend that had to stay organized while the product kept evolving.',
+      'A sports-focused social product across mobile and web with live leagues, entertainment-based ratings, watch parties, and a shared backend model.',
     longDescription:
-      'Buzzr is the clearest snapshot of how I like to build. It is a product system, not just a single screen: an Expo mobile app, a public-facing web presence, shared types, social features, live data, and enough moving parts that architecture choices actually matter.',
+      'Buzzr is the strongest example of my product and full-stack work. It combines an Expo mobile app, a public web presence, shared types, live data, and social features in a system where product decisions and architecture both matter.',
     stack: [
       'Expo',
       'React Native',
@@ -110,21 +110,21 @@ export const projects: Project[] = [
     timeline: '2026',
     status: 'Active build',
     challenge:
-      'Social sports products only feel good when live data, identity, ratings, and activity feeds stay coherent while the product is still changing. The hard part was keeping the system flexible without letting the underlying model get sloppy.',
+      'A social sports product only works when live data, identity, ratings, and activity feeds remain coherent while the product continues to evolve. The core challenge was preserving flexibility without compromising the underlying model.',
     decisions: [
-      'Used Supabase for auth, realtime primitives, and Postgres so the product could move quickly without inventing infrastructure too early.',
-      'Kept shared types and validation logic between the app and the web surface so the product story stayed consistent.',
-      'Centered the rating model on entertainment value instead of final score, which sharpened the product concept immediately.',
+      'Used Supabase for authentication, realtime primitives, and Postgres so the team could move quickly without overbuilding infrastructure early.',
+      'Maintained shared types and validation logic across mobile and web to keep the experience and data model aligned.',
+      'Centered the rating model on entertainment value rather than final score, which gave the product a clear point of view.',
     ],
     outcomes: [
-      'Supports 7 live leagues with auth, profiles, ratings, following, and watch-party flows.',
-      'Shows the strongest mix of product taste, full-stack coordination, and ongoing iteration anywhere on my GitHub.',
-      'Feels like something that could plausibly keep growing instead of a one-week portfolio demo.',
+      'Supports 7 live leagues with authentication, profiles, ratings, following, and watch-party workflows.',
+      'Demonstrates product judgment, full-stack coordination, and sustained iteration across a growing codebase.',
+      'Represents the most complete product system in my public portfolio.',
     ],
     learnings: [
-      'The real complexity in multi-surface products usually lives in the data model and API contracts, not the individual screens.',
-      'Realtime features only feel magical when the failure states are boring and dependable.',
-      'A strong product concept gets stronger when the interaction model reinforces it everywhere.',
+      'In multi-surface products, the hardest problems usually live in the data model and API contracts rather than the screens themselves.',
+      'Realtime features only feel polished when failure states are predictable and reliable.',
+      'A clear product concept becomes stronger when the interaction model reinforces it consistently.',
     ],
     githubUrl: 'https://github.com/gangisettyrushil10/Buzzr',
     liveUrl: 'https://buzzr-desktop.vercel.app',
@@ -159,14 +159,14 @@ export const projects: Project[] = [
     ],
     video: {
       title: 'Product walkthrough',
-      caption: 'Open the app, browse a game, rate it, then land on the web surface to show the full ecosystem.',
+      caption: 'A concise walkthrough would move from the mobile feed to ratings and then to the web experience to show the full product ecosystem.',
     },
     featured: true,
-    recruiterAngle: 'Best proof of product sense, full-stack execution, and shipping momentum.',
-    proofLine: 'Selected from GitHub because it is the broadest and most current product system in the portfolio.',
+    recruiterAngle: 'Strongest evidence of product judgment, full-stack execution, and shipping momentum.',
+    proofLine: 'Selected because it is the broadest and most current product system in my public GitHub work.',
     repoName: 'Buzzr',
-    previewTitle: 'A sports app that actually feels like a product',
-    previewNote: 'Live data, social activity, and a clear concept give this one the strongest recruiter signal.',
+    previewTitle: 'A sports product with a clear product point of view',
+    previewNote: 'Live data, social activity, and a coherent product model make this the strongest flagship project in the portfolio.',
     theme: {
       primary: '#43d7ff',
       secondary: '#12b981',
@@ -178,9 +178,9 @@ export const projects: Project[] = [
     title: 'Business Analytics Dashboard',
     category: 'Data Workflow Product',
     description:
-      'A full-stack analytics workflow for messy CSV uploads, validation, forecasting, anomaly detection, and AI-assisted insights.',
+      'A full-stack analytics workflow for CSV uploads, validation, forecasting, anomaly detection, and AI-assisted insights.',
     longDescription:
-      'This project matters because it does not pretend data arrives clean. It handles uploads, ETL-like transformations, validation, forecasting, anomaly detection, auth, and export, which makes it much closer to real analytics software than a dashboard pasted on top of a tidy dataset.',
+      'This project is valuable because it is built around imperfect data rather than idealized input. It handles uploads, transformations, validation, forecasting, anomaly detection, authentication, and export, making it much closer to real analytics software than a dashboard layered on top of a tidy dataset.',
     stack: [
       'FastAPI',
       'React',
@@ -202,21 +202,21 @@ export const projects: Project[] = [
     timeline: '2025',
     status: 'Completed',
     challenge:
-      'Most dashboards look good only after someone else has already cleaned the data. I wanted this one to handle the ugly part too: missing values, broken dates, duplicate rows, bad categories, and still guide the user toward useful output.',
+      'Many dashboards assume the data has already been cleaned. The challenge here was handling missing values, inconsistent dates, duplicates, and invalid categories while still guiding users toward useful output.',
     decisions: [
-      'Made validation a first-class product feature instead of something hidden behind the upload step.',
-      'Kept forecasting, anomaly detection, and insight generation behind clear backend boundaries so the app stayed explainable.',
-      'Used AI-generated insights as a layer on top of the workflow, not as a substitute for the workflow.',
+      'Made validation a first-class product feature rather than hiding it behind the upload flow.',
+      'Kept forecasting, anomaly detection, and insight generation behind clear backend boundaries so the system remained explainable.',
+      'Used AI-generated insights as a layer on top of the workflow rather than as a substitute for it.',
     ],
     outcomes: [
-      'Covers ingestion, validation, forecasting, anomaly detection, and export in one product flow.',
-      'Reads like a serious data-heavy application rather than a chart gallery with a machine-learning badge on it.',
-      'Strongest public GitHub proof for roles where backend, product, and data all overlap.',
+      'Combines ingestion, validation, forecasting, anomaly detection, and export in a single product flow.',
+      'Shows a more realistic view of analytics software than a chart-first demo.',
+      'Provides strong public GitHub evidence for roles where backend, product, and data intersect.',
     ],
     learnings: [
-      'A lot of analytics work is really about making bad input understandable.',
-      'Users trust forecasts more when the path from raw data to output is visible and calm.',
-      'The right boundary between product and model logic makes demos far easier to explain.',
+      'A significant share of analytics work is really about making imperfect input understandable.',
+      'Forecasts are easier to trust when the path from raw data to output is visible.',
+      'Clear boundaries between product logic and model logic make systems easier to explain and extend.',
     ],
     githubUrl: 'https://github.com/gangisettyrushil10/Business_Analytics_Dashboard',
     links: [{ label: 'Repository', href: 'https://github.com/gangisettyrushil10/Business_Analytics_Dashboard' }],
@@ -224,15 +224,15 @@ export const projects: Project[] = [
       {
         label: 'Validation-first workflow',
         alt: 'Business analytics dashboard validation state',
-        caption: 'The key story is that the workflow handles messy uploads honestly before jumping to charts.',
+        caption: 'The strongest visual is the validation workflow, because it shows the system handling imperfect uploads before moving to charts and forecasts.',
       },
     ],
     featured: true,
-    recruiterAngle: 'Best proof that I can build data-heavy software without hand-waving around the messy parts.',
-    proofLine: 'Selected from GitHub because it combines backend APIs, product decisions, data quality work, and machine-learning output.',
+    recruiterAngle: 'Strong evidence that I can build data-intensive software with attention to workflow quality and backend structure.',
+    proofLine: 'Selected because it combines backend APIs, product design, data quality work, and model-driven features in one system.',
     repoName: 'Business_Analytics_Dashboard',
-    previewTitle: 'Data software that starts with bad input',
-    previewNote: 'Validation, forecasting, anomaly detection, and AI insights all sit inside one coherent workflow.',
+    previewTitle: 'Analytics software built for real-world input',
+    previewNote: 'Validation, forecasting, anomaly detection, and AI insights operate inside one coherent workflow.',
     theme: {
       primary: '#ff8a5b',
       secondary: '#facc15',
@@ -246,7 +246,7 @@ export const projects: Project[] = [
     description:
       'An AI-assisted clinical workflow that turns raw notes into structured summaries and suggested actions in a review-friendly interface.',
     longDescription:
-      'The interesting part of this project is not simply calling a model. It is shaping the workflow around the model so the result feels reviewable instead of magical: structured outputs, clearer sections, demo-safe modes, and a UI that treats trust as part of the feature.',
+      'The value of this project lies in workflow design rather than simple model invocation. It uses structured outputs, clear presentation, demo-safe modes, and a review-oriented interface so the result feels inspectable rather than opaque.',
     stack: ['React', 'JavaScript', 'Flask', 'Python', 'IBM watsonx', 'LLM orchestration', 'CSS'],
     metrics: [
       { label: 'Backend files', value: '9' },
@@ -258,42 +258,42 @@ export const projects: Project[] = [
     timeline: '2025',
     status: 'Completed',
     challenge:
-      'Healthcare-adjacent workflows raise the bar for clarity. A flashy AI demo is not enough if the user cannot understand what the system produced or why it should be trusted.',
+      'Healthcare-adjacent workflows require a high standard of clarity. A visually impressive AI demo is not enough if users cannot understand what the system produced or why it should be trusted.',
     decisions: [
-      'Used structured outputs because free-form text alone was not strong enough for the workflow.',
-      'Separated live and mock modes so the product stayed demoable even when credentials were unavailable.',
-      'Treated the frontend as part of the AI system by organizing results around reviewability instead of novelty.',
+      'Used structured outputs because free-form responses were not sufficient for the workflow.',
+      'Separated live and mock modes so the product remained demoable even when credentials were unavailable.',
+      'Treated the frontend as part of the AI system by organizing results around reviewability rather than novelty.',
     ],
     outcomes: [
-      'Transforms raw notes into a more structured summary with suggested next steps and supporting context.',
-      'Shows that I think about trust, workflow design, and presentation, not just model invocation.',
-      'Adds a strong applied-AI project to the portfolio without turning the entire site into an AI gimmick.',
+      'Transforms raw notes into structured summaries with suggested next steps and supporting context.',
+      'Demonstrates attention to trust, workflow design, and presentation in addition to model integration.',
+      'Adds a meaningful applied-AI case study without overwhelming the broader software engineering story.',
     ],
     learnings: [
-      'In AI products, confidence without visibility is a liability.',
-      'Structured outputs make everything downstream easier to reason about.',
-      'The best AI features feel like software first and model demos second.',
+      'In AI products, confidence without visibility creates risk.',
+      'Structured outputs make downstream systems easier to reason about.',
+      'The strongest AI features still need to function as well-designed software.',
     ],
     githubUrl: 'https://github.com/gangisettyrushil10/IBM-Medscribe-AI',
     links: [{ label: 'Repository', href: 'https://github.com/gangisettyrushil10/IBM-Medscribe-AI' }],
     video: {
       title: 'Workflow demo',
-      caption: 'The strongest demo is note in, structured result out, with the interface showing why the output feels reviewable.',
+      caption: 'The strongest demonstration is a clear note-in, structured-result-out workflow that shows why the output is reviewable.',
       url: 'https://www.youtube.com/watch?v=nutsuHR1QPI',
     },
     gallery: [
       {
         label: 'Structured output',
         alt: 'IBM Medscribe structured result view',
-        caption: 'The right screenshot here is the structured result because it shows the trust story immediately.',
+        caption: 'The structured result view is the most important screenshot because it communicates the trust model immediately.',
       },
     ],
     featured: true,
-    recruiterAngle: 'Best proof that I can build AI features with product discipline instead of a chatbot wrapper.',
-    proofLine: 'Selected from GitHub because it demonstrates applied AI, backend orchestration, and thoughtful UX in one project.',
+    recruiterAngle: 'Strong evidence that I can build AI features with product discipline rather than a thin chatbot layer.',
+    proofLine: 'Selected because it demonstrates applied AI, backend orchestration, and thoughtful UX in one project.',
     repoName: 'IBM-Medscribe-AI',
-    previewTitle: 'AI shaped into a trustworthy workflow',
-    previewNote: 'The point is not the model call. The point is the reviewable result.',
+    previewTitle: 'AI structured into a trustworthy workflow',
+    previewNote: 'The value is not the model call itself, but the quality and clarity of the resulting workflow.',
     theme: {
       primary: '#9d8cff',
       secondary: '#ff6cab',
@@ -307,7 +307,7 @@ export const projects: Project[] = [
     description:
       'A graph neural network project for link prediction on the Facebook social graph using PyTorch Geometric.',
     longDescription:
-      'This is the technical depth piece in the portfolio. I keep it as supporting evidence for machine-learning depth instead of the main story, which helps the site stay software-engineering-first while still proving I can work lower in the stack when the problem asks for it.',
+      'This project provides technical depth in the portfolio. It supports the broader software-engineering story while showing that I can work on lower-level machine learning problems when the problem warrants it.',
     stack: ['Python', 'PyTorch Geometric', 'NetworkX', 'NumPy', 'scikit-learn', 'Matplotlib'],
     metrics: [
       { label: 'Nodes', value: '4,039' },
@@ -319,30 +319,30 @@ export const projects: Project[] = [
     timeline: '2025',
     status: 'Completed',
     challenge:
-      'Link prediction is not just a model problem. It depends on how you construct train and test edges, define negatives, and choose an evaluation setup that is honest.',
+      'Link prediction is not only a model problem. It depends on how training and test edges are constructed, how negatives are defined, and how evaluation is handled.',
     decisions: [
-      'Used PyTorch Geometric so the implementation matched the graph nature of the problem.',
-      'Spent time on negative sampling and evaluation because that is where a lot of graph-ML projects get fuzzy.',
-      'Kept the model simple enough to defend clearly in an interview.',
+      'Used PyTorch Geometric so the implementation matched the graph structure of the problem.',
+      'Focused on negative sampling and evaluation because those decisions often determine whether graph-ML work is credible.',
+      'Kept the model architecture simple enough to explain clearly in technical discussion.',
     ],
     outcomes: [
-      'Trains a GCN-based workflow over a real social graph dataset instead of a toy tabular example.',
-      'Adds credible technical depth to the portfolio without distracting from the stronger product and systems work.',
-      'Useful proof point for teams that care about breadth plus the ability to go deeper when necessary.',
+      'Implements a GCN-based workflow over a real social graph dataset rather than a toy tabular example.',
+      'Adds credible technical depth without distracting from the stronger product and systems work.',
+      'Supports teams looking for engineering breadth with the ability to go deeper when necessary.',
     ],
     learnings: [
-      'Representation, sampling, and evaluation choices can matter more than model cleverness.',
-      'Technical depth plays best in a portfolio when it supports the main narrative instead of replacing it.',
-      'Simple explanations beat flashy complexity when you are presenting work to a recruiter or hiring manager.',
+      'Representation, sampling, and evaluation choices can matter more than model sophistication.',
+      'Technical depth is most effective when it supports the broader narrative of the portfolio.',
+      'Clear explanations are more valuable than unnecessary complexity when presenting work.',
     ],
     githubUrl: 'https://github.com/gangisettyrushil10/graph-theory-final-project',
     links: [{ label: 'Repository', href: 'https://github.com/gangisettyrushil10/graph-theory-final-project' }],
     featured: true,
-    recruiterAngle: 'Depth piece that shows I can move from product software into more technical ML territory when needed.',
-    proofLine: 'Selected from GitHub because it adds real technical range without cluttering the main narrative.',
+    recruiterAngle: 'Adds meaningful technical depth and shows I can move beyond product software when the problem requires it.',
+    proofLine: 'Selected because it adds technical range without distracting from the main portfolio narrative.',
     repoName: 'graph-theory-final-project',
-    previewTitle: 'A graph ML project I can actually explain',
-    previewNote: 'Good depth piece, intentionally positioned behind the stronger product and systems work.',
+    previewTitle: 'A graph ML project with a defensible technical story',
+    previewNote: 'Included as a depth piece behind the stronger product and systems work.',
     theme: {
       primary: '#68f7c4',
       secondary: '#43d7ff',
@@ -356,7 +356,7 @@ export const projects: Project[] = [
     description:
       'A GPA tracking and forecasting tool built for Austin College stakeholders who needed dependable reporting instead of spreadsheets.',
     longDescription:
-      'PA GPA is a quieter project, but it is a useful example of stakeholder-facing software. The point was not flashy UI. The point was giving people clearer reporting and forecasting for an operational workflow that needed more trust and less manual effort.',
+      'PA GPA is a useful example of stakeholder-facing software. Its value lies in clearer reporting and forecasting for an operational workflow that needed more trust and less manual effort.',
     stack: ['Java', 'Forecasting', 'Reporting', 'Testing'],
     metrics: [
       { label: 'Stakeholders', value: '100+' },
@@ -368,14 +368,14 @@ export const projects: Project[] = [
     timeline: '2025',
     status: 'Completed',
     challenge:
-      'Operational tools are only valuable when non-engineers trust the numbers and the workflow fits what they actually need.',
+      'Operational tools are only effective when non-engineers trust the numbers and the workflow fits their day-to-day needs.',
     decisions: [
       'Focused on reporting clarity and forecasting usefulness rather than decoration.',
       'Backed the workflow with tests so the numbers stayed dependable.',
     ],
     outcomes: [
       'Improved a stakeholder-facing process with clearer reporting and forecasting.',
-      'Good support project for showing that I can build practical software, not only flashy demos.',
+      'Provides supporting evidence that I can build practical software for real operational use.',
     ],
     learnings: [
       'A plain internal tool can still be strong portfolio material if it solves a real problem cleanly.',
@@ -384,11 +384,11 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/gangisettyrushil10/PA_GPA',
     links: [{ label: 'Repository', href: 'https://github.com/gangisettyrushil10/PA_GPA' }],
     featured: false,
-    recruiterAngle: 'Helpful supporting proof for stakeholder-facing software and forecasting work.',
-    proofLine: 'Kept as supporting GitHub work because it is practical and useful, even if it is less visually exciting.',
+    recruiterAngle: 'Useful supporting evidence for stakeholder-facing software and forecasting work.',
+    proofLine: 'Included as supporting GitHub work because it is practical, relevant, and professionally useful.',
     repoName: 'PA_GPA',
-    previewTitle: 'An internal tool that prizes clarity over flash',
-    previewNote: 'Shows comfort with reporting, forecasting, and building for real stakeholder needs.',
+    previewTitle: 'An internal tool designed for clarity and reliability',
+    previewNote: 'Shows experience with reporting, forecasting, and software built around stakeholder needs.',
     theme: {
       primary: '#f5d76e',
       secondary: '#ff8a5b',
@@ -402,7 +402,7 @@ export const projects: Project[] = [
     description:
       'An early NLP classifier using TF-IDF and a Passive Aggressive model to classify news as fake or real.',
     longDescription:
-      'This is one of the earlier machine-learning projects on my GitHub, and I keep it around as a compact example of building and evaluating a simple text-classification pipeline.',
+      'This is an earlier machine-learning project on my GitHub and serves as a compact example of building and evaluating a straightforward text-classification pipeline.',
     stack: ['Python', 'scikit-learn', 'Pandas', 'TF-IDF', 'NLP'],
     metrics: [
       { label: 'Accuracy', value: '92%' },
@@ -420,8 +420,8 @@ export const projects: Project[] = [
       'Framed the project as a baseline, not as a sweeping claim about misinformation detection.',
     ],
     outcomes: [
-      'Shows early initiative in ML and text classification.',
-      'Useful as supporting context, but not one of the first projects I want recruiters to open.',
+      'Shows early initiative in machine learning and text classification.',
+      'Useful as supporting context, though not a flagship project.',
     ],
     learnings: [
       'Simple baselines are worth building because they teach the full path from data prep to evaluation.',
@@ -430,11 +430,11 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/gangisettyrushil10/fakeNewsDetection.py',
     links: [{ label: 'Repository', href: 'https://github.com/gangisettyrushil10/fakeNewsDetection.py' }],
     featured: false,
-    recruiterAngle: 'Shows early ML curiosity and a willingness to build the fundamentals.',
-    proofLine: 'Included as supporting GitHub work, not flagship work.',
+    recruiterAngle: 'Shows early machine-learning interest and a willingness to build the fundamentals.',
+    proofLine: 'Included as supporting GitHub work rather than flagship work.',
     repoName: 'fakeNewsDetection.py',
-    previewTitle: 'A simple ML baseline, presented honestly',
-    previewNote: 'Useful context for range, but not the lead story anymore.',
+    previewTitle: 'A straightforward machine-learning baseline',
+    previewNote: 'Included for range, though it is no longer central to the portfolio story.',
     theme: {
       primary: '#ff6cab',
       secondary: '#f5d76e',
@@ -448,7 +448,7 @@ export const projects: Project[] = [
     description:
       'A CSV-in, CSV-out automation script that extracts high school information from a batch of LinkedIn profiles.',
     longDescription:
-      'This is a smaller utility project, but it is a good example of practical automation. It reads a batch of LinkedIn URLs, pulls the relevant field, and returns a cleaner CSV for the next step in the workflow.',
+      'This smaller utility project is a practical example of automation. It processes a batch of LinkedIn URLs, extracts the relevant field, and returns a cleaner CSV for the next workflow step.',
     stack: ['Python', 'CSV workflows', 'HTML parsing', 'Automation'],
     metrics: [
       { label: 'Input/output', value: 'CSV -> CSV' },
@@ -460,14 +460,14 @@ export const projects: Project[] = [
     timeline: '2024',
     status: 'Completed',
     challenge:
-      'Even small utility scripts need to be clear about input, output, and where the automation saves time.',
+      'Even small automation utilities need clear input, output, and operational value.',
     decisions: [
       'Kept the contract simple: batch URLs in, extracted data out.',
       'Framed the project as a utility rather than overselling it as a platform.',
     ],
     outcomes: [
       'Shows practical automation instincts and comfort with batch-processing workflows.',
-      'Helpful supporting GitHub material without taking focus away from the stronger portfolio projects.',
+      'Provides supporting GitHub context without taking attention away from the stronger portfolio projects.',
     ],
     learnings: [
       'Small utilities are best when they solve one workflow pain point cleanly.',
@@ -476,11 +476,11 @@ export const projects: Project[] = [
     githubUrl: 'https://github.com/gangisettyrushil10/linkedin_high_school_scraper.py',
     links: [{ label: 'Repository', href: 'https://github.com/gangisettyrushil10/linkedin_high_school_scraper.py' }],
     featured: false,
-    recruiterAngle: 'Good supporting proof of scripting and workflow automation.',
-    proofLine: 'Included as supporting GitHub work for breadth, not as a lead project.',
+    recruiterAngle: 'Useful supporting proof of scripting and workflow automation.',
+    proofLine: 'Included as supporting GitHub work for breadth rather than as a lead project.',
     repoName: 'linkedin_high_school_scraper.py',
-    previewTitle: 'A practical script for a repetitive workflow',
-    previewNote: 'Smaller than the flagship projects, but useful proof of hands-on automation.',
+    previewTitle: 'A practical automation script for a repetitive workflow',
+    previewNote: 'Smaller than the flagship projects, but still useful evidence of hands-on automation.',
     theme: {
       primary: '#43d7ff',
       secondary: '#ff6cab',
@@ -569,12 +569,12 @@ export const homeStats: HomeStat[] = [
   {
     value: '23',
     label: 'public GitHub repos',
-    note: 'Curated down to the projects that best represent how I build today.',
+    note: 'Reviewed and curated to highlight the work that best represents my current level.',
   },
   {
     value: '4',
     label: 'flagship projects',
-    note: 'Product software, data workflows, applied AI, and ML depth.',
+    note: 'Focused across product software, data workflows, applied AI, and technical depth.',
   },
   {
     value: '3',
@@ -584,32 +584,32 @@ export const homeStats: HomeStat[] = [
   {
     value: '50K+',
     label: 'records/day handled',
-    note: 'From internship workflow automation and data pipeline work.',
+    note: 'From internship workflow automation and production data pipeline work.',
   },
 ]
 
 export const workPrinciples: WorkPrinciple[] = [
   {
-    title: 'Build the product, not just the screen',
+    title: 'Build complete product experiences',
     description:
-      'I like work where the UI, backend, and product idea all have to hold together. That is why Buzzr and the analytics dashboard lead this portfolio.',
+      'I am strongest in work where the interface, backend, and product requirements all need to hold together. That is why Buzzr and the analytics dashboard lead this portfolio.',
   },
   {
-    title: 'Make the system explainable',
+    title: 'Keep systems clear and explainable',
     description:
-      'Whether it is an API, a forecasting workflow, or an AI feature, I try to make the structure legible enough that a teammate can extend it and a recruiter can understand it quickly.',
+      'Whether the work is an API, a forecasting workflow, or an AI feature, I aim for structures that teammates can extend and hiring teams can understand quickly.',
   },
   {
-    title: 'Handle messy inputs honestly',
+    title: 'Handle operational complexity directly',
     description:
-      'A lot of real engineering work lives in bad data, changing requirements, and awkward edge cases. I do not like pretending those parts are somebody else’s problem.',
+      'A meaningful share of engineering work lives in imperfect data, changing requirements, and difficult edge cases. I prefer to address those constraints directly.',
   },
 ]
 
 export const focusAreas: FocusArea[] = [
   {
-    title: 'Product-minded engineering',
-    description: 'Useful when the experience matters as much as the implementation underneath it.',
+    title: 'Product-oriented engineering',
+    description: 'Strong fit for software where user experience matters as much as the implementation behind it.',
     proof: 'Buzzr',
     href: '/projects/buzzr',
   },
@@ -621,13 +621,13 @@ export const focusAreas: FocusArea[] = [
   },
   {
     title: 'Applied AI inside real software',
-    description: 'Best when AI needs reviewability, structure, and calm UX instead of a chatbot shell.',
+    description: 'Best when AI needs reviewability, structure, and clear UX instead of a thin chatbot shell.',
     proof: 'IBM Medscribe AI',
     href: '/projects/ibm-medscribe-ai',
   },
   {
-    title: 'Technical depth when it is useful',
-    description: 'Enough ML range to go deeper when the problem calls for it without losing the software story.',
+    title: 'Technical depth when needed',
+    description: 'Enough machine-learning range to go deeper when the problem calls for it without losing the software story.',
     proof: 'Graph Link Prediction',
     href: '/projects/graph-link-prediction',
   },
@@ -640,22 +640,22 @@ export const projectDomains = [
   },
   {
     name: 'Backend and workflows',
-    description: 'Validation-heavy services and data flows that have to survive real input.',
+    description: 'Validation-heavy services and data flows that need to hold up under real input.',
   },
   {
     name: 'Applied AI',
-    description: 'AI features shaped into trustworthy experiences instead of standalone model demos.',
+    description: 'AI features shaped into trustworthy workflows instead of standalone model demos.',
   },
   {
     name: 'Technical depth',
-    description: 'Supporting work that shows range without distracting from the strongest recruiter story.',
+    description: 'Supporting work that shows range without distracting from the primary portfolio narrative.',
   },
 ]
 
 export const recruiterSummary = {
-  title: 'Software engineer with product sense, backend range, and a strong instinct for real-world workflows.',
+  title: 'Software engineer focused on product quality, dependable systems, and real-world workflows.',
   description:
-    'I like building software that feels sharp to the user and sane for the team behind it. The strongest public work on my GitHub sits where product, backend, data, and applied AI overlap.',
+    'I build software that is polished for users and maintainable for teams. The strongest public work in this portfolio sits where product, backend, data, and applied AI overlap.',
 }
 
 export const personalInfo = {
@@ -663,7 +663,7 @@ export const personalInfo = {
   title: 'Software Engineer',
   tagline: 'building polished product software, dependable backend workflows, and thoughtful AI features',
   location: 'Dallas, Texas',
-  status: 'Open to software engineering, backend, and product-minded full-stack roles',
+  status: 'Open to software engineering, backend, and product-oriented full-stack roles',
   email: 'gangisettyrushil@gmail.com',
   github: 'https://github.com/gangisettyrushil10',
   linkedin: 'https://www.linkedin.com/in/rushilgangisetty10',

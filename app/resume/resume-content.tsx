@@ -38,7 +38,7 @@ export function ResumeContent() {
                   className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-5 py-3 text-sm font-medium text-foreground transition hover:border-white/18 hover:bg-white/9"
                 >
                   <Mail className="h-4 w-4" />
-                  Contact me
+                  Contact
                 </Link>
               </div>
             </div>
@@ -105,12 +105,12 @@ export function ResumeContent() {
         </div>
       </Section>
 
-      <Section className="bg-[rgba(7,10,22,0.36)]">
+      <Section className="bg-[rgba(4,4,5,0.68)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Skills"
             title="A focused technical toolkit."
-            description="Grouped around the work I actually do instead of every technology I have ever touched."
+            description="Organized around the work I do most often rather than every technology I have used."
           />
 
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
@@ -137,7 +137,7 @@ export function ResumeContent() {
             <SectionHeader
               badge="Selected Work"
               title="Projects that reinforce the resume."
-              description="A hiring manager can jump from the summary here straight into concrete proof."
+              description="A hiring manager can move from this summary directly into concrete technical proof."
               className="mb-0"
             />
             <Link

@@ -80,7 +80,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                     className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition hover:brightness-110"
                   >
                     <Github className="h-4 w-4" />
-                    View repo
+                    View repository
                   </a>
                 )}
                 {project.liveUrl && (
@@ -262,7 +262,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
         </div>
       </Section>
 
-      <Section className="bg-[rgba(7,10,22,0.36)]">
+      <Section className="bg-[rgba(4,4,5,0.68)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6 lg:grid-cols-3">
             <div className="glass-panel rounded-[30px] p-6">
@@ -328,7 +328,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-end justify-between gap-6">
             <div>
-              <span className="section-label">Keep exploring</span>
+              <span className="section-label">Related work</span>
               <h2 className="mt-5 text-3xl font-semibold leading-tight text-foreground sm:text-[3rem]">
                 Related flagship work.
               </h2>
@@ -342,7 +342,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                 <h3 className="mt-4 text-2xl font-semibold text-foreground">{relatedProject.title}</h3>
                 <p className="mt-4 text-sm leading-7 text-muted-foreground">{relatedProject.recruiterAngle}</p>
                 <div className="mt-5 flex items-center gap-2 text-sm font-medium text-foreground">
-                  Read next
+                  Open case study
                   <ArrowUpRight className="h-4 w-4" />
                 </div>
               </Link>

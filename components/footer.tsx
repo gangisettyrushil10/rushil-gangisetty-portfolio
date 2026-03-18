@@ -13,18 +13,17 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="page-shell border-t border-white/8 bg-[rgba(5,8,20,0.72)]">
+    <footer className="page-shell border-t border-white/8 bg-[rgba(2,2,2,0.82)]">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <div className="glass-panel-strong rounded-[32px] p-6 sm:p-8">
           <div className="grid gap-10 lg:grid-cols-[1.4fr_0.7fr_0.9fr]">
             <div>
               <span className="section-label">Built for recruiters and builders</span>
               <h2 className="mt-5 text-3xl font-semibold leading-tight text-foreground sm:text-[2.7rem]">
-                Product taste, backend calm, and real-world workflow thinking.
+                Product quality, backend reliability, and practical engineering judgment.
               </h2>
               <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-[0.98rem]">
-                I trimmed this site to the work that best represents how I build today. If something here feels like a fit,
-                I&apos;d love to talk.
+                This site is intentionally curated around the work that best represents how I build today. If there is a potential fit, I would be glad to connect.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
@@ -96,7 +95,7 @@ export function Footer() {
 
           <div className="mt-10 flex flex-col gap-2 border-t border-white/8 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
             <p>{new Date().getFullYear()} Rushil Gangisetty. Built with Next.js and Framer Motion.</p>
-            <p>Dark, vibrant, and intentionally curated.</p>
+            <p>Black-first design with high-contrast accent color.</p>
           </div>
         </div>
       </div>

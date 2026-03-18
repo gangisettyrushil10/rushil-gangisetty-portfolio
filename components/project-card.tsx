@@ -121,7 +121,7 @@ export function ProjectCard({ project, index = 0, featured = false }: ProjectCar
 
         <div className="glass-panel rounded-[24px] p-4 sm:p-5">
           <p className="text-[0.68rem] font-mono uppercase tracking-[0.2em] text-primary/90">
-            Why it made the cut
+            Why it is featured
           </p>
           <p className="mt-3 text-sm leading-7 text-foreground/90">
             {project.recruiterAngle ?? project.proofLine ?? project.longDescription}
@@ -155,7 +155,7 @@ export function ProjectCard({ project, index = 0, featured = false }: ProjectCar
             href={`/projects/${project.id}`}
             className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition hover:brightness-110"
           >
-            Read the story
+            Open case study
             <ArrowUpRight className="h-4 w-4" />
           </Link>
 

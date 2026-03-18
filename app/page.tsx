@@ -25,12 +25,11 @@ export default function HomePage() {
             <div>
               <span className="section-label">Software engineer • curated from GitHub</span>
               <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[0.92] tracking-[-0.06em] text-foreground sm:text-[5.6rem]">
-                I build software that feels <span className="text-shimmer">sharp to users</span> and sane for the team behind it.
+                I build software that is <span className="text-shimmer">well-crafted for users</span> and maintainable for teams.
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-[1.08rem]">
-                I&apos;m Rushil, a product-minded software engineer with range across full-stack apps, backend workflows, data-heavy systems,
-                and applied AI. I rebuilt this portfolio around the strongest public work on my GitHub so recruiters can get a fast, honest
-                read on how I build.
+                I&apos;m Rushil, a software engineer with experience across full-stack applications, backend workflows, data-intensive systems,
+                and applied AI. This portfolio highlights the public GitHub work that best represents my current level.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -38,7 +37,7 @@ export default function HomePage() {
                   href="#selected-work"
                   className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition hover:brightness-110"
                 >
-                  See selected work
+                  View selected work
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <a
@@ -62,14 +61,14 @@ export default function HomePage() {
 
               <div className="mt-10 grid gap-4 sm:grid-cols-2">
                 <div className="glass-panel rounded-[28px] p-5 sm:p-6">
-                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.2em] text-primary/90">What I&apos;m aiming for</p>
+                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.2em] text-primary/90">Current search</p>
                   <p className="mt-3 text-lg font-medium text-foreground">{personalInfo.status}</p>
                   <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                    The sweet spot is work where product clarity, backend structure, and messy real-world inputs all matter.
+                    I am especially interested in roles where product quality, backend structure, and real-world workflows all matter.
                   </p>
                 </div>
                 <div className="glass-panel rounded-[28px] p-5 sm:p-6">
-                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.2em] text-accent">How I like to work</p>
+                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.2em] text-accent">Professional profile</p>
                   <p className="mt-3 text-lg font-medium text-foreground">{recruiterSummary.title}</p>
                   <p className="mt-3 text-sm leading-7 text-muted-foreground">{recruiterSummary.description}</p>
                 </div>
@@ -82,8 +81,8 @@ export default function HomePage() {
                   <Sparkles className="h-5 w-5" />
                 </span>
                 <div>
-                  <p className="text-sm font-semibold text-foreground">Recommended recruiter path</p>
-                  <p className="text-sm text-muted-foreground">The fastest way to read the portfolio.</p>
+                  <p className="text-sm font-semibold text-foreground">Recommended starting points</p>
+                  <p className="text-sm text-muted-foreground">A concise path through the portfolio.</p>
                 </div>
               </div>
 
@@ -141,8 +140,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Best Work"
-            title="The four public GitHub projects I want recruiters to open first."
-            description="I intentionally cut the clutter. These are the projects that best reflect my current level across product software, backend workflows, data-heavy applications, and applied AI."
+            title="Four public GitHub projects that best represent my current work."
+            description="This section is intentionally selective. These projects provide the clearest view of my work across product software, backend workflows, data-intensive applications, and applied AI."
           />
 
           <div className="grid gap-6">
@@ -153,12 +152,12 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section className="bg-[rgba(7,10,22,0.36)]">
+      <Section className="bg-[rgba(4,4,5,0.68)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="How I Work"
-            title="The kind of developer I’m trying to be on a team."
-            description="I want the portfolio to feel like my work style: thoughtful, energetic, and clear about what matters."
+            title="How I approach engineering work."
+            description="The strongest portfolios are usually clear about both execution and judgment. These principles reflect how I try to contribute on a team."
           />
 
           <div className="grid gap-5 lg:grid-cols-3">
@@ -177,8 +176,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Experience"
-            title="Internship work that backs up the project story."
-            description="These roles sharpened the same themes as the GitHub work: product thinking, reliable systems, and data that has to behave in production."
+            title="Experience that reinforces the project work."
+            description="These roles strengthened the same themes shown in the portfolio: product thinking, reliable systems, and data that has to work in production."
           />
 
           <div className="grid gap-5 lg:grid-cols-3">
@@ -219,14 +218,14 @@ export default function HomePage() {
         </div>
       </Section>
 
-      <Section className="bg-[rgba(7,10,22,0.36)]">
+      <Section className="bg-[rgba(4,4,5,0.68)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
             <div>
               <SectionHeader
                 badge="Where I’m Strong"
-                title="A recruiter-friendly map of what you could hire me for."
-                description="This is the story I want the portfolio to tell quickly, before anyone has to read a wall of bullets."
+                title="A concise view of where I can contribute most effectively."
+                description="This section is designed to make the portfolio easier to scan before anyone needs to read detailed project notes."
                 className="mb-0"
               />
             </div>
@@ -265,10 +264,10 @@ export default function HomePage() {
           <div className="glass-panel-strong rounded-[34px] p-8 text-center sm:p-10">
             <span className="section-label">Let&apos;s talk</span>
             <h2 className="mt-6 text-4xl font-semibold leading-tight text-foreground sm:text-[3.5rem]">
-              Looking for an early-career engineer who can ship, learn fast, and communicate clearly?
+              Looking for an early-career engineer who can deliver, learn quickly, and communicate well?
             </h2>
             <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-muted-foreground">
-              That is the version of myself I&apos;m trying to put in front of you here: thoughtful with the product, solid with the code, and enjoyable to work with.
+              That is the profile I aim to present here: thoughtful about the product, dependable in implementation, and effective to work with.
             </p>
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link

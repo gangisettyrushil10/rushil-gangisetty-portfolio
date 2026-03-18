@@ -22,11 +22,11 @@ export function ProjectsContent() {
             <div>
               <span className="section-label">GitHub-first curation</span>
               <h1 className="mt-6 max-w-4xl text-5xl font-semibold leading-[0.92] tracking-[-0.06em] text-foreground sm:text-[5rem]">
-                A smaller project list that says more.
+                A focused project selection with stronger signal.
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-8 text-muted-foreground sm:text-[1.06rem]">
-                I went through the public work on my GitHub and rebuilt this page around the projects that best represent how I build right now.
-                The goal is clarity, not volume.
+                I reviewed my public GitHub work and rebuilt this page around the projects that best reflect how I build today.
+                The goal is clarity, relevance, and quality of signal.
               </p>
             </div>
 
@@ -53,7 +53,7 @@ export function ProjectsContent() {
           <SectionHeader
             badge="Selected Repos"
             title="The four projects that best represent my current level."
-            description="These are the ones I would open in an interview, send to a hiring manager, or use to explain the kind of engineer I want to be."
+            description="These are the projects I would use in interviews or share with a hiring manager to represent my work most accurately."
           />
 
           <div className="grid gap-6">
@@ -64,12 +64,12 @@ export function ProjectsContent() {
         </div>
       </Section>
 
-      <Section className="bg-[rgba(7,10,22,0.36)]">
+      <Section className="bg-[rgba(4,4,5,0.68)]">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Supporting Work"
-            title="Useful GitHub context, just not where I want a recruiter to start."
-            description="These repos still show range. I simply do not want the portfolio buried under older experiments, utilities, or quieter internal-style projects."
+            title="Supporting GitHub work for additional context."
+            description="These repositories still show range, but they are intentionally secondary to the strongest and most relevant project work."
           />
 
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
