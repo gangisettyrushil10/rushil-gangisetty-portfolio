@@ -80,6 +80,30 @@ export interface WorkPrinciple {
   description: string
 }
 
+export const aboutSection = {
+  title: 'About me.',
+  paragraphs: [
+    'I am a software engineer who enjoys work that needs both product taste and engineering discipline. I like turning complex requirements into software that feels clear for users and dependable for teams.',
+    'A lot of my best work lives in messy systems: live product logic, validation-heavy workflows, and AI features that need structure instead of hype. That is the kind of problem space I enjoy most.',
+  ],
+  highlights: [
+    {
+      label: 'Best fit',
+      value: 'Product-minded engineering with strong backend ownership',
+    },
+    {
+      label: 'Working style',
+      value: 'Clear communication, thoughtful execution, and steady iteration',
+    },
+    {
+      label: 'Focus areas',
+      value: 'Applications, APIs, data workflows, and practical AI features',
+    },
+  ],
+  portraitSrc: '/placeholder-user.jpg',
+  portraitAlt: 'Portrait placeholder for Rushil Gangisetty',
+}
+
 export const projects: Project[] = [
   {
     id: 'buzzr',

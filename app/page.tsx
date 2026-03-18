@@ -1,10 +1,11 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, Download, Mail } from 'lucide-react'
 import { Footer } from '@/components/footer'
 import { Navbar } from '@/components/navbar'
 import { ProjectCard } from '@/components/project-card'
 import { Section, SectionHeader } from '@/components/section'
-import { experiences, personalInfo, projects, skillGroups } from '@/lib/data'
+import { aboutSection, experiences, personalInfo, projects, skillGroups } from '@/lib/data'
 
 const featuredProjects = projects.filter((project) => project.featured)
 const homeFeaturedProjects = featuredProjects.slice(0, 3)
@@ -24,12 +25,12 @@ export default function HomePage() {
 
         <div className="relative mx-auto max-w-7xl">
           <div className="max-w-4xl">
-            <span className="section-label">Software Engineer • Selected public work</span>
+            <span className="section-label">{personalInfo.name} • {personalInfo.title}</span>
             <h1 className="mt-5 max-w-5xl text-4xl font-semibold leading-[0.94] tracking-[-0.06em] text-foreground sm:text-[4.2rem]">
-              Software engineer focused on <span className="text-shimmer">product quality</span>, reliable systems, and practical execution.
+              I build <span className="text-shimmer">thoughtful software</span> across product, backend, and data workflows.
             </h1>
             <p className="mt-5 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-              I build polished applications, backend workflows, and data-intensive tools. This portfolio highlights the public GitHub work that best represents my current level.
+              I am focused on building software that feels polished on the surface and dependable underneath. This portfolio highlights the public work that best shows how I think, build, and ship.
             </p>
             <p className="mt-3 text-sm font-medium text-foreground/90">
               {personalInfo.status}
@@ -67,13 +68,78 @@ export default function HomePage() {
         </div>
       </section>
 
+      <Section id="about" className="pt-2">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-6 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+            <div className="glass-panel-strong rounded-[28px] p-4 sm:p-5">
+              <div className="relative overflow-hidden rounded-[22px] border border-white/10 bg-black/60">
+                <div className="relative aspect-[4/5]">
+                  <Image
+                    src={aboutSection.portraitSrc}
+                    alt={aboutSection.portraitAlt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 38vw"
+                    className="object-cover grayscale-[12%] contrast-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/18 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+                    <p className="text-base font-semibold text-white">{personalInfo.name}</p>
+                    <p className="mt-1 text-sm text-white/76">{personalInfo.title}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 grid gap-2.5 sm:grid-cols-3 lg:grid-cols-1">
+                <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
+                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-primary/90">Based in</p>
+                  <p className="mt-2 text-sm text-foreground">{personalInfo.location}</p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
+                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-accent">Open to</p>
+                  <p className="mt-2 text-sm leading-6 text-foreground">{personalInfo.status}</p>
+                </div>
+                <div className="rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
+                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">Portfolio focus</p>
+                  <p className="mt-2 text-sm text-foreground">Projects that show product thinking and engineering range.</p>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <SectionHeader
+                badge="About"
+                title={aboutSection.title}
+                description="A quick introduction before the project work."
+              />
+
+              <div className="grid gap-4">
+                {aboutSection.paragraphs.map((paragraph) => (
+                  <div key={paragraph} className="glass-panel rounded-[24px] p-5">
+                    <p className="text-sm leading-7 text-foreground/90">{paragraph}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-4 grid gap-4 sm:grid-cols-3">
+                {aboutSection.highlights.map((highlight) => (
+                  <div key={highlight.label} className="glass-panel rounded-[24px] p-4">
+                    <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-primary/90">{highlight.label}</p>
+                    <p className="mt-2.5 text-sm leading-6 text-foreground/90">{highlight.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+
       <Section id="selected-work" className="pt-4">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <SectionHeader
-              badge="Selected Work"
-              title="Three projects to start with."
-              description="These are the projects I would share first with a recruiter or hiring manager."
+              badge="Projects"
+              title="Selected projects."
+              description="The first three projects I would share with a recruiter or hiring manager."
               className="mb-0"
             />
             <Link
@@ -97,8 +163,8 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Experience"
-            title="Experience in product, data, and operational software."
-            description="A snapshot of the roles that reinforced the same strengths shown in the project work."
+            title="Experience."
+            description="Internship work across SaaS, production data, forecasting, and operational software."
           />
 
           <div className="grid gap-4 lg:grid-cols-3">
@@ -124,9 +190,9 @@ export default function HomePage() {
       <Section>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            badge="Core Strengths"
-            title="Where I add the most value."
-            description="A concise view of the skills and workflows that show up most often in my work."
+            badge="Skills"
+            title="Skills and technologies."
+            description="The tools and areas that show up most often in my work."
           />
 
           <div className="grid gap-4 lg:grid-cols-3">
