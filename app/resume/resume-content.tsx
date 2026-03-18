@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import { ArrowUpRight, Download, Mail } from 'lucide-react'
+import { ArrowUpRight, Download, Linkedin, Mail } from 'lucide-react'
 import { Section, SectionHeader } from '@/components/section'
-import { experiences, personalInfo, projects, recruiterSummary, skillGroups } from '@/lib/data'
+import { education, educationHighlights, experiences, personalInfo, projects, recruiterSummary, skillGroups } from '@/lib/data'
 
 const featuredProjects = projects.filter((project) => project.featured).slice(0, 3)
 
@@ -40,6 +40,15 @@ export function ResumeContent() {
                   <Mail className="h-4 w-4" />
                   Contact
                 </Link>
+                <a
+                  href={personalInfo.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2.5 text-sm font-medium text-foreground transition hover:border-white/18 hover:bg-white/9"
+                >
+                  <Linkedin className="h-4 w-4" />
+                  LinkedIn
+                </a>
               </div>
             </div>
 
@@ -51,8 +60,8 @@ export function ResumeContent() {
                   <p className="mt-2 text-sm text-foreground">{personalInfo.location}</p>
                 </div>
                 <div className="rounded-[22px] border border-white/10 bg-white/[0.04] p-4">
-                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">Focus</p>
-                  <p className="mt-2 text-sm leading-6 text-foreground">{personalInfo.status}</p>
+                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">Education</p>
+                  <p className="mt-2 text-sm leading-6 text-foreground">Austin College graduate. UT Dallas M.S. in Computer Science starting Aug 2026.</p>
                 </div>
                 <div className="rounded-[22px] border border-white/10 bg-white/[0.04] p-4">
                   <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">Email</p>
@@ -65,6 +74,47 @@ export function ResumeContent() {
           </div>
         </div>
       </section>
+
+      <Section className="pt-0">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <SectionHeader
+            badge="Education"
+            title="Academic background"
+            description="Degree history, current graduate plans, and supporting academic context."
+          />
+
+          <div className="grid gap-4 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="grid gap-4">
+              {education.map((entry) => (
+                <div key={entry.school} className="glass-panel rounded-[24px] p-5">
+                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-primary/90">{entry.period}</p>
+                  <h2 className="mt-3 text-xl font-semibold text-foreground">{entry.school}</h2>
+                  <p className="mt-1.5 text-sm text-muted-foreground">{entry.degree}</p>
+                  <p className="mt-3 text-sm text-foreground/90">{entry.location}</p>
+                  {entry.note && (
+                    <p className="mt-2 text-sm leading-6 text-foreground/90">{entry.note}</p>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            <div className="grid gap-4">
+              {educationHighlights.map((group) => (
+                <div key={group.title} className="glass-panel rounded-[24px] p-5">
+                  <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-accent">{group.title}</p>
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {group.items.map((item) => (
+                      <span key={`${group.title}-${item}`} className="rounded-full border border-white/8 bg-white/[0.04] px-3 py-1.5 text-xs text-foreground/88">
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Section>
 
       <Section className="pt-0">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

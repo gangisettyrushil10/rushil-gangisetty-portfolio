@@ -21,10 +21,10 @@ export function ProjectsContent() {
           <div className="max-w-4xl">
             <span className="section-label">Projects</span>
             <h1 className="mt-5 text-4xl font-semibold leading-[0.94] tracking-[-0.06em] text-foreground sm:text-[4.1rem]">
-              A curated view of the work that best represents my current level.
+              Projects that best represent my work.
             </h1>
             <p className="mt-5 max-w-3xl text-sm leading-7 text-muted-foreground sm:text-base">
-              This page is intentionally selective. The flagship projects lead with the clearest signal, and the supporting work provides additional context without crowding the story.
+              Flagship projects first, followed by a smaller set of supporting work.
             </p>
           </div>
         </div>
@@ -51,7 +51,7 @@ export function ProjectsContent() {
           <SectionHeader
             badge="Supporting Work"
             title="Additional GitHub context."
-            description="These projects are smaller or earlier, but still useful for understanding range."
+            description="Smaller or earlier projects that still add useful range."
           />
 
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">

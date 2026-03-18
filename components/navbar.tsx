@@ -51,14 +51,9 @@ export function Navbar() {
             <Link href="/" className="min-w-0">
               <div className="flex items-center gap-3">
                 <span className="status-pulse inline-flex h-2.5 w-2.5 rounded-full bg-primary" />
-                <div className="min-w-0">
-                  <p className="truncate text-sm font-semibold text-foreground sm:text-[0.95rem]">
-                    Rushil Gangisetty
-                  </p>
-                  <p className="hidden truncate text-xs text-muted-foreground sm:block">
-                    Software engineer with product, backend, and data range
-                  </p>
-                </div>
+                <p className="truncate text-sm font-semibold text-foreground sm:text-[0.95rem]">
+                  Rushil Gangisetty
+                </p>
               </div>
             </Link>
 
@@ -97,17 +92,10 @@ export function Navbar() {
                 href={personalInfo.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/8 bg-white/5 text-muted-foreground transition hover:border-white/16 hover:bg-white/10 hover:text-foreground"
-                aria-label="LinkedIn"
+                className="inline-flex items-center gap-2 rounded-full border border-white/8 bg-white/5 px-4 py-2 text-sm text-foreground transition hover:border-white/16 hover:bg-white/10"
               >
                 <Linkedin className="h-4 w-4" />
-              </a>
-              <a
-                href={`mailto:${personalInfo.email}`}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/8 bg-white/5 text-muted-foreground transition hover:border-white/16 hover:bg-white/10 hover:text-foreground"
-                aria-label="Email"
-              >
-                <Mail className="h-4 w-4" />
+                LinkedIn
               </a>
               <a
                 href={personalInfo.resumePath}

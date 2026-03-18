@@ -80,28 +80,35 @@ export interface WorkPrinciple {
   description: string
 }
 
+export interface Education {
+  school: string
+  degree: string
+  period: string
+  location: string
+  note?: string
+}
+
 export const aboutSection = {
   title: 'About me.',
   paragraphs: [
-    'I am a software engineer who enjoys work that needs both product taste and engineering discipline. I like turning complex requirements into software that feels clear for users and dependable for teams.',
-    'A lot of my best work lives in messy systems: live product logic, validation-heavy workflows, and AI features that need structure instead of hype. That is the kind of problem space I enjoy most.',
+    'I build product-minded software with strong backend ownership and a bias for clarity. The work I enjoy most lives where interface quality, system design, and messy real-world inputs all need to hold together.',
   ],
   highlights: [
     {
-      label: 'Best fit',
-      value: 'Product-minded engineering with strong backend ownership',
+      label: 'Based in',
+      value: 'Dallas, Texas',
     },
     {
-      label: 'Working style',
-      value: 'Clear communication, thoughtful execution, and steady iteration',
+      label: 'Education',
+      value: 'B.S. in Computer Science and Mathematics from Austin College. M.S. in Computer Science at UT Dallas starting Aug 2026.',
     },
     {
-      label: 'Focus areas',
-      value: 'Applications, APIs, data workflows, and practical AI features',
+      label: 'Focus',
+      value: 'Product software, backend workflows, and practical data and AI features',
     },
   ],
   portraitSrc: '/placeholder-user.jpg',
-  portraitAlt: 'Portrait placeholder for Rushil Gangisetty',
+  portraitAlt: 'Portrait of Rushil Gangisetty',
 }
 
 export const projects: Project[] = [
@@ -220,7 +227,7 @@ export const projects: Project[] = [
       { label: 'Data input', value: 'Messy CSVs' },
       { label: 'Forecast windows', value: '7/30/90d' },
       { label: 'Backend endpoints', value: '12' },
-      { label: 'Codebase size', value: '5K+' },
+      { label: 'Workflow stages', value: '5' },
     ],
     role: 'Full-stack engineer',
     timeline: '2025',
@@ -468,52 +475,6 @@ export const projects: Project[] = [
       glow: 'rgba(255, 108, 171, 0.28)',
     },
   },
-  {
-    id: 'linkedin-high-school-scraper',
-    title: 'LinkedIn High School Scraper',
-    category: 'Automation Utility',
-    description:
-      'A CSV-based automation utility that extracts high school data from batches of LinkedIn profiles and returns a clean output file.',
-    longDescription:
-      'A small automation script that reads LinkedIn profile URLs from CSV input, extracts school data, and returns a cleaner output file.',
-    stack: ['Python', 'CSV workflows', 'HTML parsing', 'Automation'],
-    metrics: [
-      { label: 'Input/output', value: 'CSV -> CSV' },
-      { label: 'Workflow', value: 'Batch scrape' },
-      { label: 'Project type', value: 'Utility' },
-      { label: 'Stage', value: 'Supporting' },
-    ],
-    role: 'Automation builder',
-    timeline: '2024',
-    status: 'Completed',
-    challenge:
-      'The script needed a simple input-output contract and enough reliability to save manual work.',
-    decisions: [
-      'Kept the workflow narrow: batch URLs in, cleaned CSV out.',
-      'Treated the project as a utility script rather than overselling it as a platform.',
-    ],
-    outcomes: [
-      'Automates a repetitive research task into a cleaner batch workflow.',
-      'Adds practical scripting range alongside larger projects.',
-    ],
-    learnings: [
-      'Small utilities are strongest when they solve one pain point cleanly.',
-      'A portfolio benefits from showing both ambitious builds and useful scripts.',
-    ],
-    githubUrl: 'https://github.com/gangisettyrushil10/linkedin_high_school_scraper.py',
-    links: [{ label: 'Repository', href: 'https://github.com/gangisettyrushil10/linkedin_high_school_scraper.py' }],
-    featured: false,
-    recruiterAngle: 'Useful supporting proof of scripting and workflow automation.',
-    proofLine: 'Practical scripting work included for range.',
-    repoName: 'linkedin_high_school_scraper.py',
-    previewTitle: 'Automation utility',
-    previewNote: 'A small script with a clear CSV-in, CSV-out workflow.',
-    theme: {
-      primary: '#43d7ff',
-      secondary: '#ff6cab',
-      glow: 'rgba(67, 215, 255, 0.25)',
-    },
-  },
 ]
 
 export interface Experience {
@@ -527,7 +488,7 @@ export interface Experience {
 export const experiences: Experience[] = [
   {
     company: 'Aeyesafe',
-    role: 'Software Engineering Intern',
+    role: 'QA Engineering Intern',
     period: 'Jun 2025 - Aug 2025',
     bullets: [
       'Validated ETL outputs and sensor datasets used in production release workflows.',
@@ -554,6 +515,38 @@ export const experiences: Experience[] = [
       'Developed data and NLP workflows processing 50K+ records per day.',
     ],
     stack: ['Python', 'NLP', 'CI/CD', 'SaaS'],
+  },
+]
+
+export const education: Education[] = [
+  {
+    school: 'University of Texas at Dallas',
+    degree: 'M.S. in Computer Science',
+    period: 'Starting Aug 2026',
+    location: 'Richardson, Texas',
+    note: 'Incoming graduate study focused on advanced computer science coursework.',
+  },
+  {
+    school: 'Austin College',
+    degree: 'B.S. in Computer Science and Mathematics',
+    period: 'Aug 2021 - May 2025',
+    location: 'Sherman, Texas',
+    note: 'GPA: 3.5 / 4.0',
+  },
+]
+
+export const educationHighlights = [
+  {
+    title: 'Relevant coursework',
+    items: ['Data Structures & Algorithms', 'Operating Systems', 'Databases', 'Machine Learning', 'Artificial Intelligence'],
+  },
+  {
+    title: 'Leadership',
+    items: ['President, Computer Science Club', 'President, Robotics Club'],
+  },
+  {
+    title: 'Certifications',
+    items: ['Microsoft Certified: Azure Fundamentals', 'Full Stack Engineer'],
   },
 ]
 
