@@ -275,9 +275,9 @@ export const projects: Project[] = [
     title: 'IBM Medscribe AI',
     category: 'Applied AI Product',
     description:
-      'An AI-assisted clinical workflow that turns raw notes into structured summaries and suggested actions in a review-friendly interface.',
+      'A team-built AI clinical workflow (IBM hackathon) that turns raw notes into structured summaries and suggested actions in a review-friendly interface.',
     longDescription:
-      'IBM Medscribe AI turns note input into structured clinical output through a review-oriented interface designed for clarity, not novelty.',
+      'Built collaboratively during an IBM hackathon, Medscribe AI turns note input into structured clinical output through a review-oriented interface designed for clarity, not novelty. Forked from a shared team repo.',
     stack: ['React', 'JavaScript', 'Flask', 'Python', 'IBM watsonx', 'LLM orchestration', 'CSS'],
     metrics: [
       { label: 'Workflow', value: 'Notes -> Summary' },
@@ -285,7 +285,7 @@ export const projects: Project[] = [
       { label: 'Backend LOC', value: '638' },
       { label: 'Frontend LOC', value: '686' },
     ],
-    role: 'Full-stack engineer',
+    role: 'Full-stack contributor (team of 4)',
     timeline: '2025',
     status: 'Completed',
     challenge:
@@ -320,8 +320,8 @@ export const projects: Project[] = [
       },
     ],
     featured: true,
-    recruiterAngle: 'Demonstrates applied AI with structured outputs, trust cues, and thoughtful UX.',
-    proofLine: 'Applied AI case study shaped around workflow clarity.',
+    recruiterAngle: 'Team hackathon project demonstrating applied AI with structured outputs, trust cues, and thoughtful UX.',
+    proofLine: 'Collaborative AI case study shaped around workflow clarity.',
     repoName: 'IBM-Medscribe-AI',
     previewTitle: 'Applied AI workflow',
     previewNote: 'Structured outputs and a review-first interface keep the system legible.',
@@ -378,6 +378,62 @@ export const projects: Project[] = [
       primary: '#68f7c4',
       secondary: '#43d7ff',
       glow: 'rgba(104, 247, 196, 0.35)',
+    },
+  },
+  {
+    id: 'credit-union-ledger-api',
+    title: 'Credit Union Ledger API',
+    category: 'Backend Systems',
+    description:
+      'A banking ledger API built with ASP.NET Core for member management, account lifecycle, deposits/withdrawals with idempotency, and transaction history. Source code available on request.',
+    longDescription:
+      'This project implements a credit union banking ledger as a RESTful API using ASP.NET Core and Entity Framework Core backed by PostgreSQL. It covers member onboarding, account creation and closure, deposit and withdrawal operations with idempotency keys, and paginated transaction history. Validation is handled through FluentValidation, and the API is documented via Swagger. The codebase includes xUnit tests covering core business logic and edge cases. Code is available on request.',
+    stack: [
+      'ASP.NET Core',
+      'C#',
+      'Entity Framework Core',
+      'PostgreSQL',
+      'FluentValidation',
+      'Swagger',
+      'xUnit',
+    ],
+    metrics: [
+      { label: 'Domain', value: 'Banking ledger' },
+      { label: 'Operations', value: 'CRUD + transactions' },
+      { label: 'Safety', value: 'Idempotent writes' },
+      { label: 'Coverage', value: 'xUnit suite' },
+    ],
+    role: 'Backend engineer',
+    timeline: '2025',
+    status: 'Completed',
+    challenge:
+      'A banking ledger demands correctness at every layer — duplicate requests cannot create duplicate transactions, and account state must stay consistent through deposits, withdrawals, and closures.',
+    decisions: [
+      'Used idempotency keys on deposit and withdrawal endpoints so duplicate requests produce the same result safely.',
+      'Modeled account lifecycle explicitly with status transitions instead of soft-delete flags.',
+      'Separated validation into FluentValidation rules so business constraints stayed readable and testable.',
+      'Kept the API surface documented through Swagger so consumers could integrate without reading source code.',
+    ],
+    outcomes: [
+      'Implements a clean banking domain model with member management, account lifecycle, and transaction history.',
+      'Demonstrates backend discipline around correctness, idempotency, and validation in a financial context.',
+      'Adds a strong .NET and C# data point alongside the Python and TypeScript work in the rest of the portfolio.',
+    ],
+    learnings: [
+      'Financial APIs earn trust through explicit state transitions and idempotent operations, not just input validation.',
+      'Entity Framework Core migrations make schema evolution predictable when the domain model is well-structured.',
+      'A clear Swagger contract is as valuable as the implementation behind it.',
+    ],
+    links: [],
+    featured: true,
+    recruiterAngle: 'Shows backend rigor in a financial domain with correctness guarantees, idempotency, and strong .NET fundamentals.',
+    proofLine: 'Backend depth piece built around correctness and financial domain modeling.',
+    previewTitle: 'Banking ledger API',
+    previewNote: 'Idempotent transactions, account lifecycle, and validation in ASP.NET Core.',
+    theme: {
+      primary: '#4fc3f7',
+      secondary: '#ab47bc',
+      glow: 'rgba(79, 195, 247, 0.35)',
     },
   },
   {
@@ -504,7 +560,7 @@ export const experiences: Experience[] = [
       'Built reporting and forecasting software used by more than 100 stakeholders.',
       'Managed data pipelines for 1,000+ records and kept forecast error below 1%.',
     ],
-    stack: ['Python', 'SQL', 'Forecasting', 'Testing'],
+    stack: ['Java', 'SQL', 'Forecasting', 'Testing'],
   },
   {
     company: 'Seam.ai',
@@ -589,9 +645,9 @@ export const homeStats: HomeStat[] = [
     note: 'Reviewed for signal, then narrowed to a smaller set of highlighted work.',
   },
   {
-    value: '4',
+    value: '5',
     label: 'flagship projects',
-    note: 'Product software, data workflows, applied AI, and ML depth.',
+    note: 'Product software, data workflows, applied AI, backend systems, and ML depth.',
   },
   {
     value: '3',
@@ -629,6 +685,12 @@ export const focusAreas: FocusArea[] = [
     description: 'Software where user experience matters as much as the implementation behind it.',
     proof: 'Buzzr',
     href: '/projects/buzzr',
+  },
+  {
+    title: 'Backend and API design',
+    description: 'Service architecture with clean contracts, validation, and operational reliability.',
+    proof: 'Credit Union Ledger API',
+    href: '/projects/credit-union-ledger-api',
   },
   {
     title: 'Data-heavy product work',

@@ -14,7 +14,7 @@ const proofPoints = [
 ]
 
 const heroStats = [
-  { value: '4', label: 'flagship projects' },
+  { value: '5', label: 'flagship projects' },
   { value: '50K+', label: 'records/day supported' },
   { value: '3', label: 'internships' },
 ]
