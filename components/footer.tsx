@@ -87,7 +87,8 @@ export function Footer() {
                   <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-muted-foreground">Resume</p>
                   <a
                     href={personalInfo.resumePath}
-                    download
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-foreground transition hover:text-primary"
                   >
                     Download resume

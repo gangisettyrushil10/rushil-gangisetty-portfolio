@@ -233,6 +233,13 @@
   isolation: isolate;
 }
 
+.aurora-backdrop,
+.animated-gradient,
+.grid-pattern,
+.hero-noise {
+  pointer-events: none;
+}
+
 .aurora-backdrop {
   background:
     radial-gradient(circle at 18% 24%, rgba(67, 215, 255, 0.12), transparent 21%),

@@ -27,7 +27,8 @@ export function ResumeContent() {
               <div className="mt-6 flex flex-wrap gap-2.5">
                 <a
                   href={personalInfo.resumePath}
-                  download
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2.5 text-sm font-medium text-primary-foreground transition hover:brightness-110"
                 >
                   <Download className="h-4 w-4" />

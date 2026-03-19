@@ -107,7 +107,7 @@ export const aboutSection = {
       value: 'Product software, backend workflows, and practical data and AI features',
     },
   ],
-  portraitSrc: '/placeholder-user.jpg',
+  portraitSrc: '/portrait.jpg',
   portraitAlt: 'Portrait of Rushil Gangisetty',
 }
 

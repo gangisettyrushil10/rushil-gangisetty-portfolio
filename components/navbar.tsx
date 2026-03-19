@@ -99,7 +99,8 @@ export function Navbar() {
               </a>
               <a
                 href={personalInfo.resumePath}
-                download
+                target="_blank"
+                rel="noopener noreferrer"
                 className="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:brightness-110"
               >
                 Resume
@@ -175,7 +176,8 @@ export function Navbar() {
                     </a>
                     <a
                       href={personalInfo.resumePath}
-                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
                     >
                       Resume
