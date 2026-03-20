@@ -704,5 +704,5 @@ export const personalInfo = {
   email: 'gangisettyrushil@gmail.com',
   github: 'https://github.com/gangisettyrushil10',
   linkedin: 'https://www.linkedin.com/in/rushilgangisetty10',
-  resumePath: '/resume.pdf',
+  resumePath: '/resume/rushil-gangisetty-resume.pdf',
 }
