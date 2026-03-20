@@ -91,7 +91,7 @@ export interface Education {
 export const aboutSection = {
   title: 'About me.',
   paragraphs: [
-    'I build product-minded software with strong backend ownership and a bias for clarity. The work I enjoy most lives where interface quality, system design, and messy real-world inputs all need to hold together.',
+    'I care most about software that ships with clear intent — where the interface feels finished, the backend handles real-world messiness, and the whole thing stays understandable to the next person who reads it.',
   ],
   highlights: [
     {
@@ -485,52 +485,6 @@ export const projects: Project[] = [
       glow: 'rgba(245, 215, 110, 0.3)',
     },
   },
-  {
-    id: 'fake-news-detection',
-    title: 'Fake News Detection',
-    category: 'ML Experiment',
-    description:
-      'An NLP classifier using TF-IDF and a Passive Aggressive model to label news articles as fake or real.',
-    longDescription:
-      'An earlier NLP project that builds and evaluates a straightforward text-classification pipeline from preprocessing through accuracy measurement.',
-    stack: ['Python', 'scikit-learn', 'Pandas', 'TF-IDF', 'NLP'],
-    metrics: [
-      { label: 'Accuracy', value: '92%' },
-      { label: 'Pipeline', value: 'TF-IDF + PA' },
-      { label: 'Project type', value: 'ML baseline' },
-      { label: 'Stage', value: 'Early work' },
-    ],
-    role: 'ML builder',
-    timeline: '2024',
-    status: 'Completed',
-    challenge:
-      'The goal was to build a simple end-to-end ML pipeline that stayed easy to explain.',
-    decisions: [
-      'Used TF-IDF and a Passive Aggressive classifier to keep the baseline legible and fast.',
-      'Framed the project honestly as an early baseline rather than a production claim.',
-    ],
-    outcomes: [
-      'Delivered a clear first text-classification workflow with measurable performance.',
-      'Shows early initiative in machine learning and model evaluation.',
-    ],
-    learnings: [
-      'Simple baselines teach the full path from data prep to evaluation.',
-      'Honest framing makes early projects more credible.',
-    ],
-    githubUrl: 'https://github.com/gangisettyrushil10/fakeNewsDetection.py',
-    links: [{ label: 'Repository', href: 'https://github.com/gangisettyrushil10/fakeNewsDetection.py' }],
-    featured: false,
-    recruiterAngle: 'Shows early machine-learning initiative and comfort with baseline modeling.',
-    proofLine: 'Early ML baseline kept for range, not as a lead project.',
-    repoName: 'fakeNewsDetection.py',
-    previewTitle: 'NLP baseline',
-    previewNote: 'A compact end-to-end classifier built as an early ML project.',
-    theme: {
-      primary: '#ff6cab',
-      secondary: '#f5d76e',
-      glow: 'rgba(255, 108, 171, 0.28)',
-    },
-  },
 ]
 
 export interface Experience {
@@ -543,12 +497,25 @@ export interface Experience {
 
 export const experiences: Experience[] = [
   {
+    company: 'Seam.ai',
+    role: 'Software Engineering Intern',
+    period: 'Aug 2024 - May 2025',
+    bullets: [
+      'Architected an email ingestion pipeline processing 50K+ records/day, powering relationship scoring and outreach insights across multi-tenant SaaS.',
+      'Developed lead generation features surfacing dormant contacts, recovering 30+ lost opportunities per client and contributing to $75K+ in re-engaged pipeline value.',
+      'Shipped analytics dashboards tracking engagement and relationship strength, used by GTM teams to prioritize 200+ accounts and cut manual prospecting by 35%.',
+      'Engineered NLP-driven backend workflows for classifying and validating email data, achieving 94% accuracy across 3 subscription tiers.',
+    ],
+    stack: ['Python', 'NLP', 'CI/CD', 'SaaS'],
+  },
+  {
     company: 'Aeyesafe',
     role: 'QA Engineering Intern',
     period: 'Jun 2025 - Aug 2025',
     bullets: [
-      'Validated ETL outputs and sensor datasets used in production release workflows.',
-      'Built data quality checks and monitoring paths that improved release confidence.',
+      'Designed automated test suites validating ETL pipelines converting 10K+ daily IoT sensor streams from AI-powered senior safety devices into structured datasets.',
+      'Wrote data-quality checks catching missing fields, timestamp anomalies, and out-of-range values, improving release confidence by 40%.',
+      'Stress-tested pipeline outputs across 15+ edge cases including network drops, delayed packets, and device disconnects.',
     ],
     stack: ['ETL', 'APIs', 'Data Quality', 'Testing'],
   },
@@ -557,20 +524,11 @@ export const experiences: Experience[] = [
     role: 'Software Engineering Intern',
     period: 'Jan 2025 - May 2025',
     bullets: [
-      'Built reporting and forecasting software used by more than 100 stakeholders.',
-      'Managed data pipelines for 1,000+ records and kept forecast error below 1%.',
+      'Built forecasting software analyzing 1,000+ academic records, used by 100+ faculty stakeholders for enrollment and retention decisions.',
+      'Implemented 50+ unit tests covering edge cases and academic policy scenarios, maintaining forecast accuracy within 1%.',
+      'Automated data pipeline workflows replacing manual Excel processes, reducing report generation time by 60%.',
     ],
     stack: ['Java', 'SQL', 'Forecasting', 'Testing'],
-  },
-  {
-    company: 'Seam.ai',
-    role: 'Software Engineering Intern',
-    period: 'Aug 2024 - May 2025',
-    bullets: [
-      'Built multi-tenant SaaS workflows across subscription tiers and organization-level access patterns.',
-      'Developed data and NLP workflows processing 50K+ records per day.',
-    ],
-    stack: ['Python', 'NLP', 'CI/CD', 'SaaS'],
   },
 ]
 
@@ -580,7 +538,7 @@ export const education: Education[] = [
     degree: 'M.S. in Computer Science',
     period: 'Starting Aug 2026',
     location: 'Richardson, Texas',
-    note: 'Incoming graduate study focused on advanced computer science coursework.',
+    note: 'GPA: 4.0 / 4.0 — Incoming graduate study focused on advanced computer science coursework.',
   },
   {
     school: 'Austin College',
@@ -734,7 +692,7 @@ export const projectDomains = [
 export const recruiterSummary = {
   title: 'Software engineer focused on product quality, dependable systems, and real-world workflows.',
   description:
-    'I build product software, backend workflows, and data-intensive tools with an emphasis on clarity, reliability, and practical execution.',
+    'Three internships across SaaS, IoT data, and academic tooling. Five public projects spanning mobile products, backend APIs, analytics workflows, and applied AI.',
 }
 
 export const personalInfo = {

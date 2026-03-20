@@ -74,6 +74,7 @@ export function ContactContent() {
                 </div>
                 <p className="mt-3 text-sm font-medium text-foreground">Location</p>
                 <p className="mt-1.5 text-sm text-muted-foreground">{personalInfo.location}</p>
+                <p className="mt-1 text-xs text-muted-foreground/70">Open to remote, hybrid, and relocation</p>
               </div>
             </div>
           </div>
