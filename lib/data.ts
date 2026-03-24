@@ -385,9 +385,9 @@ export const projects: Project[] = [
     title: 'Credit Union Ledger API',
     category: 'Backend Systems',
     description:
-      'A banking ledger API built with ASP.NET Core for member management, account lifecycle, deposits/withdrawals with idempotency, and transaction history. Source code available on request.',
+      'A banking ledger API built with ASP.NET Core for member management, account lifecycle, deposits/withdrawals with idempotency, and transaction history.',
     longDescription:
-      'This project implements a credit union banking ledger as a RESTful API using ASP.NET Core and Entity Framework Core backed by PostgreSQL. It covers member onboarding, account creation and closure, deposit and withdrawal operations with idempotency keys, and paginated transaction history. Validation is handled through FluentValidation, and the API is documented via Swagger. The codebase includes xUnit tests covering core business logic and edge cases. Code is available on request.',
+      'This project implements a credit union banking ledger as a RESTful API using ASP.NET Core and Entity Framework Core backed by PostgreSQL. It covers member onboarding, account creation and closure, deposit and withdrawal operations with idempotency keys, and paginated transaction history. Validation is handled through FluentValidation, and the API is documented via Swagger. The codebase includes xUnit tests covering core business logic and edge cases.',
     stack: [
       'ASP.NET Core',
       'C#',
