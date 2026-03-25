@@ -7,7 +7,7 @@ import { ArrowRight, Download, Mail, MapPin, Github, Linkedin } from 'lucide-rea
 import { Footer } from '@/components/footer'
 import { Navbar } from '@/components/navbar'
 import { ProjectCard } from '@/components/project-card'
-import { Section, SectionHeader } from '@/components/section'
+import { Section } from '@/components/section'
 import { Terminal } from '@/components/home/terminal'
 import { CurrentlyBuilding } from '@/components/home/currently-building'
 import { aboutSection, personalInfo, projects } from '@/lib/data'
@@ -18,50 +18,44 @@ export default function HomePage() {
   return (
     <main className="page-shell min-h-screen bg-background">
       <Navbar />
+      <Terminal />
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden px-4 pb-8 pt-28 sm:px-6 sm:pb-12 sm:pt-36 lg:px-8">
-        <div className="absolute inset-0 aurora-backdrop opacity-60" />
-        <div className="absolute inset-0 grid-pattern opacity-20" />
-
+      <section className="relative px-4 pb-8 pt-28 sm:px-6 sm:pb-12 sm:pt-36 lg:px-8">
         <div className="relative mx-auto max-w-7xl">
-          <motion.p
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45 }}
-            className="text-sm text-muted-foreground"
-          >
-            {personalInfo.name} · {personalInfo.location}
-          </motion.p>
-
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.06 }}
-            className="mt-4 max-w-3xl text-4xl font-semibold leading-[1.1] tracking-[-0.04em] text-foreground sm:text-[3.8rem]"
+            transition={{ duration: 0.55 }}
+            className="max-w-4xl text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-foreground sm:text-[3.8rem]"
           >
-            I build products people use — and the{' '}
-            <span className="text-shimmer">systems behind them</span>.
+            I&apos;m Rushil. I ship things.
           </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.14 }}
-            className="mt-5 max-w-2xl text-base leading-7 text-muted-foreground sm:text-lg"
-          >
-            Full-stack engineer. Currently building{' '}
-            <Link href="/projects/buzzr" className="text-foreground underline decoration-white/20 underline-offset-4 hover:decoration-white/50 transition-colors">
-              Buzzr
-            </Link>
-            , a sports ML platform with 20 weekly active users.
-            Starting MS CS at UT Dallas in August.
-          </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.55, delay: 0.22 }}
+            transition={{ duration: 0.55, delay: 0.08 }}
+            className="mt-5 max-w-2xl space-y-3 text-base leading-7 text-muted-foreground sm:text-lg"
+          >
+            <p>
+              I built{' '}
+              <Link href="/projects/buzzr" className="text-[#43d7ff] underline decoration-[#43d7ff]/30 underline-offset-4 hover:decoration-[#43d7ff]/60 transition-colors">
+                Buzzr
+              </Link>
+              , a sports platform with an ML model that scores how entertaining games are.
+              20 people use it every week. 100% of them came back.
+            </p>
+            <p>
+              I like working across the stack — product, backend, data, ML.
+              Three internships. Five shipped projects. Starting MS CS at UT Dallas in August.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: 0.18 }}
             className="mt-7 flex flex-wrap items-center gap-4 text-sm"
           >
             <a
@@ -98,6 +92,11 @@ export default function HomePage() {
               <Mail className="h-4 w-4" />
               Email
             </a>
+            <span className="text-muted-foreground/50">·</span>
+            <span className="inline-flex items-center gap-1.5 text-muted-foreground">
+              <MapPin className="h-3.5 w-3.5" />
+              Dallas, TX
+            </span>
           </motion.div>
         </div>
       </section>
@@ -106,17 +105,19 @@ export default function HomePage() {
       <Section id="projects" className="pt-4">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <SectionHeader
-              badge="Projects"
-              title="Selected work."
-              description="The projects I'd share first with a recruiter or hiring manager."
-              className="mb-0"
-            />
+            <div className="max-w-3xl">
+              <h2 className="text-2xl font-semibold tracking-[-0.04em] text-foreground sm:text-[2.2rem]">
+                What I&apos;ve built.
+              </h2>
+              <p className="mt-2 text-sm text-muted-foreground sm:text-base">
+                Products, APIs, data pipelines, ML models. Click into any for the full story.
+              </p>
+            </div>
             <Link
               href="/projects"
               className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm font-medium text-foreground transition hover:border-white/18 hover:bg-white/9"
             >
-              View all projects
+              All projects
               <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -145,31 +146,15 @@ export default function HomePage() {
               </div>
             </div>
             <div className="max-w-2xl">
-              <SectionHeader
-                badge="About"
-                title={aboutSection.title}
-                className="mb-0"
-              />
-              <div className="mt-4 space-y-3 text-sm leading-7 text-foreground/85 sm:text-base">
+              <h2 className="text-xl font-semibold tracking-[-0.03em] text-foreground sm:text-2xl">
+                Why I build.
+              </h2>
+              <div className="mt-3 space-y-3 text-sm leading-7 text-foreground/85 sm:text-base">
                 {aboutSection.paragraphs.map((p) => (
                   <p key={p}>{p}</p>
                 ))}
               </div>
             </div>
-          </div>
-        </div>
-      </Section>
-
-      {/* ── Terminal ── */}
-      <Section>
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <SectionHeader
-            badge="Interactive"
-            title="rushil.sh"
-            description="Type a command to learn more. Try &quot;help&quot; to start."
-          />
-          <div className="max-w-2xl">
-            <Terminal />
           </div>
         </div>
       </Section>

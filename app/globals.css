@@ -464,13 +464,14 @@
   mix-blend-mode: soft-light;
 }
 
-/* Terminal window */
-.terminal-window {
+/* Sticky terminal */
+.terminal-sticky {
   box-shadow:
-    0 20px 60px -20px rgba(0, 0, 0, 0.6),
+    0 12px 40px -16px rgba(0, 0, 0, 0.7),
     inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: border-color 200ms ease;
 }
 
-.terminal-window:focus-within {
+.terminal-sticky:focus-within {
   border-color: rgba(67, 215, 255, 0.2);
 }
