@@ -1,115 +1,239 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
+import { useCallback, useEffect, useRef, type ReactNode } from 'react'
 
 interface AuroraBackgroundProps {
   children: ReactNode
   className?: string
 }
 
-interface WaveConfig {
-  color: string
-  top: string
-  height: string
-  mouseInfluence: number
-  opacity: number
-  hueShift: number
-  speedMult: number
-}
+const VERTEX_SHADER = `
+  attribute vec2 a_position;
+  void main() {
+    gl_Position = vec4(a_position, 0.0, 1.0);
+  }
+`
 
-const waves: WaveConfig[] = [
-  { color: 'rgba(67, 215, 255, 0.15)', top: '10%', height: '45%', mouseInfluence: 30, opacity: 0.8, hueShift: 0, speedMult: 1.0 },
-  { color: 'rgba(157, 140, 255, 0.12)', top: '25%', height: '40%', mouseInfluence: -20, opacity: 0.7, hueShift: 40, speedMult: 0.85 },
-  { color: 'rgba(255, 108, 171, 0.10)', top: '15%', height: '50%', mouseInfluence: 25, opacity: 0.6, hueShift: 80, speedMult: 1.15 },
-  { color: 'rgba(104, 247, 196, 0.08)', top: '30%', height: '35%', mouseInfluence: -15, opacity: 0.5, hueShift: 120, speedMult: 0.7 },
-]
+const FRAGMENT_SHADER = `
+  precision mediump float;
+  uniform vec2 u_resolution;
+  uniform float u_time;
+  uniform vec2 u_mouse;
 
-function generateWavePath(offset: number): string {
-  const points: string[] = []
-  const steps = 40
+  // Simplex-ish noise for organic movement
+  vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+  vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+  vec3 permute(vec3 x) { return mod289(((x * 34.0) + 1.0) * x); }
 
-  for (let i = 0; i <= steps; i++) {
-    const x = (i / steps) * 100
-    const y = 30 + Math.sin((i / steps) * Math.PI * 3 + offset) * 18
-      + Math.sin((i / steps) * Math.PI * 1.5 + offset * 0.7) * 10
-    points.push(`${x}% ${y}%`)
+  float snoise(vec2 v) {
+    const vec4 C = vec4(0.211324865405187, 0.366025403784439, -0.577350269189626, 0.024390243902439);
+    vec2 i = floor(v + dot(v, C.yy));
+    vec2 x0 = v - i + dot(i, C.xx);
+    vec2 i1 = (x0.x > x0.y) ? vec2(1.0, 0.0) : vec2(0.0, 1.0);
+    vec4 x12 = x0.xyxy + C.xxzz;
+    x12.xy -= i1;
+    i = mod289(i);
+    vec3 p = permute(permute(i.y + vec3(0.0, i1.y, 1.0)) + i.x + vec3(0.0, i1.x, 1.0));
+    vec3 m = max(0.5 - vec3(dot(x0, x0), dot(x12.xy, x12.xy), dot(x12.zw, x12.zw)), 0.0);
+    m = m * m;
+    m = m * m;
+    vec3 x = 2.0 * fract(p * C.www) - 1.0;
+    vec3 h = abs(x) - 0.5;
+    vec3 ox = floor(x + 0.5);
+    vec3 a0 = x - ox;
+    m *= 1.79284291400159 - 0.85373472095314 * (a0 * a0 + h * h);
+    vec3 g;
+    g.x = a0.x * x0.x + h.x * x0.y;
+    g.yz = a0.yz * x12.xz + h.yz * x12.yw;
+    return 130.0 * dot(m, g);
   }
 
-  for (let i = steps; i >= 0; i--) {
-    const x = (i / steps) * 100
-    const y = 70 + Math.sin((i / steps) * Math.PI * 2.5 + offset + 1) * 15
-      + Math.sin((i / steps) * Math.PI * 1.8 + offset * 0.5) * 8
-    points.push(`${x}% ${y}%`)
+  void main() {
+    vec2 uv = gl_FragCoord.xy / u_resolution;
+    vec2 mouse = u_mouse;
+    float t = u_time * 0.3;
+
+    // Liquid surface displacement
+    float n1 = snoise(uv * 3.0 + vec2(t * 0.4, t * 0.3));
+    float n2 = snoise(uv * 5.0 - vec2(t * 0.3, t * 0.5));
+    float n3 = snoise(uv * 2.0 + vec2(t * 0.2, -t * 0.4));
+
+    // Mouse influence — creates a smooth ripple/pull
+    float mouseDist = length(uv - mouse);
+    float mouseInfluence = smoothstep(0.5, 0.0, mouseDist) * 0.4;
+    float mouseRipple = sin(mouseDist * 20.0 - u_time * 3.0) * mouseInfluence;
+
+    // Combine noise layers for liquid look
+    float displacement = n1 * 0.4 + n2 * 0.25 + n3 * 0.15 + mouseRipple;
+
+    // Color palette: cyan, purple, pink, green
+    vec3 cyan = vec3(0.263, 0.843, 1.0);
+    vec3 purple = vec3(0.616, 0.549, 1.0);
+    vec3 pink = vec3(1.0, 0.424, 0.671);
+    vec3 green = vec3(0.408, 0.969, 0.769);
+
+    // Mix colors based on displacement and position
+    float colorPhase = displacement + t * 0.15;
+    vec3 col = mix(cyan, purple, smoothstep(-0.3, 0.3, sin(colorPhase * 3.14)));
+    col = mix(col, pink, smoothstep(-0.2, 0.4, sin(colorPhase * 2.1 + 1.5)));
+    col = mix(col, green, smoothstep(-0.1, 0.5, sin(colorPhase * 1.7 + 3.0)));
+
+    // Add specular-like highlights from displacement
+    float highlight = smoothstep(0.2, 0.5, displacement) * 0.3;
+    col += highlight;
+
+    // Fade edges for blending with dark background
+    float edgeFade = smoothstep(0.0, 0.15, uv.x) * smoothstep(1.0, 0.85, uv.x)
+                   * smoothstep(0.0, 0.2, uv.y) * smoothstep(1.0, 0.7, uv.y);
+
+    // Overall opacity — keep it subtle as a background
+    float alpha = (0.12 + displacement * 0.06 + mouseInfluence * 0.15) * edgeFade;
+
+    gl_FragColor = vec4(col, alpha);
+  }
+`
+
+function initWebGL(canvas: HTMLCanvasElement) {
+  const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: false })
+  if (!gl) return null
+
+  // Compile shaders
+  function compileShader(src: string, type: number) {
+    const shader = gl!.createShader(type)!
+    gl!.shaderSource(shader, src)
+    gl!.compileShader(shader)
+    return shader
   }
 
-  return `polygon(${points.join(', ')})`
+  const vs = compileShader(VERTEX_SHADER, gl.VERTEX_SHADER)
+  const fs = compileShader(FRAGMENT_SHADER, gl.FRAGMENT_SHADER)
+
+  const program = gl.createProgram()!
+  gl.attachShader(program, vs)
+  gl.attachShader(program, fs)
+  gl.linkProgram(program)
+  gl.useProgram(program)
+
+  // Full-screen quad
+  const buffer = gl.createBuffer()
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW)
+
+  const pos = gl.getAttribLocation(program, 'a_position')
+  gl.enableVertexAttribArray(pos)
+  gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0)
+
+  // Enable blending for transparency
+  gl.enable(gl.BLEND)
+  gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
+
+  return {
+    gl,
+    uniforms: {
+      resolution: gl.getUniformLocation(program, 'u_resolution'),
+      time: gl.getUniformLocation(program, 'u_time'),
+      mouse: gl.getUniformLocation(program, 'u_mouse'),
+    },
+  }
 }
 
 export function AuroraBackground({ children, className }: AuroraBackgroundProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
-  const [mouseX, setMouseX] = useState(0.5)
-  const rafRef = useRef<number>(0)
-  const [wavePaths, setWavePaths] = useState(() =>
-    waves.map((_, i) => generateWavePath(i * 0.9))
-  )
-
-  // Animate wave paths at ~20fps
-  useEffect(() => {
-    let t = 0
-    const interval = setInterval(() => {
-      t += 0.012
-      setWavePaths(
-        waves.map((w, i) =>
-          generateWavePath(t * w.speedMult + i * 0.9)
-        )
-      )
-    }, 50)
-    return () => clearInterval(interval)
-  }, [])
+  const mouseRef = useRef({ x: 0.5, y: 0.5 })
+  const smoothMouseRef = useRef({ x: 0.5, y: 0.5 })
+  const glRef = useRef<ReturnType<typeof initWebGL>>(null)
+  const animRef = useRef<number>(0)
+  const webglSupported = useRef(true)
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-    if (rafRef.current) return
-    rafRef.current = requestAnimationFrame(() => {
-      const rect = containerRef.current?.getBoundingClientRect()
-      if (rect) {
-        setMouseX((e.clientX - rect.left) / rect.width)
-      }
-      rafRef.current = 0
-    })
+    const rect = containerRef.current?.getBoundingClientRect()
+    if (!rect) return
+    mouseRef.current = {
+      x: (e.clientX - rect.left) / rect.width,
+      y: 1.0 - (e.clientY - rect.top) / rect.height, // Flip Y for WebGL
+    }
+  }, [])
+
+  const handleTouchMove = useCallback((e: React.TouchEvent<HTMLDivElement>) => {
+    const rect = containerRef.current?.getBoundingClientRect()
+    if (!rect || !e.touches[0]) return
+    mouseRef.current = {
+      x: (e.touches[0].clientX - rect.left) / rect.width,
+      y: 1.0 - (e.touches[0].clientY - rect.top) / rect.height,
+    }
+  }, [])
+
+  useEffect(() => {
+    const canvas = canvasRef.current
+    if (!canvas) return
+
+    const ctx = initWebGL(canvas)
+    if (!ctx) {
+      webglSupported.current = false
+      return
+    }
+    glRef.current = ctx
+
+    function resize() {
+      if (!canvas || !ctx) return
+      const dpr = Math.min(window.devicePixelRatio, 1.5) // Cap for performance
+      const rect = canvas.getBoundingClientRect()
+      canvas.width = rect.width * dpr
+      canvas.height = rect.height * dpr
+      ctx.gl.viewport(0, 0, canvas.width, canvas.height)
+    }
+
+    resize()
+    window.addEventListener('resize', resize)
+
+    const startTime = performance.now()
+
+    function render() {
+      if (!ctx) return
+      const { gl, uniforms } = ctx
+      const time = (performance.now() - startTime) / 1000
+
+      // Smooth mouse interpolation
+      smoothMouseRef.current.x += (mouseRef.current.x - smoothMouseRef.current.x) * 0.05
+      smoothMouseRef.current.y += (mouseRef.current.y - smoothMouseRef.current.y) * 0.05
+
+      gl.clearColor(0, 0, 0, 0)
+      gl.clear(gl.COLOR_BUFFER_BIT)
+      gl.uniform2f(uniforms.resolution, canvas!.width, canvas!.height)
+      gl.uniform1f(uniforms.time, time)
+      gl.uniform2f(uniforms.mouse, smoothMouseRef.current.x, smoothMouseRef.current.y)
+      gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
+
+      animRef.current = requestAnimationFrame(render)
+    }
+
+    animRef.current = requestAnimationFrame(render)
+
+    return () => {
+      cancelAnimationFrame(animRef.current)
+      window.removeEventListener('resize', resize)
+    }
   }, [])
 
   return (
     <div
       ref={containerRef}
       onMouseMove={handleMouseMove}
+      onTouchMove={handleTouchMove}
       className={`relative overflow-hidden ${className ?? ''}`}
     >
-      {/* Aurora wave bands */}
-      {waves.map((wave, i) => {
-        const mouseOffset = (mouseX - 0.5) * wave.mouseInfluence
-        return (
-          <div
-            key={i}
-            className="pointer-events-none absolute"
-            style={{
-              top: wave.top,
-              left: '-20%',
-              width: '140%',
-              height: wave.height,
-              background: `linear-gradient(90deg, transparent 0%, ${wave.color} 20%, ${wave.color} 50%, ${wave.color} 80%, transparent 100%)`,
-              clipPath: wavePaths[i],
-              transform: `translateX(${mouseOffset}px)`,
-              transition: 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-              opacity: wave.opacity,
-              filter: `blur(40px) hue-rotate(${wave.hueShift + (mouseX - 0.5) * 30}deg)`,
-              mixBlendMode: 'screen' as const,
-            }}
-          />
-        )
-      })}
+      {/* WebGL canvas */}
+      <canvas
+        ref={canvasRef}
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        style={{ opacity: webglSupported.current ? 1 : 0 }}
+      />
 
-      {/* Subtle grid overlay */}
-      <div className="absolute inset-0 grid-pattern opacity-12 pointer-events-none" />
+      {/* CSS fallback if WebGL unavailable */}
+      {!webglSupported.current && (
+        <div className="absolute inset-0 aurora-backdrop opacity-40 pointer-events-none" />
+      )}
 
       {/* Content */}
       <div className="relative z-10">{children}</div>
