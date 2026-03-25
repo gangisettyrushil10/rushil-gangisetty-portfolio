@@ -91,7 +91,7 @@ export interface Education {
 export const aboutSection = {
   title: 'Why I build.',
   paragraphs: [
-    'I started Buzzr because I wanted to know if the game I was about to watch would actually be worth watching. That question turned into a scikit-learn model, a mobile app on TestFlight, and 20 people who check it every week.',
+    'I started Buzzr because I wanted to know if the game I was about to watch would actually be worth watching. That turned into a cross-platform app on Apple TestFlight with 18 beta testers, 7 live league integrations, and 9 Edge Functions powering real-time watch parties.',
     "I like building across the full stack — I've shipped ML models that score game entertainment, banking APIs with idempotent transactions, clinical AI workflows, and analytics dashboards that handle messy real-world data. The common thread is products where the backend complexity is invisible to the user.",
     'I build things I want to exist, then I make them work for other people too. That means caring about the product as much as the code, handling real-world messiness in the backend, and shipping software that stays understandable to the next person who reads it.',
   ],
@@ -128,41 +128,40 @@ export const projects: Project[] = [
     title: 'Buzzr',
     category: 'Product Software',
     description:
-      'A Letterboxd-style sports platform where users rate game entertainment, post hot takes, and compete in predictions — powered by an ML model that scores how exciting each game is.',
+      'A cross-platform sports social app shipped to Apple TestFlight with 18 beta testers, 7 live league integrations, 20+ REST endpoints, and real-time watch parties powered by Supabase Edge Functions.',
     longDescription:
-      'Buzzr is a sports social platform built with Expo, Next.js, and Supabase. A Python scikit-learn model scores every game\'s entertainment value using tempo, lead changes, and scoring runs — then predicts which upcoming games will be the most exciting to watch. Live on Apple TestFlight with 20 weekly active users and 100% week-1 retention across 8 leagues and 10,838 live games. Currently building a collaborative filtering recommendation engine on user ratings.',
+      'Built a cross-platform sports social app from scratch with Expo, React Native, Next.js, and Supabase. Supports 7 live league integrations across 20+ REST endpoints, 38 SQL migrations, and 15+ relational tables. Architected real-time watch party and social features using Supabase Edge Functions, Postgres triggers, and live subscriptions. Built 9 Edge Functions, 70+ reusable UI components, and deployed across iOS and Web with CI/CD and production monitoring.',
     stack: [
-      'Expo',
       'React Native',
       'TypeScript',
       'Supabase',
+      'Expo',
       'PostgreSQL',
       'Next.js',
-      'Python',
-      'scikit-learn',
-      'Tailwind CSS',
+      'Edge Functions',
+      'CI/CD',
     ],
     metrics: [
-      { label: 'Weekly active users', value: '20' },
-      { label: 'Week-1 retention', value: '100%' },
-      { label: 'Live games', value: '10,838' },
-      { label: 'Leagues', value: '8' },
+      { label: 'Beta testers', value: '18' },
+      { label: 'Live leagues', value: '7' },
+      { label: 'REST endpoints', value: '20+' },
+      { label: 'SQL migrations', value: '38' },
     ],
-    role: 'Sole builder — product, mobile, web, backend, ML',
-    timeline: '2026',
+    role: 'Sole builder — product, mobile, web, backend',
+    timeline: 'Oct 2025 – Present',
     status: 'Active build',
     challenge:
       'The product needed live data, identity, ratings, and social activity to stay coherent across mobile and web as features expanded.',
     decisions: [
       'Built on Supabase and Postgres to move quickly while keeping auth, realtime updates, and data modeling in one place.',
+      'Architected real-time features using Edge Functions, Postgres triggers, and live subscriptions.',
       'Shared types and validation across mobile and web so product behavior stayed aligned.',
-      'Trained a scikit-learn entertainment scoring model on game features (tempo, lead changes, scoring runs) to power the core rating experience.',
       'Made entertainment-based ratings the core interaction so the product had a distinct point of view.',
     ],
     outcomes: [
-      'Live on Apple TestFlight with 20 weekly active users and 100% week-1 retention.',
-      'Supports 8 live leagues with profiles, ratings, following, and watch-party flows across 10,838 games.',
-      'Shows full-stack ownership across mobile, web, backend, ML, and product decisions.',
+      'Shipped to Apple TestFlight with 18 external beta testers.',
+      'Supports 7 live leagues across 20+ REST endpoints, 38 SQL migrations, and 15+ relational tables.',
+      'Built 9 Edge Functions, 70+ reusable UI components, deployed across iOS and Web with CI/CD.',
     ],
     learnings: [
       'In multi-surface products, data contracts matter as much as interface polish.',
@@ -221,25 +220,24 @@ export const projects: Project[] = [
     title: 'Business Analytics Dashboard',
     category: 'Data Workflow Product',
     description:
-      'A full-stack analytics workflow for CSV uploads, validation, forecasting, anomaly detection, and AI-assisted reporting on messy business data.',
+      'A full-stack analytics platform across 15+ REST endpoints and 7 backend services with JWT auth, CSV ingestion, multi-stage validation, Prophet forecasting with 95% confidence intervals, and AI-generated insights.',
     longDescription:
-      'This project handles ingestion, validation, forecasting, anomaly detection, and export in one workflow built for imperfect business data.',
+      'Built a full-stack analytics platform across 15+ REST endpoints and 7 backend services. Features JWT auth, CSV ingestion with a multi-stage validation pipeline, and ETL transformations with live preview. Integrated Prophet for 7/30/90-day time-series forecasting with 95% confidence intervals, scikit-learn Isolation Forest for anomaly detection, and OpenAI API for AI-generated business insights.',
     stack: [
       'FastAPI',
-      'React',
+      'React 19',
       'TypeScript',
       'PostgreSQL',
-      'SQLAlchemy',
       'Prophet',
       'scikit-learn',
       'OpenAI',
-      'Docker',
+      'JWT Auth',
     ],
     metrics: [
-      { label: 'Data input', value: 'Messy CSVs' },
+      { label: 'REST endpoints', value: '15+' },
+      { label: 'Backend services', value: '7' },
+      { label: 'Forecast confidence', value: '95%' },
       { label: 'Forecast windows', value: '7/30/90d' },
-      { label: 'Backend endpoints', value: '12' },
-      { label: 'Workflow stages', value: '5' },
     ],
     role: 'Full-stack engineer',
     timeline: '2025',
@@ -287,17 +285,17 @@ export const projects: Project[] = [
     title: 'IBM Medscribe AI',
     category: 'Applied AI Product',
     description:
-      'A team-built AI clinical workflow (IBM hackathon) that turns raw notes into structured summaries and suggested actions in a review-friendly interface.',
+      'An AI-assisted clinical workflow for IBM\'s AI Experiential Learning Lab that transforms physician notes into structured summaries using IBM watsonx, reducing manual review time by 50%.',
     longDescription:
-      'Built collaboratively during an IBM hackathon, Medscribe AI turns note input into structured clinical output through a review-oriented interface designed for clarity, not novelty. Forked from a shared team repo.',
-    stack: ['React', 'JavaScript', 'Flask', 'Python', 'IBM watsonx', 'LLM orchestration', 'CSS'],
+      'Built an AI-assisted clinical workflow for IBM\'s AI Experiential Learning Lab transforming physician notes into structured summaries using IBM watsonx, reducing manual review time by 50%. Constructed a React review interface with structured output rendering, citation-aware trust cues, and live/mock demo modes across 100+ sample clinical documents.',
+    stack: ['React', 'JavaScript', 'Flask', 'Python', 'IBM watsonx', 'LLM pipelines'],
     metrics: [
-      { label: 'Workflow', value: 'Notes -> Summary' },
+      { label: 'Review time reduction', value: '50%' },
+      { label: 'Sample documents', value: '100+' },
       { label: 'Demo modes', value: 'Live + Mock' },
-      { label: 'Backend LOC', value: '638' },
-      { label: 'Frontend LOC', value: '686' },
+      { label: 'Context', value: 'IBM AI Lab' },
     ],
-    role: 'Full-stack contributor (team of 4)',
+    role: 'Full-stack contributor (team project)',
     timeline: '2025',
     status: 'Completed',
     challenge:
@@ -397,23 +395,23 @@ export const projects: Project[] = [
     title: 'Credit Union Ledger API',
     category: 'Backend Systems',
     description:
-      'A banking ledger API built with ASP.NET Core for member management, account lifecycle, deposits/withdrawals with idempotency, and transaction history.',
+      'A layered REST API for member management and financial transactions with dependency injection, repository pattern, idempotent transactions, 100% rollback coverage, and 40+ integration tests.',
     longDescription:
-      'This project implements a credit union banking ledger as a RESTful API using ASP.NET Core and Entity Framework Core backed by PostgreSQL. It covers member onboarding, account creation and closure, deposit and withdrawal operations with idempotency keys, and paginated transaction history. Validation is handled through FluentValidation, and the API is documented via Swagger. The codebase includes xUnit tests covering core business logic and edge cases.',
+      'Engineered a layered REST API for member management and financial transactions using ASP.NET Core with dependency injection and repository pattern. Enforces idempotent transactions, balance constraints, and full audit logging. Implemented 100% rollback coverage on constraint violations, wrote 40+ integration tests, and Dockerized deployment with environment-specific config for dev, staging, and production.',
     stack: [
       'ASP.NET Core',
       'C#',
-      'Entity Framework Core',
+      'EF Core',
       'PostgreSQL',
       'FluentValidation',
-      'Swagger',
+      'Docker',
       'xUnit',
     ],
     metrics: [
-      { label: 'Domain', value: 'Banking ledger' },
-      { label: 'Operations', value: 'CRUD + transactions' },
+      { label: 'Rollback coverage', value: '100%' },
+      { label: 'Integration tests', value: '40+' },
       { label: 'Safety', value: 'Idempotent writes' },
-      { label: 'Coverage', value: 'xUnit suite' },
+      { label: 'Deployment', value: 'Dockerized' },
     ],
     role: 'Backend engineer',
     timeline: '2025',
@@ -511,36 +509,32 @@ export const experiences: Experience[] = [
   {
     company: 'Seam.ai',
     role: 'Software Engineering Intern',
-    period: 'Aug 2024 - May 2025',
+    period: 'Aug 2024 – May 2025',
     bullets: [
-      'Architected an email ingestion pipeline processing 50K+ records/day, powering relationship scoring and outreach insights across multi-tenant SaaS.',
-      'Developed lead generation features surfacing dormant contacts, recovering 30+ lost opportunities per client and contributing to $75K+ in re-engaged pipeline value.',
-      'Shipped analytics dashboards tracking engagement and relationship strength, used by GTM teams to prioritize 200+ accounts and cut manual prospecting by 35%.',
-      'Engineered NLP-driven backend workflows for classifying and validating email data, achieving 94% accuracy across 3 subscription tiers.',
+      'Developed full-stack SaaS features in Next.js using Clerk authentication, Stripe payment processing, and Supabase; built protected API routes, an org onboarding flow, and a Clerk-to-Supabase JWT provisioning bridge.',
+      'Engineered Python data pipelines using crawl4ai and Llama 3.1 70B via DeepInfra for structured intelligence extraction from web content; implemented chained LLM calls with JSON schema enforcement and a two-stage repair fallback for malformed outputs.',
+      'Built a Chrome Manifest V3 extension using service workers and the webRequest API to programmatically generate and replay search requests; implemented O(1) Set-based deduplication across batched API responses.',
     ],
-    stack: ['Python', 'NLP', 'CI/CD', 'SaaS'],
+    stack: ['Next.js', 'Clerk', 'Stripe', 'Supabase', 'Python', 'Llama 3.1 70B', 'DeepInfra', 'Chrome Extension'],
   },
   {
     company: 'Aeyesafe',
-    role: 'QA Engineering Intern',
-    period: 'Jun 2025 - Aug 2025',
+    role: 'Software Engineer Intern',
+    period: 'Jun 2025 – Aug 2025',
     bullets: [
-      'Designed automated test suites validating ETL pipelines converting 10K+ daily IoT sensor streams from AI-powered senior safety devices into structured datasets.',
-      'Wrote data-quality checks catching missing fields, timestamp anomalies, and out-of-range values, improving release confidence by 40%.',
-      'Stress-tested pipeline outputs across 15+ edge cases including network drops, delayed packets, and device disconnects.',
+      'Performed hardware-software integration testing for an IoT senior safety platform across thermal, radar, and sleep sensor devices; verified end-to-end data flow from physical device through API ingestion to storage layer.',
+      'Documented recurring failure modes across networked device configurations including connectivity drops, delayed packets, and data-sync issues; produced debugging runbooks used by the engineering team for faster triage.',
     ],
-    stack: ['ETL', 'APIs', 'Data Quality', 'Testing'],
+    stack: ['IoT', 'APIs', 'Integration Testing', 'Hardware-Software'],
   },
   {
     company: 'Austin College',
-    role: 'Software Engineering Intern',
-    period: 'Jan 2025 - May 2025',
+    role: 'Teaching Assistant, Introductory Programming',
+    period: 'Aug 2024 – Dec 2024',
     bullets: [
-      'Built forecasting software analyzing 1,000+ academic records, used by 100+ faculty stakeholders for enrollment and retention decisions.',
-      'Implemented 50+ unit tests covering edge cases and academic policy scenarios, maintaining forecast accuracy within 1%.',
-      'Automated data pipeline workflows replacing manual Excel processes, reducing report generation time by 60%.',
+      'Designed and administered the final lab project including requirements, rubric, and grading; supported instruction through office hours and one-on-one code debugging sessions.',
     ],
-    stack: ['Java', 'SQL', 'Forecasting', 'Testing'],
+    stack: ['Teaching', 'Programming', 'Curriculum Design'],
   },
 ]
 
@@ -548,9 +542,9 @@ export const education: Education[] = [
   {
     school: 'University of Texas at Dallas',
     degree: 'M.S. in Computer Science',
-    period: 'Starting Aug 2026',
+    period: 'Aug 2026 – May 2028',
     location: 'Richardson, Texas',
-    note: 'GPA: 4.0 / 4.0 — Incoming graduate study focused on advanced computer science coursework.',
+    note: 'GPA: 4.0 / 4.0',
   },
   {
     school: 'Austin College',
@@ -568,7 +562,7 @@ export const educationHighlights = [
   },
   {
     title: 'Leadership',
-    items: ['President, Computer Science Club', 'President, Robotics Club'],
+    items: ['President, Computer Science & Robotics Club'],
   },
   {
     title: 'Certifications',
@@ -577,12 +571,12 @@ export const educationHighlights = [
 ]
 
 export const skills = {
-  languages: ['TypeScript', 'Python', 'SQL', 'C#', 'Java', 'JavaScript'],
-  frontend: ['React', 'Next.js', 'React Native', 'Tailwind CSS', 'Framer Motion'],
-  backend: ['FastAPI', 'Flask', 'ASP.NET Core', 'Supabase', 'REST APIs', 'PostgreSQL'],
-  systems: ['Entity Framework Core', 'FluentValidation', 'Swagger', 'Jest', 'xUnit', 'CI/CD'],
-  data: ['Pandas', 'scikit-learn', 'Forecasting', 'Data Validation', 'PyTorch', 'NumPy'],
-  tools: ['Git', 'Docker', 'Linux', 'Vite', 'SQLAlchemy', 'Postman'],
+  languages: ['Java', 'C#', 'Python', 'JavaScript', 'TypeScript', 'SQL', 'Bash'],
+  frameworks: ['ASP.NET Core', 'EF Core', 'React', 'React Native', 'Expo', 'Node.js', 'Next.js', 'Flask', 'FastAPI'],
+  tools: ['Git', 'Docker', 'Postman', 'Linux', 'Visual Studio', 'VS Code', 'Figma', 'Chrome DevTools'],
+  databases: ['PostgreSQL', 'MySQL', 'SQL Server', 'Supabase', 'SQLite'],
+  aiMl: ['OpenAI API', 'scikit-learn', 'Prophet', 'IBM watsonx', 'LLM pipelines', 'DeepInfra'],
+  product: ['REST APIs', 'MVC Architecture', 'Unit Testing', 'CI/CD', 'ETL Pipelines', 'JWT Auth', 'Stripe', 'Clerk'],
 }
 
 export const skillGroups: SkillGroup[] = [
@@ -702,9 +696,9 @@ export const projectDomains = [
 ]
 
 export const recruiterSummary = {
-  title: 'I built a sports ML platform with 20 weekly active users. Here\'s everything else.',
+  title: 'I shipped a sports app to TestFlight with 18 beta testers. Here\'s everything else.',
   description:
-    'Full-stack engineer who builds products end-to-end. Three internships across SaaS, IoT data, and academic tooling. Five public projects spanning mobile products, backend APIs, analytics workflows, and applied AI.',
+    'Full-stack engineer who builds products end-to-end. Internships at Seam.ai (SaaS, LLM pipelines, Chrome extensions) and Aeyesafe (IoT integration testing). Five public projects spanning mobile apps, backend APIs, analytics workflows, and applied AI.',
 }
 
 export const personalInfo = {

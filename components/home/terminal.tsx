@@ -26,26 +26,27 @@ const commands: Record<string, string | (() => string)> = {
   about: `Rushil Gangisetty — full-stack engineer based in Dallas, TX.
 I build products I'd want to use myself and the systems behind them.
 B.S. in CS & Math from Austin College. MS CS at UT Dallas starting Aug 2026.`,
-  buzzr: `Buzzr — Letterboxd for sports.
-20 weekly active users · 8 leagues · 10,838 live games · 100% week-1 retention
-ML model scores game entertainment using tempo, lead changes, and scoring runs.
+  buzzr: `Buzzr — cross-platform sports social app.
+18 beta testers on TestFlight · 7 live leagues · 20+ REST endpoints · 38 SQL migrations
+9 Edge Functions · 70+ reusable UI components · real-time watch parties
 Live on TestFlight → buzzr-desktop.vercel.app
 
 Try: "stack" to see what it's built with`,
-  stack: `Languages:    TypeScript · Python · C# · Java · SQL
-Frontend:     React · Next.js · React Native · Tailwind · Framer Motion
-Backend:      FastAPI · Flask · ASP.NET Core · Supabase · PostgreSQL
-ML/Data:      scikit-learn · PyTorch · Pandas · NumPy
-Infra:        Docker · Git · CI/CD · Linux · Vercel`,
-  experience: `→ Seam.ai — SWE Intern
-  Email ingestion pipeline, 50K+ records/day, NLP classification at 94% accuracy
+  stack: `Languages:    Java · C# · Python · JavaScript · TypeScript · SQL · Bash
+Frameworks:   ASP.NET Core · EF Core · React · React Native · Expo · Node.js · Next.js · Flask · FastAPI
+Databases:    PostgreSQL · MySQL · SQL Server · Supabase · SQLite
+AI/ML:        OpenAI API · scikit-learn · Prophet · IBM watsonx · LLM pipelines · DeepInfra
+Product:      REST APIs · MVC · Unit Testing · CI/CD · ETL · JWT Auth · Stripe · Clerk
+Tools:        Git · Docker · Postman · Linux · Figma · Chrome DevTools`,
+  experience: `→ Seam.ai — SWE Intern (Aug 2024 – May 2025)
+  Full-stack SaaS (Next.js + Clerk + Stripe), LLM pipelines (Llama 3.1 70B), Chrome extension
 
-→ Aeyesafe — QA Intern
-  Automated ETL testing for 10K+ daily IoT sensor streams
+→ Aeyesafe — SWE Intern (Jun 2025 – Aug 2025)
+  IoT integration testing across thermal, radar, sleep sensors; debugging runbooks
 
-→ Austin College — SWE Intern
-  Forecasting software for 100+ faculty, <1% error rate`,
-  projects: `01  Buzzr                        Sports ML platform · 20 WAU
+→ Austin College — TA, Intro Programming (Aug 2024 – Dec 2024)
+  Designed final lab project, office hours, one-on-one debugging`,
+  projects: `01  Buzzr                        Sports app · 18 beta testers on TestFlight
 02  Business Analytics Dashboard  Data workflow for messy CSVs
 03  IBM Medscribe AI              Clinical AI workflow (team hackathon)
 04  Graph Link Prediction         GNN on Facebook social graph

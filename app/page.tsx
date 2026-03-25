@@ -46,12 +46,13 @@ export default function HomePage() {
               <Link href="/projects/buzzr" className="text-[#43d7ff] underline decoration-[#43d7ff]/30 underline-offset-4 hover:decoration-[#43d7ff]/60 transition-colors">
                 Buzzr
               </Link>
-              , a sports platform with an ML model that scores how entertaining games are.
-              20 people use it every week. 100% of them came back.
+              , a cross-platform sports app shipped to Apple TestFlight with 18 beta testers,
+              7 live league integrations, and real-time watch parties.
             </p>
             <p>
-              I like working across the stack — product, backend, data, ML.
-              Three internships. Five shipped projects. Starting MS CS at UT Dallas in August.
+              I like working across the stack — product, backend, data, AI.
+              Built LLM pipelines and Chrome extensions at Seam.ai.
+              Five shipped projects. Starting MS CS at UT Dallas in August.
             </p>
           </motion.div>
 
