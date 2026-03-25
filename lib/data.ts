@@ -91,21 +91,31 @@ export interface Education {
 export const aboutSection = {
   title: 'Why I build.',
   paragraphs: [
-    'I started Buzzr because I wanted to know if the game I was about to watch would actually be worth watching. That turned into an ML model, a mobile app on TestFlight, and 20 people who check it every week.',
-    'I build things that I want to exist — then I make them work for other people too. That means caring about the product as much as the code, handling real-world messiness in the backend, and shipping something that stays understandable to the next person who reads it.',
+    'I started Buzzr because I wanted to know if the game I was about to watch would actually be worth watching. That question turned into a scikit-learn model, a mobile app on TestFlight, and 20 people who check it every week.',
+    "I like building across the full stack — I've shipped ML models that score game entertainment, banking APIs with idempotent transactions, clinical AI workflows, and analytics dashboards that handle messy real-world data. The common thread is products where the backend complexity is invisible to the user.",
+    'I build things I want to exist, then I make them work for other people too. That means caring about the product as much as the code, handling real-world messiness in the backend, and shipping software that stays understandable to the next person who reads it.',
+  ],
+  personality: [
+    'Sports obsessive (hence Buzzr)',
+    'Strong opinions about database indexing',
+    'Deep in recommendation systems right now',
+    'First "app" was a TI-84 calculator game',
   ],
   highlights: [
     {
       label: 'Based in',
       value: 'Dallas, Texas',
+      color: '#43d7ff',
     },
     {
       label: 'Education',
-      value: 'B.S. in Computer Science and Mathematics from Austin College. M.S. in Computer Science at UT Dallas starting Aug 2026.',
+      value: 'B.S. CS & Math, Austin College. M.S. CS at UT Dallas starting Aug 2026.',
+      color: '#9d8cff',
     },
     {
       label: 'Focus',
-      value: 'Product software, backend workflows, and practical data and AI features',
+      value: 'Product software, backend systems, data workflows, applied ML',
+      color: '#12b981',
     },
   ],
   portraitSrc: '/portrait.jpg',

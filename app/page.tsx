@@ -21,7 +21,9 @@ export default function HomePage() {
       <Terminal />
 
       {/* ── Hero ── */}
-      <section className="relative px-4 pb-8 pt-28 sm:px-6 sm:pb-12 sm:pt-36 lg:px-8">
+      <section className="relative overflow-hidden px-4 pb-8 pt-28 sm:px-6 sm:pb-12 sm:pt-36 lg:px-8">
+        <div className="absolute inset-0 aurora-backdrop opacity-40" />
+        <div className="absolute inset-0 grid-pattern opacity-15" />
         <div className="relative mx-auto max-w-7xl">
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
@@ -29,7 +31,7 @@ export default function HomePage() {
             transition={{ duration: 0.55 }}
             className="max-w-4xl text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-foreground sm:text-[3.8rem]"
           >
-            I&apos;m Rushil. I ship things.
+            I&apos;m Rushil. I <span className="text-shimmer">ship things</span>.
           </motion.h1>
 
           <motion.div
@@ -133,25 +135,66 @@ export default function HomePage() {
       {/* ── About ── */}
       <Section id="about">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:gap-8">
-            <div className="shrink-0">
-              <div className="relative h-20 w-20 overflow-hidden rounded-full border border-white/10 sm:h-24 sm:w-24">
-                <Image
-                  src={aboutSection.portraitSrc}
-                  alt={aboutSection.portraitAlt}
-                  fill
-                  sizes="96px"
-                  className="object-cover"
-                />
+          <div className="grid gap-8 lg:grid-cols-[280px_1fr] lg:items-start">
+            {/* Portrait with glow */}
+            <div className="relative mx-auto w-[200px] sm:w-[240px] lg:mx-0 lg:w-[280px]">
+              <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-[#43d7ff]/20 via-[#9d8cff]/15 to-[#12b981]/20 blur-2xl" />
+              <div className="relative overflow-hidden rounded-[1.5rem] border border-white/12 shadow-[0_0_40px_-12px_rgba(67,215,255,0.2)]">
+                <div className="relative aspect-[3/4]">
+                  <Image
+                    src={aboutSection.portraitSrc}
+                    alt={aboutSection.portraitAlt}
+                    fill
+                    sizes="(max-width: 1024px) 240px, 280px"
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 p-4">
+                    <p className="text-base font-semibold text-white">{personalInfo.name}</p>
+                    <p className="mt-0.5 text-sm text-white/70">{personalInfo.title} · Dallas, TX</p>
+                  </div>
+                </div>
               </div>
             </div>
-            <div className="max-w-2xl">
-              <h2 className="text-xl font-semibold tracking-[-0.03em] text-foreground sm:text-2xl">
+
+            {/* Story content */}
+            <div>
+              <h2 className="text-2xl font-semibold tracking-[-0.04em] text-foreground sm:text-[2rem]">
                 Why I build.
               </h2>
-              <div className="mt-3 space-y-3 text-sm leading-7 text-foreground/85 sm:text-base">
+
+              {/* Narrative paragraphs */}
+              <div className="mt-4 space-y-4 text-sm leading-7 text-foreground/85 sm:text-[0.95rem]">
                 {aboutSection.paragraphs.map((p) => (
                   <p key={p}>{p}</p>
+                ))}
+              </div>
+
+              {/* Highlights grid */}
+              <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                {aboutSection.highlights.map((h) => (
+                  <div
+                    key={h.label}
+                    className="rounded-xl border border-white/8 bg-white/[0.02] p-4"
+                    style={{ borderLeftColor: h.color, borderLeftWidth: '3px' }}
+                  >
+                    <p className="text-[0.65rem] font-mono uppercase tracking-[0.2em]" style={{ color: h.color }}>
+                      {h.label}
+                    </p>
+                    <p className="mt-1.5 text-sm leading-6 text-foreground/85">{h.value}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Personality strip */}
+              <div className="mt-5 flex flex-wrap gap-2">
+                {aboutSection.personality.map((item) => (
+                  <span
+                    key={item}
+                    className="rounded-full border border-white/8 bg-white/[0.03] px-3 py-1.5 text-xs text-muted-foreground"
+                  >
+                    {item}
+                  </span>
                 ))}
               </div>
             </div>
