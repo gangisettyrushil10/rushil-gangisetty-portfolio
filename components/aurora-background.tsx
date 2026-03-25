@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, type ReactNode } from 'react'
+import { useCallback, useEffect, useRef, useState, type ReactNode } from 'react'
 
 interface AuroraBackgroundProps {
   children: ReactNode
@@ -20,7 +20,6 @@ const FRAGMENT_SHADER = `
   uniform float u_time;
   uniform vec2 u_mouse;
 
-  // Simplex-ish noise for organic movement
   vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
   vec2 mod289(vec2 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
   vec3 permute(vec3 x) { return mod289(((x * 34.0) + 1.0) * x); }
@@ -50,46 +49,49 @@ const FRAGMENT_SHADER = `
 
   void main() {
     vec2 uv = gl_FragCoord.xy / u_resolution;
+    float t = u_time * 0.25;
+
+    // Multi-octave liquid noise
+    float n1 = snoise(uv * 2.5 + vec2(t * 0.4, t * 0.3));
+    float n2 = snoise(uv * 4.0 - vec2(t * 0.3, t * 0.5));
+    float n3 = snoise(uv * 1.5 + vec2(t * 0.2, -t * 0.35));
+    float n4 = snoise(uv * 6.0 + vec2(-t * 0.15, t * 0.25));
+
+    // Mouse ripple
     vec2 mouse = u_mouse;
-    float t = u_time * 0.3;
-
-    // Liquid surface displacement
-    float n1 = snoise(uv * 3.0 + vec2(t * 0.4, t * 0.3));
-    float n2 = snoise(uv * 5.0 - vec2(t * 0.3, t * 0.5));
-    float n3 = snoise(uv * 2.0 + vec2(t * 0.2, -t * 0.4));
-
-    // Mouse influence — creates a smooth ripple/pull
     float mouseDist = length(uv - mouse);
-    float mouseInfluence = smoothstep(0.5, 0.0, mouseDist) * 0.4;
-    float mouseRipple = sin(mouseDist * 20.0 - u_time * 3.0) * mouseInfluence;
+    float mouseWave = sin(mouseDist * 15.0 - u_time * 4.0) * smoothstep(0.6, 0.0, mouseDist) * 0.5;
 
-    // Combine noise layers for liquid look
-    float displacement = n1 * 0.4 + n2 * 0.25 + n3 * 0.15 + mouseRipple;
+    float displacement = n1 * 0.45 + n2 * 0.3 + n3 * 0.2 + n4 * 0.1 + mouseWave;
 
-    // Color palette: cyan, purple, pink, green
-    vec3 cyan = vec3(0.263, 0.843, 1.0);
+    // Color palette
+    vec3 cyan   = vec3(0.263, 0.843, 1.0);
     vec3 purple = vec3(0.616, 0.549, 1.0);
-    vec3 pink = vec3(1.0, 0.424, 0.671);
-    vec3 green = vec3(0.408, 0.969, 0.769);
+    vec3 pink   = vec3(1.0, 0.424, 0.671);
+    vec3 green  = vec3(0.408, 0.969, 0.769);
 
-    // Mix colors based on displacement and position
-    float colorPhase = displacement + t * 0.15;
-    vec3 col = mix(cyan, purple, smoothstep(-0.3, 0.3, sin(colorPhase * 3.14)));
-    col = mix(col, pink, smoothstep(-0.2, 0.4, sin(colorPhase * 2.1 + 1.5)));
-    col = mix(col, green, smoothstep(-0.1, 0.5, sin(colorPhase * 1.7 + 3.0)));
+    // Color mixing based on displacement and time
+    float phase = displacement * 2.0 + t * 0.3;
+    vec3 col = mix(cyan, purple, smoothstep(-0.4, 0.4, sin(phase * 3.0)));
+    col = mix(col, pink, smoothstep(-0.3, 0.5, sin(phase * 2.1 + 1.5)));
+    col = mix(col, green, smoothstep(-0.2, 0.6, sin(phase * 1.7 + 3.0)));
 
-    // Add specular-like highlights from displacement
-    float highlight = smoothstep(0.2, 0.5, displacement) * 0.3;
+    // Highlights
+    float highlight = smoothstep(0.15, 0.55, displacement) * 0.4;
     col += highlight;
 
-    // Fade edges for blending with dark background
-    float edgeFade = smoothstep(0.0, 0.15, uv.x) * smoothstep(1.0, 0.85, uv.x)
-                   * smoothstep(0.0, 0.2, uv.y) * smoothstep(1.0, 0.7, uv.y);
+    // Edge fade
+    float edgeFade = smoothstep(0.0, 0.2, uv.x) * smoothstep(1.0, 0.8, uv.x)
+                   * smoothstep(0.0, 0.25, uv.y) * smoothstep(1.0, 0.6, uv.y);
 
-    // Overall opacity — keep it subtle as a background
-    float alpha = (0.12 + displacement * 0.06 + mouseInfluence * 0.15) * edgeFade;
+    // Mouse glow — brighter near cursor
+    float mouseGlow = smoothstep(0.4, 0.0, mouseDist) * 0.25;
 
-    gl_FragColor = vec4(col, alpha);
+    // Final alpha — much more visible
+    float alpha = (0.25 + displacement * 0.12 + mouseGlow) * edgeFade;
+    alpha = clamp(alpha, 0.0, 0.55);
+
+    gl_FragColor = vec4(col * (1.0 + mouseGlow), alpha);
   }
 `
 
@@ -97,24 +99,33 @@ function initWebGL(canvas: HTMLCanvasElement) {
   const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: false })
   if (!gl) return null
 
-  // Compile shaders
   function compileShader(src: string, type: number) {
     const shader = gl!.createShader(type)!
     gl!.shaderSource(shader, src)
     gl!.compileShader(shader)
+    if (!gl!.getShaderParameter(shader, gl!.COMPILE_STATUS)) {
+      console.error('Shader compile error:', gl!.getShaderInfoLog(shader))
+      return null
+    }
     return shader
   }
 
   const vs = compileShader(VERTEX_SHADER, gl.VERTEX_SHADER)
   const fs = compileShader(FRAGMENT_SHADER, gl.FRAGMENT_SHADER)
+  if (!vs || !fs) return null
 
   const program = gl.createProgram()!
   gl.attachShader(program, vs)
   gl.attachShader(program, fs)
   gl.linkProgram(program)
+
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    console.error('Program link error:', gl.getProgramInfoLog(program))
+    return null
+  }
+
   gl.useProgram(program)
 
-  // Full-screen quad
   const buffer = gl.createBuffer()
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer)
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 1, -1, -1, 1, 1, 1]), gl.STATIC_DRAW)
@@ -123,7 +134,6 @@ function initWebGL(canvas: HTMLCanvasElement) {
   gl.enableVertexAttribArray(pos)
   gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0)
 
-  // Enable blending for transparency
   gl.enable(gl.BLEND)
   gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
 
@@ -142,16 +152,16 @@ export function AuroraBackground({ children, className }: AuroraBackgroundProps)
   const containerRef = useRef<HTMLDivElement>(null)
   const mouseRef = useRef({ x: 0.5, y: 0.5 })
   const smoothMouseRef = useRef({ x: 0.5, y: 0.5 })
-  const glRef = useRef<ReturnType<typeof initWebGL>>(null)
   const animRef = useRef<number>(0)
-  const webglSupported = useRef(true)
+  const [ready, setReady] = useState(false)
+  const [fallback, setFallback] = useState(false)
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     const rect = containerRef.current?.getBoundingClientRect()
     if (!rect) return
     mouseRef.current = {
       x: (e.clientX - rect.left) / rect.width,
-      y: 1.0 - (e.clientY - rect.top) / rect.height, // Flip Y for WebGL
+      y: 1.0 - (e.clientY - rect.top) / rect.height,
     }
   }, [])
 
@@ -170,14 +180,15 @@ export function AuroraBackground({ children, className }: AuroraBackgroundProps)
 
     const ctx = initWebGL(canvas)
     if (!ctx) {
-      webglSupported.current = false
+      setFallback(true)
       return
     }
-    glRef.current = ctx
+
+    setReady(true)
 
     function resize() {
       if (!canvas || !ctx) return
-      const dpr = Math.min(window.devicePixelRatio, 1.5) // Cap for performance
+      const dpr = Math.min(window.devicePixelRatio, 1.5)
       const rect = canvas.getBoundingClientRect()
       canvas.width = rect.width * dpr
       canvas.height = rect.height * dpr
@@ -194,9 +205,8 @@ export function AuroraBackground({ children, className }: AuroraBackgroundProps)
       const { gl, uniforms } = ctx
       const time = (performance.now() - startTime) / 1000
 
-      // Smooth mouse interpolation
-      smoothMouseRef.current.x += (mouseRef.current.x - smoothMouseRef.current.x) * 0.05
-      smoothMouseRef.current.y += (mouseRef.current.y - smoothMouseRef.current.y) * 0.05
+      smoothMouseRef.current.x += (mouseRef.current.x - smoothMouseRef.current.x) * 0.04
+      smoothMouseRef.current.y += (mouseRef.current.y - smoothMouseRef.current.y) * 0.04
 
       gl.clearColor(0, 0, 0, 0)
       gl.clear(gl.COLOR_BUFFER_BIT)
@@ -227,15 +237,19 @@ export function AuroraBackground({ children, className }: AuroraBackgroundProps)
       <canvas
         ref={canvasRef}
         className="pointer-events-none absolute inset-0 h-full w-full"
-        style={{ opacity: webglSupported.current ? 1 : 0 }}
+        style={{ opacity: ready ? 1 : 0, transition: 'opacity 0.5s' }}
       />
 
-      {/* CSS fallback if WebGL unavailable */}
-      {!webglSupported.current && (
-        <div className="absolute inset-0 aurora-backdrop opacity-40 pointer-events-none" />
+      {/* CSS fallback */}
+      {fallback && (
+        <div className="absolute inset-0 aurora-backdrop opacity-50 pointer-events-none" />
       )}
 
-      {/* Content */}
+      {/* Always show subtle static gradient as base layer */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        background: 'radial-gradient(ellipse at 30% 40%, rgba(67, 215, 255, 0.08), transparent 60%), radial-gradient(ellipse at 70% 30%, rgba(157, 140, 255, 0.06), transparent 50%)',
+      }} />
+
       <div className="relative z-10">{children}</div>
     </div>
   )

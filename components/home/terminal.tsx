@@ -217,10 +217,10 @@ export function Terminal() {
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className={`flex items-center gap-2.5 rounded-2xl border px-4 py-3 font-mono text-xs shadow-lg backdrop-blur-xl transition-all hover:scale-[1.02] ${
+        className={`flex items-center gap-2.5 rounded-2xl border px-5 py-3.5 font-mono text-xs backdrop-blur-xl transition-all hover:scale-[1.03] active:scale-[0.98] ${
           isOpen
-            ? 'border-[#43d7ff]/30 bg-[#43d7ff]/10 text-[#43d7ff]'
-            : 'border-white/15 bg-black/80 text-muted-foreground hover:border-white/25 hover:bg-black/90'
+            ? 'border-[#43d7ff]/30 bg-[#43d7ff]/10 text-[#43d7ff] shadow-[0_0_20px_-4px_rgba(67,215,255,0.3)]'
+            : 'border-white/20 bg-black/85 text-foreground/80 shadow-[0_8px_30px_-8px_rgba(0,0,0,0.8),0_0_15px_-3px_rgba(67,215,255,0.15)] hover:border-[#43d7ff]/25 hover:shadow-[0_8px_30px_-8px_rgba(0,0,0,0.8),0_0_20px_-3px_rgba(67,215,255,0.25)]'
         }`}
       >
         {isOpen ? (
