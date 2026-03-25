@@ -11,6 +11,7 @@ import { Section } from '@/components/section'
 import { Terminal } from '@/components/home/terminal'
 import { CurrentlyBuilding } from '@/components/home/currently-building'
 import { GithubActivity } from '@/components/home/github-activity'
+import { AuroraBackground } from '@/components/aurora-background'
 import { aboutSection, personalInfo, projects } from '@/lib/data'
 
 const featuredProjects = projects.filter((p) => p.featured)
@@ -22,10 +23,8 @@ export default function HomePage() {
       <Terminal />
 
       {/* ── Hero ── */}
-      <section className="relative overflow-hidden px-4 pb-8 pt-28 sm:px-6 sm:pb-12 sm:pt-36 lg:px-8">
-        <div className="absolute inset-0 aurora-backdrop opacity-40" />
-        <div className="absolute inset-0 grid-pattern opacity-15" />
-        <div className="relative mx-auto max-w-7xl">
+      <AuroraBackground className="px-4 pb-8 pt-28 sm:px-6 sm:pb-12 sm:pt-36 lg:px-8">
+        <div className="mx-auto max-w-7xl">
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -103,7 +102,7 @@ export default function HomePage() {
             </span>
           </motion.div>
         </div>
-      </section>
+      </AuroraBackground>
 
       {/* ── Projects ── */}
       <Section id="projects" className="pt-4">

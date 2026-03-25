@@ -150,24 +150,24 @@ export function Terminal() {
   }
 
   return (
-    <div className="fixed inset-x-0 top-14 z-40 px-4 sm:px-6 lg:px-8">
+    <div className="fixed inset-x-0 top-[72px] z-40 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className={`terminal-sticky overflow-hidden rounded-2xl border border-white/10 bg-black/70 backdrop-blur-xl ${isOpen ? 'terminal-expanded' : ''}`}>
+        <div className={`terminal-sticky overflow-hidden rounded-2xl border bg-black/80 backdrop-blur-xl ${isOpen ? 'terminal-expanded border-[#43d7ff]/25' : 'border-white/15'}`}>
           {/* Collapsed bar — always visible */}
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="flex w-full items-center justify-between px-4 py-2.5 font-mono text-xs transition-colors hover:bg-white/[0.03]"
+            className="flex w-full items-center justify-between px-4 py-3 font-mono text-xs transition-colors hover:bg-white/[0.04]"
           >
             <div className="flex items-center gap-2">
               <div className="flex gap-1.5">
-                <div className="h-2 w-2 rounded-full bg-white/15" />
-                <div className="h-2 w-2 rounded-full bg-white/15" />
-                <div className="h-2 w-2 rounded-full bg-white/15" />
+                <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+                <div className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+                <div className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
               </div>
-              <span className="ml-1 text-muted-foreground/60">
+              <span className="ml-1.5 text-muted-foreground">
                 <span className="text-[#43d7ff]">$</span> rushil.sh
-                {!isOpen && <span className="ml-2 text-muted-foreground/40">— click to explore</span>}
+                {!isOpen && <span className="ml-2 text-muted-foreground/60">— click to explore</span>}
               </span>
             </div>
             {isOpen ? (
