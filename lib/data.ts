@@ -89,9 +89,10 @@ export interface Education {
 }
 
 export const aboutSection = {
-  title: 'About me.',
+  title: 'Why I build.',
   paragraphs: [
-    'I care most about software that ships with clear intent — where the interface feels finished, the backend handles real-world messiness, and the whole thing stays understandable to the next person who reads it.',
+    'I started Buzzr because I wanted to know if the game I was about to watch would actually be worth watching. That turned into an ML model, a mobile app on TestFlight, and 20 people who check it every week.',
+    'I build things that I want to exist — then I make them work for other people too. That means caring about the product as much as the code, handling real-world messiness in the backend, and shipping something that stays understandable to the next person who reads it.',
   ],
   highlights: [
     {
@@ -117,9 +118,9 @@ export const projects: Project[] = [
     title: 'Buzzr',
     category: 'Product Software',
     description:
-      'A sports social platform across mobile and web with live league data, ratings, watch parties, and a shared backend.',
+      'A Letterboxd-style sports platform where users rate game entertainment, post hot takes, and compete in predictions — powered by an ML model that scores how exciting each game is.',
     longDescription:
-      'Buzzr combines Expo, Next.js, and Supabase in a product system for live sports context, social interaction, and multi-surface delivery.',
+      'Buzzr is a sports social platform built with Expo, Next.js, and Supabase. A Python scikit-learn model scores every game\'s entertainment value using tempo, lead changes, and scoring runs — then predicts which upcoming games will be the most exciting to watch. Live on Apple TestFlight with 20 weekly active users and 100% week-1 retention across 8 leagues and 10,838 live games. Currently building a collaborative filtering recommendation engine on user ratings.',
     stack: [
       'Expo',
       'React Native',
@@ -127,17 +128,17 @@ export const projects: Project[] = [
       'Supabase',
       'PostgreSQL',
       'Next.js',
+      'Python',
+      'scikit-learn',
       'Tailwind CSS',
-      'Framer Motion',
-      'Jest',
     ],
     metrics: [
-      { label: 'Live leagues', value: '7' },
-      { label: 'Platforms', value: 'Mobile + Web' },
-      { label: 'SQL migrations', value: '38' },
-      { label: 'Test files', value: '28' },
+      { label: 'Weekly active users', value: '20' },
+      { label: 'Week-1 retention', value: '100%' },
+      { label: 'Live games', value: '10,838' },
+      { label: 'Leagues', value: '8' },
     ],
-    role: 'Product engineer across mobile, web, and backend',
+    role: 'Sole builder — product, mobile, web, backend, ML',
     timeline: '2026',
     status: 'Active build',
     challenge:
@@ -145,12 +146,13 @@ export const projects: Project[] = [
     decisions: [
       'Built on Supabase and Postgres to move quickly while keeping auth, realtime updates, and data modeling in one place.',
       'Shared types and validation across mobile and web so product behavior stayed aligned.',
+      'Trained a scikit-learn entertainment scoring model on game features (tempo, lead changes, scoring runs) to power the core rating experience.',
       'Made entertainment-based ratings the core interaction so the product had a distinct point of view.',
     ],
     outcomes: [
-      'Supports 7 live leagues with profiles, ratings, following, and watch-party flows.',
-      'Shows full-stack ownership across mobile, web, backend, and product decisions.',
-      'Represents the strongest product system in my public GitHub work.',
+      'Live on Apple TestFlight with 20 weekly active users and 100% week-1 retention.',
+      'Supports 8 live leagues with profiles, ratings, following, and watch-party flows across 10,838 games.',
+      'Shows full-stack ownership across mobile, web, backend, ML, and product decisions.',
     ],
     learnings: [
       'In multi-surface products, data contracts matter as much as interface polish.',
@@ -165,8 +167,8 @@ export const projects: Project[] = [
       { label: 'Live site', href: 'https://buzzr-desktop.vercel.app' },
     ],
     storeLinks: [
+      { label: 'TestFlight', href: 'https://testflight.apple.com/join/buzzr', status: 'Live on TestFlight' },
       { label: 'App Store', status: 'Planned release' },
-      { label: 'Google Play', status: 'Planned release' },
     ],
     gallery: [
       {
@@ -690,9 +692,9 @@ export const projectDomains = [
 ]
 
 export const recruiterSummary = {
-  title: 'Software engineer focused on product quality, dependable systems, and real-world workflows.',
+  title: 'I built a sports ML platform with 20 weekly active users. Here\'s everything else.',
   description:
-    'Three internships across SaaS, IoT data, and academic tooling. Five public projects spanning mobile products, backend APIs, analytics workflows, and applied AI.',
+    'Full-stack engineer who builds products end-to-end. Three internships across SaaS, IoT data, and academic tooling. Five public projects spanning mobile products, backend APIs, analytics workflows, and applied AI.',
 }
 
 export const personalInfo = {

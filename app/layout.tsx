@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { IBM_Plex_Mono, Public_Sans, Space_Grotesk } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { Toaster } from 'sonner'
+import { EasterEgg } from '@/components/easter-egg'
 import './globals.css'
 
 const publicSans = Public_Sans({
@@ -61,6 +63,8 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className={`${publicSans.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable} font-sans antialiased`}>
         {children}
+        <EasterEgg />
+        <Toaster />
         <Analytics />
       </body>
     </html>
