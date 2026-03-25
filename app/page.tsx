@@ -10,6 +10,7 @@ import { ProjectCard } from '@/components/project-card'
 import { Section } from '@/components/section'
 import { Terminal } from '@/components/home/terminal'
 import { CurrentlyBuilding } from '@/components/home/currently-building'
+import { GithubActivity } from '@/components/home/github-activity'
 import { aboutSection, personalInfo, projects } from '@/lib/data'
 
 const featuredProjects = projects.filter((p) => p.featured)
@@ -109,7 +110,7 @@ export default function HomePage() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-3xl">
               <h2 className="text-2xl font-semibold tracking-[-0.04em] text-foreground sm:text-[2.2rem]">
-                What I&apos;ve built.
+                <span className="heading-accent">What I&apos;ve built.</span>
               </h2>
               <p className="mt-2 text-sm text-muted-foreground sm:text-base">
                 Products, APIs, data pipelines, ML models. Click into any for the full story.
@@ -206,6 +207,13 @@ export default function HomePage() {
       <Section>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <CurrentlyBuilding />
+        </div>
+      </Section>
+
+      {/* ── GitHub Activity ── */}
+      <Section>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <GithubActivity />
         </div>
       </Section>
 

@@ -151,7 +151,7 @@ export function Terminal() {
   return (
     <div className="fixed inset-x-0 top-14 z-40 px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="terminal-sticky overflow-hidden rounded-2xl border border-white/10 bg-black/70 backdrop-blur-xl">
+        <div className={`terminal-sticky overflow-hidden rounded-2xl border border-white/10 bg-black/70 backdrop-blur-xl ${isOpen ? 'terminal-expanded' : ''}`}>
           {/* Collapsed bar — always visible */}
           <button
             type="button"
