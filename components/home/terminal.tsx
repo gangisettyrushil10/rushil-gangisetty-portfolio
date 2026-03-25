@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import { ChevronDown, X, TerminalSquare } from 'lucide-react'
 
 interface TerminalLine {
   type: 'input' | 'output'
@@ -48,7 +48,7 @@ Tools:        Git · Docker · Postman · Linux · Figma · Chrome DevTools`,
   Designed final lab project, office hours, one-on-one debugging`,
   projects: `01  Buzzr                        Sports app · 18 beta testers on TestFlight
 02  Business Analytics Dashboard  Data workflow for messy CSVs
-03  IBM Medscribe AI              Clinical AI workflow (team hackathon)
+03  IBM Medscribe AI              Clinical AI workflow (IBM AI Lab)
 04  Graph Link Prediction         GNN on Facebook social graph
 05  Credit Union Ledger API       Banking backend with idempotency
 
@@ -115,8 +115,7 @@ export function Terminal() {
 
   useEffect(() => {
     if (isOpen) {
-      // Small delay to let animation start before focusing
-      const t = setTimeout(() => inputRef.current?.focus(), 150)
+      const t = setTimeout(() => inputRef.current?.focus(), 200)
       return () => clearTimeout(t)
     }
   }, [isOpen])
@@ -150,79 +149,89 @@ export function Terminal() {
   }
 
   return (
-    <div className="fixed inset-x-0 top-[72px] z-40 px-4 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-7xl">
-        <div className={`terminal-sticky overflow-hidden rounded-2xl border bg-black/80 backdrop-blur-xl ${isOpen ? 'terminal-expanded border-[#43d7ff]/25' : 'border-white/15'}`}>
-          {/* Collapsed bar — always visible */}
-          <button
-            type="button"
-            onClick={() => setIsOpen(!isOpen)}
-            className="flex w-full items-center justify-between px-4 py-3 font-mono text-xs transition-colors hover:bg-white/[0.04]"
+    <div className="fixed bottom-6 right-4 z-50 sm:right-6">
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: 16, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 16, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
+            className="mb-3 w-[340px] sm:w-[380px] overflow-hidden rounded-2xl border border-[#43d7ff]/20 bg-black/90 shadow-[0_16px_60px_-16px_rgba(67,215,255,0.15)] backdrop-blur-xl"
           >
-            <div className="flex items-center gap-2">
-              <div className="flex gap-1.5">
-                <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
-                <div className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
-                <div className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
-              </div>
-              <span className="ml-1.5 text-muted-foreground">
-                <span className="text-[#43d7ff]">$</span> rushil.sh
-                {!isOpen && <span className="ml-2 text-muted-foreground/60">— click to explore</span>}
-              </span>
-            </div>
-            {isOpen ? (
-              <ChevronUp className="h-3.5 w-3.5 text-muted-foreground/50" />
-            ) : (
-              <ChevronDown className="h-3.5 w-3.5 text-muted-foreground/50" />
-            )}
-          </button>
-
-          {/* Expanded terminal body */}
-          <AnimatePresence>
-            {isOpen && (
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{ height: 'auto', opacity: 1 }}
-                exit={{ height: 0, opacity: 0 }}
-                transition={{ duration: 0.25, ease: 'easeInOut' }}
-                className="overflow-hidden border-t border-white/8"
-              >
-                <div
-                  ref={scrollRef}
-                  className="max-h-[260px] overflow-y-auto p-4 font-mono text-sm"
-                  onClick={() => inputRef.current?.focus()}
-                >
-                  {lines.map((line, i) => (
-                    <div key={i} className={`${i > 0 ? 'mt-1.5' : ''}`}>
-                      {line.type === 'input' ? (
-                        <div className="text-muted-foreground">
-                          <span className="text-[#43d7ff]">$</span> {line.text}
-                        </div>
-                      ) : (
-                        <div className="whitespace-pre-wrap text-foreground/80">{line.text}</div>
-                      )}
-                    </div>
-                  ))}
-
-                  {/* Input line */}
-                  <form onSubmit={handleSubmit} className="mt-1.5 flex items-center">
-                    <span className="text-[#43d7ff]">$</span>
-                    <input
-                      ref={inputRef}
-                      value={input}
-                      onChange={(e) => setInput(e.target.value)}
-                      className="ml-1 flex-1 bg-transparent text-foreground outline-none caret-[#43d7ff] placeholder:text-muted-foreground/40"
-                      placeholder='type "help"'
-                      spellCheck={false}
-                      autoComplete="off"
-                    />
-                  </form>
+            {/* Title bar */}
+            <div className="flex items-center justify-between border-b border-white/8 px-4 py-2.5">
+              <div className="flex items-center gap-2">
+                <div className="flex gap-1.5">
+                  <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f57]" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-[#febc2e]" />
+                  <div className="h-2.5 w-2.5 rounded-full bg-[#28c840]" />
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
+                <span className="ml-1 text-[0.65rem] font-mono text-muted-foreground/60">rushil.sh</span>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="rounded-md p-1 text-muted-foreground/50 transition-colors hover:bg-white/8 hover:text-muted-foreground"
+              >
+                <X className="h-3.5 w-3.5" />
+              </button>
+            </div>
+
+            {/* Terminal body */}
+            <div
+              ref={scrollRef}
+              className="h-[320px] overflow-y-auto p-4 font-mono text-[0.8rem] leading-5"
+              onClick={() => inputRef.current?.focus()}
+            >
+              {lines.map((line, i) => (
+                <div key={i} className={`${i > 0 ? 'mt-1.5' : ''}`}>
+                  {line.type === 'input' ? (
+                    <div className="text-muted-foreground">
+                      <span className="text-[#43d7ff]">$</span> {line.text}
+                    </div>
+                  ) : (
+                    <div className="whitespace-pre-wrap text-foreground/80">{line.text}</div>
+                  )}
+                </div>
+              ))}
+
+              <form onSubmit={handleSubmit} className="mt-1.5 flex items-center">
+                <span className="text-[#43d7ff]">$</span>
+                <input
+                  ref={inputRef}
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  className="ml-1 flex-1 bg-transparent text-foreground outline-none caret-[#43d7ff] placeholder:text-muted-foreground/40"
+                  placeholder='type "help"'
+                  spellCheck={false}
+                  autoComplete="off"
+                />
+              </form>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* FAB button */}
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className={`flex items-center gap-2.5 rounded-2xl border px-4 py-3 font-mono text-xs shadow-lg backdrop-blur-xl transition-all hover:scale-[1.02] ${
+          isOpen
+            ? 'border-[#43d7ff]/30 bg-[#43d7ff]/10 text-[#43d7ff]'
+            : 'border-white/15 bg-black/80 text-muted-foreground hover:border-white/25 hover:bg-black/90'
+        }`}
+      >
+        {isOpen ? (
+          <ChevronDown className="h-4 w-4" />
+        ) : (
+          <TerminalSquare className="h-4 w-4 text-[#43d7ff]" />
+        )}
+        <span>
+          <span className="text-[#43d7ff]">$</span> rushil.sh
+        </span>
+      </button>
     </div>
   )
 }
