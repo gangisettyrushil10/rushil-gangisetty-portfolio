@@ -11,7 +11,7 @@ import { Section } from '@/components/section'
 import { Terminal } from '@/components/home/terminal'
 import { CurrentlyBuilding } from '@/components/home/currently-building'
 import { GithubActivity } from '@/components/home/github-activity'
-import { AuroraBackground } from '@/components/aurora-background'
+import { LiquidSurface } from '@/components/aurora-background'
 import { aboutSection, personalInfo, projects } from '@/lib/data'
 
 const featuredProjects = projects.filter((p) => p.featured)
@@ -19,11 +19,12 @@ const featuredProjects = projects.filter((p) => p.featured)
 export default function HomePage() {
   return (
     <main className="page-shell min-h-screen bg-background">
+      <LiquidSurface />
       <Navbar />
       <Terminal />
 
       {/* ── Hero ── */}
-      <AuroraBackground className="px-4 pb-8 pt-28 sm:px-6 sm:pb-12 sm:pt-36 lg:px-8">
+      <section className="relative px-4 pb-8 pt-28 sm:px-6 sm:pb-12 sm:pt-36 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
@@ -102,7 +103,7 @@ export default function HomePage() {
             </span>
           </motion.div>
         </div>
-      </AuroraBackground>
+      </section>
 
       {/* ── Projects ── */}
       <Section id="projects" className="pt-4">
