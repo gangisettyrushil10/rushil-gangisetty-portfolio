@@ -46,40 +46,40 @@ const FRAGMENT_SHADER = `
     float shimmer3 = wave(warped, 5.0, 0.6, 4.0) * band3;
     float shimmer4 = wave(warped, 3.5, 0.35, 6.0) * band4;
 
-    // Colors — vibrant aurora palette
-    vec3 cyan   = vec3(0.2, 0.85, 1.0);
-    vec3 purple = vec3(0.55, 0.35, 1.0);
-    vec3 pink   = vec3(1.0, 0.3, 0.6);
-    vec3 green  = vec3(0.2, 1.0, 0.65);
+    // Colors — punchy, saturated aurora palette
+    vec3 cyan   = vec3(0.0, 0.9, 1.0);
+    vec3 purple = vec3(0.5, 0.2, 1.0);
+    vec3 pink   = vec3(1.0, 0.15, 0.55);
+    vec3 green  = vec3(0.0, 1.0, 0.55);
 
     // Slowly cycle which color each band uses
-    float colorShift = t * 0.1;
+    float colorShift = t * 0.12;
     vec3 col1 = mix(cyan, green, sin(colorShift) * 0.5 + 0.5);
     vec3 col2 = mix(purple, pink, sin(colorShift + 1.5) * 0.5 + 0.5);
     vec3 col3 = mix(green, cyan, sin(colorShift + 3.0) * 0.5 + 0.5);
     vec3 col4 = mix(pink, purple, sin(colorShift + 4.5) * 0.5 + 0.5);
 
-    // Composite all bands
-    vec3 color = col1 * shimmer1 * 1.2
-               + col2 * shimmer2 * 1.0
-               + col3 * shimmer3 * 0.9
-               + col4 * shimmer4 * 0.8;
+    // Composite all bands — boosted multipliers
+    vec3 color = col1 * shimmer1 * 1.8
+               + col2 * shimmer2 * 1.5
+               + col3 * shimmer3 * 1.3
+               + col4 * shimmer4 * 1.1;
 
-    // Mouse glow — warm bright spot near cursor
-    float glow = smoothstep(0.35, 0.0, mouseDist);
+    // Mouse glow — bright spot near cursor
+    float glow = smoothstep(0.4, 0.0, mouseDist);
     vec3 glowColor = mix(cyan, purple, sin(t * 0.5) * 0.5 + 0.5);
-    color += glowColor * glow * 0.3;
+    color += glowColor * glow * 0.6;
 
-    // Brightness — saturated and vibrant
-    float intensity = (band1 + band2 + band3 + band4) * 0.4;
-    intensity += glow * 0.15;
+    // Intensity
+    float intensity = (band1 + band2 + band3 + band4) * 0.55;
+    intensity += glow * 0.25;
     intensity = clamp(intensity, 0.0, 1.0);
 
-    // Subtle vertical gradient — brighter in upper portion
-    float vertFade = smoothstep(0.0, 0.3, uv.y) * smoothstep(1.0, 0.5, uv.y);
-    intensity *= mix(0.6, 1.0, vertFade);
+    // Vertical fade — keep vibrant in the middle
+    float vertFade = smoothstep(0.0, 0.2, uv.y) * smoothstep(1.0, 0.4, uv.y);
+    intensity *= mix(0.5, 1.0, vertFade);
 
-    gl_FragColor = vec4(color, intensity * 0.45);
+    gl_FragColor = vec4(color, intensity * 0.7);
   }
 `
 
