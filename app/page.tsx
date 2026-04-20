@@ -4,14 +4,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, Download, Mail, MapPin, Github, Linkedin } from 'lucide-react'
-import { Footer } from '@/components/footer'
-import { Navbar } from '@/components/navbar'
-import { ProjectCard } from '@/components/project-card'
-import { Section } from '@/components/section'
-import { Terminal } from '@/components/home/terminal'
-import { CurrentlyBuilding } from '@/components/home/currently-building'
-import { GithubActivity } from '@/components/home/github-activity'
-import { LiquidSurface } from '@/components/aurora-background'
+import { Footer } from '@/components/organisms/footer'
+import { Navbar } from '@/components/organisms/navbar'
+import { ProjectCard } from '@/components/organisms/project-card'
+import { Section } from '@/components/templates/section'
+import { Terminal } from '@/components/organisms/terminal'
+import { CurrentlyBuilding } from '@/components/organisms/currently-building'
+import { GithubActivity } from '@/components/organisms/github-activity'
 import { aboutSection, personalInfo, projects } from '@/lib/data'
 
 const featuredProjects = projects.filter((p) => p.featured)
@@ -19,7 +18,6 @@ const featuredProjects = projects.filter((p) => p.featured)
 export default function HomePage() {
   return (
     <main className="page-shell min-h-screen bg-background">
-      <LiquidSurface />
       <Navbar />
       <Terminal />
 
@@ -32,7 +30,7 @@ export default function HomePage() {
             transition={{ duration: 0.55 }}
             className="max-w-4xl text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-foreground sm:text-[3.8rem]"
           >
-            I&apos;m Rushil. I <span className="text-shimmer">ship things</span>.
+            I&apos;m Rushil. I ship things.
           </motion.h1>
 
           <motion.div
@@ -111,7 +109,7 @@ export default function HomePage() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div className="max-w-3xl">
               <h2 className="text-2xl font-semibold tracking-[-0.04em] text-foreground sm:text-[2.2rem]">
-                <span className="heading-accent">What I&apos;ve built.</span>
+                What I&apos;ve built.
               </h2>
               <p className="mt-2 text-sm text-muted-foreground sm:text-base">
                 Products, APIs, data pipelines, ML models. Click into any for the full story.

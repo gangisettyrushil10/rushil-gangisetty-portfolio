@@ -5,7 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowUpRight, ExternalLink, Github, Play } from 'lucide-react'
-import { Section } from '@/components/section'
+import { Section } from '@/components/templates/section'
 import type { Project } from '@/lib/data'
 import { projects } from '@/lib/data'
 

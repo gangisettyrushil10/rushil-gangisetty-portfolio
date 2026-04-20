@@ -3,8 +3,8 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Github } from 'lucide-react'
-import { ProjectCard } from '@/components/project-card'
-import { Section, SectionHeader } from '@/components/section'
+import { ProjectCard } from '@/components/organisms/project-card'
+import { Section, SectionHeader } from '@/components/templates/section'
 import { projects } from '@/lib/data'
 
 export function ProjectsContent() {

@@ -1,6 +1,6 @@
 import { Metadata } from 'next'
-import { Navbar } from '@/components/navbar'
-import { Footer } from '@/components/footer'
+import { Navbar } from '@/components/organisms/navbar'
+import { Footer } from '@/components/organisms/footer'
 import { ContactContent } from './contact-content'
 
 export const metadata: Metadata = {

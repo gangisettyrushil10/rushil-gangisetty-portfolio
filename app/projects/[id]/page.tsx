@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Navbar } from '@/components/navbar'
-import { Footer } from '@/components/footer'
+import { Navbar } from '@/components/organisms/navbar'
+import { Footer } from '@/components/organisms/footer'
 import { ProjectDetailContent } from './project-detail-content'
 import { projects } from '@/lib/data'
 

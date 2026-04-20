@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowUpRight, Download, Linkedin, Mail } from 'lucide-react'
-import { Section, SectionHeader } from '@/components/section'
+import { Section, SectionHeader } from '@/components/templates/section'
 import { education, educationHighlights, experiences, personalInfo, projects, recruiterSummary, skillGroups } from '@/lib/data'
 
 const featuredProjects = projects.filter((project) => project.featured).slice(0, 3)

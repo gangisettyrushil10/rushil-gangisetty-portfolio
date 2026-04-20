@@ -61,7 +61,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${publicSans.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable} font-sans antialiased`}>
+      <body className={`${publicSans.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable} font-mono antialiased`}>
         {children}
         <EasterEgg />
         <Toaster />
