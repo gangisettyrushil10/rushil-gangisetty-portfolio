@@ -62,7 +62,7 @@ export function ProjectsContent() {
               return (
                 <motion.article
                   key={project.id}
-                  initial={{ opacity: 0, y: 24 }}
+                  initial={false}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.42, delay: index * 0.08 }}
                   className="glass-panel rounded-[24px] p-5"

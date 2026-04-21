@@ -27,7 +27,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 26 }}
+      initial={false}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.42, delay: index * 0.08 }}
       style={style}

@@ -382,9 +382,9 @@ export const projects: Project[] = [
     links: [{ label: 'Repository', href: 'https://github.com/gangisettyrushil10/graph-theory-final-project' }],
     gallery: [
       {
-        label: 'Project overview',
-        alt: 'Graph link prediction project overview',
-        caption: 'Project overview highlighting dataset scale, graph structure, and evaluation goals.',
+        label: 'GCN output',
+        alt: 'Graph link prediction model output and dataset visualization',
+        caption: 'Generated from the project repo using the Facebook edge list, GCN embeddings, and test AUC evaluation.',
         src: '/projects/graph-link-prediction-portfolio-preview.png',
       },
     ],
@@ -503,9 +503,9 @@ export const projects: Project[] = [
     links: [{ label: 'Repository', href: 'https://github.com/gangisettyrushil10/PA_GPA' }],
     gallery: [
       {
-        label: 'Project overview',
-        alt: 'PA GPA project overview',
-        caption: 'Project overview summarizing the reporting workflow, forecasting, and stakeholder use case.',
+        label: 'Student management UI',
+        alt: 'PA GPA student management interface',
+        caption: 'JavaFX interface for staff-facing student reporting, table review, and report generation.',
         src: '/projects/pa-gpa-portfolio-preview.png',
       },
     ],
