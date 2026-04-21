@@ -445,6 +445,14 @@ export const projects: Project[] = [
       'A clear Swagger contract is as valuable as the implementation behind it.',
     ],
     links: [],
+    gallery: [
+      {
+        label: 'Integration tests',
+        alt: 'Credit Union Ledger API passing integration tests',
+        caption: 'Passing .NET integration tests covering member, account, and transaction flows while Swagger is being repaired.',
+        src: '/projects/ledger-tests.png',
+      },
+    ],
     featured: true,
     recruiterAngle: 'Shows backend rigor in a financial domain with correctness guarantees, idempotency, and strong .NET fundamentals.',
     proofLine: 'Backend depth piece built around correctness and financial domain modeling.',

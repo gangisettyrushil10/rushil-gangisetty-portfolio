@@ -14,8 +14,7 @@ export function Section({ children, className, id }: SectionProps) {
     <motion.section
       id={id}
       initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-120px' }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.55, ease: 'easeOut' }}
       className={cn('py-14 sm:py-18', className)}
     >
@@ -37,8 +36,7 @@ export function SectionHeader({ badge, title, description, className }: SectionH
       {badge && (
         <motion.span
           initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.35 }}
           className="section-label"
         >
@@ -47,8 +45,7 @@ export function SectionHeader({ badge, title, description, className }: SectionH
       )}
       <motion.h2
         initial={{ opacity: 0, y: 12 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.42, delay: 0.06 }}
         className="mt-4 text-2xl font-semibold leading-[0.98] tracking-[-0.05em] text-foreground sm:text-[2.45rem]"
       >
@@ -57,8 +54,7 @@ export function SectionHeader({ badge, title, description, className }: SectionH
       {description && (
         <motion.p
           initial={{ opacity: 0, y: 12 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.42, delay: 0.12 }}
           className="mt-4 text-sm leading-7 text-muted-foreground sm:text-base"
         >

@@ -28,8 +28,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   return (
     <motion.article
       initial={{ opacity: 0, y: 26 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.42, delay: index * 0.08 }}
       style={style}
       className="project-shell soft-spotlight rounded-[28px] p-4 sm:p-5"
