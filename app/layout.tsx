@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { IBM_Plex_Mono, Press_Start_2P, Space_Grotesk, VT323 } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Toaster } from 'sonner'
 import { EasterEgg } from '@/components/easter-egg'
 import { CommandPalette } from '@/components/organisms/command-palette'
@@ -96,6 +97,7 @@ export default function RootLayout({
         <EasterEgg />
         <Toaster theme="dark" />
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
