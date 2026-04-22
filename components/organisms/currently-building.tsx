@@ -13,12 +13,12 @@ export function CurrentlyBuilding() {
       className="flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-6"
     >
       <div className="flex items-center gap-2 text-sm">
-        <Sparkles className="h-3.5 w-3.5 text-[#43d7ff]" />
+        <Sparkles className="h-3.5 w-3.5 text-accent" />
         <span className="text-muted-foreground">Currently building:</span>
         <span className="text-foreground">collaborative filtering rec engine for Buzzr</span>
       </div>
       <div className="flex items-center gap-2 text-sm">
-        <GraduationCap className="h-3.5 w-3.5 text-[#9d8cff]" />
+        <GraduationCap className="h-3.5 w-3.5" style={{ color: 'var(--crt-amber)' }} />
         <span className="text-muted-foreground">Next:</span>
         <span className="text-foreground">MS CS at UT Dallas, Aug 2026</span>
       </div>

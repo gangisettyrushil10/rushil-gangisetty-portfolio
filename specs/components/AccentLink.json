@@ -1,0 +1,45 @@
+{
+  "name": "AccentLink",
+  "type": "component",
+  "level": "atom",
+  "purpose": "Inline text link with olive-sage underline hover state — the primary editorial accent link used throughout prose and nav contexts",
+  "researchBacking": [],
+  "designTokens": {
+    "source": "manual",
+    "mapped": true
+  },
+  "variants": [
+    "default",
+    "muted"
+  ],
+  "props": {
+    "href": "string",
+    "external": "boolean?",
+    "children": "ReactNode"
+  },
+  "shadcnBase": [],
+  "composesSpecs": [],
+  "codeConnect": {
+    "props": {},
+    "mapped": false
+  },
+  "accessibility": {
+    "role": "link",
+    "ariaLabel": "optional",
+    "keyboardNav": true,
+    "focusStyle": "outline",
+    "focusWidth": "2px",
+    "touchTarget": "default",
+    "reducedMotion": false,
+    "liveRegion": "off",
+    "colorIndependent": false
+  },
+  "dataviz": null,
+  "tags": [
+    "link",
+    "accent",
+    "editorial"
+  ],
+  "createdAt": "2026-04-20T21:59:08.099Z",
+  "updatedAt": "2026-04-20T21:59:08.101Z"
+}

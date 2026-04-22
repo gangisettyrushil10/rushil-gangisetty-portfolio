@@ -21,9 +21,10 @@ export function EasterEgg() {
           toast('🏈 Hot take: the NFL is more entertaining than the NBA — and Buzzr\'s data proves it.', {
             duration: 5000,
             style: {
-              background: 'rgba(0, 0, 0, 0.9)',
-              border: '1px solid rgba(67, 215, 255, 0.3)',
-              color: '#fff',
+              background: 'rgba(5, 6, 10, 0.95)',
+              border: '1px solid rgba(0, 255, 136, 0.35)',
+              color: '#e8fff4',
+              boxShadow: '0 0 18px rgba(0, 255, 136, 0.3)',
             },
           })
         }

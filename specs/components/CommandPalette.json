@@ -1,0 +1,44 @@
+{
+  "name": "CommandPalette",
+  "type": "component",
+  "level": "organism",
+  "purpose": "Global ⌘K search and navigation overlay. Routes, external links, project jumps, and static info items (bio, stack, hot take). Keyboard shortcut pairs (⇧H/⇧P/⇧R/⇧C) echoed in items",
+  "researchBacking": [],
+  "designTokens": {
+    "source": "manual",
+    "mapped": true
+  },
+  "variants": [
+    "default"
+  ],
+  "props": {},
+  "shadcnBase": [
+    "Dialog",
+    "Command"
+  ],
+  "composesSpecs": [],
+  "codeConnect": {
+    "props": {},
+    "mapped": true
+  },
+  "accessibility": {
+    "role": "dialog",
+    "ariaLabel": "required",
+    "keyboardNav": true,
+    "focusStyle": "outline",
+    "focusWidth": "2px",
+    "touchTarget": "default",
+    "reducedMotion": true,
+    "liveRegion": "off",
+    "colorIndependent": true
+  },
+  "dataviz": null,
+  "tags": [
+    "palette",
+    "nav",
+    "search",
+    "cmdk"
+  ],
+  "createdAt": "2026-04-21T05:05:06.207Z",
+  "updatedAt": "2026-04-21T05:05:06.209Z"
+}

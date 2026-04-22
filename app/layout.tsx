@@ -1,25 +1,51 @@
 import type { Metadata, Viewport } from 'next'
-import { IBM_Plex_Mono, Public_Sans, Space_Grotesk } from 'next/font/google'
+import { IBM_Plex_Mono, Press_Start_2P, Space_Grotesk, VT323 } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from 'sonner'
 import { EasterEgg } from '@/components/easter-egg'
+import { CommandPalette } from '@/components/organisms/command-palette'
+import { StarfieldBackdrop } from '@/components/organisms/starfield-backdrop'
+import { BootSequence } from '@/components/organisms/boot-sequence'
+import { FreeThrowGame } from '@/components/organisms/free-throw-game'
+import { SpellSystem } from '@/components/organisms/spell-system'
 import './globals.css'
 
-const publicSans = Public_Sans({
+// Body — modern terminal mono
+const plexMono = IBM_Plex_Mono({
   subsets: ['latin'],
-  variable: '--font-body',
+  variable: '--font-sans-family',
   display: 'swap',
+  weight: ['400', '500', '600'],
 })
 
+// Secondary terminal mono (alias for compatibility with existing .font-mono users)
+const plexMono2 = IBM_Plex_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono-family',
+  display: 'swap',
+  weight: ['400', '500'],
+})
+
+// Display — chunky pixel
+const vt323 = VT323({
+  subsets: ['latin'],
+  variable: '--font-display-family',
+  display: 'swap',
+  weight: ['400'],
+})
+
+// Tiny pixel accents
+const pressStart = Press_Start_2P({
+  subsets: ['latin'],
+  variable: '--font-pixel-family',
+  display: 'swap',
+  weight: ['400'],
+})
+
+// Long-form prose
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-})
-
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
+  variable: '--font-prose-family',
   display: 'swap',
   weight: ['400', '500'],
 })
@@ -42,14 +68,11 @@ export const metadata: Metadata = {
     title: 'Rushil Gangisetty | Software Engineer',
     description: 'Product-minded software engineer building polished full-stack apps, dependable backend workflows, data-heavy tools, and thoughtful AI features.',
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
+  robots: { index: true, follow: true },
 }
 
 export const viewport: Viewport = {
-  themeColor: '#020202',
+  themeColor: '#05060a',
   width: 'device-width',
   initialScale: 1,
 }
@@ -61,10 +84,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body className={`${publicSans.variable} ${spaceGrotesk.variable} ${ibmPlexMono.variable} font-mono antialiased`}>
+      <body
+        className={`${plexMono.variable} ${plexMono2.variable} ${vt323.variable} ${pressStart.variable} ${spaceGrotesk.variable} antialiased`}
+      >
+        <StarfieldBackdrop />
+        <BootSequence />
+        <SpellSystem />
         {children}
+        <CommandPalette />
+        <FreeThrowGame />
         <EasterEgg />
-        <Toaster />
+        <Toaster theme="dark" />
         <Analytics />
       </body>
     </html>

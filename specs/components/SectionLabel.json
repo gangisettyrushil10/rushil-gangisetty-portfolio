@@ -1,0 +1,44 @@
+{
+  "name": "SectionLabel",
+  "type": "component",
+  "level": "molecule",
+  "purpose": "Mono-uppercase kicker displayed above section headings. Establishes editorial rhythm and gives recruiters a scannable section index across the portfolio",
+  "researchBacking": [],
+  "designTokens": {
+    "source": "manual",
+    "mapped": true
+  },
+  "variants": [
+    "neutral",
+    "accent"
+  ],
+  "props": {
+    "children": "ReactNode",
+    "tone": "'neutral' | 'accent'?"
+  },
+  "shadcnBase": [],
+  "composesSpecs": [],
+  "codeConnect": {
+    "props": {},
+    "mapped": false
+  },
+  "accessibility": {
+    "role": "none",
+    "ariaLabel": "none",
+    "keyboardNav": false,
+    "focusStyle": "outline",
+    "focusWidth": "2px",
+    "touchTarget": "default",
+    "reducedMotion": false,
+    "liveRegion": "off",
+    "colorIndependent": true
+  },
+  "dataviz": null,
+  "tags": [
+    "label",
+    "kicker",
+    "editorial"
+  ],
+  "createdAt": "2026-04-20T21:59:10.225Z",
+  "updatedAt": "2026-04-20T21:59:10.225Z"
+}

@@ -40,7 +40,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="page-shell min-h-screen">
       <Navbar />
       <ProjectDetailContent project={project} />
       <Footer />

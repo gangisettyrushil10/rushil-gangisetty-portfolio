@@ -1,0 +1,44 @@
+{
+  "name": "LivePill",
+  "type": "component",
+  "level": "organism",
+  "purpose": "Small translucent pill with live, pulsing dot indicator. Subtypes: LiveTimePill (Dallas tabular time, second-ticking), LocationPill (static city + relocation), NowBuildingPill (current focus), LatestCommitPill (fetches recent GitHub push events and links to repo)",
+  "researchBacking": [],
+  "designTokens": {
+    "source": "manual",
+    "mapped": true
+  },
+  "variants": [
+    "time",
+    "location",
+    "now",
+    "commit"
+  ],
+  "props": {},
+  "shadcnBase": [],
+  "composesSpecs": [],
+  "codeConnect": {
+    "props": {},
+    "mapped": true
+  },
+  "accessibility": {
+    "role": "status",
+    "ariaLabel": "required",
+    "keyboardNav": false,
+    "focusStyle": "outline",
+    "focusWidth": "2px",
+    "touchTarget": "default",
+    "reducedMotion": true,
+    "liveRegion": "polite",
+    "colorIndependent": false
+  },
+  "dataviz": null,
+  "tags": [
+    "pill",
+    "live",
+    "ambient",
+    "status"
+  ],
+  "createdAt": "2026-04-21T05:05:12.043Z",
+  "updatedAt": "2026-04-21T05:05:12.043Z"
+}

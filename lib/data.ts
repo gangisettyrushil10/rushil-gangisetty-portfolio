@@ -105,17 +105,17 @@ export const aboutSection = {
     {
       label: 'Based in',
       value: 'Dallas, Texas',
-      color: '#43d7ff',
+      color: '#00ff88',
     },
     {
       label: 'Education',
       value: 'B.S. CS & Math, Austin College. M.S. CS at UT Dallas starting Aug 2026.',
-      color: '#9d8cff',
+      color: '#ffb347',
     },
     {
       label: 'Focus',
       value: 'Product software, backend systems, data workflows, applied ML',
-      color: '#12b981',
+      color: '#ff3bff',
     },
   ],
   portraitSrc: '/portrait.jpg',
@@ -210,9 +210,9 @@ export const projects: Project[] = [
     previewTitle: 'Live sports social product',
     previewNote: 'Mobile and web surfaces share one product model and backend.',
     theme: {
-      primary: '#43d7ff',
-      secondary: '#12b981',
-      glow: 'rgba(67, 215, 255, 0.4)',
+      primary: '#00ff88',
+      secondary: '#44ddff',
+      glow: 'rgba(0, 255, 136, 0.4)',
     },
   },
   {
@@ -276,9 +276,9 @@ export const projects: Project[] = [
     previewTitle: 'Analytics workflow for imperfect input',
     previewNote: 'Validation, forecasting, and AI-assisted reporting live in one system.',
     theme: {
-      primary: '#ff8a5b',
-      secondary: '#facc15',
-      glow: 'rgba(255, 138, 91, 0.36)',
+      primary: '#ffb347',
+      secondary: '#ff3bff',
+      glow: 'rgba(255, 179, 71, 0.4)',
     },
   },
   {
@@ -338,9 +338,9 @@ export const projects: Project[] = [
     previewTitle: 'Applied AI workflow',
     previewNote: 'Structured outputs and a review-first interface keep the system legible.',
     theme: {
-      primary: '#9d8cff',
-      secondary: '#ff6cab',
-      glow: 'rgba(157, 140, 255, 0.34)',
+      primary: '#ff3bff',
+      secondary: '#44ddff',
+      glow: 'rgba(255, 59, 255, 0.4)',
     },
   },
   {
@@ -395,9 +395,9 @@ export const projects: Project[] = [
     previewTitle: 'Graph ML depth',
     previewNote: 'Focused on defensible evaluation, not just model novelty.',
     theme: {
-      primary: '#68f7c4',
-      secondary: '#43d7ff',
-      glow: 'rgba(104, 247, 196, 0.35)',
+      primary: '#00ff88',
+      secondary: '#ff3bff',
+      glow: 'rgba(0, 255, 136, 0.4)',
     },
   },
   {
@@ -516,9 +516,9 @@ export const projects: Project[] = [
     previewTitle: 'Internal reporting tool',
     previewNote: 'Built around reporting clarity, forecasting, and stakeholder trust.',
     theme: {
-      primary: '#f5d76e',
-      secondary: '#ff8a5b',
-      glow: 'rgba(245, 215, 110, 0.3)',
+      primary: '#ffb347',
+      secondary: '#ff3bff',
+      glow: 'rgba(255, 179, 71, 0.35)',
     },
   },
 ]

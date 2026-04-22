@@ -1,0 +1,44 @@
+{
+  "name": "SpellSystem",
+  "type": "component",
+  "level": "organism",
+  "purpose": "Global keystroke buffer that watches for Harry Potter spell words anywhere on the site. lumos toggles html.lumos parchment theme and spawns a gold wand-dot cursor trail for about four seconds. nox reverts to dark immediately. accio smooth-scrolls to the projects anchor. Respects input and textarea focus to avoid hijacking form typing, but still casts from the cmdk palette input",
+  "researchBacking": [],
+  "designTokens": {
+    "source": "manual",
+    "mapped": true
+  },
+  "variants": [
+    "lumos",
+    "nox",
+    "accio"
+  ],
+  "props": {},
+  "shadcnBase": [],
+  "composesSpecs": [],
+  "codeConnect": {
+    "props": {},
+    "mapped": true
+  },
+  "accessibility": {
+    "role": "none",
+    "ariaLabel": "none",
+    "keyboardNav": true,
+    "focusStyle": "outline",
+    "focusWidth": "2px",
+    "touchTarget": "default",
+    "reducedMotion": true,
+    "liveRegion": "off",
+    "colorIndependent": true
+  },
+  "dataviz": null,
+  "tags": [
+    "spell",
+    "easter-egg",
+    "keyboard",
+    "theme-toggle",
+    "harry-potter"
+  ],
+  "createdAt": "2026-04-22T02:06:10.765Z",
+  "updatedAt": "2026-04-22T02:06:10.765Z"
+}

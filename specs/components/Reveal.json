@@ -1,0 +1,46 @@
+{
+  "name": "Reveal",
+  "type": "component",
+  "level": "atom",
+  "purpose": "Intersection-observer-powered entrance wrapper. Applies translateY(16px) + opacity(0) until the element enters the viewport, then transitions to in-place. Accepts a delay prop for staggered sequences",
+  "researchBacking": [],
+  "designTokens": {
+    "source": "manual",
+    "mapped": true
+  },
+  "variants": [
+    "default"
+  ],
+  "props": {
+    "children": "ReactNode",
+    "as": "ElementType?",
+    "delay": "number?",
+    "className": "string?",
+    "style": "CSSProperties?"
+  },
+  "shadcnBase": [],
+  "composesSpecs": [],
+  "codeConnect": {
+    "props": {},
+    "mapped": true
+  },
+  "accessibility": {
+    "role": "none",
+    "ariaLabel": "none",
+    "keyboardNav": false,
+    "focusStyle": "outline",
+    "focusWidth": "2px",
+    "touchTarget": "default",
+    "reducedMotion": true,
+    "liveRegion": "off",
+    "colorIndependent": true
+  },
+  "dataviz": null,
+  "tags": [
+    "motion",
+    "reveal",
+    "scroll"
+  ],
+  "createdAt": "2026-04-21T05:05:13.223Z",
+  "updatedAt": "2026-04-21T05:05:13.223Z"
+}

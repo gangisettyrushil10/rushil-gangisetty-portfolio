@@ -1,0 +1,41 @@
+{
+  "name": "BootSequence",
+  "type": "component",
+  "level": "organism",
+  "purpose": "First-visit ASCII boot screen, localStorage gated. Renders RUSHIL.OS ASCII banner with a typewriter boot log (mounting /home/rushil, loading basketball.sys, summoning patronus, connecting to Dallas, Portfolio.OS v1.0 ready). Auto-dismisses after last line with a 500ms fade; any key or mouse click skips. Sets localStorage flag so subsequent visits skip entirely",
+  "researchBacking": [],
+  "designTokens": {
+    "source": "manual",
+    "mapped": true
+  },
+  "variants": [
+    "default"
+  ],
+  "props": {},
+  "shadcnBase": [],
+  "composesSpecs": [],
+  "codeConnect": {
+    "props": {},
+    "mapped": true
+  },
+  "accessibility": {
+    "role": "dialog",
+    "ariaLabel": "required",
+    "keyboardNav": true,
+    "focusStyle": "outline",
+    "focusWidth": "2px",
+    "touchTarget": "default",
+    "reducedMotion": true,
+    "liveRegion": "polite",
+    "colorIndependent": false
+  },
+  "dataviz": null,
+  "tags": [
+    "boot",
+    "ascii",
+    "first-visit",
+    "easter-egg"
+  ],
+  "createdAt": "2026-04-22T02:06:05.679Z",
+  "updatedAt": "2026-04-22T02:06:05.679Z"
+}
