@@ -35,7 +35,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
   const preview = project.gallery?.find((item) => item.src)
   const embedUrl = getYouTubeEmbedUrl(project.video?.url)
   const style = {
-    '--project-primary': project.theme?.primary ?? '#00ff88',
+    '--project-primary': project.theme?.primary ?? '#b347ff',
   } as CSSProperties
 
   return (

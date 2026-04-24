@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { GitCommit, MapPin, Sparkles, Telescope } from 'lucide-react'
+import { BookOpen, Flame, GitCommit, MapPin, Sparkles, Telescope } from 'lucide-react'
 
 function formatDallasTime(date: Date) {
   return new Intl.DateTimeFormat('en-US', {
@@ -47,6 +47,92 @@ export function NowBuildingPill() {
       <Sparkles className="h-3.5 w-3.5 text-accent" />
       <span className="text-subtle-foreground">now:</span>
       <span>Buzzr rec engine</span>
+    </span>
+  )
+}
+
+// ── Hot take pill — cycles through sports takes ──────────────
+
+const HOT_TAKES = [
+  '🏀 Regular-season NBA has the worst entertainment-to-hype ratio in sports.',
+  '🏈 Thursday Night Football is a war crime against entertainment.',
+  '⚽ MLS is the most underrated league in American sports.',
+  '🏒 NHL playoffs are statistically the most entertaining American postseason.',
+  '⚾ Baseball is only boring if you don\'t track lead changes.',
+  '🏀 The Warriors-era three-point shot broke the league\'s geometry.',
+  '🏀 KAT to NY doesn\'t solve their defense — Buzzr data backs me up.',
+  '🏈 NFL officiating is the real main character most Sundays.',
+]
+
+export function HotTakePill() {
+  const [idx, setIdx] = useState(0)
+
+  useEffect(() => {
+    const id = setInterval(() => setIdx((i) => (i + 1) % HOT_TAKES.length), 9000)
+    return () => clearInterval(id)
+  }, [])
+
+  return (
+    <span
+      className="pill max-w-full items-start gap-2 py-2"
+      style={{ borderColor: 'var(--crt-magenta)', boxShadow: '0 0 10px rgba(255, 51, 102, 0.25)' }}
+    >
+      <Flame className="h-3.5 w-3.5 shrink-0" style={{ color: 'var(--crt-magenta)' }} />
+      <span className="text-subtle-foreground">hot take</span>
+      <span className="line-clamp-2 text-left text-foreground">{HOT_TAKES[idx]}</span>
+    </span>
+  )
+}
+
+// ── Reading pill — currently rereading the HP series ─────────
+
+const HP_BOOKS = [
+  "Sorcerer's Stone",
+  'Chamber of Secrets',
+  'Prisoner of Azkaban',
+  'Goblet of Fire',
+  'Order of the Phoenix',
+  'Half-Blood Prince',
+  'Deathly Hallows',
+]
+
+function bookForToday(d: Date): string {
+  // Rotate one book per ~2 weeks so it feels alive
+  const fortnight = Math.floor(d.getTime() / (14 * 86400000))
+  return HP_BOOKS[fortnight % HP_BOOKS.length]
+}
+
+export function ReadingPill() {
+  const [book, setBook] = useState<string | null>(null)
+
+  useEffect(() => {
+    setBook(bookForToday(new Date()))
+  }, [])
+
+  return (
+    <span
+      className="pill"
+      style={{ borderColor: 'var(--crt-amber)', boxShadow: '0 0 10px rgba(255, 204, 51, 0.22)' }}
+    >
+      <BookOpen className="h-3.5 w-3.5" style={{ color: 'var(--crt-amber)' }} />
+      <span className="text-subtle-foreground">rereading</span>
+      <span className="text-foreground">{book ?? HP_BOOKS[0]}</span>
+      <span className="text-subtle-foreground">·</span>
+      <span style={{ color: 'var(--crt-amber)' }}>⚡ Gryffindor</span>
+    </span>
+  )
+}
+
+// ── Hoops pill — current basketball stance ────────────────────
+
+export function HoopsPill() {
+  return (
+    <span className="pill" style={{ borderColor: 'var(--crt-magenta)' }}>
+      <span className="text-base leading-none">🏀</span>
+      <span className="text-subtle-foreground">watching:</span>
+      <span className="text-foreground">NBA playoffs</span>
+      <span className="text-subtle-foreground">·</span>
+      <span style={{ color: 'var(--crt-magenta)' }}>Warriors</span>
     </span>
   )
 }

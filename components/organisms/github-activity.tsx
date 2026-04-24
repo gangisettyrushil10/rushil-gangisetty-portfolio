@@ -121,12 +121,12 @@ export function GithubActivity() {
                         count === 0
                           ? 'rgba(255,255,255,0.06)'
                           : count <= 2
-                            ? 'rgba(0, 255, 136, 0.28)'
+                            ? 'rgba(179, 71, 255, 0.28)'
                             : count <= 5
-                              ? 'rgba(0, 255, 136, 0.5)'
+                              ? 'rgba(179, 71, 255, 0.5)'
                               : count <= 10
-                                ? 'rgba(0, 255, 136, 0.72)'
-                                : 'rgba(0, 255, 136, 0.95)',
+                                ? 'rgba(179, 71, 255, 0.72)'
+                                : 'rgba(179, 71, 255, 0.95)',
                     }}
                     title={`${count} commit${count !== 1 ? 's' : ''}`}
                   />
@@ -140,7 +140,7 @@ export function GithubActivity() {
               <div
                 key={opacity}
                 className="h-[9px] w-[9px] rounded-[2px]"
-                style={{ backgroundColor: opacity === 0.06 ? 'rgba(255,255,255,0.06)' : `rgba(0, 255, 136, ${opacity})` }}
+                style={{ backgroundColor: opacity === 0.06 ? 'rgba(255,255,255,0.06)' : `rgba(179, 71, 255, ${opacity})` }}
               />
             ))}
             <span>More</span>

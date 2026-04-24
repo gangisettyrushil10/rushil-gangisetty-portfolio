@@ -15,61 +15,62 @@
   --secondary: #10131c;
   --muted: #10131c;
 
-  /* Foreground — slightly phosphor-tinged white */
-  --foreground: #e8fff4;
-  --card-foreground: #e8fff4;
-  --popover-foreground: #e8fff4;
-  --secondary-foreground: #e8fff4;
-  --muted-foreground: rgba(232, 255, 244, 0.6);
-  --subtle-foreground: rgba(232, 255, 244, 0.38);
+  /* Foreground — lavender-tinged white */
+  --foreground: #f2eaff;
+  --card-foreground: #f2eaff;
+  --popover-foreground: #f2eaff;
+  --secondary-foreground: #f2eaff;
+  --muted-foreground: rgba(242, 234, 255, 0.62);
+  --subtle-foreground: rgba(242, 234, 255, 0.4);
 
-  /* Arcade accent palette */
-  --phosphor: #00ff88;
-  --phosphor-dim: #00cc6e;
-  --crt-magenta: #ff3bff;
-  --crt-amber: #ffb347;
-  --accent: #00ff88;
-  --accent-hover: #4dffa8;
+  /* Arcade accent palette — violet + electric blue + crimson + gold */
+  --phosphor: #b347ff;         /* violet primary (retains "phosphor" var name for compat) */
+  --phosphor-dim: #8b2ed9;
+  --crt-magenta: #ff3366;      /* crimson red (name kept for compat) */
+  --crt-amber: #ffcc33;        /* Gryffindor gold (name kept for compat) */
+  --accent: #b347ff;
+  --accent-hover: #c76bff;
   --accent-foreground: #05060a;
-  --primary: #00ff88;
+  --primary: #b347ff;
   --primary-foreground: #05060a;
-  --link: #44ddff;
+  --link: #4dd4ff;             /* electric blue */
+  --link-hover: #7ae2ff;
 
   /* Status */
-  --success: #00ff88;
-  --warning: #ffb347;
-  --danger: #ff3b5c;
-  --destructive: #ff3b5c;
+  --success: #34d399;
+  --warning: #ffcc33;
+  --danger: #ff3366;
+  --destructive: #ff3366;
   --destructive-foreground: #05060a;
 
   /* Borders — chunkier for arcade feel */
-  --border: rgba(0, 255, 136, 0.14);
-  --border-strong: rgba(0, 255, 136, 0.35);
-  --border-magenta: rgba(255, 59, 255, 0.22);
-  --input: rgba(0, 255, 136, 0.12);
-  --ring: rgba(0, 255, 136, 0.5);
-  --pill-border: rgba(0, 255, 136, 0.18);
-  --pill-bg: rgba(0, 255, 136, 0.04);
-  --pill-shadow: 0 0 12px rgba(0, 255, 136, 0.18), 0 0 0 0.5px rgba(0, 255, 136, 0.2);
+  --border: rgba(179, 71, 255, 0.14);
+  --border-strong: rgba(179, 71, 255, 0.38);
+  --border-crimson: rgba(255, 51, 102, 0.28);
+  --input: rgba(179, 71, 255, 0.12);
+  --ring: rgba(179, 71, 255, 0.5);
+  --pill-border: rgba(179, 71, 255, 0.22);
+  --pill-bg: rgba(179, 71, 255, 0.05);
+  --pill-shadow: 0 0 12px rgba(179, 71, 255, 0.2), 0 0 0 0.5px rgba(77, 212, 255, 0.16);
 
-  /* Chart ramp — retro arcade */
-  --chart-1: #00ff88;
-  --chart-2: #ff3bff;
-  --chart-3: #ffb347;
-  --chart-4: #44ddff;
-  --chart-5: #ff3b5c;
+  /* Chart ramp — retro synthwave */
+  --chart-1: #b347ff;
+  --chart-2: #4dd4ff;
+  --chart-3: #ff3366;
+  --chart-4: #ffcc33;
+  --chart-5: #ec4899;
 
   --radius: 0.25rem;
 
   /* Sidebar */
   --sidebar: #0b0d14;
-  --sidebar-foreground: #e8fff4;
-  --sidebar-primary: #00ff88;
+  --sidebar-foreground: #f2eaff;
+  --sidebar-primary: #b347ff;
   --sidebar-primary-foreground: #05060a;
   --sidebar-accent: #10131c;
-  --sidebar-accent-foreground: #e8fff4;
-  --sidebar-border: rgba(0, 255, 136, 0.14);
-  --sidebar-ring: rgba(0, 255, 136, 0.5);
+  --sidebar-accent-foreground: #f2eaff;
+  --sidebar-border: rgba(179, 71, 255, 0.14);
+  --sidebar-ring: rgba(179, 71, 255, 0.5);
 
   /* Easing */
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
@@ -215,7 +216,7 @@ html.lumos {
     font-family: var(--font-display);
     letter-spacing: 0;
     font-weight: 400;
-    text-shadow: 0 0 12px rgba(0, 255, 136, 0.35), 0 0 24px rgba(0, 255, 136, 0.18);
+    text-shadow: 0 0 12px rgba(179, 71, 255, 0.35), 0 0 24px rgba(179, 71, 255, 0.18);
   }
 
   html.lumos h1,
@@ -246,7 +247,7 @@ html.lumos {
   }
 
   ::selection {
-    background: rgba(0, 255, 136, 0.35);
+    background: rgba(179, 71, 255, 0.35);
     color: #05060a;
   }
 
@@ -265,13 +266,13 @@ html.lumos {
   }
 
   ::-webkit-scrollbar-thumb {
-    background: rgba(0, 255, 136, 0.2);
+    background: rgba(179, 71, 255, 0.2);
     border: 2px solid #05060a;
     border-radius: 2px;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 255, 136, 0.4);
+    background: rgba(179, 71, 255, 0.4);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -299,7 +300,7 @@ html.lumos {
   pointer-events: none;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 20% 10%, rgba(0, 255, 136, 0.05) 0%, transparent 40%),
+    radial-gradient(ellipse at 20% 10%, rgba(179, 71, 255, 0.05) 0%, transparent 40%),
     radial-gradient(ellipse at 80% 90%, rgba(255, 59, 255, 0.04) 0%, transparent 40%),
     radial-gradient(ellipse at 50% 50%, rgba(68, 221, 255, 0.03) 0%, transparent 60%);
 }
@@ -331,7 +332,7 @@ html.lumos .starfield-root {
 
 .starlayer-mid {
   background-image:
-    radial-gradient(1.5px 1.5px at 60px 100px, rgba(0, 255, 136, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 60px 100px, rgba(179, 71, 255, 0.6), transparent),
     radial-gradient(1.5px 1.5px at 180px 210px, rgba(255, 255, 255, 0.7), transparent),
     radial-gradient(1.5px 1.5px at 260px 40px, rgba(68, 221, 255, 0.55), transparent),
     radial-gradient(1.5px 1.5px at 340px 170px, rgba(255, 255, 255, 0.6), transparent);
@@ -344,7 +345,7 @@ html.lumos .starfield-root {
   background-image:
     radial-gradient(2px 2px at 80px 140px, rgba(255, 255, 255, 0.9), transparent),
     radial-gradient(2px 2px at 240px 260px, rgba(255, 59, 255, 0.7), transparent),
-    radial-gradient(2px 2px at 400px 80px, rgba(0, 255, 136, 0.85), transparent);
+    radial-gradient(2px 2px at 400px 80px, rgba(179, 71, 255, 0.85), transparent);
   background-size: 600px 600px;
   animation: star-drift-near 80s linear infinite, star-twinkle 3s ease-in-out infinite alternate;
 }
@@ -464,7 +465,7 @@ html.lumos .crt-overlay {
 /* ── Phosphor utility classes ──────────────────────── */
 .phosphor {
   color: var(--phosphor);
-  text-shadow: 0 0 8px rgba(0, 255, 136, 0.5), 0 0 18px rgba(0, 255, 136, 0.28);
+  text-shadow: 0 0 8px rgba(179, 71, 255, 0.5), 0 0 18px rgba(179, 71, 255, 0.28);
 }
 
 .phosphor-dim {
@@ -472,7 +473,7 @@ html.lumos .crt-overlay {
 }
 
 .glow-box {
-  box-shadow: 0 0 0 1px var(--phosphor), 0 0 18px rgba(0, 255, 136, 0.4), inset 0 0 18px rgba(0, 255, 136, 0.08);
+  box-shadow: 0 0 0 1px var(--phosphor), 0 0 18px rgba(179, 71, 255, 0.4), inset 0 0 18px rgba(179, 71, 255, 0.08);
 }
 
 /* ── Marquee ticker ─────────────────────────────── */
@@ -521,7 +522,7 @@ html.lumos .crt-overlay {
   border-radius: 50%;
   background: var(--accent);
   opacity: 0.8;
-  box-shadow: 0 0 6px rgba(0, 255, 136, 0.6);
+  box-shadow: 0 0 6px rgba(179, 71, 255, 0.6);
 }
 
 /* ── Bento (chunky arcade borders) ─────────────────── */
@@ -547,7 +548,7 @@ html.lumos .crt-overlay {
 .bento-cell:not(.bento-no-scale):hover {
   border-color: var(--phosphor);
   background: var(--bg-card-muted);
-  box-shadow: 0 0 0 1px var(--phosphor), 0 0 24px rgba(0, 255, 136, 0.32);
+  box-shadow: 0 0 0 1px var(--phosphor), 0 0 24px rgba(179, 71, 255, 0.32);
 }
 
 .bento-cell.bento-sunken {
@@ -557,7 +558,7 @@ html.lumos .crt-overlay {
 .bento-cell.bento-accent {
   background: var(--bg-card-raised);
   border-color: var(--phosphor);
-  box-shadow: 0 0 18px rgba(0, 255, 136, 0.2), inset 0 0 18px rgba(0, 255, 136, 0.06);
+  box-shadow: 0 0 18px rgba(179, 71, 255, 0.2), inset 0 0 18px rgba(179, 71, 255, 0.06);
 }
 
 /* Tile subtle float (optional) */
@@ -593,7 +594,7 @@ html.lumos .crt-overlay {
 
 .pill:hover {
   border-color: var(--phosphor);
-  box-shadow: 0 0 0 1px var(--phosphor), 0 0 12px rgba(0, 255, 136, 0.3);
+  box-shadow: 0 0 0 1px var(--phosphor), 0 0 12px rgba(179, 71, 255, 0.3);
 }
 
 .pill-dot {
@@ -602,17 +603,17 @@ html.lumos .crt-overlay {
   height: 6px;
   border-radius: 50%;
   background: var(--accent);
-  box-shadow: 0 0 0 2px rgba(0, 255, 136, 0.2), 0 0 8px rgba(0, 255, 136, 0.6);
+  box-shadow: 0 0 0 2px rgba(179, 71, 255, 0.2), 0 0 8px rgba(179, 71, 255, 0.6);
   animation: pill-pulse 2s ease-in-out infinite;
 }
 
 @keyframes pill-pulse {
   0%,
   100% {
-    box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.5), 0 0 10px rgba(0, 255, 136, 0.6);
+    box-shadow: 0 0 0 0 rgba(179, 71, 255, 0.5), 0 0 10px rgba(179, 71, 255, 0.6);
   }
   50% {
-    box-shadow: 0 0 0 8px rgba(0, 255, 136, 0), 0 0 16px rgba(0, 255, 136, 0.35);
+    box-shadow: 0 0 0 8px rgba(179, 71, 255, 0), 0 0 16px rgba(179, 71, 255, 0.35);
   }
 }
 
@@ -681,7 +682,7 @@ html.lumos .section-label {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--phosphor);
-  background: rgba(0, 255, 136, 0.06);
+  background: rgba(179, 71, 255, 0.06);
   border: 1px solid var(--pill-border);
   border-radius: 2px;
 }
@@ -689,14 +690,14 @@ html.lumos .section-label {
 /* ── Accent link ────────────────────────────────── */
 .accent-link {
   color: var(--phosphor);
-  border-bottom: 1px solid rgba(0, 255, 136, 0.4);
-  text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+  border-bottom: 1px solid rgba(179, 71, 255, 0.4);
+  text-shadow: 0 0 8px rgba(179, 71, 255, 0.4);
   transition: border-color var(--duration-base) var(--ease-out);
 }
 
 .accent-link:hover {
   border-bottom-color: var(--phosphor);
-  text-shadow: 0 0 12px rgba(0, 255, 136, 0.65);
+  text-shadow: 0 0 12px rgba(179, 71, 255, 0.65);
 }
 
 /* ── Glass nav ──────────────────────────────────── */
@@ -715,8 +716,8 @@ html.lumos .section-label {
   letter-spacing: 0.08em;
   text-transform: uppercase;
   box-shadow:
-    0 0 0 1px rgba(0, 255, 136, 0.9),
-    0 0 18px rgba(0, 255, 136, 0.6),
+    0 0 0 1px rgba(179, 71, 255, 0.9),
+    0 0 18px rgba(179, 71, 255, 0.6),
     inset 0 1px 0 rgba(255, 255, 255, 0.25);
   transition:
     transform var(--duration-fast) var(--ease-out),
@@ -727,8 +728,8 @@ html.lumos .section-label {
 .btn-glow:hover {
   transform: translateY(-1px);
   box-shadow:
-    0 0 0 1px rgba(0, 255, 136, 1),
-    0 0 28px rgba(0, 255, 136, 0.85),
+    0 0 0 1px rgba(179, 71, 255, 1),
+    0 0 28px rgba(179, 71, 255, 0.85),
     inset 0 1px 0 rgba(255, 255, 255, 0.35);
 }
 
@@ -766,7 +767,7 @@ html.lumos .section-label {
   content: '$';
   color: var(--phosphor);
   font-weight: bold;
-  text-shadow: 0 0 8px rgba(0, 255, 136, 0.5);
+  text-shadow: 0 0 8px rgba(179, 71, 255, 0.5);
 }
 
 /* Blinking caret */
@@ -831,7 +832,7 @@ html.lumos .section-label {
 
 .project-shell:hover {
   border-color: var(--phosphor);
-  box-shadow: 0 0 18px rgba(0, 255, 136, 0.3);
+  box-shadow: 0 0 18px rgba(179, 71, 255, 0.3);
 }
 
 .metric-pill {
@@ -842,8 +843,8 @@ html.lumos .section-label {
 
 .window-grid {
   background-image:
-    linear-gradient(to right, rgba(0, 255, 136, 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 255, 136, 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgba(179, 71, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(179, 71, 255, 0.05) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 

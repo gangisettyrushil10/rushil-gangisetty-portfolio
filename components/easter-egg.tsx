@@ -22,9 +22,9 @@ export function EasterEgg() {
             duration: 5000,
             style: {
               background: 'rgba(5, 6, 10, 0.95)',
-              border: '1px solid rgba(0, 255, 136, 0.35)',
+              border: '1px solid rgba(179, 71, 255, 0.35)',
               color: '#e8fff4',
-              boxShadow: '0 0 18px rgba(0, 255, 136, 0.3)',
+              boxShadow: '0 0 18px rgba(179, 71, 255, 0.3)',
             },
           })
         }

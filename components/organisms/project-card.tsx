@@ -19,7 +19,7 @@ function getPreview(project: Project) {
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const preview = getPreview(project)
   const style = {
-    '--project-primary': project.theme?.primary ?? '#00ff88',
+    '--project-primary': project.theme?.primary ?? '#b347ff',
   } as CSSProperties
 
   return (

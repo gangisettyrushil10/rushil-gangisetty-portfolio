@@ -8,16 +8,21 @@ import { Footer } from '@/components/organisms/footer'
 import { Navbar } from '@/components/organisms/navbar'
 import { GithubActivity } from '@/components/organisms/github-activity'
 import {
+  HoopsPill,
+  HotTakePill,
   LatestCommitPill,
   LiveTimePill,
   LocationPill,
   MoonPhasePill,
   NowBuildingPill,
+  ReadingPill,
 } from '@/components/organisms/live-pills'
+import { SpellsLegend } from '@/components/organisms/spells-legend'
 import { Reveal } from '@/components/ui/reveal'
 import { DashedDivider } from '@/components/ui/dashed-divider'
 import { TextCycle } from '@/components/ui/text-cycle'
 import { Marquee } from '@/components/ui/marquee'
+import { SpaceInvadersBand } from '@/components/ui/space-invaders'
 import { aboutSection, personalInfo, projects } from '@/lib/data'
 
 const cyclingVerbs = ['ship things', 'build products', 'solve problems', 'design systems', 'train models']
@@ -88,6 +93,15 @@ export default function HomePage() {
                 integrations, and real-time watch parties. LLM pipelines and Chrome extensions at Seam.ai.
                 Starting MS CS at UT Dallas in August.
               </p>
+              <p className="mt-4 font-mono text-[12px] leading-5 text-subtle-foreground">
+                tip:{' '}
+                <kbd className="kbd mx-0.5">⇧B</kbd> shoots hoops ·{' '}
+                <kbd className="kbd mx-0.5">⌘K</kbd> opens search ·{' '}
+                type{' '}
+                <span style={{ color: 'var(--crt-amber)' }}>lumos</span>,{' '}
+                <span style={{ color: 'var(--crt-amber)' }}>nox</span>, or{' '}
+                <span style={{ color: 'var(--crt-amber)' }}>accio</span> for spells
+              </p>
             </div>
 
             <div className="flex flex-wrap gap-2">
@@ -149,9 +163,16 @@ export default function HomePage() {
               <LiveTimePill />
               <LocationPill />
               <MoonPhasePill />
+              <HoopsPill />
+              <ReadingPill />
             </div>
           </Reveal>
         </section>
+
+        {/* ── Space Invaders ambient band ────────────── */}
+        <Reveal className="mt-6">
+          <SpaceInvadersBand />
+        </Reveal>
 
         {/* ── Live status row ────────────────────────── */}
         <section className="bento-grid mt-4">
@@ -187,6 +208,22 @@ export default function HomePage() {
           </Reveal>
         </section>
 
+        {/* ── Spells & cheats + Hot take ─────────────── */}
+        <section className="bento-grid mt-6">
+          <Reveal className={`${bentoSpan(7)} bento-cell p-5 sm:p-6`}>
+            <SpellsLegend />
+          </Reveal>
+          <Reveal delay={80} className={`${bentoSpan(5)} bento-cell flex flex-col justify-between gap-4 p-5 sm:p-6`}>
+            <div>
+              <p className="section-label">Unsolicited takes</p>
+              <p className="mt-3 text-sm text-muted-foreground">
+                Rotating opinion, because basketball obsession has to live somewhere.
+              </p>
+            </div>
+            <HotTakePill />
+          </Reveal>
+        </section>
+
         {/* ── Marquee ticker ─────────────────────────── */}
         <div className="mt-10 border-y border-dashed border-(--pill-border)">
           <Marquee items={tickerItems} />
@@ -216,7 +253,7 @@ export default function HomePage() {
             const span = spans[index] ?? 6
             const preview = project.gallery?.find((g) => g.src)
             const theme = {
-              '--project-primary': project.theme?.primary ?? '#00ff88',
+              '--project-primary': project.theme?.primary ?? '#b347ff',
             } as CSSProperties
 
             return (

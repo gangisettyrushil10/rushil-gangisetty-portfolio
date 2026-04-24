@@ -96,7 +96,10 @@ export const aboutSection = {
     'I build things I want to exist, then I make them work for other people too. That means caring about the product as much as the code, handling real-world messiness in the backend, and shipping software that stays understandable to the next person who reads it.',
   ],
   personality: [
-    'Sports obsessive (hence Buzzr)',
+    '🏀 Hoops obsessed (hence Buzzr)',
+    '⚡ Gryffindor · rereading HP every year',
+    '🌌 Space + astronomy nerd',
+    '🕹️ Arcade kid at heart',
     'Strong opinions about database indexing',
     'Deep in recommendation systems right now',
     'First "app" was a TI-84 calculator game',
@@ -105,17 +108,17 @@ export const aboutSection = {
     {
       label: 'Based in',
       value: 'Dallas, Texas',
-      color: '#00ff88',
+      color: '#b347ff',
     },
     {
       label: 'Education',
       value: 'B.S. CS & Math, Austin College. M.S. CS at UT Dallas starting Aug 2026.',
-      color: '#ffb347',
+      color: '#ffcc33',
     },
     {
       label: 'Focus',
       value: 'Product software, backend systems, data workflows, applied ML',
-      color: '#ff3bff',
+      color: '#ff3366',
     },
   ],
   portraitSrc: '/portrait.jpg',
@@ -210,9 +213,9 @@ export const projects: Project[] = [
     previewTitle: 'Live sports social product',
     previewNote: 'Mobile and web surfaces share one product model and backend.',
     theme: {
-      primary: '#00ff88',
-      secondary: '#44ddff',
-      glow: 'rgba(0, 255, 136, 0.4)',
+      primary: '#b347ff',
+      secondary: '#4dd4ff',
+      glow: 'rgba(179, 71, 255, 0.4)',
     },
   },
   {
@@ -276,9 +279,9 @@ export const projects: Project[] = [
     previewTitle: 'Analytics workflow for imperfect input',
     previewNote: 'Validation, forecasting, and AI-assisted reporting live in one system.',
     theme: {
-      primary: '#ffb347',
-      secondary: '#ff3bff',
-      glow: 'rgba(255, 179, 71, 0.4)',
+      primary: '#ffcc33',
+      secondary: '#ff3366',
+      glow: 'rgba(255, 204, 51, 0.4)',
     },
   },
   {
@@ -338,9 +341,9 @@ export const projects: Project[] = [
     previewTitle: 'Applied AI workflow',
     previewNote: 'Structured outputs and a review-first interface keep the system legible.',
     theme: {
-      primary: '#ff3bff',
-      secondary: '#44ddff',
-      glow: 'rgba(255, 59, 255, 0.4)',
+      primary: '#4dd4ff',
+      secondary: '#b347ff',
+      glow: 'rgba(77, 212, 255, 0.4)',
     },
   },
   {
@@ -395,9 +398,9 @@ export const projects: Project[] = [
     previewTitle: 'Graph ML depth',
     previewNote: 'Focused on defensible evaluation, not just model novelty.',
     theme: {
-      primary: '#00ff88',
-      secondary: '#ff3bff',
-      glow: 'rgba(0, 255, 136, 0.4)',
+      primary: '#ff3366',
+      secondary: '#b347ff',
+      glow: 'rgba(255, 51, 102, 0.4)',
     },
   },
   {
@@ -516,9 +519,9 @@ export const projects: Project[] = [
     previewTitle: 'Internal reporting tool',
     previewNote: 'Built around reporting clarity, forecasting, and stakeholder trust.',
     theme: {
-      primary: '#ffb347',
-      secondary: '#ff3bff',
-      glow: 'rgba(255, 179, 71, 0.35)',
+      primary: '#ffcc33',
+      secondary: '#ec4899',
+      glow: 'rgba(255, 204, 51, 0.35)',
     },
   },
 ]
