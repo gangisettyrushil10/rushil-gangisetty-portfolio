@@ -446,9 +446,9 @@ html.lumos .starlayer-near {
   position: absolute;
   left: -30vw;
   right: -30vw;
-  filter: blur(90px) saturate(140%);
+  filter: blur(40px) saturate(140%);
   mix-blend-mode: screen;
-  will-change: transform, opacity;
+  will-change: transform;
 }
 
 /* Petrova line — warm red-orange diagonal streak */
@@ -581,19 +581,17 @@ html.lumos .aurora-root {
   display: none;
 }
 
-/* Static turbulence warp on the violet ribbon — composed with its blur.
-   The displacement matrix is computed once on paint; no per-frame work. */
-.aurora-warp {
-  filter: url(#aurora-warp) blur(72px) saturate(140%);
+/* Pause aurora when tab is hidden to save background CPU. */
+html.tab-hidden .aurora-ribbon,
+html.tab-hidden .aurora-glow,
+html.tab-hidden .starlayer {
+  animation-play-state: paused !important;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .aurora-ribbon,
   .aurora-glow {
     animation: none !important;
-  }
-  .aurora-warp {
-    filter: blur(72px) saturate(140%);
   }
 }
 
@@ -731,9 +729,8 @@ html.lumos .crt-overlay {
   box-shadow: 0 0 18px rgba(179, 71, 255, 0.2), inset 0 0 18px rgba(179, 71, 255, 0.06);
 }
 
-/* ── Asymmetric bento — quirks (per-cell breathing + offset) ─────
-   Rotation is baked into each breathing keyframe so static rotation
-   doesn't conflict with framer-motion's inline entrance transform. */
+/* ── Asymmetric bento — vertical offsets only (no breathing).
+   Continuous transforms on every cell were too costly in aggregate. */
 .bento-grid--featured {
   grid-auto-rows: minmax(180px, auto);
   gap: 18px 14px;
@@ -742,41 +739,22 @@ html.lumos .crt-overlay {
 .bento-cell--offset-up { margin-top: -10px; }
 .bento-cell--offset-down { margin-top: 18px; }
 
-@keyframes bento-breathe-1 {
-  0%,100% { transform: rotate(-0.5deg) translateY(0); }
-  50%     { transform: rotate(-0.5deg) translateY(-3px); }
-}
-@keyframes bento-breathe-2 {
-  0%,100% { transform: rotate(0.4deg) translateY(-1px); }
-  50%     { transform: rotate(0.4deg) translateY(2px); }
-}
-@keyframes bento-breathe-3 {
-  0%,100% { transform: rotate(0.8deg) translateY(0); }
-  50%     { transform: rotate(0.8deg) translateY(-5px); }
-}
-@keyframes bento-breathe-4 {
-  0%,100% { transform: rotate(-0.3deg) translateY(2px); }
-  50%     { transform: rotate(-0.3deg) translateY(-2px); }
-}
-@keyframes bento-breathe-5 {
-  0%,100% { transform: rotate(0.6deg) translateY(-2px); }
-  50%     { transform: rotate(0.6deg) translateY(3px); }
-}
-
-.bento-cell--breathe-1 { animation: bento-breathe-1 7s ease-in-out infinite; }
-.bento-cell--breathe-2 { animation: bento-breathe-2 9s ease-in-out infinite; }
-.bento-cell--breathe-3 { animation: bento-breathe-3 11s ease-in-out infinite; }
-.bento-cell--breathe-4 { animation: bento-breathe-4 8.5s ease-in-out infinite; }
-.bento-cell--breathe-5 { animation: bento-breathe-5 12s ease-in-out infinite; }
-
 @media (max-width: 767px) {
   .bento-cell--offset-up, .bento-cell--offset-down { margin-top: 0; }
-  [class*="bento-cell--breathe-"] { animation: none; }
 }
 
+/* TiltCard — CSS-only hover lift after the perf triage */
+.tilt-card {
+  transition: transform var(--duration-base) var(--ease-out);
+}
+.tilt-card:hover {
+  transform: translateY(-2px) scale(1.015);
+}
 @media (prefers-reduced-motion: reduce) {
-  [class*="bento-cell--breathe-"] { animation: none !important; }
-  [class*="bento-cell--offset-"] { margin-top: 0 !important; }
+  .tilt-card,
+  .tilt-card:hover {
+    transform: none;
+  }
 }
 
 /* ── Orbit system — solar layout for /orbit ─────────── */

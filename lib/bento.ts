@@ -15,12 +15,13 @@ export function bentoRowSpan(rows: 1 | 2): string {
   return rows === 2 ? 'md:row-span-2' : ''
 }
 
-export function bentoQuirk(seed: string, opts: { breathe?: boolean } = {}): string {
-  const { breathe = true } = opts
+export function bentoQuirk(seed: string, _opts: { breathe?: boolean } = {}): string {
+  // Continuous breathing keyframes were dropped in the perf triage.
+  // Only deterministic vertical offset remains.
   let h = 0
   for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) | 0
-  const breatheClass = breathe ? `bento-cell--breathe-${(Math.abs(h) % 5) + 1}` : ''
-  const offsetMod = Math.abs(h >> 4) % 5
-  const offset = offsetMod === 0 ? 'bento-cell--offset-up' : offsetMod === 1 ? 'bento-cell--offset-down' : ''
-  return [breatheClass, offset].filter(Boolean).join(' ')
+  const offsetMod = Math.abs(h) % 5
+  if (offsetMod === 0) return 'bento-cell--offset-up'
+  if (offsetMod === 1) return 'bento-cell--offset-down'
+  return ''
 }

@@ -1,8 +1,9 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
 import { createContext, type CSSProperties, type ReactNode } from 'react'
 
+// Context kept for source compatibility with any caller importing it,
+// even though Reveal no longer reads from it after the perf triage.
 export const RevealGroupContext = createContext<boolean>(false)
 
 interface RevealGroupProps {
@@ -15,41 +16,10 @@ interface RevealGroupProps {
   once?: boolean
 }
 
-export function RevealGroup({
-  children,
-  stagger = 0.06,
-  delayChildren = 0.05,
-  className,
-  style,
-  amount = 0.15,
-  once = true,
-}: RevealGroupProps) {
-  const prefersReducedMotion = useReducedMotion()
-
-  if (prefersReducedMotion) {
-    return (
-      <div className={className} style={style}>
-        {children}
-      </div>
-    )
-  }
-
+export function RevealGroup({ children, className, style }: RevealGroupProps) {
   return (
-    <RevealGroupContext.Provider value={true}>
-      <motion.div
-        className={className}
-        style={style}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once, amount, margin: '-8% 0px' }}
-        variants={{
-          visible: {
-            transition: { staggerChildren: stagger, delayChildren },
-          },
-        }}
-      >
-        {children}
-      </motion.div>
-    </RevealGroupContext.Provider>
+    <div className={className} style={style}>
+      {children}
+    </div>
   )
 }

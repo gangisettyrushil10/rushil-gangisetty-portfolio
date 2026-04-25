@@ -11,6 +11,7 @@ import { BasketballWarmup } from '@/components/organisms/basketball-warmup'
 import { FreeThrowGame } from '@/components/organisms/free-throw-game'
 import { SpellSystem } from '@/components/organisms/spell-system'
 import { SpotifyWidget } from '@/components/organisms/spotify-widget'
+import { VisibilityPause } from '@/components/visibility-pause'
 import './globals.css'
 
 // Body — modern terminal mono
@@ -90,6 +91,7 @@ export default function RootLayout({
       <body
         className={`${plexMono.variable} ${plexMono2.variable} ${vt323.variable} ${pressStart.variable} ${spaceGrotesk.variable} antialiased`}
       >
+        <VisibilityPause />
         <StarfieldBackdrop />
         <AuroraBackdrop />
         <BasketballWarmup />

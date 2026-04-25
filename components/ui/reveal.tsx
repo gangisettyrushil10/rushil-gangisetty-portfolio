@@ -1,91 +1,26 @@
 'use client'
 
-import { motion, useReducedMotion, type Variants } from 'framer-motion'
-import { useContext, type CSSProperties, type ElementType, type ReactNode } from 'react'
+import { createElement, type CSSProperties, type ElementType, type ReactNode } from 'react'
 import { cn } from '@/lib/utils'
-import { RevealGroupContext } from '@/components/ui/reveal-group'
 
-type SpringPreset = 'soft' | 'snappy' | 'bouncy'
-
-const SPRINGS: Record<SpringPreset, { type: 'spring'; stiffness: number; damping: number; mass: number }> = {
-  soft: { type: 'spring', stiffness: 220, damping: 26, mass: 0.9 },
-  snappy: { type: 'spring', stiffness: 380, damping: 30, mass: 0.7 },
-  bouncy: { type: 'spring', stiffness: 260, damping: 18, mass: 1.0 },
-}
-
-const motionMap: Record<string, ElementType> = {
-  div: motion.div,
-  header: motion.header,
-  section: motion.section,
-  article: motion.article,
-  aside: motion.aside,
-  footer: motion.footer,
-  main: motion.main,
-  nav: motion.nav,
-  span: motion.span,
-  ul: motion.ul,
-  li: motion.li,
-}
-
+/**
+ * Reveal — was a framer-motion springy entrance wrapper. After the perf
+ * triage, it just renders its children inside the requested element with
+ * no animation. The API stays drop-in so existing call sites keep working.
+ */
 interface RevealProps {
   children: ReactNode
-  as?: keyof typeof motionMap
+  as?: ElementType
   delay?: number
   className?: string
   style?: CSSProperties
+  // Legacy props kept for source compatibility but ignored.
   y?: number
-  spring?: SpringPreset
+  spring?: 'soft' | 'snappy' | 'bouncy'
   once?: boolean
   amount?: number
 }
 
-export function Reveal({
-  children,
-  as = 'div',
-  delay = 0,
-  className,
-  style,
-  y = 18,
-  spring = 'soft',
-  once = true,
-  amount = 0.15,
-}: RevealProps) {
-  const prefersReducedMotion = useReducedMotion()
-  const inGroup = useContext(RevealGroupContext)
-  const Component = motionMap[as] ?? motion.div
-
-  if (prefersReducedMotion) {
-    return (
-      <Component className={className} style={style}>
-        {children}
-      </Component>
-    )
-  }
-
-  const transition = { ...SPRINGS[spring], delay: delay / 1000 }
-
-  if (inGroup) {
-    const variants: Variants = {
-      hidden: { opacity: 0, y },
-      visible: { opacity: 1, y: 0, transition },
-    }
-    return (
-      <Component className={cn(className)} style={style} variants={variants}>
-        {children}
-      </Component>
-    )
-  }
-
-  return (
-    <Component
-      className={cn(className)}
-      style={style}
-      initial={{ opacity: 0, y }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once, amount, margin: '-8% 0px' }}
-      transition={transition}
-    >
-      {children}
-    </Component>
-  )
+export function Reveal({ children, as = 'div', className, style }: RevealProps) {
+  return createElement(as, { className: cn(className), style }, children)
 }
