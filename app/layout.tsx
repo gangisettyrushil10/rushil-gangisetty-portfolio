@@ -10,6 +10,7 @@ import { StarfieldBackdrop } from '@/components/organisms/starfield-backdrop'
 import { BasketballWarmup } from '@/components/organisms/basketball-warmup'
 import { FreeThrowGame } from '@/components/organisms/free-throw-game'
 import { SpellSystem } from '@/components/organisms/spell-system'
+import { SpotifyWidget } from '@/components/organisms/spotify-widget'
 import './globals.css'
 
 // Body — modern terminal mono
@@ -96,6 +97,7 @@ export default function RootLayout({
         {children}
         <CommandPalette />
         <FreeThrowGame />
+        <SpotifyWidget />
         <EasterEgg />
         <Toaster theme="dark" toastOptions={{ style: { zIndex: 100 } }} />
         <AnalyticsSelfExclude />

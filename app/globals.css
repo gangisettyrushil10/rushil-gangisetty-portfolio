@@ -581,10 +581,46 @@ html.lumos .aurora-root {
   display: none;
 }
 
+/* Adrian-style turbulence warp — composed with the existing blur. */
+.aurora-warp {
+  filter: url(#aurora-warp) blur(72px) saturate(140%);
+}
+
+.aurora-warp-soft {
+  filter: url(#aurora-warp-soft) blur(80px) saturate(135%);
+}
+
+/* Slow flowing noise wash — adds a "liquid surface" sheen above the ribbons */
+.aurora-flow {
+  position: absolute;
+  inset: -10%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: 0.42;
+  background:
+    radial-gradient(ellipse 70% 50% at 30% 30%, rgba(140, 80, 255, 0.18), transparent 60%),
+    radial-gradient(ellipse 60% 45% at 70% 65%, rgba(255, 80, 130, 0.16), transparent 60%),
+    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(60, 200, 255, 0.12), transparent 70%);
+  filter: url(#aurora-warp-soft) blur(40px);
+  animation: aurora-flow-drift 52s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-flow-drift {
+  0%   { transform: translate3d(-3vw, -2vh, 0) scale(1.05); }
+  100% { transform: translate3d(4vw, 3vh, 0) scale(1.12); }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .aurora-ribbon,
-  .aurora-glow {
+  .aurora-glow,
+  .aurora-flow {
     animation: none !important;
+  }
+  /* Filters are GPU-cheap once static, but expensive when animating baseFrequency.
+     Keep displacement static (no animate) at reduce-motion. */
+  .aurora-warp,
+  .aurora-warp-soft {
+    filter: blur(72px) saturate(140%);
   }
 }
 
@@ -768,6 +804,274 @@ html.lumos .crt-overlay {
 @media (prefers-reduced-motion: reduce) {
   [class*="bento-cell--breathe-"] { animation: none !important; }
   [class*="bento-cell--offset-"] { margin-top: 0 !important; }
+}
+
+/* ── Orbit system — solar layout for /orbit ─────────── */
+.orbit-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32px;
+  padding: 24px 0 80px;
+}
+
+.orbit-control {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--phosphor);
+  background: var(--bg-card);
+  border: 1px dashed var(--pill-border);
+  border-radius: 999px;
+  transition: border-color var(--duration-base) var(--ease-out), background var(--duration-base) var(--ease-out);
+  cursor: pointer;
+}
+.orbit-control:hover {
+  border-color: var(--phosphor);
+  background: var(--bg-card-muted);
+}
+
+.orbit-stage {
+  position: relative;
+  width: min(100%, 960px);
+  aspect-ratio: 1;
+  max-height: 80vh;
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .orbit-stage { display: block; }
+}
+
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px dashed rgba(179, 71, 255, 0.18);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.orbit-track {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.orbit-planet-anchor {
+  position: absolute;
+  top: 0;
+  pointer-events: auto;
+}
+
+.orbit-planet-counter {
+  position: relative;
+  border-radius: 50%;
+  display: block;
+}
+
+@keyframes orbit-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes orbit-counter {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
+}
+
+.orbit-planet {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--project-primary, var(--phosphor));
+  background: var(--bg-card);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.4),
+    0 0 14px color-mix(in oklab, var(--project-primary, #b347ff) 35%, transparent);
+  transition: transform var(--duration-base) var(--ease-out),
+    box-shadow var(--duration-base) var(--ease-out);
+}
+.orbit-planet:hover,
+.orbit-planet:focus-visible,
+.orbit-planet.is-hovered {
+  transform: scale(1.45);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.55),
+    0 0 30px color-mix(in oklab, var(--project-primary, #b347ff) 65%, transparent),
+    0 0 64px color-mix(in oklab, var(--project-primary, #b347ff) 20%, transparent);
+}
+
+.orbit-planet-img {
+  pointer-events: none;
+}
+
+.orbit-planet-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-display);
+  font-size: 14px;
+  color: var(--phosphor);
+  letter-spacing: 0.05em;
+}
+
+.orbit-planet-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  pointer-events: none;
+  box-shadow: 0 0 0 0 color-mix(in oklab, var(--project-primary, #b347ff) 60%, transparent);
+  animation: orbit-planet-pulse 3.5s ease-out infinite;
+}
+@keyframes orbit-planet-pulse {
+  0%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--project-primary, #b347ff) 60%, transparent); }
+  80%  { box-shadow: 0 0 0 16px color-mix(in oklab, var(--project-primary, #b347ff) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--project-primary, #b347ff) 0%, transparent); }
+}
+
+/* Sun at center */
+.orbit-sun-wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 110px;
+  height: 110px;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.orbit-sun-glow {
+  position: absolute;
+  inset: -24px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(179, 71, 255, 0.45), rgba(179, 71, 255, 0) 70%);
+  animation: orbit-sun-breathe 6s ease-in-out infinite alternate;
+}
+.orbit-sun-core {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 2px;
+  background: radial-gradient(circle at 35% 30%, rgba(255, 200, 220, 0.9), rgba(179, 71, 255, 0.85) 45%, rgba(80, 30, 140, 0.95) 100%);
+  border: 1px solid var(--phosphor);
+  box-shadow: 0 0 24px rgba(179, 71, 255, 0.6), inset 0 0 18px rgba(255, 255, 255, 0.18);
+  font-family: var(--font-display);
+  color: white;
+  letter-spacing: 0.04em;
+}
+.orbit-sun-label {
+  font-size: 22px;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+}
+.orbit-sun-os {
+  font-size: 10px;
+  opacity: 0.85;
+}
+@keyframes orbit-sun-breathe {
+  0%   { opacity: 0.78; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1.08); }
+}
+
+/* Hovered legend */
+.orbit-legend {
+  width: min(100%, 720px);
+  min-height: 86px;
+  text-align: center;
+  padding: 0 16px;
+}
+.orbit-meta {
+  display: inline-block;
+  text-align: left;
+  padding: 14px 18px;
+  border: 1px dashed var(--pill-border);
+  border-radius: 8px;
+  background: var(--bg-card);
+  max-width: 100%;
+}
+
+/* Mobile fallback list */
+.orbit-mobile-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: min(100%, 640px);
+  padding: 0 16px;
+  list-style: none;
+}
+@media (min-width: 768px) {
+  .orbit-mobile-list { display: none; }
+}
+.orbit-mobile-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border: 1px dashed var(--pill-border);
+  border-radius: 10px;
+  background: var(--bg-card);
+  transition: border-color var(--duration-base) var(--ease-out), background var(--duration-base) var(--ease-out);
+}
+.orbit-mobile-card:hover {
+  border-color: var(--project-primary, var(--phosphor));
+  background: var(--bg-card-muted);
+}
+.orbit-mobile-disc {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 2px solid var(--project-primary, var(--phosphor));
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-card-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit-track,
+  .orbit-planet-counter,
+  .orbit-sun-glow,
+  .orbit-planet-pulse {
+    animation: none !important;
+  }
+}
+
+/* ── Spotify widget equalizer bars ───────────────────── */
+.eq-bar {
+  display: inline-block;
+  width: 2px;
+  background: var(--phosphor);
+  border-radius: 1px;
+  animation: eq-bounce 0.9s ease-in-out infinite alternate;
+}
+.eq-bar.eq-1 { height: 6px; animation-delay: 0s; }
+.eq-bar.eq-2 { height: 9px; animation-delay: 0.15s; }
+.eq-bar.eq-3 { height: 5px; animation-delay: 0.3s; }
+@keyframes eq-bounce {
+  0%   { transform: scaleY(0.4); }
+  100% { transform: scaleY(1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .eq-bar { animation: none !important; }
 }
 
 /* Tile subtle float (optional) */

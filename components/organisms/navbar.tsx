@@ -11,6 +11,7 @@ import { personalInfo } from '@/lib/data'
 const navLinks = [
   { href: '/', label: 'Home', shortcut: 'H' },
   { href: '/projects', label: 'Projects', shortcut: 'P' },
+  { href: '/orbit', label: 'Orbit', shortcut: 'O' },
   { href: '/resume', label: 'Resume', shortcut: 'R' },
   { href: '/contact', label: 'Contact', shortcut: 'C' },
 ]
