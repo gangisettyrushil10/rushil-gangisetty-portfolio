@@ -581,45 +581,18 @@ html.lumos .aurora-root {
   display: none;
 }
 
-/* Adrian-style turbulence warp — composed with the existing blur. */
+/* Static turbulence warp on the violet ribbon — composed with its blur.
+   The displacement matrix is computed once on paint; no per-frame work. */
 .aurora-warp {
   filter: url(#aurora-warp) blur(72px) saturate(140%);
 }
 
-.aurora-warp-soft {
-  filter: url(#aurora-warp-soft) blur(80px) saturate(135%);
-}
-
-/* Slow flowing noise wash — adds a "liquid surface" sheen above the ribbons */
-.aurora-flow {
-  position: absolute;
-  inset: -10%;
-  pointer-events: none;
-  mix-blend-mode: screen;
-  opacity: 0.42;
-  background:
-    radial-gradient(ellipse 70% 50% at 30% 30%, rgba(140, 80, 255, 0.18), transparent 60%),
-    radial-gradient(ellipse 60% 45% at 70% 65%, rgba(255, 80, 130, 0.16), transparent 60%),
-    radial-gradient(ellipse 80% 60% at 50% 50%, rgba(60, 200, 255, 0.12), transparent 70%);
-  filter: url(#aurora-warp-soft) blur(40px);
-  animation: aurora-flow-drift 52s ease-in-out infinite alternate;
-}
-
-@keyframes aurora-flow-drift {
-  0%   { transform: translate3d(-3vw, -2vh, 0) scale(1.05); }
-  100% { transform: translate3d(4vw, 3vh, 0) scale(1.12); }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .aurora-ribbon,
-  .aurora-glow,
-  .aurora-flow {
+  .aurora-glow {
     animation: none !important;
   }
-  /* Filters are GPU-cheap once static, but expensive when animating baseFrequency.
-     Keep displacement static (no animate) at reduce-motion. */
-  .aurora-warp,
-  .aurora-warp-soft {
+  .aurora-warp {
     filter: blur(72px) saturate(140%);
   }
 }
@@ -839,7 +812,7 @@ html.lumos .crt-overlay {
 
 .orbit-stage {
   position: relative;
-  width: min(100%, 960px);
+  width: min(100%, 720px);
   aspect-ratio: 1;
   max-height: 80vh;
   display: none;

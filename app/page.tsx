@@ -22,7 +22,6 @@ import { Reveal } from '@/components/ui/reveal'
 import { RevealGroup } from '@/components/ui/reveal-group'
 import { TiltCard } from '@/components/ui/tilt-card'
 import { Parallax } from '@/components/ui/parallax'
-import { ScrollPinBand } from '@/components/ui/scroll-pin-band'
 import { SectionHeader } from '@/components/ui/section-header'
 import { DashedDivider } from '@/components/ui/dashed-divider'
 import { TextCycle } from '@/components/ui/text-cycle'
@@ -241,7 +240,6 @@ export default function HomePage() {
           cta={{ href: '/projects', text: 'All projects' }}
         />
 
-        <ScrollPinBand height="160vh">
         <RevealGroup className="bento-grid bento-grid--featured" stagger={0.08}>
           {featured.map((project, index) => {
             const [colSpan, rowSpan] = featuredLayout[index] ?? [6, 1]
@@ -309,7 +307,6 @@ export default function HomePage() {
             )
           })}
         </RevealGroup>
-        </ScrollPinBand>
 
         {/* ── About + heatmap ───────────────────────── */}
         <DashedDivider className="my-14" />

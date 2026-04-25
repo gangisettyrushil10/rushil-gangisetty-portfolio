@@ -16,11 +16,11 @@ interface OrbitConfig {
 }
 
 const orbits: OrbitConfig[] = [
-  { radius: 150, duration: 32, size: 56, startDeg: 0 },
-  { radius: 220, duration: 50, size: 72, startDeg: 72 },
-  { radius: 290, duration: 68, size: 60, startDeg: 144 },
-  { radius: 360, duration: 88, size: 76, startDeg: 216 },
-  { radius: 430, duration: 110, size: 64, startDeg: 288 },
+  { radius: 110, duration: 26, size: 56, startDeg: 0 },
+  { radius: 170, duration: 42, size: 64, startDeg: 72 },
+  { radius: 230, duration: 60, size: 58, startDeg: 144 },
+  { radius: 280, duration: 78, size: 68, startDeg: 216 },
+  { radius: 330, duration: 96, size: 60, startDeg: 288 },
 ]
 
 export function OrbitSystem() {

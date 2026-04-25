@@ -16,9 +16,10 @@ const ARC_DURATION = 0.85
 const SWISH_DELAY = ARC_DURATION + 0.05
 const FADE_DELAY = SWISH_DELAY + 0.45
 const TOTAL_MS = (FADE_DELAY + 0.45) * 1000
+const SESSION_KEY = 'rushil:warmup-played'
 
 export function BasketballWarmup() {
-  const [visible, setVisible] = useState(true)
+  const [visible, setVisible] = useState<boolean | null>(null)
   const [phase, setPhase] = useState<'shoot' | 'swish'>('shoot')
   const prefersReducedMotion = useReducedMotion()
 
@@ -26,6 +27,24 @@ export function BasketballWarmup() {
     if (prefersReducedMotion) {
       setVisible(false)
       return
+    }
+
+    let alreadyPlayed = false
+    try {
+      alreadyPlayed = sessionStorage.getItem(SESSION_KEY) === '1'
+    } catch {
+      /* ignore */
+    }
+    if (alreadyPlayed) {
+      setVisible(false)
+      return
+    }
+
+    setVisible(true)
+    try {
+      sessionStorage.setItem(SESSION_KEY, '1')
+    } catch {
+      /* ignore */
     }
 
     const swishTimer = window.setTimeout(() => setPhase('swish'), SWISH_DELAY * 1000)
@@ -45,7 +64,7 @@ export function BasketballWarmup() {
     }
   }, [prefersReducedMotion])
 
-  if (prefersReducedMotion) return null
+  if (visible !== true) return null
 
   return (
     <AnimatePresence>
