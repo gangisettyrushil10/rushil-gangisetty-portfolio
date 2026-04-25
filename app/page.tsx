@@ -19,11 +19,17 @@ import {
 } from '@/components/organisms/live-pills'
 import { SpellsLegend } from '@/components/organisms/spells-legend'
 import { Reveal } from '@/components/ui/reveal'
+import { RevealGroup } from '@/components/ui/reveal-group'
+import { TiltCard } from '@/components/ui/tilt-card'
+import { Parallax } from '@/components/ui/parallax'
+import { ScrollPinBand } from '@/components/ui/scroll-pin-band'
+import { SectionHeader } from '@/components/ui/section-header'
 import { DashedDivider } from '@/components/ui/dashed-divider'
 import { TextCycle } from '@/components/ui/text-cycle'
 import { Marquee } from '@/components/ui/marquee'
 import { SpaceInvadersBand } from '@/components/ui/space-invaders'
 import { aboutSection, personalInfo, projects } from '@/lib/data'
+import { bentoSpan, bentoRowSpan, bentoQuirk } from '@/lib/bento'
 
 const cyclingVerbs = ['ship things', 'build products', 'solve problems', 'design systems', 'train models']
 
@@ -47,19 +53,13 @@ const tickerItems = [
 
 const featured = projects.filter((p) => p.featured).slice(0, 5)
 
-function bentoSpan(span: number): string {
-  // Small cells (≤6) go half-width on sm so the mobile layout doesn't collapse
-  // into one monotone stack; larger cells stay full-width until md.
-  const map: Record<number, string> = {
-    3: 'sm:col-span-6 md:col-span-3',
-    4: 'sm:col-span-6 md:col-span-4',
-    5: 'sm:col-span-6 md:col-span-5',
-    6: 'sm:col-span-6 md:col-span-6',
-    7: 'md:col-span-7',
-    8: 'md:col-span-8',
-    12: 'md:col-span-12',
-  }
-  return `col-span-12 ${map[span] ?? ''}`
+// Asymmetric layout for the featured grid — varied col + row spans break the rigid bento feel.
+const featuredLayout: Record<number, [number, 1 | 2]> = {
+  0: [7, 2], // hero project — wide and tall
+  1: [5, 1], // top-right
+  2: [5, 1], // mid-right (under #1)
+  3: [6, 1], // bottom-left
+  4: [6, 1], // bottom-right
 }
 
 export default function HomePage() {
@@ -151,16 +151,18 @@ export default function HomePage() {
             </div>
           </Reveal>
 
-          <Reveal delay={80} className={`${bentoSpan(4)} bento-cell bento-sunken flex flex-col gap-5 p-5 sm:p-6`}>
-            <div className="relative aspect-[4/5] overflow-hidden rounded-lg border border-dashed border-(--pill-border)">
-              <Image
-                src={aboutSection.portraitSrc}
-                alt={aboutSection.portraitAlt}
-                fill
-                sizes="(max-width: 768px) 100vw, 320px"
-                className="object-cover"
-              />
-            </div>
+          <Reveal delay={80} spring="bouncy" className={`${bentoSpan(4)} bento-cell bento-sunken flex flex-col gap-5 p-5 sm:p-6`}>
+            <Parallax speed={0.35}>
+              <TiltCard maxTilt={4} scale={1} className="relative aspect-[4/5] overflow-hidden rounded-lg border border-dashed border-(--pill-border)">
+                <Image
+                  src={aboutSection.portraitSrc}
+                  alt={aboutSection.portraitAlt}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 320px"
+                  className="object-cover"
+                />
+              </TiltCard>
+            </Parallax>
             <div className="flex flex-col gap-2">
               <LiveTimePill />
               <LocationPill />
@@ -177,8 +179,8 @@ export default function HomePage() {
         </Reveal>
 
         {/* ── Live status row ────────────────────────── */}
-        <section className="bento-grid mt-4">
-          <Reveal className={`${bentoSpan(4)} bento-cell flex items-center justify-between gap-3 p-4 sm:p-5`}>
+        <RevealGroup className="bento-grid mt-4" stagger={0.07}>
+          <Reveal className={`${bentoSpan(4)} bento-cell ${bentoQuirk('status-now', { breathe: false })} flex items-center justify-between gap-3 p-4 sm:p-5`}>
             <div className="min-w-0">
               <p className="section-label">Now</p>
               <p className="mt-2 text-sm leading-6 text-foreground">
@@ -189,12 +191,12 @@ export default function HomePage() {
             <NowBuildingPill />
           </Reveal>
 
-          <Reveal delay={60} className={`${bentoSpan(4)} bento-cell flex flex-col justify-between gap-3 p-4 sm:p-5`}>
+          <Reveal className={`${bentoSpan(4)} bento-cell ${bentoQuirk('status-latest', { breathe: false })} flex flex-col justify-between gap-3 p-4 sm:p-5`}>
             <p className="section-label">Latest commit</p>
             <LatestCommitPill />
           </Reveal>
 
-          <Reveal delay={120} className={`${bentoSpan(4)} bento-cell flex flex-col justify-between gap-3 p-4 sm:p-5`}>
+          <Reveal className={`${bentoSpan(4)} bento-cell ${bentoQuirk('status-next', { breathe: false })} flex flex-col justify-between gap-3 p-4 sm:p-5`}>
             <p className="section-label">Next</p>
             <p className="text-sm leading-6 text-foreground">
               <span className="font-serif-italic text-muted-foreground">M.S. Computer Science</span> at
@@ -208,7 +210,7 @@ export default function HomePage() {
               <ArrowUpRight className="h-4 w-4" />
             </Link>
           </Reveal>
-        </section>
+        </RevealGroup>
 
         {/* ── Spells & cheats + Hot take ─────────────── */}
         <section className="bento-grid mt-6">
@@ -233,26 +235,16 @@ export default function HomePage() {
 
         {/* ── Featured projects ─────────────────────── */}
         <DashedDivider className="my-14" />
-        <Reveal as="header" className="flex items-end justify-between gap-4 pb-6">
-          <div>
-            <span className="section-label">Selected work</span>
-            <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-foreground sm:text-3xl">
-              Projects I keep thinking about.
-            </h2>
-          </div>
-          <Link
-            href="/projects"
-            className="hidden items-center gap-2 text-sm font-medium text-muted-foreground hover:text-foreground sm:inline-flex"
-          >
-            All projects
-            <ArrowUpRight className="h-4 w-4" />
-          </Link>
-        </Reveal>
+        <SectionHeader
+          label="Selected work"
+          title="Projects I keep thinking about."
+          cta={{ href: '/projects', text: 'All projects' }}
+        />
 
-        <section className="bento-grid">
+        <ScrollPinBand height="160vh">
+        <RevealGroup className="bento-grid bento-grid--featured" stagger={0.08}>
           {featured.map((project, index) => {
-            const spans: Record<number, number> = { 0: 7, 1: 5, 2: 4, 3: 4, 4: 4 }
-            const span = spans[index] ?? 6
+            const [colSpan, rowSpan] = featuredLayout[index] ?? [6, 1]
             const preview = project.gallery?.find((g) => g.src)
             const theme = {
               '--project-primary': project.theme?.primary ?? '#b347ff',
@@ -261,10 +253,10 @@ export default function HomePage() {
             return (
               <Reveal
                 key={project.id}
-                delay={index * 70}
-                className={`${bentoSpan(span)} bento-cell group p-0`}
+                className={`${bentoSpan(colSpan)} ${bentoRowSpan(rowSpan)} bento-cell ${bentoQuirk(project.id)} group p-0`}
                 style={theme}
               >
+                <TiltCard maxTilt={6} className="h-full">
                 <Link href={`/projects/${project.id}`} className="flex h-full flex-col">
                   {preview?.src ? (
                     <div className="relative aspect-[16/10] overflow-hidden rounded-t-[13px] border-b border-dashed border-(--pill-border) bg-bg-card-muted">
@@ -312,10 +304,12 @@ export default function HomePage() {
                     </div>
                   </div>
                 </Link>
+                </TiltCard>
               </Reveal>
             )
           })}
-        </section>
+        </RevealGroup>
+        </ScrollPinBand>
 
         {/* ── About + heatmap ───────────────────────── */}
         <DashedDivider className="my-14" />

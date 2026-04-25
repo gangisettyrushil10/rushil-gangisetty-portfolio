@@ -2,6 +2,11 @@
 
 import { useEffect, useRef } from 'react'
 
+/**
+ * @deprecated Use the `<Reveal>` / `<RevealGroup>` components from
+ * components/ui/reveal.tsx instead. Those are now built on framer-motion
+ * springs. This hook is kept only for the dashed-divider entrance.
+ */
 export function useReveal<T extends HTMLElement = HTMLElement>(options?: IntersectionObserverInit) {
   const ref = useRef<T | null>(null)
 

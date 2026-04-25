@@ -722,6 +722,54 @@ html.lumos .crt-overlay {
   box-shadow: 0 0 18px rgba(179, 71, 255, 0.2), inset 0 0 18px rgba(179, 71, 255, 0.06);
 }
 
+/* ── Asymmetric bento — quirks (per-cell breathing + offset) ─────
+   Rotation is baked into each breathing keyframe so static rotation
+   doesn't conflict with framer-motion's inline entrance transform. */
+.bento-grid--featured {
+  grid-auto-rows: minmax(180px, auto);
+  gap: 18px 14px;
+}
+
+.bento-cell--offset-up { margin-top: -10px; }
+.bento-cell--offset-down { margin-top: 18px; }
+
+@keyframes bento-breathe-1 {
+  0%,100% { transform: rotate(-0.5deg) translateY(0); }
+  50%     { transform: rotate(-0.5deg) translateY(-3px); }
+}
+@keyframes bento-breathe-2 {
+  0%,100% { transform: rotate(0.4deg) translateY(-1px); }
+  50%     { transform: rotate(0.4deg) translateY(2px); }
+}
+@keyframes bento-breathe-3 {
+  0%,100% { transform: rotate(0.8deg) translateY(0); }
+  50%     { transform: rotate(0.8deg) translateY(-5px); }
+}
+@keyframes bento-breathe-4 {
+  0%,100% { transform: rotate(-0.3deg) translateY(2px); }
+  50%     { transform: rotate(-0.3deg) translateY(-2px); }
+}
+@keyframes bento-breathe-5 {
+  0%,100% { transform: rotate(0.6deg) translateY(-2px); }
+  50%     { transform: rotate(0.6deg) translateY(3px); }
+}
+
+.bento-cell--breathe-1 { animation: bento-breathe-1 7s ease-in-out infinite; }
+.bento-cell--breathe-2 { animation: bento-breathe-2 9s ease-in-out infinite; }
+.bento-cell--breathe-3 { animation: bento-breathe-3 11s ease-in-out infinite; }
+.bento-cell--breathe-4 { animation: bento-breathe-4 8.5s ease-in-out infinite; }
+.bento-cell--breathe-5 { animation: bento-breathe-5 12s ease-in-out infinite; }
+
+@media (max-width: 767px) {
+  .bento-cell--offset-up, .bento-cell--offset-down { margin-top: 0; }
+  [class*="bento-cell--breathe-"] { animation: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [class*="bento-cell--breathe-"] { animation: none !important; }
+  [class*="bento-cell--offset-"] { margin-top: 0 !important; }
+}
+
 /* Tile subtle float (optional) */
 .tile-float {
   animation: tile-float 6s ease-in-out infinite alternate;
@@ -816,20 +864,6 @@ html.lumos .section-label {
 
 .dashed-divider.in-view {
   transform: scaleX(1);
-}
-
-/* ── Reveal primitive ───────────────────────────── */
-.reveal {
-  opacity: 0;
-  transform: translateY(14px);
-  transition:
-    opacity var(--duration-base) var(--ease-out),
-    transform var(--duration-base) var(--ease-out);
-}
-
-.reveal.in-view {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* ── kbd ────────────────────────────────────────── */

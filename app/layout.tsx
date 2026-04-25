@@ -1,13 +1,13 @@
 import type { Metadata, Viewport } from 'next'
 import { IBM_Plex_Mono, Press_Start_2P, Space_Grotesk, VT323 } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
+import { AnalyticsSelfExclude } from '@/components/analytics-self-exclude'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Toaster } from 'sonner'
 import { EasterEgg } from '@/components/easter-egg'
 import { CommandPalette } from '@/components/organisms/command-palette'
 import { AuroraBackdrop } from '@/components/organisms/aurora-backdrop'
 import { StarfieldBackdrop } from '@/components/organisms/starfield-backdrop'
-import { BootSequence } from '@/components/organisms/boot-sequence'
+import { BasketballWarmup } from '@/components/organisms/basketball-warmup'
 import { FreeThrowGame } from '@/components/organisms/free-throw-game'
 import { SpellSystem } from '@/components/organisms/spell-system'
 import './globals.css'
@@ -91,19 +91,14 @@ export default function RootLayout({
       >
         <StarfieldBackdrop />
         <AuroraBackdrop />
-        <BootSequence />
+        <BasketballWarmup />
         <SpellSystem />
         {children}
         <CommandPalette />
         <FreeThrowGame />
         <EasterEgg />
         <Toaster theme="dark" toastOptions={{ style: { zIndex: 100 } }} />
-        <Analytics beforeSend={(event) => {
-          if (typeof window !== 'undefined' && window.localStorage.getItem('rushil:exclude-self') === '1') {
-            return null
-          }
-          return event
-        }} />
+        <AnalyticsSelfExclude />
         <SpeedInsights />
       </body>
     </html>
