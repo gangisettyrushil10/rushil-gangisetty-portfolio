@@ -7,6 +7,8 @@ import {
   Briefcase,
   Cpu,
   Download,
+  Eye,
+  EyeOff,
   FileText,
   Flame,
   Github,
@@ -18,6 +20,7 @@ import {
   MessageCircle,
   Mountain,
   Quote,
+  RefreshCw,
   Sparkles,
   Terminal as TerminalIcon,
   Zap,
@@ -73,6 +76,9 @@ export function CommandPalette() {
     window.addEventListener('keydown', onKeyDown)
     return () => window.removeEventListener('keydown', onKeyDown)
   }, [])
+
+  // Note: we deliberately do NOT broadcast rushil:modal-open here — typing "lumos"/"nox"/"accio"
+  // from inside the command palette is a designed feature (per the SpellSystem cmdk-input exception).
 
   useEffect(() => {
     function onOpen() {

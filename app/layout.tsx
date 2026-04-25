@@ -5,6 +5,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import { Toaster } from 'sonner'
 import { EasterEgg } from '@/components/easter-egg'
 import { CommandPalette } from '@/components/organisms/command-palette'
+import { AuroraBackdrop } from '@/components/organisms/aurora-backdrop'
 import { StarfieldBackdrop } from '@/components/organisms/starfield-backdrop'
 import { BootSequence } from '@/components/organisms/boot-sequence'
 import { FreeThrowGame } from '@/components/organisms/free-throw-game'
@@ -89,14 +90,20 @@ export default function RootLayout({
         className={`${plexMono.variable} ${plexMono2.variable} ${vt323.variable} ${pressStart.variable} ${spaceGrotesk.variable} antialiased`}
       >
         <StarfieldBackdrop />
+        <AuroraBackdrop />
         <BootSequence />
         <SpellSystem />
         {children}
         <CommandPalette />
         <FreeThrowGame />
         <EasterEgg />
-        <Toaster theme="dark" />
-        <Analytics />
+        <Toaster theme="dark" toastOptions={{ style: { zIndex: 100 } }} />
+        <Analytics beforeSend={(event) => {
+          if (typeof window !== 'undefined' && window.localStorage.getItem('rushil:exclude-self') === '1') {
+            return null
+          }
+          return event
+        }} />
         <SpeedInsights />
       </body>
     </html>

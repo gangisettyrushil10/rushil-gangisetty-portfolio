@@ -48,11 +48,13 @@ const tickerItems = [
 const featured = projects.filter((p) => p.featured).slice(0, 5)
 
 function bentoSpan(span: number): string {
+  // Small cells (≤6) go half-width on sm so the mobile layout doesn't collapse
+  // into one monotone stack; larger cells stay full-width until md.
   const map: Record<number, string> = {
-    3: 'md:col-span-3',
-    4: 'md:col-span-4',
-    5: 'md:col-span-5',
-    6: 'md:col-span-6',
+    3: 'sm:col-span-6 md:col-span-3',
+    4: 'sm:col-span-6 md:col-span-4',
+    5: 'sm:col-span-6 md:col-span-5',
+    6: 'sm:col-span-6 md:col-span-6',
     7: 'md:col-span-7',
     8: 'md:col-span-8',
     12: 'md:col-span-12',

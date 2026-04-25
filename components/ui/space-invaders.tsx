@@ -1,5 +1,7 @@
 'use client'
 
+import type { ReactElement } from 'react'
+
 /**
  * SpaceInvadersBand — original pixel-alien sprites in a marching band.
  * Three sprite shapes (squid, crab, octopus) + a UFO, rendered as SVG rects.
@@ -56,7 +58,7 @@ function Sprite({ kind, color, px = 3 }: { kind: SpriteKey; color: string; px?: 
   const grid = SPRITES[kind]
   const cols = grid[0].length
   const rows = grid.length
-  const cells: JSX.Element[] = []
+  const cells: ReactElement[] = []
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
       if (grid[r][c] === '1') {
@@ -78,41 +80,32 @@ function Sprite({ kind, color, px = 3 }: { kind: SpriteKey; color: string; px?: 
   )
 }
 
-export function SpaceInvadersBand() {
-  const row1: SpriteKey[] = ['squid', 'squid', 'squid', 'squid', 'squid', 'squid', 'squid', 'squid']
-  const row2: SpriteKey[] = ['crab', 'crab', 'crab', 'crab', 'crab', 'crab', 'crab', 'crab']
-  const row3: SpriteKey[] = [
-    'octopus',
-    'octopus',
-    'octopus',
-    'octopus',
-    'octopus',
-    'octopus',
-    'octopus',
-    'octopus',
-  ]
+export function SpaceInvadersBand({ count = 8 }: { count?: number }) {
+  const row1 = Array<SpriteKey>(count).fill('squid')
+  const row2 = Array<SpriteKey>(count).fill('crab')
+  const row3 = Array<SpriteKey>(count).fill('octopus')
 
   return (
-    <div className="relative w-full overflow-hidden py-4">
+    <div className="invaders-wrap relative w-full overflow-hidden py-4">
       {/* UFO occasionally flies across the top */}
       <div className="invaders-ufo absolute left-0 top-0">
         <Sprite kind="ufo" color="#ffcc33" px={3} />
       </div>
 
-      <div className="invaders-march mx-auto flex max-w-fit flex-col items-center gap-3 px-6">
-        <div className="flex items-center gap-5">
+      <div className="invaders-march mx-auto flex max-w-fit flex-col items-center gap-2 sm:gap-3 px-4 sm:px-6">
+        <div className="flex items-center gap-3 sm:gap-5">
           {row1.map((k, i) => (
-            <Sprite key={`r1-${i}`} kind={k} color="#b347ff" px={3} />
+            <Sprite key={`r1-${i}`} kind={k} color="#b347ff" />
           ))}
         </div>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-3 sm:gap-5">
           {row2.map((k, i) => (
-            <Sprite key={`r2-${i}`} kind={k} color="#4dd4ff" px={3} />
+            <Sprite key={`r2-${i}`} kind={k} color="#4dd4ff" />
           ))}
         </div>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-3 sm:gap-5">
           {row3.map((k, i) => (
-            <Sprite key={`r3-${i}`} kind={k} color="#ff3366" px={3} />
+            <Sprite key={`r3-${i}`} kind={k} color="#ff3366" />
           ))}
         </div>
       </div>
@@ -130,12 +123,28 @@ export function SpaceInvadersBand() {
       </div>
 
       <style>{`
+        .invaders-wrap svg {
+          width: 18px;
+          height: 18px;
+        }
+        @media (min-width: 640px) {
+          .invaders-wrap svg {
+            width: 22px;
+            height: 22px;
+          }
+        }
+        @media (min-width: 1024px) {
+          .invaders-wrap svg {
+            width: 28px;
+            height: 28px;
+          }
+        }
         .invaders-march {
           animation: invaders-step 1.2s steps(2, end) infinite alternate;
         }
         @keyframes invaders-step {
-          0% { transform: translateX(-14px); }
-          100% { transform: translateX(14px); }
+          0% { transform: translateX(-10px); }
+          100% { transform: translateX(10px); }
         }
         .invaders-ufo {
           animation: invaders-ufo 18s linear infinite;

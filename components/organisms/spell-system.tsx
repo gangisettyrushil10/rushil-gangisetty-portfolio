@@ -9,6 +9,7 @@ const MAX_BUFFER = 8
 export function SpellSystem() {
   const buffer = useRef<string>('')
   const wandTimerRef = useRef<number | null>(null)
+  const modalOpenRef = useRef<boolean>(false)
 
   useEffect(() => {
     function castLumos() {
@@ -62,8 +63,17 @@ export function SpellSystem() {
       window.setTimeout(() => dot.remove(), 700)
     }
 
+    function onModalBroadcast(e: Event) {
+      const detail = (e as CustomEvent<{ open: boolean }>).detail
+      modalOpenRef.current = !!detail?.open
+      if (modalOpenRef.current) buffer.current = ''
+    }
+
     function onKeyDown(e: KeyboardEvent) {
-      // Don't hijack real typing in form fields
+      // Do not buffer while a modal/game is open
+      if (modalOpenRef.current) return
+
+      // Skip real typing inside form fields
       const target = e.target as HTMLElement | null
       if (
         target &&
@@ -71,13 +81,12 @@ export function SpellSystem() {
           target.tagName === 'TEXTAREA' ||
           target.getAttribute('contenteditable') === 'true')
       ) {
-        // Exception: let spells still cast from the command palette input (cmdk uses input)
+        // Let spells cast from cmdk input so typing "lumos" in the palette works
         const cmdkInput = target.closest('[cmdk-input]')
         if (!cmdkInput) return
       }
 
       if (e.key.length !== 1 || e.metaKey || e.ctrlKey || e.altKey) {
-        // Handle special: Escape clears buffer
         if (e.key === 'Escape') buffer.current = ''
         return
       }
@@ -96,8 +105,10 @@ export function SpellSystem() {
     }
 
     window.addEventListener('keydown', onKeyDown)
+    window.addEventListener('rushil:modal-open', onModalBroadcast as EventListener)
     return () => {
       window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('rushil:modal-open', onModalBroadcast as EventListener)
       stopWandTrail()
     }
   }, [])
