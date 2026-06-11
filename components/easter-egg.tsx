@@ -18,13 +18,12 @@ export function EasterEgg() {
         index.current++
         if (index.current === KONAMI.length) {
           index.current = 0
-          toast('🏈 Hot take: the NFL is more entertaining than the NBA — and Buzzr\'s data proves it.', {
+          toast('Hot take: the NFL is more entertaining than the NBA, and I will defend that with product data.', {
             duration: 5000,
             style: {
-              background: 'rgba(5, 6, 10, 0.95)',
-              border: '1px solid rgba(179, 71, 255, 0.35)',
-              color: '#e8fff4',
-              boxShadow: '0 0 18px rgba(179, 71, 255, 0.3)',
+              background: 'rgba(0, 0, 0, 0.9)',
+              border: '1px solid rgba(125, 249, 255, 0.3)',
+              color: '#fff',
             },
           })
         }

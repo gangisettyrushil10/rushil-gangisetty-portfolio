@@ -92,14 +92,11 @@ export const aboutSection = {
   title: 'Why I build.',
   paragraphs: [
     'I started Buzzr because I wanted to know if the game I was about to watch would actually be worth watching. That turned into a cross-platform app on Apple TestFlight with 18 beta testers, 7 live league integrations, and 9 Edge Functions powering real-time watch parties.',
-    "I like building across the full stack — I've shipped ML models that score game entertainment, banking APIs with idempotent transactions, clinical AI workflows, and analytics dashboards that handle messy real-world data. The common thread is products where the backend complexity is invisible to the user.",
-    'I build things I want to exist, then I make them work for other people too. That means caring about the product as much as the code, handling real-world messiness in the backend, and shipping software that stays understandable to the next person who reads it.',
+    "Lately that has meant building Fuzzy, a Mac-first study IDE for PDFs with OpenAI-powered workflows, and PixelDraw, an AI pixel-by-number coloring app across Apple platforms. I like products where the surface feels calm even when the backend, local persistence, or model orchestration underneath gets complicated.",
+    'I build things I want to exist, then I make them work for other people too. That usually means caring about product feel as much as code quality, handling messy real-world edge cases in the backend, and shipping software that stays understandable to the next person who reads it.',
   ],
   personality: [
-    '🏀 Hoops obsessed (hence Buzzr)',
-    '⚡ Gryffindor · rereading HP every year',
-    '🌌 Space + astronomy nerd',
-    '🕹️ Arcade kid at heart',
+    'Sports obsessive (hence Buzzr)',
     'Strong opinions about database indexing',
     'Deep in recommendation systems right now',
     'First "app" was a TI-84 calculator game',
@@ -108,17 +105,17 @@ export const aboutSection = {
     {
       label: 'Based in',
       value: 'Dallas, Texas',
-      color: '#b347ff',
+      color: '#7df9ff',
     },
     {
       label: 'Education',
       value: 'B.S. CS & Math, Austin College. M.S. CS at UT Dallas starting Aug 2026.',
-      color: '#ffcc33',
+      color: '#8bd5ff',
     },
     {
       label: 'Focus',
-      value: 'Product software, backend systems, data workflows, applied ML',
-      color: '#ff3366',
+      value: 'Product software, local-first tools, backend systems, applied AI',
+      color: '#6ee7b7',
     },
   ],
   portraitSrc: '/portrait.jpg',
@@ -126,6 +123,56 @@ export const aboutSection = {
 }
 
 export const projects: Project[] = [
+  {
+    id: 'fuzzy',
+    title: 'Fuzzy',
+    category: 'Desktop AI Product',
+    description:
+      'A Mac-first study IDE for PDFs that turns highlighted passages into OpenAI-powered explanations, study packs, reading plans, and notes inside a local-first Electron workspace.',
+    longDescription:
+      'Built a Mac-first desktop study workspace with Electron 39, React 19, Tailwind v4, and SQLite. Users can import PDFs, highlight passages, run OpenAI-powered tutor actions, save anchored notes, generate reading plans, create study packs with flashcards and quizzes, and keep everything local-first with encrypted BYOK settings. The app uses a three-process Electron architecture, a SQLite persistence layer, 21 main-process IPC modules, and 48 automated tests plus an Electron smoke test to keep the product stable while the UX and AI workflows evolve.',
+    stack: ['Electron', 'React 19', 'TypeScript', 'SQLite', 'OpenAI', 'PDF.js', 'Tailwind CSS', 'Zustand'],
+    metrics: [
+      { label: 'Automated tests', value: '48' },
+      { label: 'IPC modules', value: '21' },
+      { label: 'Persistence', value: 'SQLite + keychain' },
+      { label: 'Core loop', value: 'PDF -> AI tutor' },
+    ],
+    role: 'Sole builder — product, desktop UI, local persistence, AI workflows',
+    timeline: '2026',
+    status: 'Active build',
+    challenge:
+      'Reading tools are usually either passive viewers or generic chat wrappers. The product needed to make studying feel like an IDE: quick selection, structured help, local persistence, and flows that stay useful across long documents.',
+    decisions: [
+      'Used a three-process Electron architecture so file I/O, SQLite, and model access stay in the main process while the renderer stays sandboxed.',
+      'Made the primary interaction selection-first: highlight a passage, call an OpenAI action, then turn the result into durable notes or study material.',
+      'Kept the product local-first with SQLite persistence, encrypted BYOK settings, and mock/offline fallbacks for smoke testing and demos.',
+      'Built reading plans, study packs, glossary, synthesis, and export workflows around documents instead of bolting chat onto a PDF viewer.',
+    ],
+    outcomes: [
+      'Shipped the core study loop: import a PDF, select text, run tutor actions, save notes, and reopen the same document state later.',
+      'Added structured study packs, reading plans, export flows, and supporting AI tools inside one desktop workspace.',
+      'Backed the prototype with 48 automated tests, an Electron smoke test, and a persistence model built for iteration instead of one-off demos.',
+    ],
+    learnings: [
+      'Desktop AI products feel credible when local persistence and UX reliability are treated as first-class work, not just wrappers around model calls.',
+      'Selection-first interactions are often more useful than open-ended chat because they anchor the AI to a concrete passage.',
+      'The hard part of applied AI is shaping the workflow around the model so the result stays legible and trustworthy.',
+    ],
+    githubUrl: 'https://github.com/gangisettyrushil10/fuzzy',
+    links: [{ label: 'Repository', href: 'https://github.com/gangisettyrushil10/fuzzy' }],
+    featured: true,
+    recruiterAngle: 'Best proof of desktop product engineering, local-first architecture, and OpenAI workflows shaped into a real study tool.',
+    proofLine: 'Turns AI from a demo into a document-centered workflow.',
+    repoName: 'fuzzy',
+    previewTitle: 'Study IDE for reading',
+    previewNote: 'OpenAI-powered tutoring, local SQLite persistence, and PDF-native workflows.',
+    theme: {
+      primary: '#7df9ff',
+      secondary: '#6ee7b7',
+      glow: 'rgba(125, 249, 255, 0.35)',
+    },
+  },
   {
     id: 'buzzr',
     title: 'Buzzr',
@@ -213,9 +260,57 @@ export const projects: Project[] = [
     previewTitle: 'Live sports social product',
     previewNote: 'Mobile and web surfaces share one product model and backend.',
     theme: {
-      primary: '#b347ff',
-      secondary: '#4dd4ff',
-      glow: 'rgba(179, 71, 255, 0.4)',
+      primary: '#7df9ff',
+      secondary: '#12b981',
+      glow: 'rgba(125, 249, 255, 0.4)',
+    },
+  },
+  {
+    id: 'pixeldraw',
+    title: 'PixelDraw',
+    category: 'Apple-Platform Product',
+    description:
+      'An in-progress AI pixel-by-number coloring app for iPhone, iPad, and native macOS that can generate pages from a photo, a mood, a song, or a daily ritual.',
+    longDescription:
+      'Building a SwiftUI multiplatform coloring product with a Metal canvas renderer, SwiftData local persistence, Supabase backend services, and AI generation pipelines. The app already supports guest-mode coloring, undo/redo, palette-first canvas interactions, local progress persistence, and generation flows for photos, mood prompts, songs, and daily ritual pages. The backend is structured around Supabase Auth, Storage, Realtime, and Edge Functions, while the product itself is still actively being shaped into a calmer, more polished creative experience.',
+    stack: ['SwiftUI', 'SwiftData', 'Metal', 'Supabase', 'PostgreSQL', 'Deno Edge Functions', 'Replicate', 'TypeScript'],
+    metrics: [
+      { label: 'Generation modes', value: '4' },
+      { label: 'Edge Functions', value: '6' },
+      { label: 'Apple surfaces', value: '3' },
+      { label: 'Canvas', value: 'Metal' },
+    ],
+    role: 'Sole builder — product, Apple client, backend, AI generation',
+    timeline: '2026',
+    status: 'In progress',
+    challenge:
+      'Coloring apps are usually static libraries. The product needed to make generation feel personal without losing the low-friction, calming feel that makes pixel coloring satisfying in the first place.',
+    decisions: [
+      'Built the client in native SwiftUI with a Metal canvas so filling cells, zooming, and palette interactions feel tactile on Apple devices.',
+      'Separated local guest-mode persistence from the Supabase-backed social and discovery systems so the core coloring loop works even before sign-in.',
+      'Designed four generation paths — photo, mood, song, and daily ritual — to make the AI feel like creative input instead of a gimmick.',
+      'Kept the backend around small Edge Functions and shared utilities for entitlements, storage, quantization, and image-generation orchestration.',
+    ],
+    outcomes: [
+      'The core canvas, sample content, palette workflow, and local progress persistence already work without any backend setup.',
+      'AI generation flows and the Supabase foundation are in place, with discovery, auth, and premium systems still being finished.',
+      'Shows range across SwiftUI, rendering, product design, and backend orchestration while still being an active build.',
+    ],
+    learnings: [
+      'Creative AI products need a calm default mode; the non-AI core loop still has to feel good on its own.',
+      'Native client performance matters a lot when the interaction is repetitive, tactile, and visual.',
+      'Offline-friendly architecture makes it easier to iterate on a product before every backend surface is complete.',
+    ],
+    featured: true,
+    recruiterAngle: 'Strong signal on native Apple UI, rendering, and building a generative product that still prioritizes feel.',
+    proofLine: 'Extends the portfolio into SwiftUI, Metal, and AI-assisted creative tooling.',
+    repoName: 'PixelDraw',
+    previewTitle: 'AI pixel coloring studio',
+    previewNote: 'Photo, mood, song, and daily generation flows inside a native Apple client.',
+    theme: {
+      primary: '#ff8a5b',
+      secondary: '#ffd166',
+      glow: 'rgba(255, 138, 91, 0.32)',
     },
   },
   {
@@ -279,9 +374,9 @@ export const projects: Project[] = [
     previewTitle: 'Analytics workflow for imperfect input',
     previewNote: 'Validation, forecasting, and AI-assisted reporting live in one system.',
     theme: {
-      primary: '#ffcc33',
-      secondary: '#ff3366',
-      glow: 'rgba(255, 204, 51, 0.4)',
+      primary: '#ff8a5b',
+      secondary: '#facc15',
+      glow: 'rgba(255, 138, 91, 0.36)',
     },
   },
   {
@@ -334,16 +429,16 @@ export const projects: Project[] = [
         src: '/projects/medscribe-output.png',
       },
     ],
-    featured: true,
+    featured: false,
     recruiterAngle: 'Team hackathon project demonstrating applied AI with structured outputs, trust cues, and thoughtful UX.',
     proofLine: 'Collaborative AI case study shaped around workflow clarity.',
     repoName: 'IBM-Medscribe-AI',
     previewTitle: 'Applied AI workflow',
     previewNote: 'Structured outputs and a review-first interface keep the system legible.',
     theme: {
-      primary: '#4dd4ff',
-      secondary: '#b347ff',
-      glow: 'rgba(77, 212, 255, 0.4)',
+      primary: '#60a5fa',
+      secondary: '#f59e0b',
+      glow: 'rgba(96, 165, 250, 0.34)',
     },
   },
   {
@@ -391,16 +486,16 @@ export const projects: Project[] = [
         src: '/projects/graph-link-prediction-portfolio-preview.png',
       },
     ],
-    featured: true,
+    featured: false,
     recruiterAngle: 'Adds credible ML depth without crowding the broader software story.',
     proofLine: 'Technical depth piece behind the main product story.',
     repoName: 'graph-theory-final-project',
     previewTitle: 'Graph ML depth',
     previewNote: 'Focused on defensible evaluation, not just model novelty.',
     theme: {
-      primary: '#ff3366',
-      secondary: '#b347ff',
-      glow: 'rgba(255, 51, 102, 0.4)',
+      primary: '#68f7c4',
+      secondary: '#7df9ff',
+      glow: 'rgba(104, 247, 196, 0.35)',
     },
   },
   {
@@ -519,11 +614,19 @@ export const projects: Project[] = [
     previewTitle: 'Internal reporting tool',
     previewNote: 'Built around reporting clarity, forecasting, and stakeholder trust.',
     theme: {
-      primary: '#ffcc33',
-      secondary: '#ec4899',
-      glow: 'rgba(255, 204, 51, 0.35)',
+      primary: '#f5d76e',
+      secondary: '#ff8a5b',
+      glow: 'rgba(245, 215, 110, 0.3)',
     },
   },
+]
+
+export const featuredProjectOrder: string[] = [
+  'fuzzy',
+  'pixeldraw',
+  'buzzr',
+  'credit-union-ledger-api',
+  'business-analytics-dashboard',
 ]
 
 export interface Experience {
@@ -640,7 +743,7 @@ export const homeStats: HomeStat[] = [
   {
     value: '5',
     label: 'flagship projects',
-    note: 'Product software, data workflows, applied AI, backend systems, and ML depth.',
+    note: 'Product software across mobile, desktop AI, Apple platforms, backend systems, and data workflows.',
   },
   {
     value: '3',
@@ -680,6 +783,18 @@ export const focusAreas: FocusArea[] = [
     href: '/projects/buzzr',
   },
   {
+    title: 'Desktop AI tooling',
+    description: 'Local-first desktop software where AI is shaped into a real workflow instead of a demo.',
+    proof: 'Fuzzy',
+    href: '/projects/fuzzy',
+  },
+  {
+    title: 'Apple-platform app design',
+    description: 'Native product work that blends polish, tactile interactions, and backend orchestration.',
+    proof: 'PixelDraw',
+    href: '/projects/pixeldraw',
+  },
+  {
     title: 'Backend and API design',
     description: 'Service architecture with clean contracts, validation, and operational reliability.',
     proof: 'Credit Union Ledger API',
@@ -690,18 +805,6 @@ export const focusAreas: FocusArea[] = [
     description: 'Workflows with uploads, validation, forecasting, and imperfect input.',
     proof: 'Business Analytics Dashboard',
     href: '/projects/business-analytics-dashboard',
-  },
-  {
-    title: 'Applied AI inside real software',
-    description: 'AI features shaped around reviewability, structure, and clear UX.',
-    proof: 'IBM Medscribe AI',
-    href: '/projects/ibm-medscribe-ai',
-  },
-  {
-    title: 'Technical depth when needed',
-    description: 'Enough machine-learning range to go deeper when the problem calls for it.',
-    proof: 'Graph Link Prediction',
-    href: '/projects/graph-link-prediction',
   },
 ]
 
@@ -725,15 +828,15 @@ export const projectDomains = [
 ]
 
 export const recruiterSummary = {
-  title: 'I shipped a sports app to TestFlight with 18 beta testers. Here\'s everything else.',
+  title: 'I shipped a sports app to TestFlight and built a study IDE for PDFs.',
   description:
-    'Full-stack engineer who builds products end-to-end. Internships at Seam.ai (SaaS, LLM pipelines, Chrome extensions) and Aeyesafe (IoT integration testing). Five public projects spanning mobile apps, backend APIs, analytics workflows, and applied AI.',
+    'Full-stack engineer who builds products end-to-end across React, TypeScript, SwiftUI, Electron, and backend systems. Internships at Seam.ai (SaaS, LLM pipelines, Chrome extensions) and Aeyesafe (IoT integration testing). Five flagship projects now span mobile apps, desktop AI tools, backend APIs, analytics workflows, and Apple-platform product design.',
 }
 
 export const personalInfo = {
   name: 'Rushil Gangisetty',
   title: 'Software Engineer',
-  tagline: 'Building polished product software, dependable backend workflows, and thoughtful AI features',
+  tagline: 'Building polished product software, local-first tools, and thoughtful AI features',
   location: 'Dallas, Texas',
   status: 'Open to software engineering, backend, and product-focused full-stack roles',
   email: 'gangisettyrushil@gmail.com',

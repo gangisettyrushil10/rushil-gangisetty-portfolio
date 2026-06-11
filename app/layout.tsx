@@ -1,58 +1,8 @@
 import type { Metadata, Viewport } from 'next'
-import { IBM_Plex_Mono, Press_Start_2P, Space_Grotesk, VT323 } from 'next/font/google'
-import { AnalyticsSelfExclude } from '@/components/analytics-self-exclude'
-import { SpeedInsights } from '@vercel/speed-insights/next'
+import { Analytics } from '@vercel/analytics/next'
 import { Toaster } from 'sonner'
 import { EasterEgg } from '@/components/easter-egg'
-import { CommandPalette } from '@/components/organisms/command-palette'
-import { AuroraBackdrop } from '@/components/organisms/aurora-backdrop'
-import { StarfieldBackdrop } from '@/components/organisms/starfield-backdrop'
-import { BasketballWarmup } from '@/components/organisms/basketball-warmup'
-import { FreeThrowGame } from '@/components/organisms/free-throw-game'
-import { SpellSystem } from '@/components/organisms/spell-system'
-import { SpotifyWidget } from '@/components/organisms/spotify-widget'
-import { VisibilityPause } from '@/components/visibility-pause'
 import './globals.css'
-
-// Body — modern terminal mono
-const plexMono = IBM_Plex_Mono({
-  subsets: ['latin'],
-  variable: '--font-sans-family',
-  display: 'swap',
-  weight: ['400', '500', '600'],
-})
-
-// Secondary terminal mono (alias for compatibility with existing .font-mono users)
-const plexMono2 = IBM_Plex_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono-family',
-  display: 'swap',
-  weight: ['400', '500'],
-})
-
-// Display — chunky pixel
-const vt323 = VT323({
-  subsets: ['latin'],
-  variable: '--font-display-family',
-  display: 'swap',
-  weight: ['400'],
-})
-
-// Tiny pixel accents
-const pressStart = Press_Start_2P({
-  subsets: ['latin'],
-  variable: '--font-pixel-family',
-  display: 'swap',
-  weight: ['400'],
-})
-
-// Long-form prose
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-prose-family',
-  display: 'swap',
-  weight: ['400', '500'],
-})
 
 export const metadata: Metadata = {
   title: 'Rushil Gangisetty | Software Engineer',
@@ -72,11 +22,14 @@ export const metadata: Metadata = {
     title: 'Rushil Gangisetty | Software Engineer',
     description: 'Product-minded software engineer building polished full-stack apps, dependable backend workflows, data-heavy tools, and thoughtful AI features.',
   },
-  robots: { index: true, follow: true },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export const viewport: Viewport = {
-  themeColor: '#05060a',
+  themeColor: '#020202',
   width: 'device-width',
   initialScale: 1,
 }
@@ -88,22 +41,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark">
-      <body
-        className={`${plexMono.variable} ${plexMono2.variable} ${vt323.variable} ${pressStart.variable} ${spaceGrotesk.variable} antialiased`}
-      >
-        <VisibilityPause />
-        <StarfieldBackdrop />
-        <AuroraBackdrop />
-        <BasketballWarmup />
-        <SpellSystem />
+      <body className="font-sans antialiased">
         {children}
-        <CommandPalette />
-        <FreeThrowGame />
-        <SpotifyWidget />
         <EasterEgg />
-        <Toaster theme="dark" toastOptions={{ style: { zIndex: 100 } }} />
-        <AnalyticsSelfExclude />
-        <SpeedInsights />
+        <Toaster />
+        <Analytics />
       </body>
     </html>
   )

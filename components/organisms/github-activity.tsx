@@ -121,12 +121,12 @@ export function GithubActivity() {
                         count === 0
                           ? 'rgba(255,255,255,0.06)'
                           : count <= 2
-                            ? 'rgba(179, 71, 255, 0.28)'
+                            ? 'rgba(125, 249, 255, 0.25)'
                             : count <= 5
-                              ? 'rgba(179, 71, 255, 0.5)'
+                              ? 'rgba(125, 249, 255, 0.45)'
                               : count <= 10
-                                ? 'rgba(179, 71, 255, 0.72)'
-                                : 'rgba(179, 71, 255, 0.95)',
+                                ? 'rgba(125, 249, 255, 0.65)'
+                                : 'rgba(125, 249, 255, 0.9)',
                     }}
                     title={`${count} commit${count !== 1 ? 's' : ''}`}
                   />
@@ -140,7 +140,7 @@ export function GithubActivity() {
               <div
                 key={opacity}
                 className="h-[9px] w-[9px] rounded-[2px]"
-                style={{ backgroundColor: opacity === 0.06 ? 'rgba(255,255,255,0.06)' : `rgba(179, 71, 255, ${opacity})` }}
+                style={{ backgroundColor: opacity === 0.06 ? `rgba(255,255,255,${opacity})` : `rgba(125, 249, 255, ${opacity})` }}
               />
             ))}
             <span>More</span>
@@ -156,7 +156,7 @@ export function GithubActivity() {
             href={repo.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-start justify-between rounded-md border border-dashed border-(--pill-border) bg-bg-card-muted p-3 transition-colors hover:border-(--border-strong)"
+            className="group flex items-start justify-between rounded-xl border border-white/8 bg-white/[0.02] p-3 transition-colors hover:border-white/16 hover:bg-white/[0.04]"
           >
             <div className="min-w-0">
               <div className="flex items-center gap-1.5">
@@ -166,7 +166,7 @@ export function GithubActivity() {
                     style={{ backgroundColor: LANG_COLORS[repo.language] ?? '#8b949e' }}
                   />
                 )}
-                <span className="truncate text-sm font-medium text-foreground transition-colors group-hover:text-accent">
+                <span className="truncate text-sm font-medium text-foreground transition-colors group-hover:text-[#7df9ff]">
                   {repo.name}
                 </span>
               </div>
