@@ -41,7 +41,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
     .filter((item) => item.id !== project.id && item.featured)
     .sort((a, b) => featuredProjectOrder.indexOf(a.id) - featuredProjectOrder.indexOf(b.id))
     .slice(0, 3)
-  const preview = project.gallery?.find((item) => item.src)
+  const gallery = project.gallery?.filter((item) => item.src) ?? []
   const embedUrl = getYouTubeEmbedUrl(project.video?.url)
   const style = {
     '--project-primary': project.theme?.primary ?? '#7df9ff',
@@ -146,35 +146,65 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-4 lg:grid-cols-[1.02fr_0.98fr]" style={style}>
             <div className="project-shell rounded-[28px] p-4 sm:p-5">
-              <div className="project-visual rounded-[22px] border border-white/10">
-                {preview?.src ? (
-                  <div className="relative aspect-[16/10] overflow-hidden rounded-[22px] lg:aspect-[16/11]">
-                    <Image
-                      src={preview.src}
-                      alt={preview.alt}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 55vw"
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/72 via-black/18 to-transparent p-4 sm:p-5">
-                      <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-white/75">{preview.label}</p>
-                      <p className="mt-3 max-w-xl text-sm leading-7 text-white/86">{preview.caption}</p>
+              <div className="project-visual grid gap-4 rounded-[22px] border border-white/10 p-3">
+                {gallery.map((item) => item.src && (
+                  <figure key={item.src} className="overflow-hidden rounded-[18px] border border-white/10 bg-black/30">
+                    <div className="relative aspect-[16/10] overflow-hidden">
+                      <Image
+                        src={item.src}
+                        alt={item.alt}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 55vw"
+                        className={item.fit === 'contain' ? 'object-contain' : 'object-cover'}
+                        style={item.position ? { objectPosition: item.position } : undefined}
+                      />
                     </div>
-                  </div>
-                ) : embedUrl ? (
-                    <div className="overflow-hidden rounded-[22px] border border-white/10">
+                    <figcaption className="border-t border-white/10 p-4">
+                      <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-white/75">{item.label}</p>
+                      <p className="mt-2 text-sm leading-6 text-white/70">{item.caption}</p>
+                    </figcaption>
+                  </figure>
+                ))}
+
+                {project.video?.src && (
+                  <figure className="overflow-hidden rounded-[18px] border border-white/10 bg-black/30">
+                    <video
+                      controls
+                      muted
+                      playsInline
+                      preload="metadata"
+                      poster={project.video.poster}
+                      className="aspect-video w-full bg-black object-contain"
+                      aria-label={project.video.title}
+                    >
+                      <source src={project.video.src} type="video/mp4" />
+                      Your browser does not support embedded video.
+                    </video>
+                    <figcaption className="p-4">
+                      <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-white/75">{project.video.title}</p>
+                      <p className="mt-2 text-sm leading-6 text-white/70">{project.video.caption}</p>
+                    </figcaption>
+                  </figure>
+                )}
+
+                {embedUrl && (
+                  <figure className="overflow-hidden rounded-[18px] border border-white/10 bg-black/30">
                     <div className="aspect-video">
                       <iframe
                         src={embedUrl}
                         title={project.video?.title ?? `${project.title} demo`}
                         className="h-full w-full"
+                        loading="lazy"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                         referrerPolicy="strict-origin-when-cross-origin"
                         allowFullScreen
                       />
                     </div>
-                  </div>
-                ) : (
+                    <figcaption className="p-4 text-sm leading-6 text-white/70">{project.video?.caption}</figcaption>
+                  </figure>
+                )}
+
+                {gallery.length === 0 && !project.video?.src && !embedUrl && (
                   <div
                     className="project-preview-fallback relative flex aspect-[16/10] flex-col justify-between p-5 sm:p-6 lg:aspect-[16/11]"
                     style={fallbackPreviewStyle}
@@ -299,18 +329,50 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                 <div className="mt-4 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
                   <p className="text-[0.68rem] font-mono uppercase tracking-[0.16em] text-muted-foreground">Release path</p>
                   <div className="mt-3 flex flex-wrap gap-2">
-                    {project.storeLinks.map((store) => (
-                      <span
+                    {project.storeLinks.map((store) => store.href ? (
+                      <a
                         key={`${project.id}-${store.label}`}
+                        href={store.href}
+                        target="_blank"
+                        rel="noreferrer"
                         className="rounded-full border border-white/10 bg-black/18 px-3 py-1.5 text-xs text-foreground/88"
                       >
-                        {store.label}
-                        {store.status ? ` • ${store.status}` : ''}
+                        {store.label}{store.status ? ` • ${store.status}` : ''}
+                        <span className="sr-only"> (opens in a new tab)</span>
+                      </a>
+                    ) : (
+                      <span key={`${project.id}-${store.label}`} className="rounded-full border border-white/10 bg-black/18 px-3 py-1.5 text-xs text-foreground/88">
+                        {store.label}{store.status ? ` • ${store.status}` : ''}
                       </span>
                     ))}
                   </div>
                 </div>
               )}
+            </div>
+          </div>
+        </div>
+      </Section>
+
+      <Section>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-4 lg:grid-cols-3">
+            <div className="glass-panel rounded-[24px] p-5">
+              <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-primary/90">What I learned</p>
+              <ul className="mt-4 grid gap-3">
+                {project.learnings.map((learning) => <li key={learning} className="text-sm leading-6 text-foreground/88">{learning}</li>)}
+              </ul>
+            </div>
+            <div className="glass-panel rounded-[24px] p-5">
+              <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-[#f0c987]">Known limits</p>
+              <ul className="mt-4 grid gap-3">
+                {(project.limitations ?? ['This project is presented as a portfolio study, not a production-usage claim.']).map((limitation) => <li key={limitation} className="text-sm leading-6 text-foreground/88">{limitation}</li>)}
+              </ul>
+            </div>
+            <div className="glass-panel rounded-[24px] p-5">
+              <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-accent">Next orbit</p>
+              <ul className="mt-4 grid gap-3">
+                {(project.nextSteps ?? []).map((step) => <li key={step} className="text-sm leading-6 text-foreground/88">{step}</li>)}
+              </ul>
             </div>
           </div>
         </div>
@@ -330,7 +392,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
               <Link key={relatedProject.id} href={`/projects/${relatedProject.id}`} className="glass-panel block rounded-[24px] p-5 transition hover:border-white/18">
                 <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-primary/90">{relatedProject.category}</p>
                 <h3 className="mt-3 text-xl font-semibold text-foreground">{relatedProject.title}</h3>
-                <p className="mt-3 text-sm leading-6 text-muted-foreground">{relatedProject.recruiterAngle}</p>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{relatedProject.proofLine}</p>
                 <div className="mt-4 flex items-center gap-2 text-sm font-medium text-foreground">
                   Open case study
                   <ArrowUpRight className="h-4 w-4" />

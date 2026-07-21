@@ -1,7 +1,6 @@
 import { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { Navbar } from '@/components/organisms/navbar'
-import { Footer } from '@/components/organisms/footer'
+import { SiteFooter } from '@/components/observatory/site-footer'
 import { ProjectDetailContent } from './project-detail-content'
 import { projects } from '@/lib/data'
 
@@ -26,8 +25,16 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
   }
 
   return {
-    title: `${project.title} | Rushil Gangisetty`,
+    title: project.title,
     description: project.description,
+    alternates: { canonical: `/projects/${project.id}` },
+    openGraph: {
+      title: `${project.title} | Rushil Gangisetty`,
+      description: project.description,
+      url: `/projects/${project.id}`,
+      images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rushil Gangisetty — software engineer and systems builder' }],
+    },
+    twitter: { card: 'summary_large_image', title: `${project.title} | Rushil Gangisetty`, description: project.description, images: ['/og.png'] },
   }
 }
 
@@ -40,10 +47,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   return (
-    <main className="page-shell min-h-screen">
-      <Navbar />
+    <main id="main-content" className="observatory-page min-h-screen bg-background pt-20">
       <ProjectDetailContent project={project} />
-      <Footer />
+      <SiteFooter />
     </main>
   )
 }

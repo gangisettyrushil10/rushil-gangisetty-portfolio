@@ -1,19 +1,25 @@
 import { Metadata } from 'next'
-import { Navbar } from '@/components/organisms/navbar'
-import { Footer } from '@/components/organisms/footer'
+import { SiteFooter } from '@/components/observatory/site-footer'
 import { ResumeContent } from './resume-content'
 
 export const metadata: Metadata = {
-  title: 'Resume | Rushil Gangisetty',
+  title: 'Résumé',
   description: 'Resume snapshot for a product-minded software engineer with experience in full-stack development, backend workflows, data systems, and applied AI.',
+  alternates: { canonical: '/resume' },
+  openGraph: {
+    title: 'Résumé | Rushil Gangisetty',
+    description: 'Experience, education, capabilities, and selected software engineering work.',
+    url: '/resume',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Rushil Gangisetty — software engineer and systems builder' }],
+  },
+  twitter: { card: 'summary_large_image', title: 'Résumé | Rushil Gangisetty', description: 'Experience, education, capabilities, and selected software engineering work.', images: ['/og.png'] },
 }
 
 export default function ResumePage() {
   return (
-    <main className="page-shell min-h-screen">
-      <Navbar />
+    <main id="main-content" className="observatory-page min-h-screen bg-background pt-20">
       <ResumeContent />
-      <Footer />
+      <SiteFooter />
     </main>
   )
 }
