@@ -6,7 +6,7 @@ Production URL: [rushil-gangisetty-portfolio.vercel.app](https://rushil-gangiset
 
 ## What ships
 
-- A responsive, living Canvas2D environment with a luminous fluid Planet Adrian, red embers, ship parallax, and capped adaptive rendering
+- A responsive, living Canvas2D environment with layered lime/citrine aurora curtains, slow turbulence, warm storm accents, ship parallax, and capped adaptive rendering
 - Persisted Planet Adrian / Petrova modes with two genuinely different renderers, accessible controls, and a progressive hidden signal
 - Four primary case studies: Fuzzy, Buzzr, Credit Union Ledger API, and Business Analytics Dashboard
 - Supporting records for Blended, Graph Link Prediction, Medscribe, and PixelDraw
@@ -88,8 +88,8 @@ app/
 components/observatory/
 ├── observation-provider.tsx      persisted mode, Signal 04, Lumos
 ├── site-nav.tsx                  responsive accessible navigation
-├── planetary-field.tsx           Adrian fluid + Petrova line canvas renderers
-├── planetary-hero.tsx            hero controls and cinematic reference plates
+├── planetary-field.tsx           Adrian aurora + Petrova line canvas renderers
+├── planetary-hero.tsx            hero controls and live instrument readout
 ├── project-archive.tsx           editorial case-study chapters
 ├── technical-systems.tsx         code-native architecture diagrams
 ├── capability-bands.tsx          capability → tool → proof mapping
@@ -106,7 +106,6 @@ lib/
 
 public/media/
 ├── portrait-rushil.webp
-├── inspiration/                  user-supplied cinematic reference stills
 └── projects/                     optimized project media
 
 scripts/
@@ -140,7 +139,7 @@ Known editorial assumptions are intentionally explicit:
 
 ## Observation and easter eggs
 
-- The navigation and hero controls switch between the filled, fluid Planet Adrian renderer and the crimson Petrova contour/trace renderer.
+- The navigation and hero controls switch between the flowing Planet Adrian aurora renderer and the crimson Petrova contour/trace renderer.
 - Mode preference and exploration count persist in local storage.
 - The fourth mode switch reveals `Signal 04`.
 - Typing `lumos` outside an editable control creates a temporary light bloom and an `aria-live` announcement.
@@ -198,4 +197,4 @@ The damaged local Git metadata found during the July 2026 overhaul was replaced 
 
 ## License and media
 
-Project screenshots and Rushil’s portrait are portfolio materials. The generated social-card landscape is original to this site. The two Project Hail Mary stills were supplied by Rushil as visual references and remain third-party material; confirm the desired public-use treatment before broader reuse. Source-code licensing should be added explicitly before reuse outside this portfolio.
+Project screenshots and Rushil’s portrait are portfolio materials. The generated social-card landscape and environmental canvas are original to this site. Supplied film stills were used only as private visual references and are not included in the repository or requested by the site. Source-code licensing should be added explicitly before reuse outside this portfolio.

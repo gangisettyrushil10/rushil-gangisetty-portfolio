@@ -76,12 +76,12 @@ export function SiteNav() {
           <div className="flex min-h-[3.5rem] items-center gap-2 px-2 sm:px-3">
             <Link
               href="/"
-              className="group inline-flex min-h-11 shrink-0 items-center gap-2.5 rounded-xl px-2 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/70"
+              className="group inline-flex min-h-11 shrink-0 items-center gap-2.5 rounded-xl px-2 text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
             >
               <span className="sr-only">Rushil Gangisetty — home. </span>
-              <span className="grid h-8 w-8 place-items-center rounded-full border border-cyan-100/20 bg-cyan-100/[0.07] shadow-[inset_0_0_16px_rgba(125,249,255,0.05)]">
+              <span className="grid h-8 w-8 place-items-center rounded-full border border-primary/20 bg-primary/[0.07] shadow-[inset_0_0_16px_rgba(255,255,255,0.05)]">
                 <Orbit
-                  className="h-[1.05rem] w-[1.05rem] text-cyan-100/80 transition-transform group-hover:rotate-12"
+                  className="h-[1.05rem] w-[1.05rem] text-primary/80 transition-transform group-hover:rotate-12"
                   aria-hidden="true"
                 />
               </span>
@@ -89,7 +89,7 @@ export function SiteNav() {
                 <span className="block text-[0.71rem] font-semibold tracking-[0.08em] text-white/90">
                   RUSHIL G.
                 </span>
-                <span className="mt-1 block text-[0.54rem] font-mono uppercase tracking-[0.19em] text-cyan-100/42">
+                <span className="mt-1 block text-[0.54rem] font-mono uppercase tracking-[0.19em] text-primary/42">
                   Personal observatory
                 </span>
               </span>
@@ -100,7 +100,7 @@ export function SiteNav() {
                 <Link
                   key={link.hash}
                   href={homeHref(pathname, link.hash)}
-                  className="inline-flex min-h-11 items-center rounded-full px-3 text-[0.66rem] font-mono uppercase tracking-[0.15em] text-white/54 transition-colors hover:bg-white/[0.05] hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/70"
+                  className="inline-flex min-h-11 items-center rounded-full px-3 text-[0.66rem] font-mono uppercase tracking-[0.15em] text-white/54 transition-colors hover:bg-white/[0.05] hover:text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
                 >
                   {link.label}
                 </Link>
@@ -117,7 +117,7 @@ export function SiteNav() {
                     href={link.href}
                     aria-current={isActive ? 'page' : undefined}
                     className={cn(
-                      'inline-flex min-h-11 items-center rounded-full px-3 text-[0.66rem] font-mono uppercase tracking-[0.15em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/70',
+                      'inline-flex min-h-11 items-center rounded-full px-3 text-[0.66rem] font-mono uppercase tracking-[0.15em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70',
                       isActive
                         ? 'bg-white/[0.08] text-white'
                         : 'text-white/54 hover:bg-white/[0.05] hover:text-white/90'
@@ -133,7 +133,7 @@ export function SiteNav() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Rushil Gangisetty on GitHub (opens in a new tab)"
-                className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white/55 transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/70"
+                className="inline-flex h-11 w-11 items-center justify-center rounded-full text-white/55 transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
               >
                 <Github className="h-4 w-4" aria-hidden="true" />
               </a>
@@ -148,7 +148,7 @@ export function SiteNav() {
               aria-controls="observatory-mobile-navigation"
               aria-label={isOpen ? 'Close navigation menu' : 'Open navigation menu'}
               onClick={() => setIsOpen((open) => !open)}
-              className="ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/80 transition-colors hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/70 xl:hidden"
+              className="ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-white/80 transition-colors hover:bg-white/[0.08] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 xl:hidden"
             >
               {isOpen ? (
                 <X className="h-5 w-5" aria-hidden="true" />
@@ -161,7 +161,7 @@ export function SiteNav() {
           {isOpen && (
             <div
               id="observatory-mobile-navigation"
-              className="absolute inset-x-0 top-[calc(100%+0.5rem)] overflow-hidden rounded-[1.15rem] border border-white/10 bg-[rgba(3,9,17,0.96)] p-2 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.95)] backdrop-blur-xl xl:hidden"
+              className="site-nav-menu absolute inset-x-0 top-[calc(100%+0.5rem)] overflow-hidden rounded-[1.15rem] border border-white/10 p-2 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.95)] backdrop-blur-xl xl:hidden"
             >
               <div className="grid grid-cols-2 gap-1">
                 {homeLinks.map((link) => (
@@ -169,7 +169,7 @@ export function SiteNav() {
                     key={link.hash}
                     href={homeHref(pathname, link.hash)}
                     onClick={() => setIsOpen(false)}
-                    className="inline-flex min-h-11 items-center rounded-xl px-3 text-[0.7rem] font-mono uppercase tracking-[0.14em] text-white/66 transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/70"
+                    className="inline-flex min-h-11 items-center rounded-xl px-3 text-[0.7rem] font-mono uppercase tracking-[0.14em] text-white/66 transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
                   >
                     {link.label}
                   </Link>
@@ -183,27 +183,27 @@ export function SiteNav() {
                   href="/projects"
                   onClick={() => setIsOpen(false)}
                   aria-current={pathname.startsWith('/projects') ? 'page' : undefined}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm text-white/78 transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/70"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm text-white/78 transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
                 >
-                  <Orbit className="h-4 w-4 text-cyan-100/65" aria-hidden="true" />
+                  <Orbit className="h-4 w-4 text-primary/65" aria-hidden="true" />
                   Projects
                 </Link>
                 <Link
                   href="/resume"
                   onClick={() => setIsOpen(false)}
                   aria-current={pathname.startsWith('/resume') ? 'page' : undefined}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm text-white/78 transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/70"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm text-white/78 transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
                 >
-                  <FileText className="h-4 w-4 text-cyan-100/65" aria-hidden="true" />
+                  <FileText className="h-4 w-4 text-primary/65" aria-hidden="true" />
                   Resume
                 </Link>
                 <a
                   href={personalInfo.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm text-white/78 transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/70"
+                  className="inline-flex min-h-11 items-center gap-2 rounded-xl px-3 text-sm text-white/78 transition-colors hover:bg-white/[0.06] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70"
                 >
-                  <Github className="h-4 w-4 text-cyan-100/65" aria-hidden="true" />
+                  <Github className="h-4 w-4 text-primary/65" aria-hidden="true" />
                   GitHub
                   <span className="sr-only"> (opens in a new tab)</span>
                 </a>

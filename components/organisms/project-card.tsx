@@ -20,13 +20,13 @@ function getPreview(project: Project) {
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   const preview = getPreview(project)
   const style = {
-    '--project-primary': project.theme?.primary ?? '#7df9ff',
-    '--project-secondary': project.theme?.secondary ?? '#60a5fa',
-    '--project-glow': project.theme?.glow ?? 'rgba(125, 249, 255, 0.34)',
+    '--project-primary': 'var(--scene-accent)',
+    '--project-secondary': 'var(--scene-hot)',
+    '--project-glow': 'var(--page-glow)',
   } as CSSProperties
   const fallbackPreviewStyle = {
     background:
-      'radial-gradient(circle at 18% 18%, var(--project-glow), transparent 42%), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0)), #06090f',
+      'radial-gradient(circle at 18% 18%, var(--project-glow), transparent 42%), linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0)), var(--page-base-soft)',
   } as CSSProperties
 
   return (
