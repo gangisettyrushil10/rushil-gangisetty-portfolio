@@ -5,6 +5,7 @@ import { SiteNav } from '@/components/observatory/site-nav'
 import './globals.css'
 
 const siteUrl = 'https://rushil-gangisetty-portfolio.vercel.app'
+const observationBootScript = `(function(){try{var mode=window.localStorage.getItem('rushil.observation-mode');document.documentElement.dataset.observation=mode==='petrova'?'petrova':'adrian'}catch(error){document.documentElement.dataset.observation='adrian'}})()`
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -55,6 +56,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="dark" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: observationBootScript }} />
+      </head>
       <body className="font-sans antialiased">
         <a className="skip-link" href="#main-content">Skip to main content</a>
         <ObservationProvider>

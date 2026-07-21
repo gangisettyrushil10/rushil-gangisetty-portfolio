@@ -28,6 +28,7 @@ export function SiteNav() {
   const pathname = usePathname()
   const [isOpen, setIsOpen] = useState(false)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
+  const restoreMenuFocusRef = useRef(false)
 
   useEffect(() => {
     setIsOpen(false)
@@ -43,20 +44,34 @@ export function SiteNav() {
         return
       }
 
+      restoreMenuFocusRef.current = true
       setIsOpen(false)
-      menuButtonRef.current?.focus()
     }
 
     window.addEventListener('keydown', closeOnEscape)
     return () => window.removeEventListener('keydown', closeOnEscape)
   }, [isOpen])
 
+  useEffect(() => {
+    if (isOpen || !restoreMenuFocusRef.current) {
+      return
+    }
+
+    restoreMenuFocusRef.current = false
+    menuButtonRef.current?.focus()
+  }, [isOpen])
+
+  function closeMenuAndRestoreFocus() {
+    restoreMenuFocusRef.current = true
+    setIsOpen(false)
+  }
+
   return (
     <header className="sticky top-0 z-50 h-0 w-full pointer-events-none">
       <div className="mx-auto w-full max-w-[1440px] px-3 pt-3 sm:px-5 sm:pt-4">
         <nav
           aria-label="Primary navigation"
-          className="pointer-events-auto relative rounded-[1.15rem] border border-white/10 bg-[rgba(3,9,17,0.76)] shadow-[0_18px_60px_-28px_rgba(0,0,0,0.92),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl"
+          className="site-nav-shell pointer-events-auto relative rounded-[1.15rem] border border-white/10 bg-[rgba(3,9,17,0.76)] shadow-[0_18px_60px_-28px_rgba(0,0,0,0.92),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl"
         >
           <div className="flex min-h-[3.5rem] items-center gap-2 px-2 sm:px-3">
             <Link
@@ -194,7 +209,10 @@ export function SiteNav() {
                 </a>
               </div>
 
-              <ObservationToggle className="mt-2 w-full justify-start rounded-xl px-3" />
+              <ObservationToggle
+                className="mt-2 w-full justify-start rounded-xl px-3"
+                onToggle={closeMenuAndRestoreFocus}
+              />
             </div>
           )}
         </nav>
