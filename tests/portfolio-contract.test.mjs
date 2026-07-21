@@ -11,8 +11,6 @@ const requiredMedia = [
   'public/media/projects/buzzr/cover.webp',
   'public/media/projects/buzzr/workflow.webp',
   'public/media/projects/analytics/cover.webp',
-  'public/media/inspiration/hail-mary-adrian.jpeg',
-  'public/media/inspiration/hail-mary-red-space.jpeg',
 ]
 
 test('required public media is present and non-empty', async () => {
@@ -49,7 +47,8 @@ test('observation modes use distinct live renderers with safe animation lifecycl
   const provider = await readFile('components/observatory/observation-provider.tsx', 'utf8')
   const layout = await readFile('app/layout.tsx', 'utf8')
 
-  assert.match(field, /drawAdrianPlanet/)
+  assert.match(field, /drawAdrianAurora/)
+  assert.match(field, /drawAuroraCurtain/)
   assert.match(field, /drawPetrovaField/)
   assert.match(field, /prefers-reduced-motion: reduce/)
   assert.match(field, /visibilitychange/)
@@ -60,4 +59,12 @@ test('observation modes use distinct live renderers with safe animation lifecycl
   assert.match(provider, /applyModeToRoot\(nextMode\)/)
   assert.match(provider, /Petrova line mode/)
   assert.match(layout, /observationBootScript/)
+})
+
+test('the hero ships original canvas art without the supplied reference stills', async () => {
+  const hero = await readFile('components/observatory/planetary-hero.tsx', 'utf8')
+
+  assert.equal(hero.includes('next/image'), false)
+  assert.equal(hero.includes('/media/inspiration/'), false)
+  assert.equal(hero.includes('mission-still'), false)
 })

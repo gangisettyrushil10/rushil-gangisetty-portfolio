@@ -54,7 +54,7 @@ function readExplorationCount(value: string | null) {
 function modeAnnouncement(mode: ObservationMode) {
   return mode === 'petrova'
     ? 'Petrova line mode active. Spectral instruments are tracing the signal.'
-    : 'Planet Adrian mode active. Fluid atmospheric view restored.'
+    : 'Planet Adrian mode active. Flowing aurora atmosphere restored.'
 }
 
 function applyModeToRoot(mode: ObservationMode) {
@@ -297,11 +297,11 @@ export function ObservationToggle({ className, onToggle, ...props }: Observation
         onToggle?.()
       }}
       className={cn(
-        'group inline-flex min-h-11 items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.045] px-3 text-left text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition-colors hover:border-cyan-200/25 hover:bg-white/[0.075] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-200/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#02070d]',
+        'group inline-flex min-h-11 items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.045] px-3 text-left text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] transition-colors hover:border-primary/25 hover:bg-white/[0.075] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/70 focus-visible:ring-offset-2 focus-visible:ring-offset-background',
         className
       )}
     >
-      <Telescope className="h-4 w-4 shrink-0 text-cyan-100/75" aria-hidden="true" />
+      <Telescope className="h-4 w-4 shrink-0 text-primary/75" aria-hidden="true" />
       <span className="min-w-0 leading-none">
         <span className="block text-[0.6rem] font-mono uppercase tracking-[0.18em] text-white/45">
           Background instrument
@@ -309,7 +309,7 @@ export function ObservationToggle({ className, onToggle, ...props }: Observation
         <span className="mt-1 block truncate text-[0.72rem] font-medium tracking-wide text-white/88">
           Petrova line mode
           {signalRevealed && (
-            <span className="ml-1.5 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-cyan-100/50">
+            <span className="ml-1.5 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-primary/50">
               · Signal 04
             </span>
           )}
@@ -320,14 +320,14 @@ export function ObservationToggle({ className, onToggle, ...props }: Observation
         className={cn(
           'relative ml-auto h-5 w-9 shrink-0 rounded-full border transition-colors',
           isPetrova
-            ? 'border-cyan-100/35 bg-cyan-100/15'
+            ? 'border-primary/35 bg-primary/15'
             : 'border-white/15 bg-black/35'
         )}
       >
         <span
           className={cn(
             'absolute left-0.5 top-0.5 h-3.5 w-3.5 rounded-full bg-white/80 transition-transform',
-            isPetrova && 'translate-x-4 bg-cyan-100'
+            isPetrova && 'translate-x-4 bg-primary'
           )}
         />
       </span>

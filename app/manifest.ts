@@ -7,8 +7,8 @@ export default function manifest(): MetadataRoute.Manifest {
     description: 'Software engineering portfolio across applied AI, full-stack products, data, and fintech.',
     start_url: '/',
     display: 'standalone',
-    background_color: '#02070d',
-    theme_color: '#02070d',
+    background_color: '#030303',
+    theme_color: '#030303',
     icons: [
       { src: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
       { src: '/icon-dark-32x32.png', sizes: '32x32', type: 'image/png' },

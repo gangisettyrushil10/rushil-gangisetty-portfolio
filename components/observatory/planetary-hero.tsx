@@ -1,6 +1,5 @@
 'use client'
 
-import Image from 'next/image'
 import { ArrowDown, ArrowUpRight, Mail, Radio, Sparkles } from 'lucide-react'
 import { heroContent } from '@/lib/portfolio-content'
 import { personalInfo } from '@/lib/data'
@@ -16,29 +15,6 @@ export function PlanetaryHero() {
       aria-labelledby="hero-title"
     >
       <PlanetaryField className="planetary-field-canvas" />
-
-      <div className="hero-cinematic-stills" aria-hidden="true">
-        <div className="mission-still mission-still-adrian">
-          <Image
-            src="/media/inspiration/hail-mary-adrian.jpeg"
-            alt=""
-            fill
-            priority
-            sizes="(max-width: 800px) 50vw, 28vw"
-            draggable={false}
-          />
-        </div>
-        <div className="mission-still mission-still-petrova">
-          <Image
-            src="/media/inspiration/hail-mary-red-space.jpeg"
-            alt=""
-            fill
-            priority
-            sizes="(max-width: 800px) 44vw, 23vw"
-            draggable={false}
-          />
-        </div>
-      </div>
 
       <div className="hero-vignette" aria-hidden="true" />
 
@@ -120,7 +96,7 @@ export function PlanetaryHero() {
         <p className="hero-motion-note">
           {isPetrova
             ? 'Move through the field. The line instrument responds in real time.'
-            : 'Move through the atmosphere. Adrian’s cloud bands bend around you.'}
+            : 'Move through the atmosphere. Adrian’s aurora curtains bend around you.'}
         </p>
 
         {(signalRevealed || lumosActive) && (

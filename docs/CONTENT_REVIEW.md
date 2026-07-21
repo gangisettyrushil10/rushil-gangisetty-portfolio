@@ -34,7 +34,7 @@ This review records what the public site says, what supports it, and what still 
 - The Medscribe image and YouTube presentation were already part of the project evidence.
 - Ledger architecture is rendered from HTML/CSS based on the source flow and explicitly labeled as an explanatory diagram.
 - The planetary Open Graph card is generated artwork for branding, not project evidence.
-- The two Project Hail Mary stills under `public/media/inspiration/` were supplied directly by Rushil on July 21, 2026. They appear only as low-opacity cinematic reference plates; the moving planet, ship silhouette, particles, and Petrova line system are original code-native canvas renderings.
+- The supplied Project Hail Mary stills were used only as private visual references. They are not included in the repository or requested by the public site; the aurora curtains, ship silhouette, particles, and Petrova line system are original code-native canvas renderings.
 
 ## Confirm with Rushil before changing public copy
 

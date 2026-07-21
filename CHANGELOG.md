@@ -3,11 +3,12 @@
 ## 2026-07-21 — Living Adrian / Petrova field revision
 
 - Replaced the static blue planetary horizon with a mode-aware Canvas2D environment.
-- Planet Adrian now renders a moving lime/citrine fluid planet, animated storm bands, red embers, and pointer-responsive ship parallax.
+- Planet Adrian now renders layered lime/citrine aurora curtains with slow turbulence, luminous folds, warm storm accents, and pointer-responsive ship parallax.
 - Petrova line mode now uses a separate crimson contour, orbital, scan, waveform, and traveling-signal renderer instead of a cosmetic grid overlay.
 - Added an explicit two-option visual instrument in the hero and made the mobile navigation toggle close before revealing the selected field.
 - Added pre-paint mode restoration, atomic DOM/state updates, cross-tab reset handling, hidden-tab and offscreen pausing, a 24–30 fps cap, DPR limiting, and a static reduced-motion frame.
-- Added the two user-supplied Project Hail Mary stills as restrained cinematic reference plates and documented their provenance.
+- Removed the supplied film stills from the shipped site and repository; the environmental artwork is now entirely code-native.
+- Replaced the remaining navy/cyan section surfaces with mode-aware forest/citrine and oxblood/crimson tokens so the palette stays coherent through every route and footer.
 - Refreshed the 34-second walkthrough so it opens on both Adrian and Petrova before descending through the portfolio.
 
 ## 2026-07-21 — Planetary observatory overhaul
