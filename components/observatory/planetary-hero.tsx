@@ -1,57 +1,61 @@
 'use client'
 
-import { useRef, type CSSProperties, type PointerEvent } from 'react'
+import Image from 'next/image'
 import { ArrowDown, ArrowUpRight, Mail, Radio, Sparkles } from 'lucide-react'
 import { heroContent } from '@/lib/portfolio-content'
 import { personalInfo } from '@/lib/data'
 import { useObservation } from '@/components/observatory/observation-provider'
-
-type HeroStyle = CSSProperties & {
-  '--hero-x': string
-  '--hero-y': string
-}
+import { PlanetaryField } from '@/components/observatory/planetary-field'
 
 export function PlanetaryHero() {
-  const sectionRef = useRef<HTMLElement>(null)
-  const { isPetrova, signalRevealed, lumosActive } = useObservation()
-
-  function trackPointer(event: PointerEvent<HTMLElement>) {
-    const bounds = sectionRef.current?.getBoundingClientRect()
-    if (!bounds || event.pointerType === 'touch') return
-
-    const x = ((event.clientX - bounds.left) / bounds.width - 0.5).toFixed(3)
-    const y = ((event.clientY - bounds.top) / bounds.height - 0.5).toFixed(3)
-    sectionRef.current?.style.setProperty('--hero-x', x)
-    sectionRef.current?.style.setProperty('--hero-y', y)
-  }
-
-  function resetPointer() {
-    sectionRef.current?.style.setProperty('--hero-x', '0')
-    sectionRef.current?.style.setProperty('--hero-y', '0')
-  }
+  const { isPetrova, signalRevealed, lumosActive, setMode } = useObservation()
 
   return (
     <section
-      ref={sectionRef}
       className="planetary-hero"
-      style={{ '--hero-x': '0', '--hero-y': '0' } as HeroStyle}
-      onPointerMove={trackPointer}
-      onPointerLeave={resetPointer}
       aria-labelledby="hero-title"
     >
-      <div className="hero-sky" aria-hidden="true">
-        <span className="aurora aurora-one" />
-        <span className="aurora aurora-two" />
-        <span className="distant-moon" />
-        <span className="petrova-orbit petrova-orbit-one" />
-        <span className="petrova-orbit petrova-orbit-two" />
-        <span className="petrova-reticle" />
+      <PlanetaryField className="planetary-field-canvas" />
+
+      <div className="hero-cinematic-stills" aria-hidden="true">
+        <div className="mission-still mission-still-adrian">
+          <Image
+            src="/media/inspiration/hail-mary-adrian.jpeg"
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 800px) 50vw, 28vw"
+            draggable={false}
+          />
+        </div>
+        <div className="mission-still mission-still-petrova">
+          <Image
+            src="/media/inspiration/hail-mary-red-space.jpeg"
+            alt=""
+            fill
+            priority
+            sizes="(max-width: 800px) 44vw, 23vw"
+            draggable={false}
+          />
+        </div>
       </div>
 
-      <div className="hero-planet" aria-hidden="true">
-        <span className="planet-cloud planet-cloud-one" />
-        <span className="planet-cloud planet-cloud-two" />
-        <span className="planet-glow" />
+      <div className="hero-vignette" aria-hidden="true" />
+
+      <div className="petrova-hud" aria-hidden="true">
+        <div className="petrova-hud-heading">
+          <span>Petrova line</span>
+          <span>Live spectral trace</span>
+        </div>
+        <div className="petrova-hud-ruler">
+          {Array.from({ length: 11 }, (_, index) => (
+            <span key={index} />
+          ))}
+        </div>
+        <div className="petrova-hud-coordinates">
+          <span>Δ FIELD / ACTIVE</span>
+          <span>VECTOR LOCK / STABLE</span>
+        </div>
       </div>
 
       <div className="hero-content shell-width">
@@ -60,9 +64,30 @@ export function PlanetaryHero() {
             <Radio size={13} aria-hidden="true" />
             {heroContent.eyebrow}
           </span>
-          <span className="hero-mode-readout" aria-live="polite">
-            {isPetrova ? 'Petrova instruments online' : 'Planet Adrian atmosphere'}
-          </span>
+          <div className="hero-mode-console">
+            <span className="hero-mode-label">Live visual instrument</span>
+            <div className="hero-mode-switch" role="group" aria-label="Choose background visualization">
+              <button
+                type="button"
+                aria-pressed={!isPetrova}
+                className={!isPetrova ? 'is-active' : undefined}
+                onClick={() => setMode('adrian')}
+              >
+                Adrian atmosphere
+              </button>
+              <button
+                type="button"
+                aria-pressed={isPetrova}
+                className={isPetrova ? 'is-active' : undefined}
+                onClick={() => setMode('petrova')}
+              >
+                Petrova line
+              </button>
+            </div>
+            <span className="hero-mode-readout" aria-live="polite">
+              {isPetrova ? 'Spectral trace acquired' : 'Fluid atmosphere live'}
+            </span>
+          </div>
         </div>
 
         <p className="hero-kicker">{heroContent.role}</p>
@@ -91,6 +116,12 @@ export function PlanetaryHero() {
           <span className="availability-pulse" aria-hidden="true" />
           <span>{heroContent.availability}</span>
         </div>
+
+        <p className="hero-motion-note">
+          {isPetrova
+            ? 'Move through the field. The line instrument responds in real time.'
+            : 'Move through the atmosphere. Adrian’s cloud bands bend around you.'}
+        </p>
 
         {(signalRevealed || lumosActive) && (
           <p className="hero-secret" role="status">

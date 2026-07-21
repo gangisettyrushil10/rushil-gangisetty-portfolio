@@ -5,6 +5,7 @@ import {
   useCallback,
   useContext,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -36,7 +37,7 @@ const LUMOS_DURATION_MS = 6_000
 
 const ObservationContext = createContext<ObservationContextValue | null>(null)
 
-function isObservationMode(value: string | null): value is ObservationMode {
+function isObservationMode(value: string | null | undefined): value is ObservationMode {
   return value === 'adrian' || value === 'petrova'
 }
 
@@ -52,8 +53,12 @@ function readExplorationCount(value: string | null) {
 
 function modeAnnouncement(mode: ObservationMode) {
   return mode === 'petrova'
-    ? 'Petrova observation mode active. Astronomical instruments are online.'
-    : 'Planet Adrian observation mode active. Atmospheric view restored.'
+    ? 'Petrova line mode active. Spectral instruments are tracing the signal.'
+    : 'Planet Adrian mode active. Fluid atmospheric view restored.'
+}
+
+function applyModeToRoot(mode: ObservationMode) {
+  document.documentElement.dataset.observation = mode
 }
 
 export function ObservationProvider({ children }: { children: ReactNode }) {
@@ -92,19 +97,13 @@ export function ObservationProvider({ children }: { children: ReactNode }) {
       return
     }
 
-    modeRef.current = nextMode
-    setModeState(nextMode)
-    setAnnouncement(modeAnnouncement(nextMode))
-  }, [])
-
-  const toggleMode = useCallback(() => {
-    const nextMode: ObservationMode = modeRef.current === 'adrian' ? 'petrova' : 'adrian'
     const previousCount = explorationCountRef.current
     const nextCount = Math.min(previousCount + 1, Number.MAX_SAFE_INTEGER)
     const foundSignal = previousCount < SIGNAL_THRESHOLD && nextCount >= SIGNAL_THRESHOLD
 
     modeRef.current = nextMode
     explorationCountRef.current = nextCount
+    applyModeToRoot(nextMode)
     setModeState(nextMode)
     setExplorationCount(nextCount)
     setAnnouncement(
@@ -112,10 +111,23 @@ export function ObservationProvider({ children }: { children: ReactNode }) {
         ? `${modeAnnouncement(nextMode)} Curiosity acknowledged. Signal zero four acquired.`
         : modeAnnouncement(nextMode)
     )
+
+    try {
+      window.localStorage.setItem(MODE_STORAGE_KEY, nextMode)
+      window.localStorage.setItem(EXPLORATION_STORAGE_KEY, String(nextCount))
+    } catch {
+      // The selection and exploration count still work for the current visit.
+    }
   }, [])
 
-  useEffect(() => {
-    let storedMode: ObservationMode = 'adrian'
+  const toggleMode = useCallback(() => {
+    const nextMode: ObservationMode = modeRef.current === 'adrian' ? 'petrova' : 'adrian'
+    setMode(nextMode)
+  }, [setMode])
+
+  useLayoutEffect(() => {
+    const bootMode = document.documentElement.dataset.observation
+    let storedMode: ObservationMode = isObservationMode(bootMode) ? bootMode : 'adrian'
     let storedExplorationCount = 0
 
     try {
@@ -130,7 +142,7 @@ export function ObservationProvider({ children }: { children: ReactNode }) {
 
     modeRef.current = storedMode
     explorationCountRef.current = storedExplorationCount
-    document.documentElement.dataset.observation = storedMode
+    applyModeToRoot(storedMode)
     setModeState(storedMode)
     setExplorationCount(storedExplorationCount)
     setIsReady(true)
@@ -140,6 +152,7 @@ export function ObservationProvider({ children }: { children: ReactNode }) {
         window.clearTimeout(lumosTimeoutRef.current)
       }
 
+      delete document.documentElement.dataset.observation
       delete document.documentElement.dataset.lumos
     }
   }, [])
@@ -148,8 +161,6 @@ export function ObservationProvider({ children }: { children: ReactNode }) {
     if (!isReady) {
       return
     }
-
-    document.documentElement.dataset.observation = mode
 
     try {
       window.localStorage.setItem(MODE_STORAGE_KEY, mode)
@@ -172,10 +183,14 @@ export function ObservationProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const syncStoredState = (event: StorageEvent) => {
-      if (event.key === MODE_STORAGE_KEY && isObservationMode(event.newValue)) {
-        modeRef.current = event.newValue
-        setModeState(event.newValue)
-        document.documentElement.dataset.observation = event.newValue
+      if (event.key === MODE_STORAGE_KEY) {
+        const nextMode: ObservationMode = isObservationMode(event.newValue)
+          ? event.newValue
+          : 'adrian'
+
+        modeRef.current = nextMode
+        applyModeToRoot(nextMode)
+        setModeState(nextMode)
       }
 
       if (event.key === EXPLORATION_STORAGE_KEY) {
@@ -271,7 +286,6 @@ export type ObservationToggleProps = Omit<
 
 export function ObservationToggle({ className, onToggle, ...props }: ObservationToggleProps) {
   const { isPetrova, signalRevealed, toggleMode } = useObservation()
-  const activeLabel = isPetrova ? 'Petrova' : 'Planet Adrian'
 
   return (
     <button
@@ -290,10 +304,10 @@ export function ObservationToggle({ className, onToggle, ...props }: Observation
       <Telescope className="h-4 w-4 shrink-0 text-cyan-100/75" aria-hidden="true" />
       <span className="min-w-0 leading-none">
         <span className="block text-[0.6rem] font-mono uppercase tracking-[0.18em] text-white/45">
-          Observation mode
+          Background instrument
         </span>
         <span className="mt-1 block truncate text-[0.72rem] font-medium tracking-wide text-white/88">
-          {activeLabel}
+          Petrova line mode
           {signalRevealed && (
             <span className="ml-1.5 font-mono text-[0.58rem] uppercase tracking-[0.12em] text-cyan-100/50">
               · Signal 04

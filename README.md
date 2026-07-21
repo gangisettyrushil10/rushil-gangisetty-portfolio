@@ -6,8 +6,8 @@ Production URL: [rushil-gangisetty-portfolio.vercel.app](https://rushil-gangiset
 
 ## What ships
 
-- A responsive planetary landing experience with CSS-built atmosphere, moon, cloud bands, aurora, and restrained pointer parallax
-- Persisted Planet Adrian / Petrova observation modes with an accessible switch and a progressive hidden signal
+- A responsive, living Canvas2D environment with a luminous fluid Planet Adrian, red embers, ship parallax, and capped adaptive rendering
+- Persisted Planet Adrian / Petrova modes with two genuinely different renderers, accessible controls, and a progressive hidden signal
 - Four primary case studies: Fuzzy, Buzzr, Credit Union Ledger API, and Business Analytics Dashboard
 - Supporting records for Blended, Graph Link Prediction, Medscribe, and PixelDraw
 - Code-native system diagrams, capability bands, experience, education, personal context, and direct contact paths
@@ -16,7 +16,7 @@ Production URL: [rushil-gangisetty-portfolio.vercel.app](https://rushil-gangiset
 - Project detail pages that render every gallery item, local video, external video, limitations, learnings, and next steps
 - Static sitemap, robots policy, web manifest, canonical metadata, JSON-LD, social card, responsive images, and Vercel Analytics in Vercel environments
 
-The interface does not depend on JavaScript for its core project content. JavaScript is isolated to navigation state, observation mode, subtle pointer response, Spotify loading, and the optional game.
+The interface does not depend on JavaScript for its core project content. JavaScript is isolated to navigation state, the decorative environmental canvas, observation mode, Spotify loading, and the optional game.
 
 ## Stack
 
@@ -88,7 +88,8 @@ app/
 components/observatory/
 ├── observation-provider.tsx      persisted mode, Signal 04, Lumos
 ├── site-nav.tsx                  responsive accessible navigation
-├── planetary-hero.tsx            hero interaction island
+├── planetary-field.tsx           Adrian fluid + Petrova line canvas renderers
+├── planetary-hero.tsx            hero controls and cinematic reference plates
 ├── project-archive.tsx           editorial case-study chapters
 ├── technical-systems.tsx         code-native architecture diagrams
 ├── capability-bands.tsx          capability → tool → proof mapping
@@ -105,6 +106,7 @@ lib/
 
 public/media/
 ├── portrait-rushil.webp
+├── inspiration/                  user-supplied cinematic reference stills
 └── projects/                     optimized project media
 
 scripts/
@@ -138,7 +140,7 @@ Known editorial assumptions are intentionally explicit:
 
 ## Observation and easter eggs
 
-- The navigation control switches between the atmospheric Planet Adrian view and the instrument-forward Petrova view.
+- The navigation and hero controls switch between the filled, fluid Planet Adrian renderer and the crimson Petrova contour/trace renderer.
 - Mode preference and exploration count persist in local storage.
 - The fourth mode switch reveals `Signal 04`.
 - Typing `lumos` outside an editable control creates a temporary light bloom and an `aria-live` announcement.
@@ -165,7 +167,7 @@ With the production build running at `127.0.0.1:3000`:
 npm run capture:walkthrough
 ```
 
-The script uses installed Playwright plus system Chrome, records a 31.5-second responsive desktop path, and encodes it with the shared Swift script. Override `PORTFOLIO_URL` or `CHROME_EXECUTABLE` when needed.
+The script uses installed Playwright plus system Chrome, records a roughly 34-second responsive desktop path that demonstrates both visual modes, and encodes it with the shared Swift script. Override `PORTFOLIO_URL` or `CHROME_EXECUTABLE` when needed.
 
 ## Accessibility and performance guardrails
 
@@ -176,8 +178,8 @@ The script uses installed Playwright plus system Chrome, records a 31.5-second r
 - Core project copy remains server-rendered HTML
 - Spotify and the game load only after intent
 - Local project images use Next image optimization; WebP source assets are dimensioned to their real display role
-- Mobile/coarse-pointer styles disable parallax and costly scanning animations
-- `prefers-reduced-motion` collapses all nonessential animation
+- The environmental canvas caps DPR and frame rate, uses a lower mobile frame budget, and pauses while hidden or offscreen
+- `prefers-reduced-motion` renders one deterministic static environmental frame
 
 ## Deployment
 
@@ -192,8 +194,8 @@ Before production promotion, verify:
 
 ## Repository note
 
-The working copy used for the July 2026 overhaul has a damaged local Git object database (`git status` cannot read one historical tree). The application source, build, and generated artifacts are intact, but Git history should be repaired by fetching the missing objects or recloning before attempting a commit or pull request.
+The damaged local Git metadata found during the July 2026 overhaul was replaced from a verified remote clone. The original metadata remains outside the project as a recoverable backup; the working repository now tracks `codex/planetary-portfolio-overhaul` normally.
 
 ## License and media
 
-Project screenshots and Rushil’s portrait are portfolio materials. The generated social-card landscape is original to this site. Source-code licensing should be added explicitly before reuse outside this portfolio.
+Project screenshots and Rushil’s portrait are portfolio materials. The generated social-card landscape is original to this site. The two Project Hail Mary stills were supplied by Rushil as visual references and remain third-party material; confirm the desired public-use treatment before broader reuse. Source-code licensing should be added explicitly before reuse outside this portfolio.

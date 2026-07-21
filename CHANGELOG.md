@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-07-21 — Living Adrian / Petrova field revision
+
+- Replaced the static blue planetary horizon with a mode-aware Canvas2D environment.
+- Planet Adrian now renders a moving lime/citrine fluid planet, animated storm bands, red embers, and pointer-responsive ship parallax.
+- Petrova line mode now uses a separate crimson contour, orbital, scan, waveform, and traveling-signal renderer instead of a cosmetic grid overlay.
+- Added an explicit two-option visual instrument in the hero and made the mobile navigation toggle close before revealing the selected field.
+- Added pre-paint mode restoration, atomic DOM/state updates, cross-tab reset handling, hidden-tab and offscreen pausing, a 24–30 fps cap, DPR limiting, and a static reduced-motion frame.
+- Added the two user-supplied Project Hail Mary stills as restrained cinematic reference plates and documented their provenance.
+- Refreshed the 34-second walkthrough so it opens on both Adrian and Petrova before descending through the portfolio.
+
 ## 2026-07-21 — Planetary observatory overhaul
 
 ### Experience
@@ -25,7 +35,7 @@
 - Optimized the portrait and analytics capture to WebP.
 - Generated and wired a custom 1200×630 planetary social card.
 - Added repeatable Fuzzy capture, portfolio walkthrough, and AVFoundation encoding scripts.
-- Added final desktop, tablet, mobile, archive, Lighthouse, and 31.5-second walkthrough artifacts.
+- Added final desktop, tablet, mobile, archive, Lighthouse, and repeatable walkthrough artifacts.
 
 ### Engineering
 
@@ -44,6 +54,6 @@
 - Desktop Lighthouse after remediation: 100 Performance, 100 Accessibility, 100 Best Practices, 100 SEO. Mobile: 95 Performance and 100 for the other three categories. Both captured runs had 0 ms total blocking time and 0 cumulative layout shift.
 - Browser checks covered mode persistence, progressive signal state, typed Lumos, mobile disclosure/Escape, lazy Spotify loading, game interaction/reset, case-study media, routes, and responsive screenshots.
 
-### Known repository issue
+### Repository recovery
 
-- Local Git metadata is missing historical objects. The site builds and runs, but the object database must be repaired or recloned before a trustworthy commit/PR can be created.
+- Reconstructed the branch from remote `main`, preserved the damaged metadata as a recoverable backup, and pushed the validated overhaul through draft PR #1.

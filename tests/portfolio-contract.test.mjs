@@ -11,6 +11,8 @@ const requiredMedia = [
   'public/media/projects/buzzr/cover.webp',
   'public/media/projects/buzzr/workflow.webp',
   'public/media/projects/analytics/cover.webp',
+  'public/media/inspiration/hail-mary-adrian.jpeg',
+  'public/media/inspiration/hail-mary-red-space.jpeg',
 ]
 
 test('required public media is present and non-empty', async () => {
@@ -40,4 +42,22 @@ test('the Fuzzy capture workflow keeps user data isolated', async () => {
   assert.match(source, /FUZZY_USER_DATA/)
   assert.match(source, /delete childEnv\.OPENAI_API_KEY/)
   assert.match(source, /fs\.rmSync\(resolvedTempProfile/)
+})
+
+test('observation modes use distinct live renderers with safe animation lifecycle', async () => {
+  const field = await readFile('components/observatory/planetary-field.tsx', 'utf8')
+  const provider = await readFile('components/observatory/observation-provider.tsx', 'utf8')
+  const layout = await readFile('app/layout.tsx', 'utf8')
+
+  assert.match(field, /drawAdrianPlanet/)
+  assert.match(field, /drawPetrovaField/)
+  assert.match(field, /prefers-reduced-motion: reduce/)
+  assert.match(field, /visibilitychange/)
+  assert.match(field, /IntersectionObserver/)
+  assert.match(field, /MAX_DPR/)
+  assert.match(field, /wrapCoordinate/)
+  assert.match(field, /data-render-mode/)
+  assert.match(provider, /applyModeToRoot\(nextMode\)/)
+  assert.match(provider, /Petrova line mode/)
+  assert.match(layout, /observationBootScript/)
 })
