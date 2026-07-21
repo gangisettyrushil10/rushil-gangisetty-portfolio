@@ -8,6 +8,8 @@ import {
 
 type PlanetaryFieldProps = {
   className?: string
+  centrifugeEngaged?: boolean
+  activationSequence?: number
 }
 
 type FieldParticle = {
@@ -47,7 +49,10 @@ type AuroraPoint = {
 }
 
 const TAU = Math.PI * 2
-const MAX_DPR = 1.75
+const MAX_DPR = 1.5
+const CONSTRAINED_DPR = 1.25
+const DESKTOP_FPS = 45
+const CONSTRAINED_FPS = 24
 
 const AURORA_LAYERS: AuroraLayer[] = [
   {
@@ -145,7 +150,7 @@ function seededRandom(seed: number) {
 
 function makeParticles(width: number, height: number) {
   const random = seededRandom(0xad314e + Math.round(width) * 17 + Math.round(height) * 29)
-  const count = clamp(Math.round((width * height) / 8_800), 86, 210)
+  const count = clamp(Math.round((width * height) / 9_600), 70, 150)
 
   return Array.from({ length: count }, (_, index): FieldParticle => {
     const ember = index % 3 !== 0
@@ -238,26 +243,6 @@ function drawParticles(
     const pulse = 0.7 + Math.sin(time * 0.62 + particle.phase) * 0.3
     const alpha = particle.alpha * pulse * (mode === 'petrova' ? 0.58 : 0.82)
 
-    if (particle.radius > 1.7) {
-      const glowRadius = particle.radius * (mode === 'adrian' ? 5.4 : 3.6)
-      const glow = context.createRadialGradient(x, y, 0, x, y, glowRadius)
-      glow.addColorStop(
-        0,
-        mode === 'petrova'
-          ? `rgba(255, 41, 24, ${alpha * 0.68})`
-          : warmAdrianAccent
-            ? `rgba(255, 105, 25, ${alpha * 0.62})`
-            : particle.ember
-              ? `rgba(176, 255, 61, ${alpha * 0.48})`
-              : `rgba(244, 255, 213, ${alpha * 0.5})`
-      )
-      glow.addColorStop(1, 'rgba(0, 0, 0, 0)')
-      context.fillStyle = glow
-      context.beginPath()
-      context.arc(x, y, glowRadius, 0, TAU)
-      context.fill()
-    }
-
     context.fillStyle =
       mode === 'petrova'
         ? particle.ember
@@ -284,7 +269,7 @@ function makeAuroraPoints(
   layer: AuroraLayer,
   layerIndex: number
 ) {
-  const sampleCount = Math.round(clamp(width / 24, 42, 86))
+  const sampleCount = Math.round(clamp(width / 26, 36, 64))
   const xStart = -width * 0.08
   const xSpan = width * 1.16
   const breath = 0.92 + Math.sin(time * 0.095 + layer.phase) * 0.08
@@ -365,8 +350,6 @@ function drawAuroraCurtain(
   context.save()
   context.globalCompositeOperation = 'screen'
   context.globalAlpha = 0.38 + layer.depth * 0.32
-  context.shadowColor = `rgba(${layer.color}, ${0.17 + layer.depth * 0.11})`
-  context.shadowBlur = 8 + layer.depth * 13
   context.fillStyle = gradient
   context.beginPath()
   points.forEach((point, index) => {
@@ -379,7 +362,6 @@ function drawAuroraCurtain(
   context.closePath()
   context.fill()
 
-  context.shadowBlur = 6 + layer.depth * 7
   context.globalAlpha = 0.42 + layer.depth * 0.25
   context.strokeStyle = `rgba(${layer.highlight}, ${0.22 + layer.depth * 0.17})`
   context.lineWidth = 0.7 + layer.depth * 1.15
@@ -391,7 +373,6 @@ function drawAuroraCurtain(
   })
   context.stroke()
 
-  context.shadowBlur = 3
   context.globalAlpha = 0.12 + layer.depth * 0.11
   context.lineWidth = 0.55 + layer.depth * 0.45
   context.strokeStyle = `rgba(${layer.highlight}, 0.72)`
@@ -490,74 +471,263 @@ function drawAdrianAurora(
   context.fillRect(0, height * 0.56, width, height * 0.44)
 }
 
-function drawShipSilhouette(
+function drawTetheredAstronaut(
   context: CanvasRenderingContext2D,
-  width: number,
-  height: number,
-  pointer: PointerVector
+  x: number,
+  y: number,
+  rotation: number,
+  mode: ObservationMode,
+  engagement: number
 ) {
-  const scale = clamp(Math.min(width, height) / 760, 0.58, 1.35)
-  const x = width * 0.77 + pointer.x * 25
-  const y = height * 0.85 + pointer.y * 16
+  const accent = mode === 'adrian' ? 'rgba(213, 255, 142, 0.92)' : 'rgba(255, 190, 174, 0.94)'
+  const suit = mode === 'adrian' ? 'rgba(226, 235, 211, 0.94)' : 'rgba(239, 220, 215, 0.94)'
+  const visor = mode === 'adrian' ? 'rgba(151, 235, 72, 0.32)' : 'rgba(255, 78, 69, 0.34)'
 
   context.save()
   context.translate(x, y)
-  context.rotate(-0.13 + pointer.x * 0.008)
-  context.scale(scale, scale)
+  context.rotate(rotation)
+  context.lineCap = 'round'
   context.lineJoin = 'round'
 
-  context.fillStyle = 'rgba(0, 2, 2, 0.97)'
-  context.strokeStyle = 'rgba(188, 240, 95, 0.23)'
-  context.lineWidth = 1.2
+  context.fillStyle = 'rgba(5, 8, 7, 0.94)'
+  context.strokeStyle = accent
+  context.lineWidth = 1.35
   context.beginPath()
-  context.moveTo(-196, 20)
-  context.lineTo(-154, -19)
-  context.lineTo(55, -25)
-  context.lineTo(139, -9)
-  context.lineTo(174, 3)
-  context.lineTo(124, 17)
-  context.lineTo(48, 29)
-  context.lineTo(-159, 31)
+  context.rect(-11, -2, 18, 24)
+  context.fill()
+  context.stroke()
+
+  context.fillStyle = suit
+  context.beginPath()
+  context.moveTo(-7, 3)
+  context.lineTo(7, 2)
+  context.lineTo(10, 28)
+  context.lineTo(-8, 29)
+  context.closePath()
+  context.fill()
+
+  context.fillStyle = 'rgba(5, 8, 7, 0.98)'
+  context.strokeStyle = accent
+  context.lineWidth = 1.5
+  context.beginPath()
+  context.arc(0, -8, 12.5, 0, TAU)
+  context.fill()
+  context.stroke()
+
+  context.fillStyle = visor
+  context.beginPath()
+  context.ellipse(2, -9, 8, 6.5, -0.15, 0, TAU)
+  context.fill()
+
+  context.strokeStyle = suit
+  context.lineWidth = 4.8
+  context.beginPath()
+  context.moveTo(-6, 9)
+  context.lineTo(-16, 19 - engagement * 3)
+  context.lineTo(-22, 13 - engagement * 5)
+  context.stroke()
+  context.beginPath()
+  context.moveTo(7, 10)
+  context.lineTo(18, 15 + engagement * 3)
+  context.lineTo(23, 7 + engagement * 4)
+  context.stroke()
+
+  context.lineWidth = 5.5
+  context.beginPath()
+  context.moveTo(-4, 27)
+  context.lineTo(-10, 42)
+  context.lineTo(-16, 48)
+  context.stroke()
+  context.beginPath()
+  context.moveTo(5, 27)
+  context.lineTo(11, 40)
+  context.lineTo(19, 45)
+  context.stroke()
+
+  context.fillStyle = engagement > 0.45 ? accent : 'rgba(157, 165, 152, 0.72)'
+  context.beginPath()
+  context.arc(-10, 9, 1.8, 0, TAU)
+  context.fill()
+
+  context.restore()
+}
+
+function drawMissionCrew(
+  context: CanvasRenderingContext2D,
+  width: number,
+  height: number,
+  time: number,
+  pointer: PointerVector,
+  mode: ObservationMode,
+  visibleHeight: number,
+  centrifugePhase: number,
+  engagement: number,
+  activationSequence: number,
+  activationAge: number,
+  reducedMotion: boolean
+) {
+  const compact = width < 680
+  const scale = clamp(Math.min(width, height) / 820, 0.5, 1.18) * (compact ? 0.82 : 1)
+  const driftTime = reducedMotion ? 0 : time
+  const x = width * (compact ? 0.79 : 0.78) + pointer.x * 21 + Math.sin(driftTime * 0.31) * 5
+  const y = visibleHeight * (compact ? 0.34 : 0.76) + pointer.y * 14 + Math.cos(driftTime * 0.27) * 5
+  const shipRotation = -0.11 + pointer.x * 0.009 + Math.sin(driftTime * 0.2) * 0.012
+  const ringRadius = 28 + engagement * 31
+  const ringPhase = reducedMotion ? 0.68 : centrifugePhase
+  const accent = mode === 'adrian' ? '190, 255, 94' : '255, 92, 75'
+  const pale = mode === 'adrian' ? '238, 255, 207' : '255, 222, 211'
+  const warm = mode === 'adrian' ? '255, 116, 37' : '255, 188, 122'
+
+  context.save()
+  context.translate(x, y)
+  context.rotate(shipRotation)
+  context.scale(scale, scale)
+  context.lineCap = 'round'
+  context.lineJoin = 'round'
+
+  const astronautX = 132 + Math.sin(driftTime * 0.48 + activationSequence) * (5 + engagement * 7)
+  const astronautY = -104 - engagement * 15 + Math.cos(driftTime * 0.39) * 5
+
+  context.strokeStyle = `rgba(${pale}, 0.58)`
+  context.lineWidth = 1.15
+  context.setLineDash([3, 4])
+  context.lineDashOffset = reducedMotion ? 0 : -driftTime * 5
+  context.beginPath()
+  context.moveTo(100, -10)
+  context.bezierCurveTo(128, -32, 92 + engagement * 20, -82, astronautX, astronautY + 12)
+  context.stroke()
+  context.setLineDash([])
+
+  context.save()
+  context.translate(-31, 1)
+  context.strokeStyle = `rgba(${accent}, ${0.34 + engagement * 0.48})`
+  context.lineWidth = 1.25 + engagement * 0.8
+  context.beginPath()
+  context.ellipse(0, 0, ringRadius, ringRadius * 0.46, 0, 0, TAU)
+  context.stroke()
+
+  for (let spoke = 0; spoke < 8; spoke += 1) {
+    const angle = ringPhase + (spoke / 8) * TAU
+    const spokeX = Math.cos(angle) * ringRadius
+    const spokeY = Math.sin(angle) * ringRadius * 0.46
+    context.strokeStyle = `rgba(${accent}, ${0.17 + engagement * 0.36})`
+    context.lineWidth = spoke % 2 === 0 ? 1.2 : 0.72
+    context.beginPath()
+    context.moveTo(0, 0)
+    context.lineTo(spokeX, spokeY)
+    context.stroke()
+
+    if (spoke % 2 === 0) {
+      context.fillStyle = `rgba(${spoke === 0 || spoke === 4 ? warm : accent}, ${0.58 + engagement * 0.32})`
+      context.beginPath()
+      context.arc(spokeX, spokeY, 2.2 + engagement * 1.2, 0, TAU)
+      context.fill()
+    }
+  }
+
+  if (!reducedMotion && activationAge < 1.2) {
+    const pulseProgress = clamp(activationAge / 1.2, 0, 1)
+    context.strokeStyle = `rgba(${accent}, ${(1 - pulseProgress) * 0.72})`
+    context.lineWidth = 1.5
+    context.beginPath()
+    context.ellipse(
+      0,
+      0,
+      ringRadius + pulseProgress * 38,
+      ringRadius * 0.46 + pulseProgress * 18,
+      0,
+      0,
+      TAU
+    )
+    context.stroke()
+  }
+  context.restore()
+
+  context.fillStyle = 'rgba(1, 4, 3, 0.96)'
+  context.strokeStyle = `rgba(${accent}, 0.54)`
+  context.lineWidth = 1.35
+  context.beginPath()
+  context.moveTo(-176, -17)
+  context.lineTo(-133, -27)
+  context.lineTo(100, -24)
+  context.lineTo(154, -8)
+  context.lineTo(178, 1)
+  context.lineTo(153, 11)
+  context.lineTo(101, 25)
+  context.lineTo(-134, 28)
+  context.lineTo(-176, 17)
   context.closePath()
   context.fill()
   context.stroke()
 
+  const hull = context.createLinearGradient(-130, -25, 128, 25)
+  hull.addColorStop(0, mode === 'adrian' ? 'rgba(24, 37, 23, 0.92)' : 'rgba(43, 15, 17, 0.94)')
+  hull.addColorStop(0.5, 'rgba(5, 8, 7, 0.98)')
+  hull.addColorStop(1, mode === 'adrian' ? 'rgba(29, 45, 24, 0.88)' : 'rgba(50, 17, 18, 0.9)')
+  context.fillStyle = hull
   context.beginPath()
-  context.ellipse(-107, 4, 39, 56, Math.PI / 2, 0, TAU)
+  context.moveTo(-129, -24)
+  context.lineTo(100, -21)
+  context.lineTo(151, -7)
+  context.lineTo(170, 1)
+  context.lineTo(149, 9)
+  context.lineTo(99, 22)
+  context.lineTo(-129, 25)
+  context.closePath()
   context.fill()
-  context.strokeStyle = 'rgba(214, 252, 138, 0.34)'
-  context.lineWidth = 2
-  context.stroke()
 
-  context.strokeStyle = 'rgba(159, 190, 97, 0.25)'
-  context.lineWidth = 1
-  for (let beam = -72; beam <= 90; beam += 27) {
+  context.strokeStyle = `rgba(${pale}, 0.28)`
+  context.lineWidth = 0.8
+  for (let frame = -111; frame <= 95; frame += 34) {
     context.beginPath()
-    context.moveTo(beam, -22)
-    context.lineTo(beam + 22, 27)
+    context.moveTo(frame, -22)
+    context.lineTo(frame + 13, 23)
     context.stroke()
   }
 
-  context.strokeStyle = 'rgba(242, 247, 221, 0.38)'
+  context.strokeStyle = `rgba(${accent}, ${0.42 + engagement * 0.34})`
+  context.lineWidth = 2
   context.beginPath()
-  context.moveTo(-68, -23)
-  context.lineTo(-55, -87)
-  context.lineTo(-22, -108)
+  context.ellipse(-31, 1, 15, 24, Math.PI / 2, 0, TAU)
   context.stroke()
-  context.fillStyle = 'rgba(255, 72, 32, 0.7)'
+  context.fillStyle = `rgba(${accent}, ${0.17 + engagement * 0.28})`
   context.beginPath()
-  context.arc(-20, -109, 2.4, 0, TAU)
+  context.arc(-31, 1, 7, 0, TAU)
   context.fill()
 
-  context.fillStyle = 'rgba(0, 0, 0, 0.98)'
+  context.fillStyle = `rgba(${warm}, ${0.38 + engagement * 0.58})`
   context.beginPath()
-  context.moveTo(55, -24)
-  context.lineTo(91, -61)
-  context.lineTo(118, -59)
-  context.lineTo(105, -12)
+  context.moveTo(-176, -10)
+  context.lineTo(-176 - 11 * engagement, 0)
+  context.lineTo(-176, 10)
   context.closePath()
   context.fill()
+
+  context.strokeStyle = `rgba(${pale}, 0.45)`
+  context.lineWidth = 1.05
+  context.beginPath()
+  context.moveTo(76, -21)
+  context.lineTo(89, -66)
+  context.lineTo(112, -78)
   context.stroke()
+  context.fillStyle = `rgba(${warm}, 0.88)`
+  context.beginPath()
+  context.arc(113, -79, 2.3, 0, TAU)
+  context.fill()
+
+  context.fillStyle = `rgba(${pale}, 0.72)`
+  context.font = '7px ui-monospace, SFMono-Regular, monospace'
+  context.letterSpacing = '1px'
+  context.fillText('HM / 03', 42, 5)
+
+  drawTetheredAstronaut(
+    context,
+    astronautX,
+    astronautY,
+    0.12 + Math.sin(driftTime * 0.25 + activationSequence) * 0.08,
+    mode,
+    engagement
+  )
 
   context.restore()
 }
@@ -773,13 +943,22 @@ function drawVignette(
   context.fillRect(0, 0, width, height)
 }
 
-export function PlanetaryField({ className }: PlanetaryFieldProps) {
+export function PlanetaryField({
+  className,
+  centrifugeEngaged = false,
+  activationSequence = 0,
+}: PlanetaryFieldProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const modeRef = useRef<ObservationMode>('adrian')
+  const centrifugeEngagedRef = useRef(centrifugeEngaged)
+  const activationSequenceRef = useRef(activationSequence)
+  const activationStartedAtRef = useRef(Number.NEGATIVE_INFINITY)
   const drawStaticFrameRef = useRef<(() => void) | null>(null)
   const { mode } = useObservation()
 
   modeRef.current = mode
+  centrifugeEngagedRef.current = centrifugeEngaged
+  activationSequenceRef.current = activationSequence
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -791,7 +970,9 @@ export function PlanetaryField({ className }: PlanetaryFieldProps) {
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     const coarsePointerQuery = window.matchMedia('(pointer: coarse)')
     const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection
-    const frameInterval = 1_000 / (coarsePointerQuery.matches || connection?.saveData ? 24 : 30)
+    const qualityConstrained = coarsePointerQuery.matches || Boolean(connection?.saveData)
+    const frameInterval = 1_000 / (qualityConstrained ? CONSTRAINED_FPS : DESKTOP_FPS)
+    const maxDpr = qualityConstrained ? CONSTRAINED_DPR : MAX_DPR
     const pointer = { x: 0, y: 0 }
     const pointerTarget = { x: 0, y: 0 }
     let particles: FieldParticle[] = []
@@ -803,13 +984,23 @@ export function PlanetaryField({ className }: PlanetaryFieldProps) {
     let reducedMotion = motionQuery.matches
     let inViewport = true
     let disposed = false
+    let centrifugeMix = centrifugeEngagedRef.current ? 1 : 0
+    let centrifugePhase = 0.68
 
-    const draw = (time: number) => {
-      pointer.x += (pointerTarget.x - pointer.x) * 0.035
-      pointer.y += (pointerTarget.y - pointer.y) * 0.035
+    const draw = (time: number, deltaSeconds: number, staticPose = false) => {
+      const safeDelta = clamp(deltaSeconds, 0, 0.1)
+      const pointerEase = staticPose ? 1 : 1 - Math.exp(-safeDelta * 5.4)
+      const centrifugeEase = staticPose ? 1 : 1 - Math.exp(-safeDelta * 6.8)
+      pointer.x += (pointerTarget.x - pointer.x) * pointerEase
+      pointer.y += (pointerTarget.y - pointer.y) * pointerEase
+      centrifugeMix +=
+        ((centrifugeEngagedRef.current ? 1 : 0) - centrifugeMix) * centrifugeEase
+      if (!staticPose && !reducedMotion) {
+        const direction = activationSequenceRef.current % 2 === 0 ? 1 : -1
+        centrifugePhase += safeDelta * (0.22 + centrifugeMix * 2.65) * direction
+      }
 
       context.setTransform(dpr, 0, 0, dpr, 0, 0)
-      context.clearRect(0, 0, width, height)
 
       const activeMode = modeRef.current
       fillBackground(context, width, height, activeMode)
@@ -817,27 +1008,51 @@ export function PlanetaryField({ className }: PlanetaryFieldProps) {
 
       if (activeMode === 'adrian') {
         drawAdrianAurora(context, width, height, time, pointer)
-        drawShipSilhouette(context, width, height, pointer)
       } else {
         drawPetrovaField(context, width, height, time, pointer)
       }
+
+      drawMissionCrew(
+        context,
+        width,
+        height,
+        time,
+        pointer,
+        activeMode,
+        Math.min(height, window.innerHeight),
+        centrifugePhase,
+        centrifugeMix,
+        activationSequenceRef.current,
+        reducedMotion ? 2 : Math.max(0, time - activationStartedAtRef.current),
+        reducedMotion
+      )
 
       drawVignette(context, width, height, activeMode)
     }
 
     const drawStaticFrame = () => {
-      pointer.x = 0
-      pointer.y = 0
-      draw(18.5)
+      if (reducedMotion) {
+        pointer.x = 0
+        pointer.y = 0
+        pointerTarget.x = 0
+        pointerTarget.y = 0
+        draw(18.5, 0, true)
+        return
+      }
+
+      draw(performance.now() / 1_000, 1 / DESKTOP_FPS)
     }
     drawStaticFrameRef.current = drawStaticFrame
 
     const tick = (timestamp: number) => {
       if (disposed || document.hidden || reducedMotion || !inViewport) return
 
-      if (timestamp - lastFrameTime >= frameInterval) {
-        draw(timestamp / 1_000)
-        lastFrameTime = timestamp
+      if (lastFrameTime === 0) lastFrameTime = timestamp - frameInterval
+      const elapsed = timestamp - lastFrameTime
+
+      if (elapsed >= frameInterval) {
+        draw(timestamp / 1_000, elapsed / 1_000)
+        lastFrameTime = timestamp - (elapsed % frameInterval)
       }
 
       frameId = window.requestAnimationFrame(tick)
@@ -862,7 +1077,7 @@ export function PlanetaryField({ className }: PlanetaryFieldProps) {
       const bounds = canvas.getBoundingClientRect()
       const nextWidth = Math.max(1, Math.round(bounds.width))
       const nextHeight = Math.max(1, Math.round(bounds.height))
-      const nextDpr = clamp(window.devicePixelRatio || 1, 1, MAX_DPR)
+      const nextDpr = clamp(window.devicePixelRatio || 1, 1, maxDpr)
 
       if (nextWidth === width && nextHeight === height && nextDpr === dpr) return
 
@@ -872,7 +1087,7 @@ export function PlanetaryField({ className }: PlanetaryFieldProps) {
       canvas.width = Math.round(width * dpr)
       canvas.height = Math.round(height * dpr)
       particles = makeParticles(width, height)
-      draw(reducedMotion ? 18.5 : performance.now() / 1_000)
+      draw(reducedMotion ? 18.5 : performance.now() / 1_000, 1 / DESKTOP_FPS, reducedMotion)
     }
 
     const trackPointer = (event: PointerEvent) => {
@@ -933,6 +1148,11 @@ export function PlanetaryField({ className }: PlanetaryFieldProps) {
     drawStaticFrameRef.current?.()
   }, [mode])
 
+  useEffect(() => {
+    if (activationSequence > 0) activationStartedAtRef.current = performance.now() / 1_000
+    drawStaticFrameRef.current?.()
+  }, [centrifugeEngaged, activationSequence])
+
   return (
     <canvas
       ref={canvasRef}
@@ -940,6 +1160,8 @@ export function PlanetaryField({ className }: PlanetaryFieldProps) {
       style={fieldStyle}
       data-planetary-field="true"
       data-render-mode={mode}
+      data-centrifuge-engaged={centrifugeEngaged ? 'true' : 'false'}
+      data-activation-sequence={activationSequence}
       aria-hidden="true"
     />
   )

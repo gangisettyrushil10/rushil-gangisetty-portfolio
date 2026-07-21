@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { ArrowDown, ArrowUpRight, Mail, Radio, Sparkles } from 'lucide-react'
 import { heroContent } from '@/lib/portfolio-content'
 import { personalInfo } from '@/lib/data'
@@ -8,15 +9,47 @@ import { PlanetaryField } from '@/components/observatory/planetary-field'
 
 export function PlanetaryHero() {
   const { isPetrova, signalRevealed, lumosActive, setMode } = useObservation()
+  const [centrifugeEngaged, setCentrifugeEngaged] = useState(false)
+  const [activationSequence, setActivationSequence] = useState(0)
+
+  const toggleCentrifuge = () => {
+    setCentrifugeEngaged((isEngaged) => !isEngaged)
+    setActivationSequence((sequence) => sequence + 1)
+  }
 
   return (
     <section
       className="planetary-hero"
       aria-labelledby="hero-title"
     >
-      <PlanetaryField className="planetary-field-canvas" />
+      <PlanetaryField
+        className="planetary-field-canvas"
+        centrifugeEngaged={centrifugeEngaged}
+        activationSequence={activationSequence}
+      />
 
       <div className="hero-vignette" aria-hidden="true" />
+
+      <button
+        type="button"
+        className={`hail-mary-control${centrifugeEngaged ? ' is-engaged' : ''}`}
+        aria-label="Hail Mary centrifuge"
+        aria-pressed={centrifugeEngaged}
+        onClick={toggleCentrifuge}
+      >
+        <span className="hail-mary-control-orbit" aria-hidden="true">
+          <span />
+        </span>
+          <span className="hail-mary-control-copy">
+            <span className="hail-mary-control-label">Hail Mary / crew link</span>
+            <span className="hail-mary-control-status" aria-live="polite" aria-atomic="true">
+              {centrifugeEngaged ? 'Centrifuge live · tether responding' : 'Centrifuge standby · EVA stable'}
+            </span>
+          </span>
+          {activationSequence > 0 && (
+            <span key={activationSequence} className="hail-mary-control-pulse" aria-hidden="true" />
+          )}
+      </button>
 
       <div className="petrova-hud" aria-hidden="true">
         <div className="petrova-hud-heading">
@@ -95,8 +128,8 @@ export function PlanetaryHero() {
 
         <p className="hero-motion-note">
           {isPetrova
-            ? 'Move through the field. The line instrument responds in real time.'
-            : 'Move through the atmosphere. Adrian’s aurora curtains bend around you.'}
+            ? 'Move through the field. Click the Hail Mary reticle to spin its centrifuge inside the live trace.'
+            : 'Move through the atmosphere. Click the Hail Mary reticle to deploy its centrifuge and tug the EVA tether.'}
         </p>
 
         {(signalRevealed || lumosActive) && (

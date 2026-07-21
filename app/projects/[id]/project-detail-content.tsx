@@ -1,9 +1,6 @@
-'use client'
-
 import type { CSSProperties } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowUpRight, ExternalLink, Github, Play } from 'lucide-react'
 import { Section } from '@/components/templates/section'
 import type { Project } from '@/lib/data'
@@ -68,12 +65,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
             Back to projects
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.42 }}
-            className="mt-6 max-w-5xl"
-          >
+          <div className="route-enter mt-6 max-w-5xl">
             <span className="section-label">{project.category}</span>
             <h1 className="mt-5 text-4xl font-semibold leading-[0.94] tracking-[-0.06em] text-foreground sm:text-[4.1rem]">
               {project.title}
@@ -138,7 +130,7 @@ export function ProjectDetailContent({ project }: ProjectDetailContentProps) {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

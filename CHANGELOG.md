@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-07-21 — Interactive Hail Mary crew and performance pass
+
+- Added an original Canvas2D Hail Mary-inspired spacecraft with a tethered EVA astronaut in both visual modes; no supplied film imagery ships with the site.
+- Added an accessible reticle control that deploys and reverses the centrifuge, pulses the ship, and moves the astronaut through the shared animation loop.
+- Reduced canvas raster pressure, particle and aurora sampling, per-frame glow creation, and large shadow passes while preserving a sharp 45 fps desktop / 24 fps constrained presentation.
+- Removed full-screen canvas filters, animated fixed compositing layers, hero grain motion, and backdrop blur over the living field.
+- Paused the canvas while hidden or offscreen, kept reduced-motion rendering static, and replaced basketball frame-by-frame React state with direct element updates.
+- Removed unused generated components, UI wrappers, placeholder assets, hooks, animation imports, and their dependency tree; routed entrances now use a lightweight CSS transition.
+
 ## 2026-07-21 — Living Adrian / Petrova field revision
 
 - Replaced the static blue planetary horizon with a mode-aware Canvas2D environment.

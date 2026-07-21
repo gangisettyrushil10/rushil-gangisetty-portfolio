@@ -71,7 +71,7 @@ export function SiteNav() {
       <div className="mx-auto w-full max-w-[1440px] px-3 pt-3 sm:px-5 sm:pt-4">
         <nav
           aria-label="Primary navigation"
-          className="site-nav-shell pointer-events-auto relative rounded-[1.15rem] border border-white/10 bg-[rgba(3,9,17,0.76)] shadow-[0_18px_60px_-28px_rgba(0,0,0,0.92),inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl"
+          className="site-nav-shell pointer-events-auto relative rounded-[1.15rem] border border-white/10 bg-[rgba(3,9,17,0.9)] shadow-[0_18px_60px_-28px_rgba(0,0,0,0.92),inset_0_1px_0_rgba(255,255,255,0.06)]"
         >
           <div className="flex min-h-[3.5rem] items-center gap-2 px-2 sm:px-3">
             <Link
@@ -161,7 +161,7 @@ export function SiteNav() {
           {isOpen && (
             <div
               id="observatory-mobile-navigation"
-              className="site-nav-menu absolute inset-x-0 top-[calc(100%+0.5rem)] overflow-hidden rounded-[1.15rem] border border-white/10 p-2 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.95)] backdrop-blur-xl xl:hidden"
+              className="site-nav-menu absolute inset-x-0 top-[calc(100%+0.5rem)] overflow-hidden rounded-[1.15rem] border border-white/10 p-2 shadow-[0_24px_70px_-28px_rgba(0,0,0,0.95)] xl:hidden"
             >
               <div className="grid grid-cols-2 gap-1">
                 {homeLinks.map((link) => (

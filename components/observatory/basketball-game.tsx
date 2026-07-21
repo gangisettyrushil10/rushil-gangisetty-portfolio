@@ -13,12 +13,12 @@ type BallStyle = CSSProperties & { '--ball-x': string; '--ball-y': string }
 
 export default function BasketballGame() {
   const courtRef = useRef<HTMLDivElement>(null)
+  const ballRef = useRef<HTMLButtonElement>(null)
+  const powerFillRef = useRef<HTMLSpanElement>(null)
   const dragStartRef = useRef<{ x: number; y: number } | null>(null)
   const animationRef = useRef<number | null>(null)
   const powerFrameRef = useRef<number | null>(null)
   const powerRef = useRef(0.5)
-  const [ball, setBall] = useState({ x: 18, y: 78 })
-  const [power, setPower] = useState(0.5)
   const [score, setScore] = useState(0)
   const [shots, setShots] = useState(0)
   const [best, setBest] = useState(0)
@@ -39,7 +39,7 @@ export default function BasketballGame() {
       if (!isShooting && !dragStartRef.current) {
         const nextPower = 0.58 + (Math.sin((now - start) / 520) + 1) * 0.2
         powerRef.current = nextPower
-        setPower(nextPower)
+        powerFillRef.current?.style.setProperty('width', `${nextPower * 100}%`)
       }
       powerFrameRef.current = requestAnimationFrame(update)
     }
@@ -56,13 +56,15 @@ export default function BasketballGame() {
   const launch = useCallback((shot: ShotInput) => {
     if (isShooting) return
     setIsShooting(true)
-    setPower(shot.power)
+    powerFillRef.current?.style.setProperty('width', `${shot.power * 100}%`)
     const made = isMadeShot(shot)
     const startTime = performance.now()
 
     const animate = (now: number) => {
       const progress = Math.min((now - startTime) / SHOT_DURATION_MS, 1)
-      setBall(trajectoryPoint(shot, progress))
+      const position = trajectoryPoint(shot, progress)
+      ballRef.current?.style.setProperty('--ball-x', `${position.x}%`)
+      ballRef.current?.style.setProperty('--ball-y', `${position.y}%`)
 
       if (progress < 1) {
         animationRef.current = requestAnimationFrame(animate)
@@ -84,7 +86,8 @@ export default function BasketballGame() {
       }
 
       window.setTimeout(() => {
-        setBall({ x: 18, y: 78 })
+        ballRef.current?.style.setProperty('--ball-x', '18%')
+        ballRef.current?.style.setProperty('--ball-y', '78%')
         setIsShooting(false)
       }, 360)
     }
@@ -109,7 +112,8 @@ export default function BasketballGame() {
 
   function reset() {
     if (animationRef.current) cancelAnimationFrame(animationRef.current)
-    setBall({ x: 18, y: 78 })
+    ballRef.current?.style.setProperty('--ball-x', '18%')
+    ballRef.current?.style.setProperty('--ball-y', '78%')
     setScore(0)
     setShots(0)
     setIsShooting(false)
@@ -131,9 +135,10 @@ export default function BasketballGame() {
         <span className="court-hoop" aria-hidden="true"><i /></span>
         <span className="court-backboard" aria-hidden="true" />
         <button
+          ref={ballRef}
           type="button"
           className="court-ball"
-          style={{ '--ball-x': `${ball.x}%`, '--ball-y': `${ball.y}%` } as BallStyle}
+          style={{ '--ball-x': '18%', '--ball-y': '78%' } as BallStyle}
           onPointerDown={pointerDown}
           onPointerUp={pointerUp}
           onPointerCancel={() => { dragStartRef.current = null }}
@@ -148,7 +153,7 @@ export default function BasketballGame() {
         >
           <span aria-hidden="true" />
         </button>
-        <div className="court-power" aria-hidden="true"><span style={{ width: `${power * 100}%` }} /></div>
+        <div className="court-power" aria-hidden="true"><span ref={powerFillRef} style={{ width: '50%' }} /></div>
         <div className="court-target"><Target aria-hidden="true" /><span>Ideal power band: 72–94%</span></div>
       </div>
       <p className="court-message" role="status">{message}</p>

@@ -1,9 +1,5 @@
-'use client'
-
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { ArrowLeft, Search } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { SiteFooter } from '@/components/observatory/site-footer'
 
 export default function ProjectNotFound() {
@@ -15,11 +11,7 @@ export default function ProjectNotFound() {
         <div className="absolute inset-0 grid-pattern opacity-20" />
         
         <div className="relative z-10 max-w-2xl mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <div className="route-enter">
             <div className="w-20 h-20 mx-auto mb-8 rounded-full bg-secondary flex items-center justify-center">
               <Search className="w-10 h-10 text-muted-foreground" />
             </div>
@@ -33,19 +25,15 @@ export default function ProjectNotFound() {
             </p>
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Button asChild size="lg">
-                <Link href="/projects">
-                  <ArrowLeft className="mr-2 w-4 h-4" />
-                  Back to Projects
-                </Link>
-              </Button>
-              <Button asChild variant="outline" size="lg">
-                <Link href="/">
-                  Go Home
-                </Link>
-              </Button>
+              <Link className="button button-primary" href="/projects">
+                <ArrowLeft className="w-4 h-4" aria-hidden="true" />
+                Back to Projects
+              </Link>
+              <Link className="button button-secondary" href="/">
+                Go Home
+              </Link>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
       

@@ -114,7 +114,7 @@ scripts/
 └── frames-to-video.swift         reusable H.264 encoder
 ```
 
-Legacy components remain in the repository for reference, but the homepage is composed from the focused `components/observatory/` system and keeps static sections on the server.
+The shipped interface is composed from the focused `components/observatory/` system and keeps static sections on the server. Unreachable generated UI scaffolding is intentionally pruned so it cannot inflate the build or dependency graph.
 
 ## Content and evidence policy
 

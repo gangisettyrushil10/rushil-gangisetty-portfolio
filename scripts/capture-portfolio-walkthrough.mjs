@@ -24,6 +24,7 @@ const portfolioRoot = path.resolve(scriptDir, '..')
 const baseUrl = process.env.PORTFOLIO_URL ?? 'http://127.0.0.1:3000'
 const chromePath = process.env.CHROME_EXECUTABLE ?? '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 const fps = 8
+const frameIntervalMs = 1_000 / fps
 const timestamp = new Date().toISOString().replaceAll(':', '-').replaceAll('.', '-')
 const runDir = path.join(portfolioRoot, 'artifacts/portfolio-review/walkthrough', timestamp)
 const framesDir = path.join(runDir, 'frames')
@@ -50,7 +51,12 @@ async function frame() {
 
 async function hold(seconds) {
   const count = Math.round(seconds * fps)
-  for (let index = 0; index < count; index += 1) await frame()
+  for (let index = 0; index < count; index += 1) {
+    const startedAt = Date.now()
+    await frame()
+    const remaining = frameIntervalMs - (Date.now() - startedAt)
+    if (remaining > 0) await page.waitForTimeout(remaining)
+  }
 }
 
 async function glideTo(selector, seconds) {
@@ -62,17 +68,21 @@ async function glideTo(selector, seconds) {
   const count = Math.max(1, Math.round(seconds * fps))
 
   for (let index = 1; index <= count; index += 1) {
+    const startedAt = Date.now()
     const linear = index / count
     const eased = linear < 0.5 ? 2 * linear * linear : 1 - Math.pow(-2 * linear + 2, 2) / 2
     await page.evaluate((nextY) => window.scrollTo(0, nextY), start + (destination - start) * eased)
-    await page.waitForTimeout(18)
     await frame()
+    const remaining = frameIntervalMs - (Date.now() - startedAt)
+    if (remaining > 0) await page.waitForTimeout(remaining)
   }
 }
 
 try {
   await page.goto(baseUrl, { waitUntil: 'networkidle', timeout: 45_000 })
   await page.evaluate(() => document.fonts.ready)
+  await hold(2.5)
+  await page.getByRole('button', { name: 'Hail Mary centrifuge', exact: true }).click()
   await hold(2.5)
   await page.getByRole('button', { name: /Petrova line mode/i }).first().click()
   await hold(2.5)

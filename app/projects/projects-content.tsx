@@ -1,8 +1,5 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { ArrowUpRight, Github } from 'lucide-react'
 import { ProjectCard } from '@/components/organisms/project-card'
 import { Section, SectionHeader } from '@/components/templates/section'
@@ -42,8 +39,8 @@ export function ProjectsContent() {
           />
 
           <div className="grid gap-4">
-            {featuredProjects.map((project, index) => (
-              <ProjectCard key={project.id} project={project} index={index} />
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
             ))}
           </div>
         </div>
@@ -58,15 +55,12 @@ export function ProjectsContent() {
           />
 
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-            {supportingProjects.map((project, index) => {
+            {supportingProjects.map((project) => {
               const preview = project.gallery?.find((item) => item.src)
 
               return (
-                <motion.article
+                <article
                   key={project.id}
-                  initial={false}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.42, delay: index * 0.08 }}
                   className="glass-panel rounded-[24px] p-5"
                 >
                   {preview?.src && (
@@ -124,7 +118,7 @@ export function ProjectsContent() {
                       </a>
                     )}
                   </div>
-                </motion.article>
+                </article>
               )
             })}
           </div>

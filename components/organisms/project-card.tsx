@@ -1,23 +1,18 @@
-'use client'
-
 import type { CSSProperties } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { ArrowUpRight, ExternalLink, Github, Play } from 'lucide-react'
 import type { Project } from '@/lib/data'
 
 interface ProjectCardProps {
   project: Project
-  index?: number
-  featured?: boolean
 }
 
 function getPreview(project: Project) {
   return project.gallery?.find((item) => item.src)
 }
 
-export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
+export function ProjectCard({ project }: ProjectCardProps) {
   const preview = getPreview(project)
   const style = {
     '--project-primary': 'var(--scene-accent)',
@@ -30,10 +25,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   } as CSSProperties
 
   return (
-    <motion.article
-      initial={false}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.42, delay: index * 0.08 }}
+    <article
       style={style}
       className="project-shell soft-spotlight rounded-[28px] p-4 sm:p-5"
     >
@@ -184,6 +176,6 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
           </div>
         </div>
       </div>
-    </motion.article>
+    </article>
   )
 }
