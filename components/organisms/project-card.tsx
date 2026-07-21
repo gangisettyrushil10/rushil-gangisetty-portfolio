@@ -111,7 +111,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
               {project.description}
             </p>
             <p className="mt-2.5 text-sm font-medium text-foreground/92">
-              {project.recruiterAngle}
+              {project.proofLine}
             </p>
           </div>
 

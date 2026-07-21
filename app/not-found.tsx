@@ -1,48 +1,54 @@
 'use client'
 
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { Home } from 'lucide-react'
-import { Navbar } from '@/components/organisms/navbar'
-import { Footer } from '@/components/organisms/footer'
-import { Reveal } from '@/components/ui/reveal'
+import { Button } from '@/components/ui/button'
+import { SiteFooter } from '@/components/observatory/site-footer'
 
 export default function NotFound() {
   return (
-    <main className="page-shell min-h-screen">
-      <Navbar />
+    <main id="main-content" className="observatory-page min-h-screen bg-background pt-20">
+      <section className="relative min-h-[70vh] flex items-center justify-center">
+        <div className="absolute inset-0 animated-gradient opacity-20" />
+        <div className="absolute inset-0 grid-pattern opacity-20" />
 
-      <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden px-4">
-        <Reveal className="max-w-xl text-center">
-          <p className="font-serif-italic text-4xl text-accent">hmm,</p>
-          <h1 className="mt-4 text-7xl font-semibold tracking-[-0.03em] text-foreground sm:text-8xl">
-            404
-          </h1>
-          <h2 className="mt-3 text-2xl font-semibold tracking-[-0.02em] text-foreground sm:text-3xl">
-            Page not found
-          </h2>
-          <p className="mt-5 text-[15px] leading-7 text-muted-foreground">
-            The page you&apos;re looking for doesn&apos;t exist or has been moved. Try{' '}
-            <kbd className="kbd">⌘K</kbd> to search.
-          </p>
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-2">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 rounded-lg bg-foreground px-4 py-2 text-sm font-medium text-background transition hover:bg-foreground/90"
-            >
-              <Home className="h-4 w-4" />
-              Go home
-            </Link>
-            <Link
-              href="/projects"
-              className="inline-flex items-center gap-2 rounded-lg border border-dashed border-(--pill-border) bg-bg-card px-4 py-2 text-sm font-medium text-foreground transition hover:border-(--border-strong)"
-            >
-              View projects
-            </Link>
-          </div>
-        </Reveal>
+        <div className="relative z-10 max-w-2xl mx-auto px-4 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <h1 className="text-8xl sm:text-9xl font-bold text-primary mb-4">
+              404
+            </h1>
+
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
+              Page Not Found
+            </h2>
+
+            <p className="text-lg text-muted-foreground mb-8">
+              Sorry, the page you're looking for doesn't exist or has been moved.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Button asChild size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+                <Link href="/">
+                  <Home className="mr-2 w-4 h-4" />
+                  Go Home
+                </Link>
+              </Button>
+              <Button asChild variant="outline" size="lg">
+                <Link href="/projects">
+                  View Projects
+                </Link>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
       </section>
 
-      <Footer />
+      <SiteFooter />
     </main>
   )
 }

@@ -37,7 +37,7 @@ export function ProjectsContent() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             badge="Flagship Work"
-            title="Start with these five projects."
+            title="Start with these four projects."
             description="They provide the most accurate picture of how I build across product software, backend workflows, data-intensive systems, and applied AI."
           />
 
@@ -91,7 +91,7 @@ export function ProjectsContent() {
                   <p className="text-[0.68rem] font-mono uppercase tracking-[0.18em] text-primary/90">{project.category}</p>
                   <h3 className="mt-3 text-xl font-semibold text-foreground">{project.title}</h3>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">{project.description}</p>
-                  <p className="mt-2.5 text-sm font-medium text-foreground/92">{project.recruiterAngle}</p>
+                  <p className="mt-2.5 text-sm font-medium text-foreground/92">{project.proofLine}</p>
 
                   <div className="mt-4 grid grid-cols-2 gap-2.5">
                     {project.metrics.slice(0, 2).map((metric) => (

@@ -1,36 +1,21 @@
-# Asset Checklist — Screenshots & Media Needed
+# Portfolio media checklist
 
-Drop all files into `public/projects/` using the filenames below.
+The live portfolio only ships media that can be tied to a real project build or a clearly labeled editorial source. See `docs/CONTENT_REVIEW.md` for the provenance and claim audit.
 
-## Buzzr (Critical)
-- [x] `buzzr-home.png` — Mobile home feed
-- [x] `buzzr-games.png` — Game detail view
-- [x] `buzzr-party.png` — Watch party / social views
-- [ ] **YouTube video** (30-60s walkthrough: live feed → game → rating → web companion)
-  - Upload unlisted, provide URL
+## Shipping now
 
-## Business Analytics Dashboard (High)
-- [ ] `dashboard-validation.png` — Validation workflow screen (CSV issues, column warnings)
-- [ ] `dashboard-forecast.png` (optional) — Prophet forecast chart with 7/30/90d windows
-- [ ] `dashboard-overview.png` (optional) — Main dashboard with summary cards and anomaly flags
+- [x] Fuzzy reader cover, explain workflow, and recorded local demo
+- [x] Buzzr guest home and live-game captures from the application repository
+- [x] Business analytics validation workflow
+- [x] Rushil portrait and June 2026 resume
+- [x] Generated 1200×630 observatory social card
 
-## IBM Medscribe AI (High)
-- [ ] `medscribe-output.png` — Structured output / review screen (summary + next steps + context)
-- [x] YouTube video already linked
+## Useful future additions
 
-## Credit Union Ledger API (Medium)
-- [ ] `ledger-swagger.png` — Swagger UI showing full endpoint list
-- [ ] `ledger-tests.png` — Terminal with xUnit test results passing (green)
-- [ ] `ledger-schema.png` (optional) — DB schema diagram or EF Core migration
+- [ ] PixelDraw canvas and generation-flow captures from a confirmed runnable build
+- [ ] Credit Union Ledger API Swagger and schema captures
+- [ ] Graph Link Prediction evaluation plots from a reproducible run
+- [ ] IBM Medscribe output capture using synthetic, non-sensitive data
+- [ ] A personal Spotify playlist URL, if the public editorial capsule should be replaced
 
-## Graph Link Prediction (Medium)
-- [ ] `graph-visualization.png` — NetworkX/matplotlib graph rendering
-- [ ] `graph-results.png` — AUC/ROC curve or training loss chart
-- [ ] `graph-notebook.png` (optional) — Jupyter notebook showing GCN architecture
-
-## PA GPA (Low)
-- [ ] `pa-gpa-report.png` — Reporting/forecasting output view
-
----
-
-Once assets are added, run the portfolio and the gallery slots will be wired automatically.
+Do not add mock metrics, reconstructed UI, personal data, or release links that have not been verified immediately before publishing.

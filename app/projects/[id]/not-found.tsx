@@ -4,13 +4,11 @@ import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowLeft, Search } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Navbar } from '@/components/organisms/navbar'
-import { Footer } from '@/components/organisms/footer'
+import { SiteFooter } from '@/components/observatory/site-footer'
 
 export default function ProjectNotFound() {
   return (
-    <main className="min-h-screen bg-background">
-      <Navbar />
+    <main id="main-content" className="observatory-page min-h-screen bg-background pt-20">
       
       <section className="relative min-h-[70vh] flex items-center justify-center">
         <div className="absolute inset-0 animated-gradient opacity-20" />
@@ -51,7 +49,7 @@ export default function ProjectNotFound() {
         </div>
       </section>
       
-      <Footer />
+      <SiteFooter />
     </main>
   )
 }

@@ -15,6 +15,10 @@ next.user-config.*
 node_modules/
 .next/
 .DS_Store
+*.tsbuildinfo
+
+# Generated browser, Lighthouse, and media-capture evidence
+artifacts/
 
 # Memoire local state (source of truth lives in code + Figma)
 .memoire/

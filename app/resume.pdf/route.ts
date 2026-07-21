@@ -1,10 +1,13 @@
 import { NextResponse } from 'next/server'
 
-export async function GET() {
-  return NextResponse.redirect(
-    new URL(
-      '/resume/rushil-gangisetty-resume.pdf',
-      process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'http://localhost:3000',
-    ),
-  )
+const resumeAssetPath = '/resume/rushil-gangisetty-resume-2026-06.pdf'
+
+export function GET() {
+  return new NextResponse(null, {
+    status: 307,
+    headers: {
+      Location: resumeAssetPath,
+      'Cache-Control': 'no-store',
+    },
+  })
 }
